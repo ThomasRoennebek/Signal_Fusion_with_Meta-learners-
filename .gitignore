@@ -208,5 +208,8 @@ __marimo__/
 
 
 
-# data
+# Ignore all data folders anywhere
+data/
 Data/
+*/data/
+*/Data/
