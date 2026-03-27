@@ -1,16 +1,30 @@
+"""
+mlp.py — Reusable PyTorch utilities for tabular MLP training.
+"""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Optional
-import random
+
 import copy
+import random
+
 import numpy as np
 import pandas as pd
 import torch
 import torch.nn as nn
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
+
+# ---------------------------------------------------------------------
+# Reproducibility
+# ---------------------------------------------------------------------
+
 def set_seed(seed: int = 42) -> None:
+    """
+    Set random seeds for reproducible experiments.
+    """
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -20,6 +34,9 @@ def set_seed(seed: int = 42) -> None:
     torch.backends.cudnn.benchmark = False
 
 
+# ---------------------------------------------------------------------
+# Model definition
+# ---------------------------------------------------------------------
 
 class TabularMLP(nn.Module):
     def __init__(
@@ -48,7 +65,158 @@ class TabularMLP(nn.Module):
 class MLPTrainingConfig:
     n_epochs: int = 50
     patience: int = 5
+    lr: float = 1e-3
+    weight_decay: float = 1e-5
+    train_batch_size: int = 128
+    val_batch_size: int = 256
+    hidden_dim_1: int = 128
+    hidden_dim_2: int = 64
+    dropout: float = 0.2
 
+
+# ---------------------------------------------------------------------
+# Tensor / dataloader helpers
+# ---------------------------------------------------------------------
+
+def _to_dense_if_needed(X):
+    """
+    Convert sparse matrix to dense if needed.
+    """
+    if hasattr(X, "toarray"):
+        return X.toarray()
+    return X
+
+
+def build_tabular_tensors(
+    preprocessor,
+    X_train,
+    X_val,
+    y_train,
+    y_val,
+):
+    """
+    Fit/transform tabular data and convert to PyTorch tensors.
+    """
+    X_train_proc = preprocessor.fit_transform(X_train)
+    X_val_proc = preprocessor.transform(X_val)
+
+    X_train_proc = _to_dense_if_needed(X_train_proc)
+    X_val_proc = _to_dense_if_needed(X_val_proc)
+
+    X_train_tensor = torch.tensor(X_train_proc, dtype=torch.float32)
+    X_val_tensor = torch.tensor(X_val_proc, dtype=torch.float32)
+
+    y_train_tensor = torch.tensor(np.asarray(y_train), dtype=torch.float32).view(-1, 1)
+    y_val_tensor = torch.tensor(np.asarray(y_val), dtype=torch.float32).view(-1, 1)
+
+    return X_train_tensor, X_val_tensor, y_train_tensor, y_val_tensor
+
+
+def make_dataloaders(
+    X_train_tensor: torch.Tensor,
+    X_val_tensor: torch.Tensor,
+    y_train_tensor: torch.Tensor,
+    y_val_tensor: torch.Tensor,
+    train_batch_size: int = 128,
+    val_batch_size: int = 256,
+    shuffle_train: bool = True,
+):
+    """
+    Create standard train/validation dataloaders.
+    """
+    train_dataset = torch.utils.data.TensorDataset(X_train_tensor, y_train_tensor)
+    val_dataset = torch.utils.data.TensorDataset(X_val_tensor, y_val_tensor)
+
+    train_loader = torch.utils.data.DataLoader(
+        train_dataset,
+        batch_size=train_batch_size,
+        shuffle=shuffle_train,
+    )
+    val_loader = torch.utils.data.DataLoader(
+        val_dataset,
+        batch_size=val_batch_size,
+        shuffle=False,
+    )
+
+    return train_loader, val_loader
+
+
+def make_weighted_dataloaders(
+    X_train_tensor: torch.Tensor,
+    X_val_tensor: torch.Tensor,
+    y_train_tensor: torch.Tensor,
+    y_val_tensor: torch.Tensor,
+    sample_weight,
+    train_batch_size: int = 128,
+    val_batch_size: int = 256,
+):
+    """
+    Create weighted train dataloader and standard validation dataloader.
+    """
+    train_dataset = torch.utils.data.TensorDataset(X_train_tensor, y_train_tensor)
+    val_dataset = torch.utils.data.TensorDataset(X_val_tensor, y_val_tensor)
+
+    train_weights_tensor = torch.tensor(np.asarray(sample_weight), dtype=torch.double)
+
+    sampler = torch.utils.data.WeightedRandomSampler(
+        weights=train_weights_tensor,
+        num_samples=len(train_weights_tensor),
+        replacement=True,
+    )
+
+    train_loader = torch.utils.data.DataLoader(
+        train_dataset,
+        batch_size=train_batch_size,
+        sampler=sampler,
+    )
+    val_loader = torch.utils.data.DataLoader(
+        val_dataset,
+        batch_size=val_batch_size,
+        shuffle=False,
+    )
+
+    return train_loader, val_loader
+
+
+# ---------------------------------------------------------------------
+# Model builder
+# ---------------------------------------------------------------------
+
+def build_mlp(
+    input_dim: int,
+    lr: float = 1e-3,
+    weight_decay: float = 1e-5,
+    hidden_dim_1: int = 128,
+    hidden_dim_2: int = 64,
+    dropout: float = 0.2,
+    device: Optional[torch.device] = None,
+):
+    """
+    Build model, loss, optimizer, and device.
+    """
+    if device is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    model = TabularMLP(
+        input_dim=input_dim,
+        hidden_dim_1=hidden_dim_1,
+        hidden_dim_2=hidden_dim_2,
+        dropout=dropout,
+    ).to(device)
+
+    criterion = nn.BCEWithLogitsLoss()
+    optimizer = torch.optim.Adam(
+        model.parameters(),
+        lr=lr,
+        weight_decay=weight_decay,
+    )
+
+    return model, criterion, optimizer, device
+
+
+# ---------------------------------------------------------------------
+# Training / evaluation
+# ---------------------------------------------------------------------
 
 def evaluate_mlp(
     model: nn.Module,
@@ -57,16 +225,10 @@ def evaluate_mlp(
     device: torch.device,
 ) -> tuple[float, float, float]:
     """
-    Evaluate an MLP on a dataloader.
+    Evaluate MLP on a dataloader.
 
-    Returns
-    -------
-    avg_loss : float
-        Mean loss over the dataset.
-    rmse : float
-        RMSE on sigmoid-transformed predictions.
-    mae : float
-        MAE on sigmoid-transformed predictions.
+    Returns:
+        avg_loss, rmse, mae
     """
     model.eval()
     total_loss = 0.0
@@ -111,12 +273,8 @@ def train_mlp(
     """
     Train an MLP with early stopping on validation loss.
 
-    Returns
-    -------
-    model : nn.Module
-        Best model after restoring the best validation checkpoint.
-    training_history : pd.DataFrame
-        Epoch-wise training and validation history.
+    Returns:
+        best_model, training_history
     """
     best_val_loss = float("inf")
     best_state_dict: Optional[dict] = None
@@ -201,7 +359,7 @@ def predict_mlp(
     device: torch.device,
 ) -> np.ndarray:
     """
-    Predict probabilities from an MLP using sigmoid - logits.
+    Predict probabilities from an MLP using sigmoid(logits).
     """
     model.eval()
     preds = []
