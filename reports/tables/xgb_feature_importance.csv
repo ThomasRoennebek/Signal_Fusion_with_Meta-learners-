@@ -1,0 +1,2742 @@
+feature,importance
+num__contract_age_years,0.34754357
+cat__expiry_range_Over 360 days,0.302575
+num__global_lifecycle_yes_votes,0.08081483
+num__start_year_capped,0.03741623
+num__lf_abstain_votes,0.027384028
+num__lf_yes_votes,0.024186706
+num__global_financial_yes_votes,0.022832645
+num__days_until_expiry,0.015482796
+num__expiry_year,0.0110234935
+num__Book_value_per_share_DKK,0.010918014
+num__std_vol,0.00952469
+num__fin_implied_rating_missing_flag,0.009403733
+cat__department_Logistics,0.0052442118
+num__market_flag_negative_52w_price_trend,0.0052323733
+num__fin_total_stress_flags,0.0051932978
+num__financial_row_missing_pct,0.0051172073
+cat__contract_commodity_Freights Forwarding - Road,0.0049318224
+num__fin_flag_moderate_or_worse_rating,0.0045891358
+num__Price_trends_52 weeks_%,0.0045590247
+num__years_to_expiry,0.0032761411
+num__global_supplier_macro_yes_votes,0.0032702107
+cat__expiry_range_180 days,0.002623742
+num__market_has_stock_view,0.0024932963
+num__fin_long_term_liabilities_equity_ratio,0.00246391
+num__observation_year,0.0024494596
+num__contracts_per_supplier,0.002443249
+num__lf_no_votes,0.0023076427
+cat__term_type_auto_renew,0.002206377
+cat__contract_name_lower_carbogen amcis ag_master_2011_msa,0.0021228073
+num__open_ended_contract,0.0020355973
+"cat__contract_type_Finance, Legal & Procurement",0.0017595952
+num__PPI_Value,0.0015965428
+num__global_market_yes_votes,0.001585633
+num__start_year,0.0014157719
+num__news_avg_sentiment_score,0.0012391597
+num__logistics_specific_yes_votes,0.001103466
+num__fin_debt_asset_ratio,0.0011032387
+cat__department_from_cost_center_Bioprocessing & Raw Materials,0.0010765096
+cat__Shares outstanding_414.555.046,0.0010219488
+cat__contract_commodity_Road Transportation,0.0008766667
+num__global_esg_yes_votes,0.0008757956
+cat__contract_commodity_Waste Management,0.0008202754
+num__min_vol,0.00081133033
+cat__contract_type_Distribution,0.0008054159
+cat__fin_closing_date_2024-12-31,0.0007528887
+cat__fin_implied_rating_Ba,0.0007455092
+cat__contract_name_lower_dhl global forwarding_master_2021_nnas_primary_lsow_brazil road freight,0.0007055753
+num__global_financial_no_votes,0.0006845233
+num__fin_risk_level_missing_flag,0.0006309575
+cat__contract_name_lower_bhs_call-off_2017_nnas_primary_ffa_amendment1_4plsetup,0.0005857471
+cat__contract_name_lower_kuehne + nagel a/s_cda_2022,0.00058475346
+cat__fin_moodys_company_name_Nemera LA Verpilliere,0.0005683866
+num__fin_roa_net_income,0.0005603201
+num__esg_social_score,0.0005484131
+num__esg_esg_industry_adjusted,0.0005271578
+num__International_Shipments,0.00050479895
+num__fin_long_term_gearing_missing_flag,0.000497034
+cat__Risk level_Go ahead,0.0004946908
+cat__Risk level_Take caution,0.0004512661
+cat__nn_contract_type_Logistics Services Provider Agreement,0.0004460697
+cat__fin_moodys_company_name_Linde Gas A/S,0.0004066194
+cat__fin_implied_rating_A,0.0003978404
+num__global_news_yes_votes,0.00038958568
+num__contract_owner_cost_centre,0.00036858767
+cat__esg_company_name_Linde Gas A/S,0.00034599708
+num__max_vol,0.0003454502
+num__fin_flag_risk_take_caution_or_worse,0.00032088344
+num__news_negative_count,0.00030057871
+cat__fin_Implied_rating - original_Ba1,0.0002859055
+num__fin_flag_liquidity_stress,0.0002551334
+cat__contract_name_lower_skynrg_stand-alone_2021_partnership agreement on sustainable aviation fuel,0.00025144254
+cat__fin_implied_rating_Baa,0.00024631893
+num__fin_Total_liabilities_Equity_ratio,0.00023817159
+cat__incoterms_DAP Del.at Place-excl.unloading,0.00022198242
+num__fin_closing_year,0.00021000936
+cat__fin_risk_level_Go ahead,0.00019490844
+num__esg_social_weight,0.00018214184
+num__esg_env_weight,0.00018189286
+num__fin_Interest_paid_th_DKK,0.00018028206
+num__fin_current_ratio,0.00015927122
+num__fin_roe_net_income,0.00015650119
+num__fin_solvency_ratio_asset_based,0.00015525332
+cat__payment_terms_F030 Invoice Date + 30 days,0.00014902113
+num__fin_Gross_profit_th_DKK,0.00014840803
+num__fin_Costs_of_goods_soldth_DKK,0.0001473834
+num__price_trend_slope,0.0001452067
+num__avg_vol,0.00013624044
+num__news_neutral_count,0.00013077907
+num__fin_Net_assets_turnover,0.00012785169
+num__market_cap_volatility,0.00012618597
+num__esg_env_score,0.00012468794
+num__vol_shock_ratio,0.00011952735
+cat__department_Bioprocessing and Excipients,0.00011689955
+cat__incoterms_DDP Delivered duty paid,0.00011610412
+num__avg_market_cap,0.00011459985
+num__contract_value_dkk,0.0001117878
+num__vol_stability_score,0.00011113312
+num__esg_gov_weight,0.00010702563
+"cat__esg_sector_Transport, Freight & Storage",0.000103704355
+cat__contract_currency_code_DKK,0.00010294041
+num__contract_value,0.00010262763
+num__esg_gov_score,9.9846286e-05
+num__vol_trend_slope,9.492215e-05
+num__news_has_high_relevance_negative_news,9.321543e-05
+"cat__supplier_sector_Chemicals, Petroleum, Rubber & Plastic",8.907182e-05
+num__esg_industry_min,8.889241e-05
+num__avg_closing_price,8.864344e-05
+cat__fin_Implied_rating - original_A2,8.5942345e-05
+cat__term_type_fixed,8.588492e-05
+num__fin_Other_non_current_liabilitiesth_DKK,8.247218e-05
+cat__department_from_cost_center_Logistics,8.195787e-05
+cat__contract_name_lower_aga as_master_2019_fta_aa_amendmentno1,7.602775e-05
+num__Unnamed: 0.1,7.5829295e-05
+num__fin_implied_rating_ordinal,7.415875e-05
+"cat__supplier_sector_Transport, Freight & Storage",7.33292e-05
+cat__expiry_pressure_bucket_3_to_5y,7.323652e-05
+cat__department_Packaging Material,7.2273564e-05
+num__fin_EBITDA_th_DKK,7.197447e-05
+cat__contract_name_lower_dhl global forwarding_call-off_2022_nnas_primary_lsow_brazil_road_freight,7.11759e-05
+cat__contract_commodity_GxP Gas,7.07835e-05
+cat__incoterms_CPT Carriage paid,6.870572e-05
+num__fin_short_term_liabilities_equity_ratio,6.719052e-05
+num__fin_gearing,6.707251e-05
+num__Timeliness,6.468076e-05
+num__fin_EBIT_th_DKK,6.052015e-05
+cat__expiry_pressure_bucket_within_1y,6.026694e-05
+cat__team_Bioprocessing and Excipients,6.025674e-05
+num__esg_esg_overall,5.9566803e-05
+cat__contract_commodity_Cartons,5.8768557e-05
+cat__fin_moodys_company_name_F.I.S. Fabbrica Italiana Sintetici S.P.A.,5.8702033e-05
+num__news_article_count,5.8249614e-05
+num__fin_EBITDA_margin,5.6396628e-05
+cat__contract_name_lower_danish crown_stand-alone_2019_rss_responsible sourcing standards,5.5895805e-05
+num__fin_interest_coverage_ratio,5.270208e-05
+num__fin_Cash_and_cash_equivalent_th_DKK,5.1106163e-05
+cat__esg_company_name_Nuova Ompi S.R.L.,5.0835148e-05
+"cat__esg_sector_Wood, Furniture & Paper Manufacturing",4.9499897e-05
+num__news_avg_relevance_score,4.9488503e-05
+num__fin_short_term_gearing,4.9216953e-05
+cat__fin_Implied_rating - original_A1,4.8720314e-05
+num__fin_Gross_margin,4.825196e-05
+cat__contract_commodity_Warehouse Operations - Storage,4.714146e-05
+num__fin_profit_margin,4.5421773e-05
+cat__unit_GSOD,4.5276563e-05
+cat__contract_name_lower_novozymes as_stand-alone_2018_kalundborg bioenergi internal agreement,4.4706463e-05
+cat__contract_commodity_Dry Ice and Gas,4.396317e-05
+num__fin_long_term_gearing,4.365332e-05
+cat__team_Raw Materials & Energy,4.3401484e-05
+cat__fin_moodys_company_name_Ypsomed AG,4.275645e-05
+num__fin_Number_of_employees,4.2139243e-05
+num__global_news_no_votes,4.1650637e-05
+cat__fin_moodys_company_name_Novartis Pharma AG,4.0939725e-05
+cat__contract_name_lower_dhl supply chain_master_2018_nnas_primary_lspa_service provider agreement,3.8494603e-05
+"cat__supplier_sector_Wood, Furniture & Paper Manufacturing",3.6744947e-05
+cat__contract_commodity_Freights Forwarding - Air,3.671709e-05
+cat__contract_name_lower_albemarle_call-off_20170620_wo5_aa1-2,3.6411253e-05
+cat__contract_name_lower_lsl_call-off_2024_lspa_address change,3.6172845e-05
+cat__nn_contract_type_Other,3.508237e-05
+num__price_volatility_score,3.496844e-05
+num__LPI_Score,3.4785164e-05
+num__news_positive_count,3.4602428e-05
+cat__fin_moodys_company_name_Smurfit Westrock Danmark A/S,3.2936267e-05
+num__fin_Net_income_th_DKK,3.260195e-05
+"cat__esg_sector_Leather, Stone, Clay & Glass products",3.2105803e-05
+num__Year,3.104651e-05
+cat__fin_Implied_rating - original_Baa3,3.0762774e-05
+num__fin_Long_term_debtth_DKK,2.9987712e-05
+cat__contract_name_lower_pn_call-off_2021_nnas_primary_msa_amendment4_trailer rental services,2.901731e-05
+cat__contract_type_Research & Development,2.8295528e-05
+cat__nn_contract_type_Framework Trading Agreement,2.7381746e-05
+cat__nn_contract_type_Lease Agreement,2.7030663e-05
+num__fin_Shareholders_funds_th_DKK,2.700036e-05
+cat__nn_contract_type_Service Agreement,2.6939506e-05
+cat__esg_company_name_Smurfit Westrock Danmark A/S,2.6882504e-05
+cat__fin_moodys_company_name_West Pharmaceutical Services Deutschland GmbH & Co. KG,2.6544018e-05
+cat__contract_name_lower_aga as_call-off_20180928_pa_2018-2019,2.6287391e-05
+num__fin_flag_interest_coverage_weak,2.601494e-05
+cat__contract_currency_code_CNY,2.5584164e-05
+cat__contract_commodity_4PL,2.5532165e-05
+cat__esg_risk_level_Take caution,2.5098263e-05
+num__news_negative_ratio,2.499815e-05
+cat__expiry_range_360 days,2.4708681e-05
+num__fin_Net_Salesth_DKK,2.3647657e-05
+cat__department_Drug Substance Outsourcing,2.2816723e-05
+cat__fin_implied_rating_Aaa,2.2618804e-05
+num__fin_Cash_ratio,2.2163578e-05
+cat__contract_name_lower_xpo_call-off_2017_nnas_primary_ffa_amendment2_4plsetup,2.144874e-05
+cat__supplier_sector_Wholesale,2.1238266e-05
+cat__contract_name_lower_softbox_master_2022_fta pallet shippers,2.0436904e-05
+num__news_max_relevance_score,1.9655812e-05
+cat__fin_moodys_company_name_CCL Label A/S,1.9540128e-05
+num__fin_Non_current_liabilities_th_DKK,1.9459587e-05
+num__fin_Total_assets_th_DKK,1.9433073e-05
+cat__contract_commodity_Other Warehousing,1.8010282e-05
+num__fin_Operating_revenue_Turnover_th_DKK,1.6752949e-05
+num__fin_Other_current_liabilitiesth_DKK,1.6476624e-05
+cat__fin_moodys_company_name_Asahi Kasei Bioprocess Europe,1.6304293e-05
+num__news_row_missing_pct,1.5911619e-05
+cat__payment_terms_F060 Invoice Date + 60 days,1.5701225e-05
+cat__nn_contract_type_Confidentiality Agreement,1.5175849e-05
+num__fin_ebit_margin,1.4943416e-05
+cat__fin_moodys_company_name_Synoptik A/S,1.4873211e-05
+"cat__department_from_cost_center_Distribution, GxP services & Energy",1.47557275e-05
+cat__fin_moodys_company_name_Fujifilm Diosynth Biotechnologies UK Limited,1.473353e-05
+cat__fin_Implied_rating - original_Ba2,1.451253e-05
+cat__esg_sector_Printing & Publishing,1.4328017e-05
+num__fin_Total_shareholders'_funds_and_liabilitiesth_DKK,1.3862234e-05
+cat__fin_moodys_company_name_UFAG Laboratorien AG,1.3657226e-05
+num__market_flag_stock_price_take_caution_or_worse,1.3568089e-05
+cat__supplier_sector_Retail,1.3557697e-05
+cat__fin_moodys_company_name_Colorcon Limited,1.3173986e-05
+cat__contract_name_lower_fibrant b.v._stand-alone_2018_bta,1.3037295e-05
+"cat__esg_company_name_Xi'An Global Printing Co.,Ltd.",1.2564941e-05
+cat__contract_name_lower_excella (fareva)_master_2022_outsourcing agreement (oa),1.2410326e-05
+cat__company_country_DENMARK,1.2358536e-05
+cat__esg_company_name_Flexcoat Produtos Auto-Adesivos S/A,1.17841055e-05
+cat__esg_company_name_Synoptik A/S,1.1585682e-05
+cat__contract_commodity_Warehouse Operations - Inbound,1.15835355e-05
+cat__contract_name_lower_kuehne + nagel a/s_master_2017 _nnas_primary_ffa,1.1181779e-05
+cat__contract_currency_code_EUR,8.543389e-06
+num__esg_row_missing_pct,7.890791e-06
+cat__company_country_CHINA,6.816365e-06
+cat__contract_commodity_Support Proteins and BIO APIs Unclassified,6.742884e-06
+cat__fin_implied_rating_Aa,6.146336e-06
+num__Customs,5.7806237e-06
+num__fin_Non-current_assetsth_DKK,5.6047465e-06
+num__fin_Current_assets_th_DKK,4.616387e-06
+cat__contract_commodity_Process Aids,4.1725457e-06
+num__Earnings_per_share_DKK,4.056144e-06
+cat__contract_currency_code_USD,3.8706276e-06
+num__fin_Other_current_assetsth_DKK,3.8252865e-06
+cat__department_Raw Materials & Energy,3.5337812e-06
+num__fin_Working_capital_th_DKK,2.640385e-06
+cat__Risk level_Do not source,2.5675552e-06
+cat__payment_terms_F045 Invoice Date + 45 days,1.6728246e-06
+"cat__team_Quality, Production Services & Supplies",1.2394576e-06
+cat__nn_contract_type_Basic Terms Agreement,8.790337e-07
+cat__company_country_clean_Denmark,6.2201724e-07
+num__market_flag_negative_volume_trend,4.3921992e-07
+cat__contract_commodity_Industrial Commodities,9.8113254e-08
+cat__contract_name_lower_millmount healthcare (pci)_master_20180619_oa,0.0
+"cat__contract_name_lower_millmount_healthcare_(pci)_call-off_2020_oa_aa1_app0,10",0.0
+cat__contract_name_lower_nemera_call-off_2019_co 01 001 - po 7778002659 nfac hub 12 cav.,0.0
+cat__contract_name_lower_nemera szczecin_amendment 03 to oa_2025_flextouch_pricing_torquespring update,0.0
+"cat__contract_name_lower_nemera_call-off_2019_co 03 001 - po 7778002666 nft-nfp hub, 12 cav.",0.0
+cat__contract_name_lower_nanomicro_cda_2025,0.0
+cat__contract_name_lower_mps chesapeake_master_20131026_sa,0.0
+cat__contract_name_lower_nemera_call-off_2019_po7778002867 _ac hub 081e 48 cav (kebo),0.0
+cat__contract_name_lower_multi packaging solutions_aa4_2024_appendix 7a1 udpate,0.0
+cat__contract_name_lower_millmount healthcare (pci)_call-off_aa1_2021,0.0
+cat__contract_name_lower_millmount healthcare (pci)_call-off_2025_aa7_ozempic multi-pack,0.0
+cat__contract_name_lower_millmount healthcare (pci)_call-off_2025_aa6_it security,0.0
+cat__contract_name_lower_nemera_call-off_2020_co 01 001 - po 7778002725 hub 094c,0.0
+"cat__contract_name_lower_multi packaging solutions (kunshan) co., ltd._call-off_2021_sa_aa2_app16",0.0
+cat__contract_name_lower_nemera_call-off_2020_co 01 001 - po 7778002762 hub 094d,0.0
+"cat__contract_name_lower_multi packaging solutions (kunshan) co., ltd._master_20151217_sa",0.0
+cat__contract_name_lower_multi packaging solutions_aa3_2023_appendices update,0.0
+cat__contract_name_lower_multi-color corporation_cda_2025_ppm rfq,0.0
+cat__contract_name_lower_nalco danmark aps_stand alone_2020_pa_price agreement from 2021,0.0
+cat__contract_name_lower_nemera la verpilliére_call-off_2020_oa_aa_2_app6,0.0
+cat__contract_name_lower_mortalin_sla_2024_pest control b2,0.0
+cat__contract_name_lower_ncc usa_cda_2025_tender process small molecules,0.0
+cat__contract_name_lower_nalco danmark aps_stand-alone_20190101_pa,0.0
+cat__contract_name_lower_mm packaging us_call-off_2023_sa_aa6_appendices update,0.0
+cat__contract_name_lower_mm group_master_2024_sa_denmark_us_france,0.0
+cat__contract_name_lower_mm group_amendment_2025:label tender allocation,0.0
+cat__contract_name_lower_mobilhouse_amendment_office pavilions_25n expansion site hillerød_2024-2026,0.0
+cat__contract_name_lower_molded devices inc_cda mutual_2023,0.0
+cat__contract_name_lower_nck_master_2022_dhaa sa,0.0
+cat__contract_name_lower_mm group_amendment 2_2025_terms update and 2025 allocation,0.0
+cat__contract_name_lower_molekula_mutual cda_2025_peptide synthesis coupling reagent,0.0
+cat__contract_name_lower_movianto international b.v. _confidentiality agreement_2025_global cda,0.0
+cat__contract_name_lower_multisorb_nn_cda_2025_bottles,0.0
+cat__contract_name_lower_mm group_amendment 1_2025_update to supplementary supply agreement,0.0
+cat__contract_name_lower_neff as_master_2021_nnas_primary_lsa_dk,0.0
+cat__contract_name_lower_nalco danmark aps_stand-alone_2016_bta,0.0
+cat__contract_name_lower_mind energy a/s_cda_2025_energy supply services,0.0
+cat__contract_name_lower_nemera la verpilliere_call-off_20191217_oa_aa_1_app6,0.0
+cat__contract_name_lower_minakem_call-off_2024_cda mutual_smart_rfq_aa1,0.0
+cat__contract_name_lower_nalco danmark aps_stand-alone_2021_pa_2022,0.0
+cat__contract_name_lower_nemera la verpilliere_call-off_2021_oa_aa4_app6.,0.0
+cat__contract_name_lower_nemera la verpilliere_master_20181219_oa,0.0
+cat__contract_name_lower_n.v. asahi kasei bioprocess europe_stand alone_2021_bta,0.0
+cat__contract_name_lower_otto_männer_po7776000166_2022_new container 2,0.0
+cat__contract_name_lower_mesa parts gmbh_call-off_20210202_sa_aa,0.0
+cat__contract_name_lower_millmount healthcare (pci)_call-off_2025_aa5_price adjustment 2025,0.0
+cat__contract_name_lower_lyreco_purchasing extension_2022_punchout norway,0.0
+cat__contract_name_lower_mariager salt specialties as_stand-alone_2021_bta,0.0
+cat__contract_name_lower_mate_master_20180820_sa,0.0
+cat__contract_name_lower_maxell europe ltd._master_20130228_sa,0.0
+cat__contract_name_lower_maxell_call-off_20220401_sa_app5,0.0
+cat__contract_name_lower_maxell_call-off_20221122_sa_app_,0.0
+cat__contract_name_lower_mcc flexcoat_amendment_no.2_2025,0.0
+cat__contract_name_lower_mckinsey & company_purchasing extension_2021_0438,0.0
+cat__contract_name_lower_md logistics_cda_2025_north america primary road distribution,0.0
+cat__contract_name_lower_mdlogistics_amendment 3_2025_extension of the agreement by additional 12 months,0.0
+cat__contract_name_lower_mdlogistics_amendment_2025_waste handling operation,0.0
+cat__contract_name_lower_medicopack as_master_2016_sa,0.0
+cat__contract_name_lower_medipac gmbh_stand-alone_2015_bta,0.0
+cat__contract_name_lower_medipac gmbh_stand-alone_20190101_pa,0.0
+"cat__contract_name_lower_merck chemicals (shanghai) co., ltd_stand-alone_2014_bta",0.0
+cat__contract_name_lower_merck consent letter bohumil,0.0
+"cat__contract_name_lower_macco organiques, s.r.o_master_20180701_sa",0.0
+cat__contract_name_lower_palladio_cda_2025_development,0.0
+cat__contract_name_lower_merck consent letter for pupsit project,0.0
+cat__contract_name_lower_lyreco_purchasing extension_2022_punchout finland,0.0
+cat__contract_name_lower_lonza_call-off_20190319_wo4,0.0
+cat__contract_name_lower_lonza_call-off_2022_fa_aa2_environmental appendix,0.0
+cat__contract_name_lower_lonza_call-off_2023_sa_aa2_snac,0.0
+cat__contract_name_lower_lonza_call-off_2023_sa_aa3_snac,0.0
+cat__contract_name_lower_lonza_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_lonza_master_2020_sa_snac,0.0
+cat__contract_name_lower_lonza_nn_cda_rfp_2025,0.0
+cat__contract_name_lower_lonza_polypeptide_call-off_2021_no-042,0.0
+cat__contract_name_lower_lonza_stand-alone_2015_bta,0.0
+cat__contract_name_lower_lonza_stand-alone_2023_cda_amendment 1 to cda 24-11-2021,0.0
+cat__contract_name_lower_ls intertank_master_2022_nnas_primary_msa_transport and tank storage of raw material,0.0
+cat__contract_name_lower_luxembourg bio technologies ltd_cda_2025_tender process small molecules,0.0
+cat__contract_name_lower_lyngholm filtration aps_bwf_stand alone 2021_bta,0.0
+cat__contract_name_lower_lyreco_purchasing extension_2022_austria,0.0
+cat__contract_name_lower_lyreco_purchasing extension_2022_punchout belgium,0.0
+cat__contract_name_lower_merck consent letter for pupsit + ffex projects,0.0
+cat__contract_name_lower_merck life science a/s_cda_2024_cn for mq300 materials,0.0
+cat__contract_name_lower_millmount healthcare (pci)_call-off_2024_aa4_price adjustment 2024,0.0
+cat__contract_name_lower_mesa parts gmbh & co. kg_call-off_20200123_sa_aa3_app1_2_10,0.0
+cat__contract_name_lower_nemera_call-off_2020_co 01 001 - po 7778002765 nfac shield 083k,0.0
+cat__contract_name_lower_mesa parts gmbh_call-off_20220124_sa_aap,0.0
+cat__contract_name_lower_mesa_parts_gmbh_call-off_20230913_sa_aa8,0.0
+cat__contract_name_lower_mesa_parts_gmbh_call-off_2025_sa_aa9_app9_price adjustment,0.0
+cat__contract_name_lower_mfs_call-off_20200101_oa_app9_12,0.0
+cat__contract_name_lower_mfs_call-off_20210212_oa_app,0.0
+cat__contract_name_lower_mfs_call-off_20211029_oa_app,0.0
+cat__contract_name_lower_mfs_call-off_20220401_oa_aa3_app,0.0
+cat__contract_name_lower_mfs_master_20120223_oa,0.0
+cat__contract_name_lower_mgs lynge a/s - framework agreement - 2025 - gc supply of moulding tools,0.0
+cat__contract_name_lower_mgs roskilde - framework agreement - 2025 - gc for supply of moulding tools,0.0
+cat__contract_name_lower_mgs_cda_2023_rfq new device,0.0
+cat__contract_name_lower_miclev ab_stand alone_2020_pa,0.0
+cat__contract_name_lower_miclev ab_stand-alone_2018_bta,0.0
+cat__contract_name_lower_millmount healthcare (pci)_call-off_2022_amendment 2_icodec additional business,0.0
+cat__contract_name_lower_pall life sciences belgium bvba_stand-alone_2015_bta,0.0
+cat__contract_name_lower_mesa france_stand-alone_20181207_pa,0.0
+cat__contract_name_lower_merck life science as_stand alone_2020_environmental program appendix,0.0
+cat__contract_name_lower_mesa france_stand-alone_2016_bta,0.0
+cat__contract_name_lower_merck life science as_stand-alone_20150520_letter_confirmation of name change,0.0
+cat__contract_name_lower_merck life science as_stand-alone_20191011_loa_ff hac sus project,0.0
+cat__contract_name_lower_merck life science as_stand-alone_2020_loa_building ff hac (former bfk) sus project,0.0
+cat__contract_name_lower_merck_call-off_2023_participating affiliate agreement (brazil)_final,0.0
+cat__contract_name_lower_merck_call-off_2023_participating affiliate agreement (china)_final,0.0
+cat__contract_name_lower_merck_call-off_2023_participating affiliate agreement (france)_final,0.0
+cat__contract_name_lower_pall norden_call-off_2020_sa_app1_2_9_prices,0.0
+cat__contract_name_lower_merck_call-off_2023_participating affiliate agreement (russia)_final,0.0
+cat__contract_name_lower_merck_call-off_2023_participating affiliate agreement (united states),0.0
+cat__contract_name_lower_merck_call-off_2025_participating affiliate agreement (ctlt anagni),0.0
+cat__contract_name_lower_merck_call-off_2025_participating affiliate agreement (ctlt brussels),0.0
+cat__contract_name_lower_merck_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_merck_master_2023_global master supply agreement,0.0
+cat__contract_name_lower_pall norden ab_stand-alone_20191011_loa_ff hac sus project,0.0
+cat__contract_name_lower_mesa france_stand alone_2020_pa,0.0
+cat__contract_name_lower_nemera_call-off_2020_co 01 001 - po 7778002764 nfac house 082i,0.0
+cat__contract_name_lower_nipro corporation_call-off_2022_oa_aa_6,0.0
+cat__contract_name_lower_nemera_call-off_2020_co 01 001 - po 7778002867 hub 081e,0.0
+cat__contract_name_lower_novozymes_standalone_2021_purchasing agreement_handling of ethanol waste,0.0
+cat__contract_name_lower_novo nordisk_catalent anagni_nuova ompi_3-way_cda_2024,0.0
+cat__contract_name_lower_novo nordisk_sharp packaging_rose plastic_3-way cda_2024,0.0
+cat__contract_name_lower_novo nordisk_swissco_spami_3-way_cda_2025,0.0
+cat__contract_name_lower_novozymes_sla_2013_aftale om biogasanlæg,0.0
+cat__contract_name_lower_novozymes_sla_2015,0.0
+cat__contract_name_lower_novozymes_sla_2020_amendment,0.0
+cat__contract_name_lower_novozymes_stand-alone_2019_documentation for legal fees,0.0
+cat__contract_name_lower_novozymes_supplyagreement_2024_steam kalundborg,0.0
+cat__contract_name_lower_novo nordisk- nis2 amendment_nn-pm 2025-0710a (003),0.0
+cat__contract_name_lower_ohly gmbh _call-off_2020_sa_aa5_app1_6,0.0
+cat__contract_name_lower_okuyan ltd_call-off_2024_nnas_caa_aa1_term extension,0.0
+cat__contract_name_lower_olon_call-off_2023_cda mutual_smart_rfq_aa1,0.0
+cat__contract_name_lower_olon_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_omni mold ltd_call-off_20171218_pa_app_#a v02_mldtools,0.0
+cat__contract_name_lower_omni mold ltd_master_20160425_sa_mldtools,0.0
+cat__contract_name_lower_omni mold ltd_po7776000076_2022_duratouch piston washer,0.0
+cat__contract_name_lower_novo nordisk_catalent anagni_merck_3-way_cda_2024,0.0
+cat__contract_name_lower_novo nordisk pharmatech_master_2015_sla,0.0
+cat__contract_name_lower_norris print-tech as_master_20170208_fta,0.0
+cat__contract_name_lower_novartis_call-off_2025_wo3_scope changes wp1 and 2,0.0
+cat__contract_name_lower_nosco inc_call-off-2022_sa_aa2_app11,0.0
+cat__contract_name_lower_nosco inc_call-off_2021_sa_aa1_app5_adding new production site,0.0
+cat__contract_name_lower_nosco_call-off_2023_sa_aa4_appendices update,0.0
+cat__contract_name_lower_novadan aps_stand-alone_2015_bta,0.0
+cat__contract_name_lower_novafarma_cda_2025_3pl tender chile,0.0
+cat__contract_name_lower_novapor hans lau gmbh_cda_2025_packaging consumables and load carriers,0.0
+cat__contract_name_lower_novapor_bta_2025_top sheets,0.0
+cat__contract_name_lower_novartis_master_2023_oa_somapacitan,0.0
+cat__contract_name_lower_novo nordisk pharmatech as_master_20150306_sa,0.0
+cat__contract_name_lower_novartis_pharma_ag_call-off_2025_wo21_five technical batches,0.0
+cat__contract_name_lower_novartis_pharma_ag_call-off_2025_wo23_reconciliation of wo91517,0.0
+cat__contract_name_lower_novartis_stand-alone_2024_cda,0.0
+cat__contract_name_lower_novartis_stand-alone_2024_cda_update,0.0
+cat__contract_name_lower_novartis_wono8_2024,0.0
+cat__contract_name_lower_novo artis pharma ag_standalone_2022_cda_brown field,0.0
+cat__contract_name_lower_novo nordisk bd pfizer 3-way mutual cda 2025,0.0
+cat__contract_name_lower_omni mold ltd_po7776000125_2022_duratouch piston rod connector,0.0
+cat__contract_name_lower_omni mold ltd_po_7776000077_2022_duratouch piston rod,0.0
+cat__contract_name_lower_omni mold_call-off_2020_po 7776000007_piston rod_290m511-8_transferrred from nn us to nn dk (003),0.0
+cat__contract_name_lower_optima-schott_cda_2024_pharmaceutical manufacturing and capacity,0.0
+cat__contract_name_lower_pa consulting_purchasing extension_2021_0438,0.0
+"cat__contract_name_lower_omnimold_call-off_2021_co_002_po7776000013_290m721-02_piston rod 1,5ml_icodec",0.0
+"cat__contract_name_lower_omnimold_call-off_2021_po7776000012_290m711-02_piston rod 3,0ml_icodec",0.0
+"cat__contract_name_lower_omnimold_call-off_2021_po7776000013_290m721-02_piston rod 1,5ml_icodec",0.0
+cat__contract_name_lower_omnimold_call-off_2021_po7776000014_290m712-02_eoc_icodec,0.0
+cat__contract_name_lower_omnimold_co 01_po 7776000047_290m511-12_piston rod_phase 10,0.0
+cat__contract_name_lower_oneseal aps_basic terms agreement_2024_new seals for critical waste,0.0
+cat__contract_name_lower_optima_rovi_novo nordisk_3way cda_2024_420895,0.0
+cat__contract_name_lower_omni mold_po7776000074_2022_duratouch spring base,0.0
+cat__contract_name_lower_origin pharma_cda and non-disclosure,0.0
+cat__contract_name_lower_osm holding ab_master_20170227_sa,0.0
+cat__contract_name_lower_osm_call-off_20220124_sa_app.,0.0
+"cat__contract_name_lower_osvaldo, fernandes s-a art. graficas_amendment no. 2_2023_price sheet update",0.0
+"cat__contract_name_lower_osvaldo, fernandes sa art. graficas_amendment no. 4_2024",0.0
+cat__contract_name_lower_our new energy consulting aps_ consultancy agreement_2024,0.0
+cat__contract_name_lower_otto_männer_po7776000165_2022_new container 1,0.0
+"cat__contract_name_lower_omnimold_call-off_2021_co_001_po7776000012_290m711-02_piston rod 3,0ml_icodec",0.0
+cat__contract_name_lower_packaging coordinators llc (pci)_call-off_2023_aa4_fa&p capacity reservation 24_25,0.0
+cat__contract_name_lower_omnimold_call-off_2021_co01_po7776000014_290m712-02_eoc_icodec,0.0
+cat__contract_name_lower_omnimold_call-off_2020_po 7776000005_001_290m501-3_pushbutton rebuild,0.0
+cat__contract_name_lower_omni_co1_2022_po7776000038,0.0
+cat__contract_name_lower_packaging_coordinators__llc_(pci)_call-off_2024_ oa_aa6__fa&p_machine e_dividella _updated pricing,0.0
+cat__contract_name_lower_packaging_coordinators__llc_(pci)_call-off_2023_ oa_aa5__fa&p_capacity reservation 26,0.0
+cat__contract_name_lower_omni_co1_2022_po_7776000038,0.0
+cat__contract_name_lower_omni_co1_2022_po_7776000051,0.0
+cat__contract_name_lower_packaging_coordinators__llc_(pci)_call-off_2022_ oa_aa2_third leaflet,0.0
+cat__contract_name_lower_omni_po _7776000133_2022_eoc_290m512-09,0.0
+cat__contract_name_lower_omni_po _7776000136_2022_piston rod ozempic_290m821-03,0.0
+cat__contract_name_lower_packaging_coordinators__llc_(pci)_call-off_2021_ oa_aa1_fa&p,0.0
+cat__contract_name_lower_packaging coordinators llc_call-off_2023_aa3_raw material and price adjustment,0.0
+cat__contract_name_lower_omnimold co 01 po 7776000046_290m511-11_piston rod_phase 10,0.0
+cat__contract_name_lower_packaging coordinators llc(pci)_call-off_2025_wo17_ 3 ppqs,0.0
+cat__contract_name_lower_omnimold_call-off_2020_po 7776000001_290m821-02_sema_piston rod 32 cav,0.0
+cat__contract_name_lower_packaging coordinators llc (pci)_call-off_2025_wo10_heat study and wegovy phase 2 engineering costs,0.0
+cat__contract_name_lower_packaging coordinators llc (pci)_call-off_2025_ oa_aa7__it security appendix,0.0
+cat__contract_name_lower_nosco inc._amendment no. 5_2024,0.0
+cat__contract_name_lower_norris print tech_call-off_2025_fta_aa_amendment_07_npt_vf,0.0
+cat__contract_name_lower_nemera_call-off_2025_project agreement_oa_amendment,0.0
+cat__contract_name_lower_nippon gases danmark as_master_20100707_fta_aa_no_4,0.0
+cat__contract_name_lower_nilaus plast aps_stand-alone_2019_bta,0.0
+cat__contract_name_lower_nilfisk as_bta_2023_floorcare_ivs_safepak,0.0
+cat__contract_name_lower_ningbo sinar mas_cda_2025_mutual sc cda for knowledge sharing,0.0
+cat__contract_name_lower_ningbo sinar mas_collaboration agreement_2025_tier-2 collaboration agreement,0.0
+cat__contract_name_lower_nippon express (nederland) b.v._cda_2022,0.0
+cat__contract_name_lower_nippon gases danmark as_call-off_2024_fta_aa_amendment_9,0.0
+cat__contract_name_lower_nippon gases danmark as_master_20100707_fta,0.0
+cat__contract_name_lower_nipro corporation_aa9_2024_combination packaging line at nmi_10032024,0.0
+cat__contract_name_lower_nichepharm_master_2024_outsourcing agreement,0.0
+cat__contract_name_lower_nipro corporation_call-off_20191202_oa_aa2,0.0
+cat__contract_name_lower_nipro corporation_call-off_2020_oa_aa_3.,0.0
+cat__contract_name_lower_nipro corporation_call-off_2021_oa_aa_4,0.0
+cat__contract_name_lower_nipro corporation_call-off_2022_oa_aa_5,0.0
+cat__contract_name_lower_nipro corporation_master_20160226_oa,0.0
+cat__contract_name_lower_nipro pharma_stevanato group_cda_2022_supply of syringe glasstubes,0.0
+cat__contract_name_lower_nipro_call-off_2023_oa_aa8_usa+thailand expansion,0.0
+cat__contract_name_lower_nichepharm_wo_06082024_tt,0.0
+cat__contract_name_lower_nicapac_ab_stand-alone_2024_bta_vf,0.0
+cat__contract_name_lower_norris print tech_call-off_2024_fta_aa_amendment_06_npt,0.0
+cat__contract_name_lower_new print embalagens & displays ltda_amendment_2022-amendment no 2,0.0
+cat__contract_name_lower_nemera_cda_2022_fxt rfq,0.0
+cat__contract_name_lower_nemera_oa_2024_flextouch,0.0
+cat__contract_name_lower_neptun_call-off_2017_nnas_primary_ffa_amendment1_4plsetup,0.0
+"cat__contract_name_lower_new century graphic arts industrial co., ltd._amendment #2_c4f",0.0
+"cat__contract_name_lower_new century graphic arts industrial co., ltd._amendment no 3_2023_price sheet update",0.0
+"cat__contract_name_lower_new century graphic arts industrial co., ltd._master_20151216_sa",0.0
+cat__contract_name_lower_new century graphic arts industrial_call-off_2023_sa_aa4_appendices update,0.0
+cat__contract_name_lower_new print embalagens & displays_call-off_2025_sa_aa5_shippingboxes,0.0
+cat__contract_name_lower_nextpharma_cda (mutual)_2025_amendment (1),0.0
+cat__contract_name_lower_new print package and displays_aa3_2023_appendices update,0.0
+cat__contract_name_lower_new_century_graphic_arts_industrial_co._call-off_2021_sa_aa2_app17,0.0
+cat__contract_name_lower_nextera energy resources development_cda mutual 2024_419235,0.0
+cat__contract_name_lower_nextpharma  allphamed pharbil arzneimittel gmbh_master_2021_sa,0.0
+cat__contract_name_lower_nextpharma allphamed pharbil arzneimittel gmbh_call-off_2021_sa_aa1,0.0
+cat__contract_name_lower_nextpharma cda (mutual) 2024,0.0
+cat__contract_name_lower_nextpharma_call-off_2023_sa termination agreement,0.0
+cat__contract_name_lower_nipro_call-off_2024_oa11_warehouse at kondo,0.0
+cat__contract_name_lower_nipro_call-off_2025_one-time payment agreement_ntc and nc wave 2 cancellation,0.0
+cat__contract_name_lower_nipro_corporation_call-off_2022_oa_aa_7_20221021,0.0
+cat__contract_name_lower_nolato_cda_2022_fxt rfq,0.0
+cat__contract_name_lower_nof_call-off_2024_sa_amendment 1,0.0
+cat__contract_name_lower_nolato contour_cda_2023_rfq new device,0.0
+cat__contract_name_lower_nolato-ypsomed-nn_3-way-cda_2023,0.0
+cat__contract_name_lower_nolato_call-off_2020_oa_aa3_app4.14,0.0
+cat__contract_name_lower_nolato_call-off_2021_app 13 opentext comm.,0.0
+cat__contract_name_lower_nolato_call-off_2023_app_innolet compensation,0.0
+cat__contract_name_lower_nolato_call-off_2023_app_price appendix,0.0
+cat__contract_name_lower_nolato_oa_2024_flextouch,0.0
+cat__contract_name_lower_nitto avecia inc_call-off_2025_sa_amendment_no.1_nedosiran price update for 2024-2025,0.0
+cat__contract_name_lower_nolato_oa_2024_flextouch_updated signatures,0.0
+cat__contract_name_lower_nolato_pa_2024_flextouch pa project agreement,0.0
+cat__contract_name_lower_norchim_call-off_2023_msa_aa3,0.0
+cat__contract_name_lower_nordic sugar as_stand-alone_2023_bta,0.0
+cat__contract_name_lower_norlip as_stand alone_2020_pa_price agreement from 2021,0.0
+cat__contract_name_lower_norlip as_stand-alone_20181207_pa,0.0
+cat__contract_name_lower_lonza sales ltd_stand alone_2020_bta_supplement e,0.0
+cat__contract_name_lower_nof corporation_master_20150309_sa,0.0
+cat__contract_name_lower_noble international_master_20190813_msa_amendment 1,0.0
+cat__contract_name_lower_pall life sciences belgium bvba_stand-alone_2014_bta_stj,0.0
+cat__contract_name_lower_noble international_master_20190813_msa,0.0
+cat__contract_name_lower_nitto denko & pharamaron inc_3-way cda_31-03-2025,0.0
+cat__contract_name_lower_nitto denko avecia_ commercial supply agreement 2023,0.0
+"cat__contract_name_lower_nitto denko, cambrex & nn_3-way cda_2025_analytical information on nn product",0.0
+cat__contract_name_lower_nitto_denko_avecia__commercial_supply_agreement_2023_,0.0
+cat__contract_name_lower_nn sharp uhlmann_3 way cda_nn equipment module,0.0
+"cat__contract_name_lower_nn, pci & koerber_3 way cda_2024_nn equipment module",0.0
+"cat__contract_name_lower_nn, pci & pester_3 way cda_2024_nn equipment module",0.0
+"cat__contract_name_lower_nn, pci & uhlmann_3 way cda_2024_nn equipment module",0.0
+"cat__contract_name_lower_nn, pci & wls_3 way cda_2024_nn equipment module",0.0
+"cat__contract_name_lower_nn, pfizer & smithers_3-way cda_2025_conducting laboratory testing involving shipping simulation",0.0
+"cat__contract_name_lower_nn, sharp & ats_3-way cda_2024_build and configuration of nn equipment module",0.0
+"cat__contract_name_lower_nn, sharp, koerber_3 way cda_2024_nn equipment module",0.0
+"cat__contract_name_lower_nn, sharp, systech_3-way cda_2025_equipment serialization",0.0
+"cat__contract_name_lower_nn, sharp, wls_3 way cda_2024_nn equipment module",0.0
+cat__contract_name_lower_nn_rovi_ompi_3_way cda-2024 supply of material,0.0
+cat__contract_name_lower_norner one-way cda agreement 2024,0.0
+cat__contract_name_lower_kebo_po7776000161_2022_new hub 1,0.0
+cat__contract_name_lower_lonza sales ltd_sartorius stedim biotech gmbh_master_20190505_na,0.0
+cat__contract_name_lower_geodis cl pharma_master_2023_nnas_primary_lsa_vdr_warehousing_and_transportation,0.0
+cat__contract_name_lower_fujifilm_call-off_20191217_sa_aa1_app12_contacts,0.0
+cat__contract_name_lower_fujifilm_call-off_2021_sa_aa2_incoterms,0.0
+cat__contract_name_lower_fujifilm_call-off_2023_wo_53,0.0
+cat__contract_name_lower_fujifilm_call-off_2024_wo_57_reference_standard,0.0
+cat__contract_name_lower_fujifilm_call-off_2025_sa_aa8_app8_app12,0.0
+cat__contract_name_lower_fujifilm_cda_2025_peptide synthesis coupling reagent,0.0
+cat__contract_name_lower_fujifilm_master_2015_sa,0.0
+cat__contract_name_lower_gcbc_call-off_2025_wo#03_filling lines modification,0.0
+cat__contract_name_lower_gcbc_call-off_2025_wo#04_formulations lines,0.0
+cat__contract_name_lower_gcbc_call-off_2025_wo#1_pass through cost,0.0
+cat__contract_name_lower_gcbc_call-off_2025_wo#2_avi machine,0.0
+cat__contract_name_lower_gcbc_stand-alone_2025_project agreement_main terms_site upgrade for cartridge fill,0.0
+cat__contract_name_lower_ge healthcare_master_20180101_msa,0.0
+cat__contract_name_lower_gemü aps_stand-alone_2015_bta,0.0
+cat__contract_name_lower_genpack_stand-alone_20191101_bta,0.0
+cat__contract_name_lower_gentofte fjernvarme_call-off_2014_sa_app_leveringsbestemmelser_200141121,0.0
+cat__contract_name_lower_gentofte fjernvarme_master_2014_sa,0.0
+cat__contract_name_lower_fujifilm_call-off-2025_wo58_stability report and storage charge for wcb & mcb,0.0
+cat__contract_name_lower_frisenette aps_stand-alone_2015_bta,0.0
+cat__contract_name_lower_formteknik_stand-alone_2019_po 7778002902_3321m150_01_back needle plug_12+12 cav,0.0
+cat__contract_name_lower_formteknik_call-off_2021_po 7776000022_co 01_290m507-33_by012_03 reset tube_nnas (003),0.0
+cat__contract_name_lower_flextronics_cda_2022_fxt rfq,0.0
+cat__contract_name_lower_flextronics_master_20130409_oa,0.0
+cat__contract_name_lower_formteknik ab_master_2020_sa_mldtools,0.0
+cat__contract_name_lower_formteknik_2022_po7776000122_290m661-02 housing cores and inserts,0.0
+cat__contract_name_lower_formteknik_2022_po7776000123_290m661-03flextouch_housing,0.0
+cat__contract_name_lower_formteknik_call-off_2021_po 7776000009_ 290m507-33_by012_03 reset tube_nnas (003),0.0
+cat__contract_name_lower_formteknik_call-off_2021_po 7776000022_ 290m507-33_by012_03 reset tube_nnas (003),0.0
+cat__contract_name_lower_formteknik_call-off_2021_po 7776000022_co 02_290m507-33_by012_03 reset tube_nnas,0.0
+cat__contract_name_lower_formteknik_po _7776000131 _2022_reset tube connect_290m707-40,0.0
+cat__contract_name_lower_formteknik_call-off_2021_po7776000021_by012_0302 reset tube 33 2k 16+16 cav. extra hot runner rev. a,0.0
+cat__contract_name_lower_formteknik_call-off_2022_po 7776000065_290m507-36_by012_3601 reset tube,0.0
+cat__contract_name_lower_formteknik_call-off_2022_po 7776000082_290m507-37_by012_3701 reset tube,0.0
+cat__contract_name_lower_formteknik_call-off_2022_po7776000083_290m507-38_by012_3801 reset tube,0.0
+cat__contract_name_lower_formteknik_call-off_po7776000068_3423m510_housing incl. controller,0.0
+cat__contract_name_lower_formteknik_group_2022_co_01_reset tube 290m507-38,0.0
+cat__contract_name_lower_formteknik_group_2022_co_01_reset tube 290m707-36,0.0
+cat__contract_name_lower_geodis business development_cda_2025_global confidentiality agreement,0.0
+cat__contract_name_lower_geodis dsd_call-off_no.2 extension extra capacity 2025,0.0
+cat__contract_name_lower_flextronics_call-off_2022_aa5_app9.1_pricing_q1 2022,0.0
+cat__contract_name_lower_georg utz_msa_2025_carry-safe tray pallet units,0.0
+cat__contract_name_lower_gerresheimer_call-off_20200330_sa_aa_amendment 2,0.0
+cat__contract_name_lower_gerresheimer_cda_2022_fxt rfq,0.0
+cat__contract_name_lower_gerresheimer_oa_app_6a_2023 pricing for china site,0.0
+cat__contract_name_lower_gerresheimer_oa_app_6b1_2024 pricing_and_invoicing specification for flexpen ght,0.0
+cat__contract_name_lower_gerresheimer_oa_app_6b3_2025_pricing and invoicing specification for site ght_flextouch,0.0
+cat__contract_name_lower_gerresheimer_oa_app_6c_2024 pricing and invoicing specification for site gsp,0.0
+cat__contract_name_lower_gerresheimer_oa_app_6c_2024 pricing and invoicing specification for site gsp_updated,0.0
+cat__contract_name_lower_gerresheimer_oa_app_6d price and invoicing specification for site skopje for flexpen,0.0
+cat__contract_name_lower_gerresheimer_oa_app_6d_2024 price and invoicing specification for site skopje for flexpen,0.0
+cat__contract_name_lower_gerresheimer_oa_app_appendix 6a price and invoicing specifications for china site,0.0
+cat__contract_name_lower_gerresheimer_regensburg gmbh_call-off_2022_oa_aa2_vagifem,0.0
+cat__contract_name_lower_getinge danmark as_stand-alone_2018_bta,0.0
+cat__contract_name_lower_glentham_mutual cda_2025_peptide synthesis coupling reagent,0.0
+cat__contract_name_lower_goncalves industria grafica_ amendment no.3_2025,0.0
+cat__contract_name_lower_goncalves indüstria gråfica_aa2_2023_appendices update and new clauses,0.0
+cat__contract_name_lower_goncalves_s_a_industria_grafica_master_20160106_sa,0.0
+cat__contract_name_lower_gonçalves s_a indústria gráfica_master_20160106_sa,0.0
+cat__contract_name_lower_gerresheimer_aptar_stand-alone_2025_cda_3way aptar audit,0.0
+cat__contract_name_lower_gerresheimer_amendment 5_2022_capacity 2023-2025,0.0
+cat__contract_name_lower_gerresheimer_2022_amendment01_fxt project agreement phase 3,0.0
+cat__contract_name_lower_gerresheimer regensburg gmbh_2021_cda,0.0
+cat__contract_name_lower_gerresheimer bünde gmbh_call-off_202012_aa_app,0.0
+cat__contract_name_lower_gerresheimer bünde gmbh_call-off_2023_sa_aa6_capacity for dual chamber syringe for cagrisema,0.0
+"cat__contract_name_lower_gerresheimer bünde_call-off_2023_sa_aa7_app1,2,6,12",0.0
+cat__contract_name_lower_gerresheimer bünde_thermo fisher_2023_stand-alone_cda_3 way dc,0.0
+cat__contract_name_lower_gerresheimer ght_2024_sip pricing,0.0
+cat__contract_name_lower_gerresheimer gmbh_oa_app_ght flextouch 2024 pricing,0.0
+cat__contract_name_lower_gerresheimer regenburg gmbh_call-off_2021_project agreement,0.0
+cat__contract_name_lower_gerresheimer regensburg gmbh_master_2021_oa,0.0
+cat__contract_name_lower_gerresheimer vaerloese_master_20190828_sa,0.0
+cat__contract_name_lower_gerresheimer regensburg gmbh_project agreement_2022_outsourcing agreement,0.0
+cat__contract_name_lower_gerresheimer regensburg_amendmend_call-off_2019_oa_aa_environment and us shipping,0.0
+cat__contract_name_lower_gerresheimer regensburg_amendmend_call-off_2019_oa_aa_environment and us shipping_,0.0
+cat__contract_name_lower_gerresheimer vaerloese_amendment no. 3_new item and price_04122024,0.0
+cat__contract_name_lower_gerresheimer vaerloese_call-off_2021_aa1_app_blue lid,0.0
+cat__contract_name_lower_gerresheimer vaerloese_call-off_2021_aa2_app_price adjustment mechanism,0.0
+cat__contract_name_lower_gerresheimer vaerloese_call-off_2021_us-to-us supply,0.0
+cat__contract_name_lower_flextronics_call-off_2022_oa_aa6_app9,0.0
+cat__contract_name_lower_flextronics_call-off_2022_aa4_app9.1_pricing_q4 2021,0.0
+cat__contract_name_lower_lonza ltd & lonza sales ltd_call-off_2021_wo4_termination,0.0
+cat__contract_name_lower_fis_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_f-i-s_stand-alone_2020_cda,0.0
+cat__contract_name_lower_f.i.s._2025_call-off_wo24_snac china dmf costs,0.0
+cat__contract_name_lower_f.i.s._aa2_2025_oa snac_removal of cost break-down tables,0.0
+cat__contract_name_lower_f.i.s._call-off_2020_wo 2_02,0.0
+cat__contract_name_lower_f.i.s._call-off_2023_wo16_3rd dryer for snac manufacture and supply,0.0
+cat__contract_name_lower_f.i.s._enantia_stand-alone_2020_cda_3 way_snac,0.0
+cat__contract_name_lower_f.i.s._master_2020_msa amendment 1,0.0
+cat__contract_name_lower_f.i.s._master_2021_oa_snac,0.0
+cat__contract_name_lower_fait plast_stand-alone_2019_bta,0.0
+cat__contract_name_lower_famar_nn_cda_2025_nn,0.0
+cat__contract_name_lower_fareva cda (mutual) agreement 2024,0.0
+cat__contract_name_lower_fareva_cda _mutual final agreement_2025_amendment(1),0.0
+cat__contract_name_lower_farusa emballage aps_stand-alone_2018_bta,0.0
+cat__contract_name_lower_fcx performance inc_master_20160222_msa,0.0
+cat__contract_name_lower_filtrade aps_stand-alone_2019_bta,0.0
+cat__contract_name_lower_finega sas_cda_2025_autajon groupe,0.0
+cat__contract_name_lower_finnfeeds finland oy_master_20160509_sa_agreement with genencor (dupont),0.0
+cat__contract_name_lower_ezi-dock systems limited_bta_2023_for novo nordisk denmark,0.0
+cat__contract_name_lower_ey_call-off_20200318_sow,0.0
+cat__contract_name_lower_ewii a/s_cda_2025_energy supply services,0.0
+cat__contract_name_lower_eurofins pharma_wo_13_nitrogen_appendix_0-2,0.0
+cat__contract_name_lower_euroapi_call-off_2024_cda_mutual_smart_rfq_aa1,0.0
+cat__contract_name_lower_euroapi_cda_2025_oligonucleotide manufacturing_project orion,0.0
+"cat__contract_name_lower_eurofins pharma_call-off_20190220_wo_12_al,ca,mg",0.0
+cat__contract_name_lower_eurofins pharma_call-off_20190429_wo_13_nitrogen,0.0
+cat__contract_name_lower_eurofins pharma_call-off_20190916_wo8 ed2_sodium hydroxide,0.0
+"cat__contract_name_lower_eurofins pharma_call-off_20210329_wo_12_al,ca,mg,fe,pb",0.0
+cat__contract_name_lower_eurofins pharma_wo_13_nitrogen,0.0
+cat__contract_name_lower_eurofins pharma_wo_13_nitrogen_appendixupdate,0.0
+cat__contract_name_lower_evonik_stand- alone_2024_wo#15_snac mesa pv batch campaign,0.0
+cat__contract_name_lower_eurofins pharma_wo_13_nitrogen_appendixupdate20211124,0.0
+cat__contract_name_lower_eurofins pharma_wo_13_nitrogen_appendixupdate20221031,0.0
+cat__contract_name_lower_eutecma_master_2021_supply of pallet shippers,0.0
+cat__contract_name_lower_eutecma_master_2021_supply of pallet shippers_amendment_1,0.0
+cat__contract_name_lower_evonik corp_stand-alone_2020_ts,0.0
+cat__contract_name_lower_evonik_sa_2025_8-aoa supply agreement,0.0
+cat__contract_name_lower_evonik_sa_2025_snac supply agreement evonik,0.0
+cat__contract_name_lower_fis_call-off_2025_wo25_1mt commercial production of pc3406 fip at f.i.s. lonigo,0.0
+cat__contract_name_lower_fis_chemsafe_nn_stand alone_2023_cda_3way,0.0
+cat__contract_name_lower_flextronics_call-off_2022_aa3_app9.1_pricing_q3 2021,0.0
+cat__contract_name_lower_fis_flamma_nn_stand alone_2024_cda_3way,0.0
+cat__contract_name_lower_flamma_master_20151201_asa_ado-ado,0.0
+cat__contract_name_lower_flamma_master_20151201_asa_dipeptide,0.0
+cat__contract_name_lower_flamma_master_2017_sa,0.0
+cat__contract_name_lower_flamma_master_2018_sa_l his aib oh tfa,0.0
+cat__contract_name_lower_flamma_master_2019_asa_ado.hcl,0.0
+cat__contract_name_lower_flamma_stand-alone_2021_sa_h-ado-ado,0.0
+cat__contract_name_lower_flex_call-off_2021_app9_v 2021 q2,0.0
+cat__contract_name_lower_flex_call-off_2021_app9_v 2021 q3,0.0
+cat__contract_name_lower_flex_call-off_2021_app9_v 2021 q4,0.0
+cat__contract_name_lower_flexcoat productos auto adesivos_aa1_2023_appendices update,0.0
+cat__contract_name_lower_flextronics international gmbh_amendment_2022_amendment no 8,0.0
+cat__contract_name_lower_flextronics medical marketing and sales ltd_call-off_2025_addendum to loa_nfc ltb storage agreement,0.0
+cat__contract_name_lower_flextronics medical sales and marketing ltd._2025_amendment_security deposit for excess inventory,0.0
+"cat__contract_name_lower_flextronics medical sales and marketing, ltd._cda_2023_rfq new device",0.0
+cat__contract_name_lower_flextronics medical sales and marketing_cda_2025_rfx packaging consumables and load carriers,0.0
+cat__contract_name_lower_flextronics_call-off_2022_aa1_app9.1_pricing_q1 2021,0.0
+cat__contract_name_lower_flextronics_call-off_2022_aa2_app9.1_pricing_q2 2021,0.0
+cat__contract_name_lower_flamma_master_07062017_msa,0.0
+cat__contract_name_lower_flamma_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_flamma_call-off_2025_wo31_pv & manufacturing campaign,0.0
+cat__contract_name_lower_fj industries_call-off_211029_sa_aa,0.0
+cat__contract_name_lower_fisher clinical services_call-off_2022_cos_1_to_psg-a-1022622v3_fe_09may2022_cw9010,0.0
+cat__contract_name_lower_fisher clinical services_call-off_2022_cos_2_to_psg-a-1022622v3_fe_22jun2022_cw9352,0.0
+cat__contract_name_lower_fisher clinical services_call-off_2022_cos_4_to_psg-a-1022622.v3_fe_13oct2022_cw10022,0.0
+cat__contract_name_lower_fisher clinical services_call-off_2023_pa_for nedorsiran_packaging,0.0
+cat__contract_name_lower_fisher clinical services_master_2021_msa_commercial_packaging,0.0
+cat__contract_name_lower_fisher scientific biotech line aps_stand-alone_2016_bta,0.0
+cat__contract_name_lower_fj industries_call-off_20220610_sa_aa,0.0
+cat__contract_name_lower_fj industries_master_20030702_sa,0.0
+cat__contract_name_lower_flamma_call-off_2022_sa ltme_app 8 ed2_reference compounds ltme,0.0
+cat__contract_name_lower_fj industries_stand-alone_2025_novopen pricing gear wheel,0.0
+cat__contract_name_lower_flamma_call-off_2017_sa_app1-8,0.0
+cat__contract_name_lower_flamma_call-off_20180713_wo6_reach reg dipeptide,0.0
+cat__contract_name_lower_flamma_call-off_2021_msa_sa_ltee,0.0
+cat__contract_name_lower_flamma_call-off_2021_wo21_ltme stability,0.0
+cat__contract_name_lower_flamma_call-off_2022_msa_sa_ltme,0.0
+cat__contract_name_lower_flamma_call-off_2022_sa ltee_app 8 ed2_reference compounds ltee,0.0
+cat__contract_name_lower_grace_call-off_2022_aa5_insurance_opentext,0.0
+cat__contract_name_lower_grace_call-off_2022_sa_aa4_price_volume_incoterm update,0.0
+cat__contract_name_lower_grace_call-off_2025_sa_aa9_price and commitment for 2027,0.0
+cat__contract_name_lower_l. thalund instruments aps_stand-alone_20181127_pa,0.0
+cat__contract_name_lower_korea_master_20171220_sa 596955,0.0
+"cat__contract_name_lower_kovac‐med co., ltd_master_2020_oa",0.0
+cat__contract_name_lower_kuehne & nagel_amendment03_2025_new storage requirements,0.0
+cat__contract_name_lower_kuehne + nagel a/s_master_2017_nnas_primary_lspa_4pl_updated,0.0
+cat__contract_name_lower_kuehne + nagel_amendment 8_2025_4pl msa extension + invoicing settlement addendum,0.0
+cat__contract_name_lower_kuehne + nagel_call-off_no. 1_rdc_capacity & medicinal products_2024,0.0
+cat__contract_name_lower_kuehne nagel a/s_call off_2025_amendment05_rate adjustment,0.0
+cat__contract_name_lower_kuehne nagel a/s_stand alone_2025_assignment agreement,0.0
+cat__contract_name_lower_kuehne nagel limited_call-off_ifp china_no.1,0.0
+cat__contract_name_lower_kuehne+nagel_calloff02_2025_storage price adjustment,0.0
+cat__contract_name_lower_kuehne_nagel_call-off_2021_nnas_primary_4pl_amedment_3,0.0
+cat__contract_name_lower_kuehne_nagel_call-off_2022_nnas_primary_4pl_amedment_4_appendix 16,0.0
+cat__contract_name_lower_kuwait petroleum (belgium) n.v._nn_2023_delivery contract belgium,0.0
+cat__contract_name_lower_kwst_cda mutual_2025_bioethanol supply,0.0
+"cat__contract_name_lower_kyokuto trading (shanghai) co., ltd_stand-alone_2018_bta",0.0
+cat__contract_name_lower_körber pharma packaging materials llc_amendment no. 7_2024,0.0
+cat__contract_name_lower_l. thalund instrument aps_stand alone_price agreement for 2021,0.0
+cat__contract_name_lower_korea engineering plastics_call-off_sa_aa1,0.0
+cat__contract_name_lower_kolon_master_2021_sa_epom,0.0
+cat__contract_name_lower_kmt_call-off_2021_oa_aa1_clause 28-5_app8,0.0
+cat__contract_name_lower_kebo_po7776000163_2022_new_cap_1,0.0
+cat__contract_name_lower_kalundborg bioenergi_call-off_2020_statement of company transfer_2020,0.0
+cat__contract_name_lower_kalundborg bioenergi_call-off_2025_sa_amendment_01,0.0
+cat__contract_name_lower_kalundborg bioenergi_master_2020_sa,0.0
+cat__contract_name_lower_kalundborg bioenergy_call-off_2017_sa_app_exhibits,0.0
+cat__contract_name_lower_kalundborg vandforsyning a/s_supply agreement_2025_vand,0.0
+cat__contract_name_lower_kar-mil import a/s_stand-alone_2019_bta,0.0
+cat__contract_name_lower_kebo_po7776000162_2022_new hub 2,0.0
+cat__contract_name_lower_kebo_po7776000164_2022_new cap 2,0.0
+cat__contract_name_lower_kisico_cda and non-disclosure,0.0
+cat__contract_name_lower_kemi intressen_stand-alone_2014_bta,0.0
+cat__contract_name_lower_kerry ingredients and flavours limi_stand-alone_2015_bta,0.0
+cat__contract_name_lower_kerry ingredients and flavours limi_stand-alone_20180122_pa_2018-2019,0.0
+cat__contract_name_lower_kirsch pharma gmbh_master_20101119_sa,0.0
+cat__contract_name_lower_kirsch_pharma_gmbh_master_2024_sa_aa7,0.0
+cat__contract_name_lower_kirsch_pharma_master_2023_sa_aa5_app5,0.0
+cat__contract_name_lower_kirsch_pharma_master_2024_sa_aa6,0.0
+cat__contract_name_lower_l. thalund instruments aps_stand-alone_2015_bta,0.0
+cat__contract_name_lower_laboratoires anios_stand-alone_2016_bta,0.0
+cat__contract_name_lower_graficos sangar ltda_ aa2_2023_appendices update,0.0
+cat__contract_name_lower_laboren aps_stand-alone_2015_bta,0.0
+cat__contract_name_lower_life tecnologies bpd uk_stand-alone_pa2020,0.0
+cat__contract_name_lower_life_technologies_ltd_call-off_20120914_sa_aa2,0.0
+cat__contract_name_lower_lifecorebio_nn_cda_2025_rfq,0.0
+cat__contract_name_lower_limo labels a_s_amendment_2023_pricesheet update,0.0
+cat__contract_name_lower_limo labels a_s_master_20180202_sa,0.0
+cat__contract_name_lower_linde as_master_20210101_fta_aa_amendmentno2,0.0
+cat__contract_name_lower_linde as_master_20210101_fta_aa_amendmentno3,0.0
+cat__contract_name_lower_linde gas a/s_call off_2022_aa4_ppv,0.0
+cat__contract_name_lower_linde gas a/s_call-off_2024_supply of gas and liquid nitrogen to m3,0.0
+cat__contract_name_lower_linde gas_call-off_2023_fta_2023_aa4_supply and delivery,0.0
+cat__contract_name_lower_linde gas_master_2024_fta aa5,0.0
+cat__contract_name_lower_linde llc_master_20180420_sa,0.0
+cat__contract_name_lower_linde_gas_as_call_off_2023_aa5_supply of liquid nitrogen to ppiv kalunborg,0.0
+cat__contract_name_lower_linde_gas_as_call_off_2024_aa6_supply of gases to 25l_stso,0.0
+cat__contract_name_lower_lonstroff_cda mutual_2025_rubber laminate,0.0
+cat__contract_name_lower_lonza ltd & lonza sales ltd_call-off_20190519_wo5,0.0
+cat__contract_name_lower_lonza ltd & lonza sales ltd_call-off_2020_sa_nicotinamide,0.0
+cat__contract_name_lower_life technologies_stand-alone_2020_bta_item specific,0.0
+cat__contract_name_lower_life technologies ltd_call-off_2021_na_tf scientific nz ltd,0.0
+cat__contract_name_lower_life technologies europe_nn_standalone_2025_limited cda,0.0
+cat__contract_name_lower_leman_call-off_2015_nnas_primary_ffa_amendment1 legal name change,0.0
+cat__contract_name_lower_lallemand_cda mutual 2025_liquid yeast extract_amendment_2,0.0
+cat__contract_name_lower_lanxess deutschland gmbh_master_20151207_sa,0.0
+cat__contract_name_lower_legendre_call-off_no.1_extra capacity_2025,0.0
+cat__contract_name_lower_legendre_master_nnas_primary distribution_lspa_warehouse services,0.0
+cat__contract_name_lower_lego system a/s_confidentiality agreement_2022_supply chain for green pom,0.0
+cat__contract_name_lower_lego system a/s_confidentiality agreement_2022_supply chain for green pom _ amendment 01_2023,0.0
+cat__contract_name_lower_leman_2022_call-off_ffa_letter of indemnity_russia shipments,0.0
+cat__contract_name_lower_leman_call-off_2023_primary_ffa_aa7_cryosure containers,0.0
+cat__contract_name_lower_life technologies europe_master_20140704_sa,0.0
+cat__contract_name_lower_lemvigh-mueller_purchasing extension_2022_nnpr punchout,0.0
+cat__contract_name_lower_lesjöfors as_master_20120713_sa,0.0
+cat__contract_name_lower_lgr emballages sas_call-off_2024_aa2_appendices update,0.0
+cat__contract_name_lower_lgr emballages_master_ 20150216_sa,0.0
+cat__contract_name_lower_life technologies bpd uk ltd_stand alone_2020_pa_price agreement from 2021,0.0
+cat__contract_name_lower_life technologies corporation_call-off_20181001_sa_aa1,0.0
+cat__contract_name_lower_life technologies corporation_master_2025_bpm global msa,0.0
+cat__contract_name_lower_kalundborg bioenergi_call-off_2019_sa_aa_parent company guarantee_ørsted_amendment,0.0
+cat__contract_name_lower_kalundborg bioenergi_call-off_2019_parent company guarantee_ørsted,0.0
+cat__contract_name_lower_k&n durham ii_amendment_2025_waste handling,0.0
+cat__contract_name_lower_k&n durham i_amendment_2025_waste handling,0.0
+cat__contract_name_lower_helsinn_call-off_2020_sa_aa_app 7,0.0
+cat__contract_name_lower_helsinn_master_2016_sa,0.0
+cat__contract_name_lower_henkel denmark_stand-alone_2019_bta,0.0
+cat__contract_name_lower_herrmann ag_cda and non-disclosure,0.0
+cat__contract_name_lower_hn group_stand-alone_2019_bta,0.0
+cat__contract_name_lower_holly alice schroth_call-off_2025_amendment#1_service agreement,0.0
+cat__contract_name_lower_holm&halby_bta_2022,0.0
+cat__contract_name_lower_holmen board and paper ab_strict cda_2025_production data,0.0
+"cat__contract_name_lower_hope biotech co., ltd_stand-alone_2021_c4f",0.0
+cat__contract_name_lower_hovione farmaciencia sa_cda (mutual)_2025_amendment (1),0.0
+cat__contract_name_lower_hovione farmaciência sa_call-off_2024_cda mutual smart_rfq_aa1,0.0
+cat__contract_name_lower_hovione_call-off_20190701_wo5_aa1,0.0
+cat__contract_name_lower_hovione_call-off_2019_oa_aa2_mac_update,0.0
+cat__contract_name_lower_hovione_call-off_2019_oa_aa3_app7_13_pbc,0.0
+cat__contract_name_lower_hovione_call-off_2022_oa_aa8_mac extension_sd1254 full capacity reserved,0.0
+cat__contract_name_lower_hovione_cda_2025_hovione no. 40814,0.0
+cat__contract_name_lower_hovione_master_20171006_oa,0.0
+cat__contract_name_lower_harman finochem ltd_stand alone_2021_sa,0.0
+cat__contract_name_lower_hapa_stand-alone_2019_bta,0.0
+cat__contract_name_lower_hamilton nordic ab_bta_2023_ph buffers,0.0
+cat__contract_name_lower_groesfjeld diagnostics_stand alone_2023_pa,0.0
+cat__contract_name_lower_graficos sangar_amendment_no.3_2025,0.0
+cat__contract_name_lower_graphic packaging_cda_2025_mutual cda for knowledge sharing,0.0
+cat__contract_name_lower_grathwol as_master_2012_sa,0.0
+cat__contract_name_lower_grathwol_stand_alone_2020_pa,0.0
+cat__contract_name_lower_grathwol_stand_alone_2020_pa_price agreement from 2021,0.0
+cat__contract_name_lower_greif_master_2021_sa reupload,0.0
+cat__contract_name_lower_groesfjeld advance cleaning solutions aps_stand-alone_2018_bta,0.0
+cat__contract_name_lower_grown-up_call-off_2021_sa_aa5_app11,0.0
+cat__contract_name_lower_h.s. crocker_master_20130419_sa,0.0
+cat__contract_name_lower_grown-up_call-off_20220704_sa_app,0.0
+cat__contract_name_lower_grown-up_call-off_20230227_sa_aa7,0.0
+cat__contract_name_lower_grown-up_master_20040929_sa,0.0
+cat__contract_name_lower_gráficos sangar ltda_master_20130628_sa,0.0
+cat__contract_name_lower_gráficos sangar ltda_master_20130628_sa_amendment no 1,0.0
+"cat__contract_name_lower_gráficos_sangar_ltda_call-off_2020_sa_aa2_app_2,15",0.0
+cat__contract_name_lower_h.s. crocker_call-off_2022_sa_aa3_app16,0.0
+cat__contract_name_lower_hs crocker_call-off_2022_sa_letter of consent to change of control,0.0
+cat__contract_name_lower_huanggang luban pharma_cda_2025_tender process small molecules,0.0
+cat__contract_name_lower_icl_puriphos_ bv_stand-alone_2015_bta,0.0
+cat__contract_name_lower_insatech as_stand-alone_20190101_pa,0.0
+cat__contract_name_lower_ineos_master_2024_sa_ethanol,0.0
+cat__contract_name_lower_ineos_reassignment agreement_de,0.0
+cat__contract_name_lower_ineos_reassignment agreement_uk,0.0
+cat__contract_name_lower_ingredion incorporated_master_19122018_sa,0.0
+cat__contract_name_lower_inovyn europe ltd._stand-alone_2017_bta,0.0
+cat__contract_name_lower_inovyn europe_environmental appendix_2025_koh 46% ulc,0.0
+cat__contract_name_lower_insatech as_stand alone_2020_pa_price agreement from 2021,0.0
+cat__contract_name_lower_iris biotech_cda_2025_tender process small molecules,0.0
+cat__contract_name_lower_ineos solvents germany gmbh_call-off_2021_sa_aa1_app1_app11_environmental program de,0.0
+cat__contract_name_lower_iss facility services_call-off_2022_aa2,0.0
+cat__contract_name_lower_iss facility services_call-off_2022_aa3,0.0
+cat__contract_name_lower_jabil inc._cda_2023_rfq new device,0.0
+cat__contract_name_lower_jabil inc_cda_2022_fxt rfq,0.0
+cat__contract_name_lower_johannes rasmussen svebølle as_20130517_stand-alone__undertaking of liability,0.0
+cat__contract_name_lower_jungbunzlauer austria ag_stand-alone_2014_bta,0.0
+cat__contract_name_lower_jy_cda_2025_spps collaboration,0.0
+cat__contract_name_lower_ineos solvents germany gmbh_call-off_2021_sa_aa2_app1_app13_environmental program uk,0.0
+"cat__contract_name_lower_ineos solvents germany gmbh_call-off_2020_sa_aa1_app1,2,7",0.0
+cat__contract_name_lower_icm as_call_off_2024_amendment 8 environmental_program,0.0
+cat__contract_name_lower_igs_stand-alone_2020 po777800775 001 290m663_mk2 housing sema obesity 8 cav,0.0
+cat__contract_name_lower_icm as_master_20170401_fta,0.0
+cat__contract_name_lower_icm as_stand-alone_2015_bta,0.0
+cat__contract_name_lower_icm_call-off_2022_aa6,0.0
+cat__contract_name_lower_icm_stand alone_2020_change of control,0.0
+cat__contract_name_lower_ide-pro skive as_stand-alone_2015_bta,0.0
+cat__contract_name_lower_iggesund paperboard ab_2021_cda,0.0
+cat__contract_name_lower_igs_stand-alone_2019_co-01-7778002775 001 ft 290m660-11 flextouch housing semaglutide 8 cav (igs),0.0
+cat__contract_name_lower_igs_stand-alone_2020_co-02-7778002775 001 ft 290m660-11 flextouch housing semaglutide 8 cav (igs),0.0
+cat__contract_name_lower_ineos solvents germany gmbh_call-off_2019_sa_app_app. 7,0.0
+cat__contract_name_lower_imcd_customer statement_talcum_standalone,0.0
+cat__contract_name_lower_imcd_stand-alone_2014_bta,0.0
+cat__contract_name_lower_implement consulting group_purchasing extension_2021_0008,0.0
+cat__contract_name_lower_implement consulting_purchasing extension_2021_0438,0.0
+cat__contract_name_lower_indo amines limited_cda_n-methylmorpholine_2025-26,0.0
+cat__contract_name_lower_induflex_stand-alone_2015_bta,0.0
+cat__contract_name_lower_ineos solvents germany gmbh_call-off_20180817_sa_aa_sa assignment,0.0
+cat__contract_name_lower_paperfoam_stand-alone_2022_bta,0.0
+cat__contract_name_lower_polypeptide_call- off_2025_wo43_qt-15169 for pc4006 and pc4006 homogeneity and stability studies,0.0
+cat__contract_name_lower_parker hannifin_amendment 1 to master_agreement 2023,0.0
+cat__contract_name_lower_tech_group_europe_price_updates_2022_flexpen_west,0.0
+cat__contract_name_lower_sønderborg_call-off_2022_ co 03 shipping_high_volume_dialoq_moulding_tools po_7776000004,0.0
+cat__contract_name_lower_sønderborg_call-off_po 7776000025_216m005-2h_fp clutch 24 cav,0.0
+"cat__contract_name_lower_sønderborg_værktøjsfabrik__2020s_sa_call_off__mldtools_aa1,app_1,i",0.0
+cat__contract_name_lower_team technologies inc_cda mutual_2023,0.0
+cat__contract_name_lower_tech group_amendment no.10_2022_new appendix,0.0
+cat__contract_name_lower_tech group_call-off_2020_oa_aa9_app12,0.0
+cat__contract_name_lower_tech group_master_20030407_oa,0.0
+cat__contract_name_lower_technical agreement_noble international_master_20190813)msa (cid2989)_326160,0.0
+"cat__contract_name_lower_sønderborg_call-off_2021_po7776000011_290m815-03_cartridge holder 1,5ml_icodec",0.0
+cat__contract_name_lower_technimark-ypsomed-nn_3-way-cda_2023,0.0
+cat__contract_name_lower_technimark_cda_2023_rfq new device,0.0
+cat__contract_name_lower_telko_master_20160216_sa,0.0
+cat__contract_name_lower_temperpack inc_basic terms agreement_2024_foam,0.0
+cat__contract_name_lower_temperpack technologies inc._cda_2024_secondary packaging for oral medicine,0.0
+cat__contract_name_lower_tereos starch and sweeteners belgium_call-off_2020_sa_aa2_app_1_ 3_4_2021_prices,0.0
+cat__contract_name_lower_tereos starch and sweeteners belgium_master_20060301_sa,0.0
+cat__contract_name_lower_sønderborg_call-off_2021_po7776000019_290m505-41_scale drum_icodec,0.0
+cat__contract_name_lower_sønderborg_call-off_2021_po7776000010_290m714-02_nut_icodec,0.0
+cat__contract_name_lower_terumo europe n.v._master_20170401_sa,0.0
+cat__contract_name_lower_sønderborg værktøjsfabrik_call-off_2022_po7776000064_216m003-23 scale drum_gsp,0.0
+cat__contract_name_lower_sønderborg værktøjsfabrik_2022_loi_216m005-2j,0.0
+cat__contract_name_lower_sønderborg værktøjsfabrik_2022_po 7776000061 290m514-14 nut,0.0
+cat__contract_name_lower_sønderborg værktøjsfabrik_2022_po7776000116_290m515-12_cartridge holder_v1,0.0
+cat__contract_name_lower_sønderborg værktøjsfabrik_call-off_2022_po 7776000062_216m003-20_scale drum_ght,0.0
+cat__contract_name_lower_sønderborg værktøjsfabrik_call-off_2022_po 7776000063_216m003-22_scale drum_tge,0.0
+cat__contract_name_lower_sønderborg værktøjsfabrik_call-off_2022_po 7776000087_216m003-24_scale drum_ght,0.0
+cat__contract_name_lower_sønderborg værktøjsfabrik_call-off_2022_po 7776000088_216m003-25_scale drum_tge,0.0
+cat__contract_name_lower_sønderborg_2020_po7776000006_001_216m001-34_cartridge holder_24 cav,0.0
+cat__contract_name_lower_sønderborg_call-off_2021_po 7776000026_nnd00045883-100_hv tool for inner frame_dialoq,0.0
+cat__contract_name_lower_sønderborg_call-off_2019_po 7778002904_3321m153-01_chamber 4 cavity,0.0
+cat__contract_name_lower_sønderborg_call-off_20200818_po 7778002904 co01_3321m153-01_chamber 4 cavity,0.0
+cat__contract_name_lower_sønderborg_call-off_2020_co 01_po 7776000004_001 high volume dialoq moulding tools,0.0
+cat__contract_name_lower_sønderborg_call-off_2020_co 02_po 7776000004_001 high volume dialoq moulding tools,0.0
+cat__contract_name_lower_sønderborg_call-off_2020_po 7776000004_high volume dialoq moulding tools,0.0
+cat__contract_name_lower_sønderborg_call-off_2021_co_001_po7776000011_290m815-03,0.0
+cat__contract_name_lower_sønderborg_call-off_2021_co_001_po7776000011_290m815-03_cartridge holder,0.0
+cat__contract_name_lower_tereos starch_nda_2025_,0.0
+cat__contract_name_lower_terumo europe n.v._stand-alone_2015_bta,0.0
+cat__contract_name_lower_sønderborg værktøjsfabrik a/s_master_20151202_sa_mldtools,0.0
+cat__contract_name_lower_topp trykluft as_stand-alone_2015_bta,0.0
+cat__contract_name_lower_tianjin yiyao_call-off_2020_sa_aa1_app_8_9_16,0.0
+cat__contract_name_lower_tianjin zeyang printing_call-off_2023_sa_aa3_appendices update,0.0
+cat__contract_name_lower_tianjin zrp printing technology_cda_2025_ppm rfq,0.0
+cat__contract_name_lower_tianjin_bingxin_packaging_master_sa_20210820,0.0
+cat__contract_name_lower_ticona_master_20150317_sa,0.0
+cat__contract_name_lower_tonnellier imprimeur sas _call-off_2023_sa_aa4_appendices update,0.0
+cat__contract_name_lower_tonnellier_master_ 20150204_sa,0.0
+cat__contract_name_lower_tora enso oyj_strict cda_2025_development projects and data sharing_,0.0
+cat__contract_name_lower_tianjin yiyao printing_call-off_2021_sa_aa2_aap17,0.0
+cat__contract_name_lower_tosoh bioscience gmbh_call-off_2023_sa_aa4_ assignment and app update,0.0
+cat__contract_name_lower_tosoh bioscience gmbh_call-off_2023_sa_aa5_ app update,0.0
+cat__contract_name_lower_tosoh bioscience gmbh_master_20140329_sa,0.0
+cat__contract_name_lower_total energies nda  2023,0.0
+cat__contract_name_lower_transcontinental h.s. crocker inc._amendment no. 7_2024,0.0
+cat__contract_name_lower_transcontinental_h.s._crocker_inc_call-off_2024_sa_aa6_appendices_update,0.0
+cat__contract_name_lower_troy investment holding s.a.r.l._call-off_no. 1_commercial lease agreement,0.0
+cat__contract_name_lower_tianjin yiyao printing_call-off_2025_sa_aa5_appendices update,0.0
+cat__contract_name_lower_tianjin yiyao printing co. ltd_master_20151217_sa,0.0
+cat__contract_name_lower_terumo eurpoe n.v._call-off_2020_sa_aa_4_app6,0.0
+cat__contract_name_lower_thermo fisher_master_2024_sa_dipeptide,0.0
+cat__contract_name_lower_tfnd_call-off_2014_nnas_primary_ffa_amendment1_be clause,0.0
+cat__contract_name_lower_tfnd_master_2010_nnas_primary_ffa,0.0
+cat__contract_name_lower_thermo fisher allentown_call_off_2025_wo03_artwork change,0.0
+cat__contract_name_lower_thermo fisher scientific cork limited_call-off_2025_wo6_stability study,0.0
+cat__contract_name_lower_thermo fisher_call-off_2024_cda_mutual_smart_rfq_aa1,0.0
+cat__contract_name_lower_thermo fisher_call-off_2024_wo4_cos_wo1_one time set up,0.0
+cat__contract_name_lower_thermo fisher_call-off_2025_wo5_cwo1_project re-schedule and extension,0.0
+cat__contract_name_lower_thermo fisher_mutual cda_2025_peptide synthesis coupling reagent,0.0
+cat__contract_name_lower_tianjin yiyao printing co. ltd_amendment no 3_2023_pricing sheet update,0.0
+cat__contract_name_lower_thermo fisher_wo 5_capacity reservation and delay fee_amendment #1,0.0
+cat__contract_name_lower_thermofisher_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_tianjin bingxin packaging_call-off_2024_sa_aa3_price and rs appendix updates,0.0
+cat__contract_name_lower_tianjin hope biotech co ltd_stand-alone_2014_bta,0.0
+cat__contract_name_lower_tianjin huaming group_call-off_2025_sa_aa1_quality agreement,0.0
+cat__contract_name_lower_tianjin huaming group_master_2025_sa_shipper boxes,0.0
+"cat__contract_name_lower_tianjin teho storage equipment sales co.,ltd_stand-alone_2021_c4f",0.0
+cat__contract_name_lower_sønderborg værktøjsfabrik_2022_216m005-2k_po7776000090_clutch,0.0
+cat__contract_name_lower_sønderborg værktøjsfabrik _2022_loi_216m001-35 s-16,0.0
+cat__contract_name_lower_troy x_nnas_master_2023_commercial lease agreement,0.0
+cat__contract_name_lower_steris corporation_stand-alone_2017_bta,0.0
+cat__contract_name_lower_stena recycling_amendment_2025_list of subcontractors and receiving stations (november 2025),0.0
+cat__contract_name_lower_stena recycling_amendment_list of subcontractors and receiving stations,0.0
+"cat__contract_name_lower_sterigenics denmark as_master_2019_sa_processing, lab and consulting agreement (3)",0.0
+cat__contract_name_lower_steripack_master_2023_ready to caps oa,0.0
+cat__contract_name_lower_steris corporation_amendment_2024_cda_aa1_organizational_scope,0.0
+cat__contract_name_lower_steris corporation_cda_2024_global_twoway,0.0
+cat__contract_name_lower_steris corporation_stand-alone_2014_sa,0.0
+cat__contract_name_lower_steris_corporation_call-off_2020_bta_aa1_app1,0.0
+cat__contract_name_lower_stena recycling_amendment_2025_list of subcontractors and receiving stations,0.0
+cat__contract_name_lower_sterling_call off_2025_wo3_reach registration of etavo_2025,0.0
+cat__contract_name_lower_sterling_call-off_wo_6_api reference standard potency calculation for etavopivat ft-4202,0.0
+cat__contract_name_lower_sterling_call-off_wo_7_completion of api method validations of etavopivat ft-4202,0.0
+cat__contract_name_lower_sterling_master_2025_outsourcing agreement,0.0
+cat__contract_name_lower_stevanato and steripack_nda_2024_confidentiality,0.0
+cat__contract_name_lower_stevanato group_call-off_20211101_sa_aa5,0.0
+cat__contract_name_lower_stevanato group_call-off_2022_sa_aa8_app12,0.0
+"cat__contract_name_lower_stena recycling_amendment_2025_list of subcontractors and receiving stations (july 1st, 2025)",0.0
+cat__contract_name_lower_stena recycling a/s_master supply agreement_2024_waste management,0.0
+cat__contract_name_lower_stevanato group_call-off_2023_sa_aa10_app7_2023 prices update,0.0
+cat__contract_name_lower_steiert_call-off_2022_po 7776000156_216m012-33_counter,0.0
+cat__contract_name_lower_steiert - framework agreement - 2025 - gc for supply of moulding tools,0.0
+cat__contract_name_lower_steiert_2022_loi_216m012-32,0.0
+cat__contract_name_lower_steiert_2022_po_7776000071_nut_3423m514-1,0.0
+cat__contract_name_lower_steiert_call-off_2020_po 7776000008_216m012-31_counter,0.0
+cat__contract_name_lower_steiert_call-off_2021_7776000049 001 216m006-33 push_button,0.0
+cat__contract_name_lower_steiert_call-off_2022_216m006-34_po7776000115_pushbutton v1,0.0
+cat__contract_name_lower_steiert_call-off_2022_290m507-12_reset tube_phase11_po7776000106_#264581_v1,0.0
+cat__contract_name_lower_steiert_master_2020_sa_mldtools,0.0
+cat__contract_name_lower_stena recycling a/s_commercial lease agreement_2025_waste management,0.0
+cat__contract_name_lower_steiert_master_2020_sa_mldtools - amendment 1 price agreement update,0.0
+cat__contract_name_lower_steiert_po _7776000129_2022_reset tube_290m507-14,0.0
+cat__contract_name_lower_steiert_po _7776000130_2022_reset tube_backup_290m507-15,0.0
+cat__contract_name_lower_steiert_po_2022_po_7776000073_3423m513,0.0
+cat__contract_name_lower_steiert_stand-alone_2019_po 7778002903 co01_3321m148_01_needle hub_12+12 cav,0.0
+cat__contract_name_lower_steiert_stand-alone_2019_po 7778002903_3321m148_01_needle hub_12+12 cav_,0.0
+cat__contract_name_lower_steiert_stand-alone_2020_po7776000002 001 290m008-36_ratchet,0.0
+cat__contract_name_lower_stevanato group_call-off_2023_confirmation of rtu of new line sg hvl 1,0.0
+"cat__contract_name_lower_stevanato group_call-off_2023_sa_aa11_app 13,14_rtu products",0.0
+cat__contract_name_lower_sønderborg 2022 po 7776000067_290m515-11_cartridge holder_phase11,0.0
+cat__contract_name_lower_swissco_call-off_2025_oa_wo4_needle protrusion test on syringes for pfs1 line (march25 lots),0.0
+cat__contract_name_lower_sv_po 7776000147_2022_dragonfly piston washer,0.0
+cat__contract_name_lower_sv_po _7776000135_2022_cartridge holder ozempic_290m635-04,0.0
+cat__contract_name_lower_sv_po _7776000141_2022_scale durm_74,0.0
+cat__contract_name_lower_sv_po7776000127_2022_ novopen piston washer 236m111-e,0.0
+cat__contract_name_lower_sv_po7776000144_2022_dragonfly assembly nut,0.0
+cat__contract_name_lower_sv_po7776000145_2022_dragonfly cap,0.0
+cat__contract_name_lower_sv_po7776000146_2023_4-cavity_dragonfly,0.0
+cat__contract_name_lower_swissco_call-off_2025_oa_wo5_amber light implementation in psf1 filling line,0.0
+cat__contract_name_lower_sv_2022_loi_216m003-26,0.0
+cat__contract_name_lower_swissco_call-off_2025_oa_wo6_pressurized holding tank on pfs1 filling line,0.0
+cat__contract_name_lower_swissco_call-off_2025_oa_wo7_new filling kit,0.0
+cat__contract_name_lower_swissco_call-off_2025_oa_wo8_needle protrusion test april lots,0.0
+cat__contract_name_lower_swissco_call-off_2025_oa_wo9_needle protrusion test equipment,0.0
+cat__contract_name_lower_swissco_call-off_2025_wo02_materials for pfs3 line up to ppq,0.0
+cat__contract_name_lower_synoptik as_master_2020_fta,0.0
+cat__contract_name_lower_synoptik_as_amendment_2024_fta_aa2_agreement_term_price_index_change,0.0
+cat__contract_name_lower_sv_co_01_2022_po7776000004,0.0
+cat__contract_name_lower_suzhou highfine_cda_2025_tender process small molecules,0.0
+cat__contract_name_lower_stevanato group_call-off_2023_sa_aa9_syringes 2023 volume reduction,0.0
+cat__contract_name_lower_stok emballage_call-off_2020_bta_aa1,0.0
+"cat__contract_name_lower_stevanato group_call-off_2025_confirmation letter_facility establishment, hvl2,3,4",0.0
+cat__contract_name_lower_stevanato group_call-off_2025_dual chamber syringes_wave 2 confirmation as app15 in aa12,0.0
+"cat__contract_name_lower_stevanato group_call-off_2025_sa_aa13_app 1, 2, 7, 15_2024-2026 price appendix bulk glass",0.0
+cat__contract_name_lower_stevanato group_master_2015_sa,0.0
+cat__contract_name_lower_stevanato group_stand-alone_2023_term sheet_dual chamber syringe,0.0
+cat__contract_name_lower_stevanato group_varo_stand-alone_2025_cda_3 way confidentiality,0.0
+cat__contract_name_lower_sti components inc_master_2014_msa,0.0
+cat__contract_name_lower_stora enso oyj_cda_2024_mutual cda for development projects,0.0
+cat__contract_name_lower_suzano sa_ collaboration agreement_2024,0.0
+cat__contract_name_lower_stpharm_cda_2025_orion oligonucleotide project,0.0
+cat__contract_name_lower_stpharm_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_strem chemicals _stand alone_2020_pa_price agreement for 2021,0.0
+cat__contract_name_lower_strem chemicals inc._stand-alone_2016_bta,0.0
+cat__contract_name_lower_strem chemicals inc._stand-alone_20190620_pa_2019-2020,0.0
+cat__contract_name_lower_strem chemicals inc._standalone_cda_2025,0.0
+cat__contract_name_lower_sunningdale tech limited_cda_2023_rfq new device,0.0
+cat__contract_name_lower_troy x_nnas_amendment02_2025_property administation/facility management agreement with cbre,0.0
+cat__contract_name_lower_troy x_nnas_master_2023_commercial lease agreement_updated version,0.0
+"cat__contract_name_lower_stansomatic_as_call-off_2020_oa_aa2_app1,16",0.0
+cat__contract_name_lower_wmt_call-off_2022_290m510-48_po 7776000111_housing_non-connect_phase 11,0.0
+cat__contract_name_lower_wmt_call-off_2021_po7776000048_290m663-11 16 cav. housing wegovy,0.0
+cat__contract_name_lower_wmt_call-off_2022_216m002-2k po 7776000107 housing,0.0
+cat__contract_name_lower_wmt_call-off_2022_216m002-2n_po7776000108_housing,0.0
+cat__contract_name_lower_wmt_call-off_2022_216m002-2p_po7776000114_housing,0.0
+cat__contract_name_lower_wmt_call-off_2022_216m002-2p_po7776000114_housing v1,0.0
+cat__contract_name_lower_wmt_call-off_2022_290m510-46_ po7776000105_housing_non-connect_phase 10,0.0
+cat__contract_name_lower_wmt_call-off_2022_290m510-47_po7776000103_housing_non-connect_phase 10,0.0
+cat__contract_name_lower_wmt_call-off_2022_290m510-49_po777600011_housing_non-connect_phase 11,0.0
+cat__contract_name_lower_wmt_call-off_2021_po7776000023_216m004-42_connector-pipe_west,0.0
+cat__contract_name_lower_wmt_call-off_2022_po 7776000059_290m510-49_ housing_phase 11,0.0
+cat__contract_name_lower_wmt_po _7776000137_2022_cap ozempic 290m820-05,0.0
+cat__contract_name_lower_wmt_po _7776000138_2022_housing cn_290m510-50,0.0
+cat__contract_name_lower_wmt_po_776000158_2022_290m660-21,0.0
+cat__contract_name_lower_wmt_po_7776000160_2022_290m660-22_661pc1,0.0
+cat__contract_name_lower_wo_dk_18_routine analysis of phytomenadione according to usp/ph.eur. (3011),0.0
+cat__contract_name_lower_world courier_nn a/s_clinical logistics service agreement 2025,0.0
+cat__contract_name_lower_wmt_call-off_2021_po7776000024_216m004-43_connector-pipe_ght,0.0
+cat__contract_name_lower_wmt_call-off_2021_po7776000018_290m710_housing 30stop_icodec,0.0
+cat__contract_name_lower_wuxi apptec_nn_cda_rfp_2025,0.0
+cat__contract_name_lower_wmt_216m011-33_po7776000110_flexpen cap,0.0
+"cat__contract_name_lower_winther_mould_technology_as_call-off_2020_sa_aa3_appi,1",0.0
+cat__contract_name_lower_wms_2022_po7776000124_290m530-11 housing 16 cav xultophy,0.0
+cat__contract_name_lower_wmt_2022_ 290m610-03 _po 8000945944_saxenda housing,0.0
+cat__contract_name_lower_wmt_2022_loi_216m011-31,0.0
+cat__contract_name_lower_wmt_2022_po 7776000066_251m011-21_cap,0.0
+cat__contract_name_lower_wmt_2022_po_7776000143_housing amendment_,0.0
+cat__contract_name_lower_wmt_216m011-32_po7776000109_flexpen cap,0.0
+cat__contract_name_lower_wmt_call-off_2019_po_po7778002850 3364s002-22 spacer 4 cavity (wmt),0.0
+cat__contract_name_lower_wmt_call-off_2021_po7776000015_290m820-04_cap_icodec,0.0
+cat__contract_name_lower_wmt_call-off_2020_co 7776000003_001_290m510-41_housing 16 cav,0.0
+cat__contract_name_lower_wmt_call-off_2020_po 7776000003_001_290m510-41_housing 16 cav,0.0
+cat__contract_name_lower_wmt_call-off_2021_co 01_po7776000016_290m710-03_housing 70 click_icodec,0.0
+cat__contract_name_lower_wmt_call-off_2021_co 01_po7776000017_290m710-02_housing 35 click_icodec_v1,0.0
+cat__contract_name_lower_wmt_call-off_2021_co 02_po7776000015_290m820-04_cap_icodec,0.0
+cat__contract_name_lower_wmt_call-off_2021_co_001_po7776000015_290m820-04_kistler-sensor,0.0
+cat__contract_name_lower_wmt_call-off_2021_co_002_po7776000003_290m510-41_housing 16 cav,0.0
+cat__contract_name_lower_wsp ingeniørydelserne på utility,0.0
+cat__contract_name_lower_wuxi sta_call-off_2024_msa_aa1,0.0
+cat__contract_name_lower_winther mould technology as_master_20151106_sa_mldtools,0.0
+cat__contract_name_lower_ypsomed_sa_2023_replacement of existing sa,0.0
+cat__contract_name_lower_ypsomed_call-off_2023_consent letter,0.0
+cat__contract_name_lower_ypsomed_call-off_2023_consent to disclosure,0.0
+cat__contract_name_lower_ypsomed_call-off_2023_sa_aa2,0.0
+cat__contract_name_lower_ypsomed_call_off_2023_cda,0.0
+cat__contract_name_lower_ypsomed_calloff_2024_sa_amendment no. 2,0.0
+cat__contract_name_lower_ypsomed_internal-doc_2020_cl_sa_columbus,0.0
+cat__contract_name_lower_ypsomed_master_2020_sa,0.0
+cat__contract_name_lower_zirq_kmt_call-off and assignment agreement_2022_takeback aa2,0.0
+cat__contract_name_lower_ypsomed_call-off_2020_sa_aa1_zilti,0.0
+cat__contract_name_lower_zirq_master_2020_oa_waste management agreement_30-10-3020,0.0
+cat__contract_name_lower_zirq_medical_amendment_4_contract_extension,0.0
+cat__contract_name_lower_ørsted/kalundborg bioenergi_master_2019_sa_aa,0.0
+cat__contract_name_lower_ørsted_call-off_2019_sa_aa biogas certificates,0.0
+cat__contract_name_lower_ørsted_call-off_2020_supplementary agreement,0.0
+cat__contract_name_lower_ørsted_call-off_2021_supplementary agreement 2_final,0.0
+cat__contract_name_lower_ørsted_call-off_2022_supplementary agreement 3,0.0
+cat__contract_name_lower_ypsomed_call-off_2023_ consent to disclosure_korber,0.0
+cat__contract_name_lower_ypsomed-gerresheimer-nn_3 way cda_2023,0.0
+cat__contract_name_lower_wuxi sta_call-off_2024_wo06_ft3965897 dichloropyrrole (dcp) stability study,0.0
+cat__contract_name_lower_wuxi_sta_call-off_2025_oa_aa1,0.0
+cat__contract_name_lower_wuxi_call-off_2025_wo_11_stability study_train2_c210618002-b and c211111011-d,0.0
+cat__contract_name_lower_wuxi_cda_2025_cagrilinitide collaboration,0.0
+cat__contract_name_lower_wuxi_cda_2025_oligonucleotide manufacturing_project orion,0.0
+cat__contract_name_lower_wuxi_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_wuxi_cda_2025_project glow_,0.0
+cat__contract_name_lower_wuxi_sta_2025_wo_12_method validation_novo-20250313,0.0
+cat__contract_name_lower_wuxi_sta_call-off_2025_cagri_wo1_techtransfer,0.0
+cat__contract_name_lower_wuxi_stand-alone_2025_cda_mutual_etavopivat api_rfq,0.0
+cat__contract_name_lower_yiyao_aa4_2023_appendices update,0.0
+cat__contract_name_lower_xellia_cda_2025_biologics,0.0
+"cat__contract_name_lower_xi'an global printing co., ltd._master_20151217_sa",0.0
+"cat__contract_name_lower_xi'an global printing co., ltd._master_20151217_sa_amendment no 3",0.0
+cat__contract_name_lower_xi'an global printing_call-off_2023_sa_aa4_appendices update,0.0
+cat__contract_name_lower_yara chemials as_stand-alone_2015_bta,0.0
+cat__contract_name_lower_yara danmark as_amendment no.2_2025,0.0
+cat__contract_name_lower_yara_nn bta environmental appendix 2025,0.0
+cat__contract_name_lower_winther mould technology_2022_loi_216m004-44 s16,0.0
+cat__contract_name_lower_winther mould technology as_call-off_20171123_(updated app a and g and amendment new payment terms),0.0
+cat__contract_name_lower_turvo international co. ltd_master_20090410_sa,0.0
+cat__contract_name_lower_vetter pharma_call-off_2024_sa_aa2_development work,0.0
+cat__contract_name_lower_vattenfall_call-off_2018_fsa,0.0
+cat__contract_name_lower_vattenfall_call-off_2019_fsa_aa1,0.0
+cat__contract_name_lower_vattenfall_call-off_2019_supplementary agreement 1,0.0
+cat__contract_name_lower_vattenfall_contract_2022_amendment 2,0.0
+cat__contract_name_lower_veritiv_stand-alone_2019_bta,0.0
+cat__contract_name_lower_vestforbrænding_call-off_2014_sa_aa1,0.0
+cat__contract_name_lower_vetter pharma_call-off_2023_sa_aa1_removal of coc,0.0
+cat__contract_name_lower_vetter pharma_call_off_oa_aa3_second warehouse zilti,0.0
+cat__contract_name_lower_vanrx_stand-alone_2021_wo,0.0
+cat__contract_name_lower_vetter_call-off_2021_oa_aa4_sdea contacts,0.0
+cat__contract_name_lower_vetter_call-off_2023_histidine air freight study,0.0
+cat__contract_name_lower_vetter_call-off_2023_validation of cr14 for histidine,0.0
+cat__contract_name_lower_vetter_call-off_2023_validation of cr14 for histidine rev.01,0.0
+cat__contract_name_lower_vetter_call-off_2024_aa_#338837_wo10_validation of cr14 for nacl_rev04,0.0
+cat__contract_name_lower_vetter_call-off_2024_validation of cr12 for ziltivekimab,0.0
+cat__contract_name_lower_vetter_call-off_2024_validation of cr16 for ziltivekimab,0.0
+cat__contract_name_lower_vanrx_stand-alone_2022_wo_wo no. 3,0.0
+cat__contract_name_lower_vanrx_stand-alone_2021_no 2_wo,0.0
+cat__contract_name_lower_vetter_call-off_2025_wo2_validation of cr14 for nacl rev05,0.0
+cat__contract_name_lower_univar bv_master_20141023_bsa,0.0
+"cat__contract_name_lower_turvo international co., ltd_call-off_2022_sa_aa2_opentext",0.0
+cat__contract_name_lower_turvo_international_co._ltd_call-off_2021_sa_app_9,0.0
+cat__contract_name_lower_turvo_international_co._ltd_call-off_20221101_sa_app_9,0.0
+cat__contract_name_lower_ufag laboratorian and solvias ag_nda_2024_outsourced gmp laboratory analysis,0.0
+cat__contract_name_lower_ufag laboratories_master_2023_laboratory services msa,0.0
+cat__contract_name_lower_united creation packaging solution_2024_sa_aa3_ app11_quality,0.0
+cat__contract_name_lower_united creation packaging solution_call off_2024_sa_aa4_price & rss,0.0
+cat__contract_name_lower_univar bv_stand-alone_2014_bta,0.0
+cat__contract_name_lower_va-q-tec ag_stand-alone_2019_bta_cooling element,0.0
+cat__contract_name_lower_univar_call-off_2024_bsa_aa2,0.0
+cat__contract_name_lower_upm raflatac oy_strict cda_2025_development projects and data sharing,0.0
+cat__contract_name_lower_ups europe srl_cda_2022,0.0
+cat__contract_name_lower_ups_cda_2025_global confidentiality agreement,0.0
+cat__contract_name_lower_us solar_contract_2019_rec agreement,0.0
+cat__contract_name_lower_us solar_contracts_2019_amendments and waivers,0.0
+cat__contract_name_lower_uv medico as_amendment 1_2024_msa_term_change,0.0
+cat__contract_name_lower_vetter_call-off_2025_sa_aa7_app5.1_ed.11_app5.4_ed.4_prices,0.0
+cat__contract_name_lower_viant medical_cda_2023_rfq new device,0.0
+cat__contract_name_lower_winifred international technology (shanghai) ltd._call-off_2021_sa_aa1_app10,0.0
+cat__contract_name_lower_west_call-off_2021_oa_app8_ed15,0.0
+cat__contract_name_lower_west pharmaceutical services_stand-alone_20180509_wo_envision 2219 in 443250 grey rts,0.0
+cat__contract_name_lower_west pharmaceutical services_stand-alone_20180509_wo_envision 2302 in 443250 grey rts,0.0
+cat__contract_name_lower_west pharmaceutical services_stand-alone_2019-11-13_da nn -west china dmf agreement 1779,0.0
+cat__contract_name_lower_west pharmaceutical services_stand-alone_2019-11-13_da nn -west china dmf agreement 2212,0.0
+cat__contract_name_lower_west pharmaceutical services_stand-alone_2019-11-13_da nn -west china dmf agreement 2302 grey,0.0
+cat__contract_name_lower_west pharmaceutical services_stand-alone_2019-11-13_da nn -west china dmf agreement 2302 ln,0.0
+cat__contract_name_lower_west pharmaceutical services_stand-alone_2019_da nn -west china dmf agreement sheeting waterford,0.0
+cat__contract_name_lower_west_pharmaceuticals_cda_2025_rubber_laminate_data,0.0
+cat__contract_name_lower_west pharmaceutical services_stand-alone_20150317_wo_risk mitigation rubber sheeting,0.0
+cat__contract_name_lower_westfield medical limited_stand alone_2020_pa_price agreement from 2021,0.0
+cat__contract_name_lower_westfield medical limited_stand-alone_2015_bta,0.0
+cat__contract_name_lower_westfield medical limited_stand-alone_pa_2025,0.0
+cat__contract_name_lower_whitely logistics_cda_2025_north america primary road distribution,0.0
+cat__contract_name_lower_whitley_call-off_2024_nnas_primary_ffa_amendment 11_liability,0.0
+cat__contract_name_lower_wilmar oleo north america llc_master_2022_sa_dc18,0.0
+cat__contract_name_lower_wilmar_saltigo_siegfried_novo nordisk_stand alone_2023_cda_4-way_wilmars analytical methods,0.0
+cat__contract_name_lower_west pharmaceutical services_stand-alone_20170126_cda_rubber and syringes,0.0
+cat__contract_name_lower_west pharmaceutical services_stand-alone_20131220_loi_rubber laminate,0.0
+cat__contract_name_lower_vioneo_master_2025_sa,0.0
+cat__contract_name_lower_vwr intl_avantor_cda_2025_tender process small molecules,0.0
+cat__contract_name_lower_vistin (weifa)_master_20051228_sa,0.0
+cat__contract_name_lower_vistin pharma as_master_20051228_sa_former contract weifa,0.0
+cat__contract_name_lower_vmt_co2_2022_po 7776000016,0.0
+cat__contract_name_lower_vmt_co2_2022_po7776000017,0.0
+cat__contract_name_lower_vwr international as_stand alone_2020_bta,0.0
+cat__contract_name_lower_vwr international as_stand-alone_20190101_pa,0.0
+cat__contract_name_lower_vwr international llc_master_2015_sa,0.0
+cat__contract_name_lower_vwr_call-off_2024_bta_aa1,0.0
+cat__contract_name_lower_west pharmaceutical services_master_20140922_sa,0.0
+cat__contract_name_lower_vynova_bta & environmental appendix amendment_2025_sustainability commitment on low carbon koh 46%,0.0
+cat__contract_name_lower_watson_marlow flexicon_stand alone_2020_bta,0.0
+cat__contract_name_lower_weidmann medical technology ag_cda_2023,0.0
+cat__contract_name_lower_west pharmaceutical services inc._call-off_2025_aa5_rtu plungers capacity plan,0.0
+cat__contract_name_lower_west pharmaceutical services inc._cda_2022_fxt rfq,0.0
+cat__contract_name_lower_west pharmaceutical services inc._cda_2023_rfq new device,0.0
+"cat__contract_name_lower_west pharmaceutical services, inc._call-off_2020-12_sa_aa4",0.0
+cat__contract_name_lower_stansomatic_call off_2025_amendment no12_app12,0.0
+cat__contract_name_lower_stansomatic as_master_20120216_oa_amendment_10,0.0
+cat__contract_name_lower_parker hannifin_call-off_2022_sa_aa2_opentext,0.0
+cat__contract_name_lower_polypeptide_wo56_2025_qt-15376 for pc4008 tech transfer support,0.0
+cat__contract_name_lower_polypeptide_call-off_2024_wo#39_48month stability study of pc4004_pc4006-pure_pc4008,0.0
+cat__contract_name_lower_polypeptide_call-off_2025_parent company guarantee_wo34,0.0
+cat__contract_name_lower_polypeptide_master_20190510_msa_,0.0
+cat__contract_name_lower_polypeptide_master_2024_sa cagrilintide,0.0
+cat__contract_name_lower_polypeptide_siegfried _call-off_2021_3 way agreement on dc20,0.0
+cat__contract_name_lower_polypeptide_wo54_2025_proposal qt-15189 for pc4008 and intermediates process,0.0
+cat__contract_name_lower_polypeptide_wo55_2025_qt-15351 for pc4008 scale-up and validation,0.0
+cat__contract_name_lower_polypeptide_wo57_2025_proposal qt-14529 cagrilintide intermediates stability studies,0.0
+cat__contract_name_lower_polypeptide_call-off_20191030_sa_aa_app6,0.0
+cat__contract_name_lower_polyplastics_master_2021_sa_epom,0.0
+cat__contract_name_lower_prayon s.a_stand-alone_2016_bta,0.0
+cat__contract_name_lower_prent_call-off_2021_bta_scopeupdate,0.0
+cat__contract_name_lower_presto engineering_master_msa_2024_asic design,0.0
+cat__contract_name_lower_pretium_cda and non-disclosure,0.0
+cat__contract_name_lower_price agreement flextouch - 2025 - mgs lynge a/s - framework agreement - 2025,0.0
+cat__contract_name_lower_primopus_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_polypeptide_call-off_2024_wo#39_48month stability study,0.0
+cat__contract_name_lower_polypeptide_call- off_2025_wo53_pc4006 pure for use as quantity standard in pc4008 release analysis,0.0
+cat__contract_name_lower_proampac inc._cda_2023_rfp for aluminium bag,0.0
+cat__contract_name_lower_platinum press_call-off_2021_sa_aa2_app5_new edition,0.0
+cat__contract_name_lower_phillips-medisize_cda_2024_new business general cda,0.0
+cat__contract_name_lower_phillipscorp_call-off_20190809_environmentalap,0.0
+cat__contract_name_lower_piercan sas_cda_twoway_2025,0.0
+"cat__contract_name_lower_pine gate renewables, llc_cda_2025_renewable energy projects",0.0
+cat__contract_name_lower_placon corp_cda_2025_rfx packaging consumables and load carriers,0.0
+cat__contract_name_lower_platinium press_call-off_2023_sa_aa5_appendices update,0.0
+cat__contract_name_lower_platinum press inc._amendment no. 6_2024,0.0
+cat__contract_name_lower_platinum press_call-off_2022_sa_aa3_app12,0.0
+cat__contract_name_lower_essity_sa_2021_tork dispenser agreement,0.0
+cat__contract_name_lower_platinum press_master_2020_sa_amendment no 4,0.0
+cat__contract_name_lower_pmc isochem_cda_acetohydroxamic-acid_202526,0.0
+cat__contract_name_lower_pmc ouvrie_stand-alone_2014_bta,0.0
+cat__contract_name_lower_pmkc_call-off_ 2025_app6b_fxt pricing 2025,0.0
+cat__contract_name_lower_pmm_call-off_ 2022_app6a_fxt pricing 2022,0.0
+cat__contract_name_lower_pmm_call-off_2022_a2_fxt_pricing,0.0
+cat__contract_name_lower_polypeptide_2025_call-off_co1_wo34_scale up of pc4008 2000g batch,0.0
+cat__contract_name_lower_proacteur_stand-alone_2019_nexus training offer,0.0
+cat__contract_name_lower_professional packaging systems_stand-alone_2019_bta,0.0
+cat__contract_name_lower_phillips plastics corporation_call-off_2023_oa_aa1_opentext,0.0
+cat__contract_name_lower_rondo-pak_call-off_2020_sa_aa1_app1_11,0.0
+cat__contract_name_lower_rkt_oa_call_off_2022_amendment_1,0.0
+cat__contract_name_lower_rkt_po7776000167_2022_cross validation,0.0
+cat__contract_name_lower_rkt_po7776000168_2022_mgmt cost,0.0
+cat__contract_name_lower_rkt_project agreement_novofineplus_07032024,0.0
+cat__contract_name_lower_rkt_rodinger_kunststoff_technik_gmbh_master_2024_oa_amendment 1_reconciliation 2024,0.0
+cat__contract_name_lower_roche diagnostics deutschland gmbh_bta (extended version)_2023_trypsin,0.0
+cat__contract_name_lower_rondo pak llc_call-off_2023_sa_aa5_appendices update,0.0
+cat__contract_name_lower_rondo-pak_call-off_2022_sa_aa3_app12,0.0
+cat__contract_name_lower_rkt_call-off_2021_oa_aa4_app15_c4f_open text,0.0
+cat__contract_name_lower_rondo-pak_master_2020_sa,0.0
+cat__contract_name_lower_rondo-pak_master_2020_sa_amendment 4_2023,0.0
+cat__contract_name_lower_rondo-pak_supply agreement amendment_ 2024_ new supplier production site,0.0
+cat__contract_name_lower_rondo_pak_call-off_2020_sa_aa2_app10,0.0
+cat__contract_name_lower_roquette freres_call-off_2020_sa_aa2_app1_3_4_5_6_prices_2021,0.0
+cat__contract_name_lower_roquette freres_cda_2022_cyclodextrin for cagrisema project,0.0
+cat__contract_name_lower_roquette freres_master_20041130_sa,0.0
+cat__contract_name_lower_rkt_call-off_app_7.1_2023 price_novopen_novofineplus,0.0
+"cat__contract_name_lower_rkt_call-off_2020_oa_aa3_app 1,8",0.0
+cat__contract_name_lower_purolite llc_cda_2025_technical resin seminar,0.0
+cat__contract_name_lower_recipharm cda(mutual) 2024,0.0
+cat__contract_name_lower_q8_contract_2022_diesel supply agreement,0.0
+cat__contract_name_lower_q8_contract_2022_tank rental and storage agreement,0.0
+cat__contract_name_lower_quality assistance_call-off_20180117_ta_hydro,0.0
+cat__contract_name_lower_quality assistance_call-off_20190627_wo_1_e3_residue igni. and silica,0.0
+cat__contract_name_lower_quality assistance_master_20040823_msa,0.0
+cat__contract_name_lower_qv-compliance a/s  _s99_7779010726_pwo_2024,0.0
+cat__contract_name_lower_qv-compliance a/s _s99_7779010726_pwo_2025_co 01,0.0
+cat__contract_name_lower_recipharm_cda(mutual)_2025_amendment (1),0.0
+cat__contract_name_lower_rkt-rodinger-kunststoff-technik-gmbh_call-off_aa2_app19_2025,0.0
+cat__contract_name_lower_recipharm_nn_cda_rfp_2025,0.0
+cat__contract_name_lower_reintegrate_call off_2021_extension of specific clause,0.0
+cat__contract_name_lower_reintegrate_european energy_restated supply agreement_2023_e-methanol,0.0
+cat__contract_name_lower_reintegrate_master_2021_emethanol supply,0.0
+cat__contract_name_lower_renovista_rights on pre engineering,0.0
+cat__contract_name_lower_repligen_call -off_2024_mpa_aa1_ssims sa,0.0
+cat__contract_name_lower_rkt rodinger kunststoftechnik gmbh_master_2022_oa,0.0
+cat__contract_name_lower_phillips-medisize llc_stand-alone_2021_oa,0.0
+cat__contract_name_lower_phillips medisize as (b&o medicom)_master_20100517_oa_.pdf,0.0
+cat__contract_name_lower_rosendahls a_s_master_20180207_sa_amendment no 1,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo18_capital contribution for strainscope.,0.0
+cat__contract_name_lower_patheon monza_call-off_2024_wo02_sorbitol solution and api id method,0.0
+cat__contract_name_lower_patheon monza_call-off_2024_wo12_ppq batches for cagri b + sema,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_oa_aa5_pfsline­_incltt_semaglutide,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo#11 monza - cagrisema dc primpack,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo01_variosys annual price adjustment and ancillary activities,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo12_cagrisema dc accessories for syringes release testing,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo14_cagrisema dc items for pv batches,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo19_ cagrisema dc pfs hv line cip-skid,0.0
+cat__contract_name_lower_patheon monza_call-off_2023_wo15_wfi trial laboratory batch,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo24_cagrisema dc pfs sus assemblies,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo25_cagrisema hv excipients for eng and pv batches,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo26_cagrisema dc pfs ccit plate reader,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo27_cs hv glide force accessories,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo34_monza - cs lv brevetti spin up equipment,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo35_monza - cs lv keyence equipment,0.0
+cat__contract_name_lower_patheon monza_call-off_2025_wo40_monza - autoclave validation,0.0
+cat__contract_name_lower_patheon monza_call-off_2023_wo16_cagrisema tech transfer,0.0
+cat__contract_name_lower_patheon monza_call-off_2023_wo14_water for injection trial,0.0
+cat__contract_name_lower_patheon uk_call-off_2023_oa_variosys line,0.0
+cat__contract_name_lower_patheon greenville_call-off_2025_msa_wo16_ ppq for 9.6 mg rev. 01,0.0
+cat__contract_name_lower_parker_call-off_sa_aa2_022024,0.0
+cat__contract_name_lower_patheon biologics_call-off_2019_moa_aa5_2026 price and invoicing specifications,0.0
+cat__contract_name_lower_patheon greenville_call-off_2021_oa_aa1_additional 10m,0.0
+cat__contract_name_lower_patheon greenville_call-off_2022_oa_aa2_manual tub labelling,0.0
+cat__contract_name_lower_patheon greenville_call-off_2022_oa_aa4_post ppq price,0.0
+cat__contract_name_lower_patheon greenville_call-off_2024_cos_wo#19 cold hold - filling room temperature loop,0.0
+cat__contract_name_lower_patheon greenville_call-off_2025_la_9.6mg ppq scheduling impact,0.0
+cat__contract_name_lower_patheon greenville_call-off_2025_oa_wo13_site security assessment,0.0
+cat__contract_name_lower_patheon monza_call-off_2023_wo12_nedosiran analytical services,0.0
+cat__contract_name_lower_patheon greenville_call-off_2025_oa_wo9_ph study & ompi supplier update – comparison study,0.0
+cat__contract_name_lower_patheon greenville_call-off_2025_wo28_rs and ccit testing 9.6,0.0
+cat__contract_name_lower_patheon greenville_call-off_2025_wo33_ cs hv detergent cip,0.0
+cat__contract_name_lower_patheon greenville_call-off_2025_wo38_9.6 commercial readiness,0.0
+cat__contract_name_lower_patheon greenville_call-off_2025_wo39_brevetti spin up equipment,0.0
+cat__contract_name_lower_patheon greenville_call-off_2025_wo41_sus assemblies,0.0
+cat__contract_name_lower_patheon greenville_master_2021_oa_pfs filling,0.0
+cat__contract_name_lower_patheon monza_call-off_ps24_wo13_37676_cagrisema prim pack purchase monza,0.0
+cat__contract_name_lower_patheon uk_call-off_2023_wo_capacity for ppq for attr-cm,0.0
+cat__contract_name_lower_philips-medisize pl_master_2025_oa,0.0
+cat__contract_name_lower_pfizer_call-off_2025_oa_wo05_co01_formulation_filling_inspection_laboratory_and_security_equipment,0.0
+cat__contract_name_lower_pfizer inc_cda mutual_2025_amedment (1),0.0
+cat__contract_name_lower_pfizer inc_master_2024_oa_filling and fa&p,0.0
+cat__contract_name_lower_pfizer_call-off_2024_oa_wo01_purchasing_components_for_tt,0.0
+cat__contract_name_lower_pfizer_call-off_2024_oa_wo02_technical_transfer,0.0
+cat__contract_name_lower_pfizer_call-off_2024_oa_wo03_components_for_assembly_and_pack,0.0
+cat__contract_name_lower_pfizer_call-off_2024_oa_wo04_secondary_packaging_and_lab_equipment,0.0
+cat__contract_name_lower_pfizer_call-off_2024_oa_wo07_pc/pq/ppq analytical_testing_&_holder_for_profusion_testing,0.0
+cat__contract_name_lower_pfizer_call-off_2025_oa_wo10_pq_ddc_stability_testing,0.0
+cat__contract_name_lower_pfanstiehl inc_standalone_cda_tris_2024,0.0
+cat__contract_name_lower_pfizer_call-off_2025_oa_wo11_pv_ppq_ddc_stability_testing,0.0
+cat__contract_name_lower_pfizer_ddl_3 way cda_2025_design verification testing,0.0
+cat__contract_name_lower_pharma-skan call off 2023 aa3 sterile water specifications,0.0
+cat__contract_name_lower_pharma-skan_call-off_2023_aa2_ updating aap4 and aap7,0.0
+cat__contract_name_lower_pharmaskan aps_master_2011_sa,0.0
+cat__contract_name_lower_pharmaskan-call-off_2021_msa_aa2_ app3,0.0
+cat__contract_name_lower_pharmaxim ab_stand-alone_2016_bta,0.0
+cat__contract_name_lower_pfizer inc cda(mutual) agreement 2024,0.0
+cat__contract_name_lower_pendotech_nda_2024_single use components,0.0
+cat__contract_name_lower_patheon uk_call-off_2025_aa1_variosys cs price and service update,0.0
+cat__contract_name_lower_patheon_call-off_2025_wo#21_pre-ppq batch,0.0
+cat__contract_name_lower_patheon_2025_call-off_wo-25-20l wave bag replacement,0.0
+cat__contract_name_lower_patheon_2025_call-off_wo-26- protein a eluate testing,0.0
+cat__contract_name_lower_patheon_call-off_20190816_wo-03,0.0
+cat__contract_name_lower_patheon_call-off_2019_wo1_ed1projectphase,0.0
+cat__contract_name_lower_patheon_call-off_2023_wo01_tt for nedosiran,0.0
+cat__contract_name_lower_patheon_call-off_2025_wo#19_icief testing,0.0
+cat__contract_name_lower_patheon_call-off_2025_wo#20_end of production cell bank and campaign summary report,0.0
+cat__contract_name_lower_patheon_call-off_2025_wo#22_korean inspection,0.0
+cat__contract_name_lower_pci_korber_nn_3 way cda_collaboration,0.0
+cat__contract_name_lower_patheon_master_20190117_oa_concizumab,0.0
+cat__contract_name_lower_patheon_monza and greenville_call-off_2025_oa_aa6_milestones and dc-rr,0.0
+cat__contract_name_lower_patheon_monza_call-off_2023_wo07_ nedosiran capital requirement amendment,0.0
+cat__contract_name_lower_patheon_work_order_no16_2024,0.0
+cat__contract_name_lower_pci philadelphia_call-off_2025_wo14_wip trays machine e,0.0
+cat__contract_name_lower_pci philadelphia_call-off_2025_wo18_wegovy tray design change and nn line improvement,0.0
+cat__contract_name_lower_pci rockford_etavo_call-off_2025_wo01_ etavo hapa printer,0.0
+cat__contract_name_lower_roquette_freres_call-off_nov_2024_sa_aa7_app1_4_2024_spec_prices,0.0
+cat__contract_name_lower_rotem amfert negev ltd._stand-alone_2014_bta,0.0
+cat__contract_name_lower_stansomatic as_master_20120216_oa,0.0
+cat__contract_name_lower_siegfried_call-off_2025_wo88_cwo2_dc20-mono-tbu ester process validation,0.0
+cat__contract_name_lower_siegfried_call-off_2024_wo80_nnc6101 pilot campaign and stability study,0.0
+cat__contract_name_lower_siegfried_call-off_2024_wo82_pc2413sag 4mt,0.0
+cat__contract_name_lower_siegfried_call-off_2024_wo87_nnc6101 scale up and pilot campaign,0.0
+cat__contract_name_lower_siegfried_call-off_2025_wo81_cwo1_dc20mtbu ester china reach testing.,0.0
+cat__contract_name_lower_siegfried_call-off_2025_wo81_dc20mtbu ester china reach testing,0.0
+cat__contract_name_lower_siegfried_call-off_2025_wo87_cwo1_nnc6101 scale-up and pilot campaign.,0.0
+cat__contract_name_lower_siegfried_call-off_2025_wo88_cwo1_dc20-mono-tbu ester process validation,0.0
+cat__contract_name_lower_siegfried_call-off_2025_wo92_pc3406fip minden preparation lab work,0.0
+cat__contract_name_lower_siegfried_call-off_2024_wo69_cwo1_nnc3002 (pc2404 nlg)_process robustness scope update gg sgd,0.0
+cat__contract_name_lower_siegfried_call-off_2025_wo94_qualification of h-ado-ado-oh from flamma bulciago,0.0
+cat__contract_name_lower_siegfried_call-off_2025_wo95_cwo1_nnc3506 ppq,0.0
+cat__contract_name_lower_siegfried_call-off_2025_wo95_nnc3506 ppq,0.0
+cat__contract_name_lower_siegfried_call-off_2025_wo97_pc2411 storage,0.0
+cat__contract_name_lower_siegfried_cda_2025_pc3406ng chartwell-sgf-nn,0.0
+cat__contract_name_lower_siegfried_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_siegfried_contract_2025_amendment 4_to_msa_v4,0.0
+cat__contract_name_lower_siegfried_call-off_2024_wo79_nnc3027 stability study,0.0
+cat__contract_name_lower_siegfried_call-off_2024_msa_aa3,0.0
+cat__contract_name_lower_siegfried_master_20120228_sa_pc2414,0.0
+cat__contract_name_lower_shl_call off_2023__restated sa_amendment 1,0.0
+cat__contract_name_lower_sharp packaging solutions_master_2023_pa_ypsomate,0.0
+cat__contract_name_lower_sharp us (macungie)_call-off_2025_oa_aa1_fa&p_it security (nis2),0.0
+cat__contract_name_lower_sharp us (macungie)_master_october 2024_cmo oa_sdd fa&p,0.0
+cat__contract_name_lower_sharp_call-off_2025_ oa_aa3__it ot,0.0
+cat__contract_name_lower_sharp_korber_nn_3 way cda_collaboration,0.0
+cat__contract_name_lower_shenzhen techdow pharmaceutical ltd co. cda mutual agreement 2024,0.0
+cat__contract_name_lower_shenzhen techdow pharmaceutical ltd_amendment (1)_2025_term extension,0.0
+cat__contract_name_lower_shl_call-off_2020_sa_aa3_obesity+faam3,0.0
+cat__contract_name_lower_siegfried-bachem-nn_stand alone_2023_cda 3 way_dc20mtbu,0.0
+cat__contract_name_lower_shl_call-off_2022_sa_aa4_faam4 and us investment,0.0
+cat__contract_name_lower_shl_call_off_2025__restated_sa_amendment_2,0.0
+cat__contract_name_lower_shl_master_20170821_sa,0.0
+cat__contract_name_lower_shl_master_2023__restated sa,0.0
+cat__contract_name_lower_sibo_cda and non-disclosure,0.0
+cat__contract_name_lower_siegfried ag_master_20120217_msa,0.0
+cat__contract_name_lower_siegfried ag_master_20120217_msa_amendment 1,0.0
+cat__contract_name_lower_siegfried_master_20041019_sa_ltme ltee,0.0
+cat__contract_name_lower_siegfried_master_20150708_sa_pc3406,0.0
+cat__contract_name_lower_sharp packaging solutions_call-off_2025_oa_wo03_zilti bundle part 2,0.0
+cat__contract_name_lower_sps medical_stand-alone_2022_bta,0.0
+cat__contract_name_lower_smurfit kappa denmark as_master_2021_sa,0.0
+cat__contract_name_lower_smurfit westrock brazil_master_2025_sa_shipping boxes,0.0
+cat__contract_name_lower_smurfit westrock inc._master_2025_sa_us,0.0
+cat__contract_name_lower_solvay chemicals international sa_amendment 01_2025_affiliate scope to bta,0.0
+cat__contract_name_lower_specialty electronic materials gmbh_stand-alone_20181101_last time buy option,0.0
+cat__contract_name_lower_specialty electronic materials gmbh_stand-alone_20190129_pa_2019 and 2020 prices,0.0
+cat__contract_name_lower_specialty electronic materials switzerland gmbh_stand alone_2020_pa_price agreement from 2021,0.0
+cat__contract_name_lower_spx flow technology danmark as_stand-alone_2016_bta,0.0
+cat__contract_name_lower_skpharmateco_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_spx flow technology danmark as_stand-alone_2019_bta,0.0
+cat__contract_name_lower_sta pharmaceutical hong kong limited_master_2025_oa,0.0
+cat__contract_name_lower_stansomatic as_call-off_2019_oa_app_,0.0
+cat__contract_name_lower_stansomatic as_call-off_2020_oa_app,0.0
+cat__contract_name_lower_stansomatic as_call-off_20211123_oa_app9,0.0
+cat__contract_name_lower_stansomatic as_call-off_20221219_oa_app9,0.0
+cat__contract_name_lower_stansomatic as_call-off_20230525_oa_app9,0.0
+cat__contract_name_lower_smurfit kappa denmark as_amendment no. 1_2023_ price sheet update,0.0
+cat__contract_name_lower_sk pharmteco_stand alone_2024_mutual cda,0.0
+cat__contract_name_lower_siegfried_master_20180503_sa_no4_pc3406ls,0.0
+cat__contract_name_lower_simtra_call-off_2025_oa_wo04_wegovy analytical transfer,0.0
+cat__contract_name_lower_siegfried_master_20190508_sa_pc3406fip,0.0
+cat__contract_name_lower_siegfried_wilmar_nn_stand-alone_2021_cda_3 way,0.0
+cat__contract_name_lower_sigmund lindner_call-off_2022_sa_aa1_app8_price appendix,0.0
+cat__contract_name_lower_sigmund lindner_call-off_2023_aa2_app8 price appendix,0.0
+cat__contract_name_lower_sigmund lindner_master_20110624_sa,0.0
+"cat__contract_name_lower_sigmund_lindner__call_off_2020_sa_aa3_app1,11",0.0
+cat__contract_name_lower_simtra_call-off_2025_oa_wo01_wegovy services,0.0
+cat__contract_name_lower_simtra_call-off_2025_oa_wo05_wegovy software update,0.0
+cat__contract_name_lower_sinopep_cda_2025_spps collaboration,0.0
+cat__contract_name_lower_simtra_call-off_2025_oa_wo06_project management fee,0.0
+cat__contract_name_lower_simtra_call-off_2025_oa_wo09_wegovy qualification of software update,0.0
+cat__contract_name_lower_simtra_call-off_2025_wo08_wegovy buffer batch,0.0
+cat__contract_name_lower_simtra_cda(mutual)_2025_amendment 1,0.0
+cat__contract_name_lower_simtra_master_june 2024_oa_filling,0.0
+cat__contract_name_lower_simtra_nn_hermann waldner_cda_amendment 1,0.0
+cat__contract_name_lower_single use support_cda_2025,0.0
+cat__contract_name_lower_sharp packaging solutions_call-off_2025_oa_wo07_consolidation,0.0
+cat__contract_name_lower_sharp packaging solutions_call-off_2025_oa_wo02_zilti bundle,0.0
+cat__contract_name_lower_rottendorf cda (mutual) 2024,0.0
+cat__contract_name_lower_sasol chemicals north america llc_master_20190620_ts,0.0
+cat__contract_name_lower_sanofi_syntegon_nn_3-way cda_2025_supply of material,0.0
+cat__contract_name_lower_sapala_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_sartorius stedim biotech gmbh_stand alone_2018_bta,0.0
+cat__contract_name_lower_sartorius stedim uk limited_master_20151211_sa,0.0
+cat__contract_name_lower_sartorius stedium_call-off_pa_2023_app5_sa,0.0
+cat__contract_name_lower_sartorius-nn_nda_2025,0.0
+cat__contract_name_lower_sartorius_call-off_2020_sa_aa1_app5_prices,0.0
+cat__contract_name_lower_sasol na & sasol chemie_call-off_2020_qa_product agreement for ethyl acetate,0.0
+cat__contract_name_lower_sanofi_call_off_2025_oa_wo01_single_colour_cap,0.0
+"cat__contract_name_lower_sasol na & sasol chemie_call-off_2020_sa_aa1_app1,3",0.0
+cat__contract_name_lower_sasol na & sasol chemie_master_2020_sa,0.0
+cat__contract_name_lower_sasol na_call-off_2020_qa_transport agreement ethanol and ethyl acetate to nn clayton,0.0
+"cat__contract_name_lower_sasol na_call-off_2021_sa_aa2_app1, 2, 8b_etoh us charges",0.0
+cat__contract_name_lower_sasol_stolthaven_novo_threepartagreementexise tax_2024_security deposit excise tax,0.0
+cat__contract_name_lower_saudi bio_master_2024_ license agreement,0.0
+cat__contract_name_lower_saudi bio_master_2024_sales agreement,0.0
+cat__contract_name_lower_sanofi_master_2024_oa,0.0
+cat__contract_name_lower_saniflex ab_stand-alone_2015_bta,0.0
+cat__contract_name_lower_scantago_stand-alone_2015_bta,0.0
+cat__contract_name_lower_sabic innovative plastics b.v.p_master_20151103_sa,0.0
+cat__contract_name_lower_rovi pharma industrial services sau_cda_aa_2025_mpfs extension,0.0
+cat__contract_name_lower_rovi pharma industrial services_master_2023_oa_pfs filling,0.0
+cat__contract_name_lower_rovi_call-off_2024_oa_wo1_technical transfer for wegovy manufacturing,0.0
+cat__contract_name_lower_rovi_call-off_2025_oa_wo4_cagrisemac_tt tanks,0.0
+cat__contract_name_lower_rovi_call-off_2025_oa_wo5_tt cagrisema coformulation,0.0
+cat__contract_name_lower_rwe supply & trading gmbh _cda(mutual)_2023 final,0.0
+cat__contract_name_lower_röchling_cda and non-disclosure,0.0
+cat__contract_name_lower_sabic innovative plastics denmarkap_master_20041223_sa,0.0
+cat__contract_name_lower_saltigo gmbh_cda_2022_new synthesis route for glycerol,0.0
+cat__contract_name_lower_sabic_confidentiality_20180307_cda,0.0
+cat__contract_name_lower_sai chemicals_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_saint gobain_amendment no. 1 to cda_2024_term extension,0.0
+cat__contract_name_lower_saint gobain_cda_2022_single use system and tubing,0.0
+cat__contract_name_lower_saint-gobain_call-off_2024_sa_aa3_pricing 2024,0.0
+cat__contract_name_lower_saint-gobain_call-off_2025_sa_aa4_pricing 2025,0.0
+cat__contract_name_lower_salem one inc._cda mutual_2025_ppm rfq 2026,0.0
+cat__contract_name_lower_saudibio_call-off_2025_aa1 (supply)_pricing structure,0.0
+cat__contract_name_lower_scherdel_call-off_2020_oa_aa2_app14,0.0
+cat__contract_name_lower_sharp packaging solutions_call-off_2025_oa_wo01_emergency device bundle,0.0
+cat__contract_name_lower_shandong jincheng_cda_2025_tender process small molecules,0.0
+cat__contract_name_lower_schreiner group gmbh & co. kg_amendment no.2_2023_pricesheet update,0.0
+cat__contract_name_lower_schreiner group gmbh & co. kg_master_20190214_sa,0.0
+cat__contract_name_lower_schur pack denmark_stand-alone_2021_bta,0.0
+cat__contract_name_lower_seisa medical inc_cda_2023,0.0
+cat__contract_name_lower_sensitech emea b.v._technical contract - 2021 - catalogue sensitech emea b.v .,0.0
+cat__contract_name_lower_sensitech_master_2020_nnas_primary_supply agreement_20201101,0.0
+cat__contract_name_lower_sfk food as_stand-alone_20150302_rs,0.0
+cat__contract_name_lower_sharp - legal notice 5 december,0.0
+cat__contract_name_lower_schott_master_20140912_sa,0.0
+cat__contract_name_lower_sharp macungie_2025_call-off_ln_legal notice delay sdd,0.0
+cat__contract_name_lower_sharp packaging solutions_call-off_2023_oa_aa1_fa&p_change in bank details,0.0
+cat__contract_name_lower_sharp packaging solutions_call-off_2023_wo01_additional security measures,0.0
+cat__contract_name_lower_sharp packaging solutions_call-off_2024_oa_wo11_zilti id testing support,0.0
+cat__contract_name_lower_sharp packaging solutions_call-off_2024_wo08_ypsomate_overspend,0.0
+cat__contract_name_lower_sharp packaging solutions_call-off_2024_wo09_fast track laser_stability run,0.0
+cat__contract_name_lower_sharp packaging solutions_call-off_2025_oa_aa2_fa&p_it security (nis2),0.0
+cat__contract_name_lower_schott_stevanato group_2022_cda_3 way_full steam project,0.0
+"cat__contract_name_lower_schott_ag_call-off_2020_sa_aa2_app1,11",0.0
+cat__contract_name_lower_scherdel_gmbh_call-off_2020_oa_aa2_app9.,0.0
+"cat__contract_name_lower_schoeller-plast_enterprise_as_call-off_2020_fta_aa3_appe,1",0.0
+cat__contract_name_lower_scherdel_gmbh_call-off_2020_oa_aa2_app9..,0.0
+cat__contract_name_lower_scherdel_gmbh_call-off_20220630_oa_app6,0.0
+cat__contract_name_lower_scherdel_gmbh_call-off_20240425_oa_aa3,0.0
+cat__contract_name_lower_scherdel_gmbh_call-off_20240614_oa_aa4.,0.0
+cat__contract_name_lower_scherdel_gmbh_master_2022_oa,0.0
+cat__contract_name_lower_schoeller-plast enterprise as_master_20111216_fta,0.0
+cat__contract_name_lower_schoeller-plast-enterprise_amendment 01,0.0
+cat__contract_name_lower_schott ag_call-off_202012_sa_aa3,0.0
+cat__contract_name_lower_schott pharma_call-off_202410_sa_ex1 to app12_confirmation of hvl3 w54,0.0
+cat__contract_name_lower_schott ag_call-off_202202_sa_aa5_app8,0.0
+"cat__contract_name_lower_schott ag_call-off_202307_sa_aa7_app 1, 2, 8,13_2024-2026 prices",0.0
+cat__contract_name_lower_schott ag_call-off_2023_sa_amendment 6_app12,0.0
+cat__contract_name_lower_schott ag_call-off_2023_sa_confirmation of a new line w52 rtu_app12,0.0
+cat__contract_name_lower_schott pharma ag_2023_stand-alone_cda,0.0
+cat__contract_name_lower_schott pharma ag_cda_2025_plunger rod and backstop,0.0
+cat__contract_name_lower_schott pharma_call-off_202410_sa_ex1 to app12_confirmation of hvl2 w53,0.0
+cat__contract_name_lower_esteve quimica_stand-alone_2020_assignment agreement_small molecule,0.0
+cat__contract_name_lower_corning bv_stand-alone_2021_pa_2022,0.0
+cat__contract_name_lower_essity denmark as_calloff_2022_sa_asa_aa,0.0
+cat__fin_moodys_company_name_PA Consulting Group A/S,0.0
+cat__fin_moodys_company_name_Novozymes A/S,0.0
+cat__fin_moodys_company_name_Nuova Ompi S.R.L.,0.0
+cat__fin_moodys_company_name_OPTIMA pharma GmbH,0.0
+cat__fin_moodys_company_name_Omni Mold Ltd.,0.0
+cat__fin_moodys_company_name_OneSeal ApS,0.0
+cat__fin_moodys_company_name_Osvaldo Fernandes SA Artes Graficas,0.0
+cat__fin_moodys_company_name_Our New Energy Consulting ApS,0.0
+cat__fin_moodys_company_name_PMC Ouvrie,0.0
+cat__fin_moodys_company_name_Novadan ApS,0.0
+cat__fin_moodys_company_name_Pall Norden AB,0.0
+cat__fin_moodys_company_name_PaperFoam B.V.,0.0
+cat__fin_moodys_company_name_Patheon Italia S.P.A.,0.0
+cat__fin_moodys_company_name_Patheon UK Limited,0.0
+cat__fin_moodys_company_name_Pfizer INC,0.0
+cat__fin_moodys_company_name_Pharma-Skan ApS,0.0
+cat__fin_moodys_company_name_Post Danmark A/S,0.0
+cat__fin_moodys_company_name_Novo Nordisk Production Belgium SA,0.0
+cat__fin_moodys_company_name_Norris Print-Tech A/S,0.0
+cat__fin_moodys_company_name_W. R. Grace & Co.-Conn.,0.0
+cat__fin_moodys_company_name_Mm Eson Pac AB,0.0
+cat__fin_moodys_company_name_Mariager Salt Specialties A/S,0.0
+cat__fin_moodys_company_name_Maxell Europe Limited,0.0
+cat__fin_moodys_company_name_Merck Life Science A/S,0.0
+cat__fin_moodys_company_name_Mesa France,0.0
+cat__fin_moodys_company_name_Mesa Parts GmbH,0.0
+cat__fin_moodys_company_name_Miclev Medical Products AB,0.0
+cat__fin_moodys_company_name_Millmount Healthcare Limited,0.0
+cat__fin_moodys_company_name_NTG Neptun Transport A/S,0.0
+cat__fin_moodys_company_name_Nordmann Nordic AB,0.0
+cat__fin_moodys_company_name_Nalco Danmark ApS,0.0
+cat__fin_moodys_company_name_Nicapac AB,0.0
+cat__fin_moodys_company_name_Nichepharm Lifesciences Private Limited,0.0
+cat__fin_moodys_company_name_Nilaus Plast ApS,0.0
+cat__fin_moodys_company_name_Nilfisk A/S,0.0
+cat__fin_moodys_company_name_Nippon Gases Danmark A/S,0.0
+cat__fin_moodys_company_name_Norchim,0.0
+cat__fin_moodys_company_name_Presto Engineering France,0.0
+cat__fin_moodys_company_name_Professional Packaging Systems A/S,0.0
+cat__fin_moodys_company_name_Prosci Nordics ApS,0.0
+cat__fin_moodys_company_name_Stok Emballage K/S,0.0
+cat__fin_moodys_company_name_Stena Recycling A/S,0.0
+cat__fin_moodys_company_name_Sterigenics Denmark A/S,0.0
+cat__fin_moodys_company_name_Sterimed UK Holdings LTD,0.0
+cat__fin_moodys_company_name_Steripack Medical Poland Sp. z o.o.,0.0
+cat__fin_moodys_company_name_Steris Corp,0.0
+cat__fin_moodys_company_name_Stevanato Group Denmark A/S,0.0
+cat__fin_moodys_company_name_Stibo Complete A/S,0.0
+cat__fin_moodys_company_name_Suzano S.A.,0.0
+cat__fin_moodys_company_name_Quality Assistance,0.0
+cat__fin_moodys_company_name_SwissCo CDMO Operations GmbH,0.0
+cat__fin_moodys_company_name_Tech Group Europe Limited,0.0
+cat__fin_moodys_company_name_Thermo Fisher Scientific B.V.,0.0
+cat__fin_moodys_company_name_Topp Trykluft A/S,0.0
+cat__fin_moodys_company_name_Tosoh Bioscience GmbH,0.0
+cat__fin_moodys_company_name_Troy X Investment Holding S.a r.l.,0.0
+cat__fin_moodys_company_name_VWR International A/S,0.0
+cat__fin_moodys_company_name_Steiert Praezisionsformenbau GmbH,0.0
+cat__fin_moodys_company_name_Sonderborg Vaerktojsfabrik A/S,0.0
+cat__fin_moodys_company_name_Softbox Systems Limited,0.0
+cat__fin_moodys_company_name_SkyNRG B.V.,0.0
+cat__fin_moodys_company_name_RKT Rodinger Kunststoff- Technik GmbH,0.0
+cat__fin_moodys_company_name_Roquette Freres,0.0
+cat__fin_moodys_company_name_SCHOTT Pharma Schweiz AG,0.0
+"cat__fin_moodys_company_name_SIBO G. Razvoj in proizvodnja embalaze, d.o.o. v angleskem jeziku: SIBO GROUP Packaging Development and Production LTD",0.0
+cat__fin_moodys_company_name_SPS Medical,0.0
+cat__fin_moodys_company_name_SPX Flow Technology Danmark A/S,0.0
+cat__fin_moodys_company_name_STA Pharmaceutical Hong Kong Limited,0.0
+cat__fin_moodys_company_name_Saniflex Aktiebolag,0.0
+cat__fin_moodys_company_name_Sanofi Winthrop Industrie,0.0
+cat__fin_moodys_company_name_Sartorius Stedim Biotech GmbH,0.0
+cat__fin_moodys_company_name_Sartorius Stedim UK Limited,0.0
+cat__fin_moodys_company_name_Scantago A/S,0.0
+cat__fin_moodys_company_name_Schoeller-Plast-Enterprise A/S,0.0
+cat__fin_moodys_company_name_Schur Pack Denmark A/S,0.0
+cat__fin_moodys_company_name_Sensitech EMEA B.V.,0.0
+"cat__fin_moodys_company_name_Macco Organiques, s.r.o.",0.0
+cat__fin_moodys_company_name_MGS Roskilde A/S,0.0
+cat__fin_moodys_company_name_MGS Lynge A/S,0.0
+cat__fin_moodys_company_name_Enestia Belgium,0.0
+cat__fin_moodys_company_name_Dorte Egelund ApS,0.0
+cat__fin_moodys_company_name_Dustin A/S,0.0
+cat__fin_moodys_company_name_EMPAC GmbH,0.0
+cat__fin_moodys_company_name_Ecolab ApS,0.0
+cat__fin_moodys_company_name_Eldrup Lim ApS,0.0
+cat__fin_moodys_company_name_Elis Danmark A/S,0.0
+cat__fin_moodys_company_name_Elpro-Buchs AG,0.0
+cat__fin_moodys_company_name_Eurofins Biopharma Product Testingdenmark A/S,0.0
+cat__fin_moodys_company_name_Flextronics International Gesellschaft m.b.H.,0.0
+cat__fin_moodys_company_name_Excella GmbH & Co. KG,0.0
+cat__fin_moodys_company_name_FJ Industries A/S,0.0
+cat__fin_moodys_company_name_Fait Plast S.P.A.,0.0
+cat__fin_moodys_company_name_Farusa Emballage A/S,0.0
+cat__fin_moodys_company_name_Fibrant B.V.,0.0
+cat__fin_moodys_company_name_Fisher Scientific Biotech Line ApS,0.0
+cat__fin_moodys_company_name_Flamma S.P.A.,0.0
+cat__fin_moodys_company_name_Dansk Traeemballage A/S,0.0
+cat__fin_moodys_company_name_Dansk Salt A/S,0.0
+cat__fin_moodys_company_name_DSV Contract Logistics A/S,0.0
+cat__fin_moodys_company_name_DHL Supply Chain Denmark A/S,0.0
+cat__fin_moodys_company_name_Bunzl Distribution Danmark A/S,0.0
+cat__fin_moodys_company_name_CUC Engineering A/S,0.0
+cat__fin_moodys_company_name_Camfil A/S,0.0
+cat__fin_moodys_company_name_Catalent Anagni S.R.L.,0.0
+cat__fin_moodys_company_name_Catalent Germany Schorndorf GmbH,0.0
+cat__fin_moodys_company_name_Cavitech Solutions Limited,0.0
+cat__fin_moodys_company_name_Compass Group Danmark A/S,0.0
+cat__fin_moodys_company_name_Conrum A/S,0.0
+cat__fin_moodys_company_name_Corden Pharma Societa' PER Azioni IN Breve Corden Pharma S.P.A.,0.0
+cat__fin_moodys_company_name_Corden Pharma Switzerland LLC,0.0
+cat__fin_moodys_company_name_Curtec Nederland B.V.,0.0
+cat__fin_moodys_company_name_Cyklop-Emballering A/S,0.0
+"cat__fin_moodys_company_name_Cytiva, Filial af Cytiva Europe GmbH, Tyskland",0.0
+cat__fin_moodys_company_name_D-S Sikkerhedsudstyr A/S,0.0
+cat__fin_moodys_company_name_DHL Global Forwarding (Denmark) A/S,0.0
+cat__fin_moodys_company_name_Flexcoat Produtos Auto-Adesivos S/A,0.0
+cat__fin_moodys_company_name_Formteknik Group Anderstorp AB,0.0
+cat__fin_moodys_company_name_MFS Technology (S) PTE LTD,0.0
+cat__fin_moodys_company_name_Kuwait Petroleum - Belgium,0.0
+cat__fin_moodys_company_name_Kalundborg Bioenergi ApS,0.0
+cat__fin_moodys_company_name_Kalundborg Forsyning A/S,0.0
+cat__fin_moodys_company_name_Kebo AG,0.0
+cat__fin_moodys_company_name_Kirsch Pharma GmbH,0.0
+"cat__fin_moodys_company_name_Kovac MED Co.,Ltd",0.0
+cat__fin_moodys_company_name_Kuehne + Nagel A/S,0.0
+cat__fin_moodys_company_name_Kuehne + Nagel Pte. Ltd.,0.0
+cat__fin_moodys_company_name_L. Thalund Instrument ApS,0.0
+cat__fin_moodys_company_name_Gemu ApS,0.0
+cat__fin_moodys_company_name_Leguay Emballages,0.0
+cat__fin_moodys_company_name_Leman A/S,0.0
+cat__fin_moodys_company_name_Lemvigh-Muller A/S,0.0
+cat__fin_moodys_company_name_Life Technologies Limited,0.0
+cat__fin_moodys_company_name_Linds Handel ApS,0.0
+cat__fin_moodys_company_name_Lonza Sales AG,0.0
+cat__fin_moodys_company_name_Lyngholm Filtration ApS,0.0
+cat__fin_moodys_company_name_Insatech A/S,0.0
+cat__fin_moodys_company_name_Inovyn Europe Limited,0.0
+cat__fin_moodys_company_name_Implement Consulting Group P/S,0.0
+cat__fin_moodys_company_name_Implement Consulting Group Malmoe AB,0.0
+cat__fin_moodys_company_name_Genewiz UK Limited,0.0
+cat__fin_moodys_company_name_Genpack A/S,0.0
+cat__fin_moodys_company_name_Geodis CL Pharma,0.0
+cat__fin_moodys_company_name_Georg Utz AG,0.0
+cat__fin_moodys_company_name_Gerresheimer Buende GmbH,0.0
+cat__fin_moodys_company_name_Gerresheimer Horsovsky Tyn spol. s r.o.,0.0
+cat__fin_moodys_company_name_Gerresheimer Vaerloese A/S,0.0
+cat__fin_moodys_company_name_Getinge Danmark A/S,0.0
+cat__fin_moodys_company_name_Grathwol A/S,0.0
+cat__fin_moodys_company_name_Groesfjeld Advanced Cleaning Solutions ApS,0.0
+cat__fin_moodys_company_name_Hamilton Nordic AB,0.0
+cat__fin_moodys_company_name_Holm & Halby A/S,0.0
+cat__fin_moodys_company_name_ICM A/S,0.0
+cat__fin_moodys_company_name_IGS B.V.,0.0
+cat__fin_moodys_company_name_ISS Facility Services A/S,0.0
+cat__fin_moodys_company_name_Va-Q-Tec AG,0.0
+cat__fin_moodys_company_name_Watson-Marlow Flexicon A/S,0.0
+cat__fin_moodys_company_name_Bramming Plast-Industri A/S,0.0
+cat__esg_company_name_Fait Plast S.P.A.,0.0
+cat__esg_company_name_Dansk Traeemballage A/S,0.0
+cat__esg_company_name_Dustin A/S,0.0
+cat__esg_company_name_Elis Danmark A/S,0.0
+cat__esg_company_name_Elpro-Buchs AG,0.0
+cat__esg_company_name_Enestia Belgium,0.0
+cat__esg_company_name_Excella GmbH & Co. KG,0.0
+cat__esg_company_name_F.I.S. Fabbrica Italiana Sintetici S.P.A.,0.0
+cat__esg_company_name_Flamma S.P.A.,0.0
+cat__esg_company_name_DSV Contract Logistics A/S,0.0
+cat__esg_company_name_Flextronics International Gesellschaft m.b.H.,0.0
+cat__esg_company_name_Formteknik Group Anderstorp AB,0.0
+cat__esg_company_name_Fujifilm Diosynth Biotechnologies UK Limited,0.0
+cat__esg_company_name_Gemu ApS,0.0
+cat__esg_company_name_Genewiz UK Limited,0.0
+cat__esg_company_name_Geodis CL ILE de France,0.0
+cat__esg_company_name_Geodis CL Pharma,0.0
+cat__esg_company_name_Dansk Salt A/S,0.0
+cat__esg_company_name_DHL Global Forwarding (Denmark) A/S,0.0
+"cat__fin_moodys_company_name_West Pharmaceutical Services, Inc.",0.0
+cat__esg_company_name_Becton Dickinson Denmark A/S,0.0
+cat__esg_company_name_Aspen Oss B.V.,0.0
+cat__esg_company_name_Aug. Hedinger GmbH & Co. KG,0.0
+cat__esg_company_name_Autajon Labels Belgium,0.0
+cat__esg_company_name_Avenue Mould Solutions Limited,0.0
+cat__esg_company_name_BEWI Denmark A/S,0.0
+cat__esg_company_name_BWT Danmark A/S,0.0
+cat__esg_company_name_Bachmann Forming AG,0.0
+cat__esg_company_name_Biomerieux Denmark ApS,0.0
+cat__esg_company_name_Compass Group Danmark A/S,0.0
+cat__esg_company_name_Bramming Plast-Industri A/S,0.0
+cat__esg_company_name_Brenntag Nordic A/S,0.0
+cat__esg_company_name_Bunzl Distribution Danmark A/S,0.0
+cat__esg_company_name_Catalent Anagni S.R.L.,0.0
+cat__esg_company_name_Catalent Germany Schorndorf GmbH,0.0
+cat__esg_company_name_Chargepoint Technology Limited,0.0
+cat__esg_company_name_Colorcon Limited,0.0
+cat__esg_company_name_Hamilton Nordic AB,0.0
+cat__esg_company_name_ICM A/S,0.0
+cat__esg_company_name_IGS B.V.,0.0
+cat__esg_company_name_Norchim,0.0
+cat__esg_company_name_Millmount Healthcare Limited,0.0
+cat__esg_company_name_Mm Eson Pac AB,0.0
+cat__esg_company_name_Nemera LA Verpilliere,0.0
+cat__esg_company_name_Nicapac AB,0.0
+cat__esg_company_name_Nichepharm Lifesciences Private Limited,0.0
+cat__esg_company_name_Nilfisk A/S,0.0
+cat__esg_company_name_Nippon Gases Danmark A/S,0.0
+cat__esg_company_name_Nordmann Nordic AB,0.0
+cat__esg_company_name_ISS Facility Services A/S,0.0
+cat__esg_company_name_Novo Nordisk Production Belgium SA,0.0
+cat__esg_company_name_Novozymes A/S,0.0
+cat__esg_company_name_Omni Mold Ltd.,0.0
+cat__esg_company_name_Osvaldo Fernandes SA Artes Graficas,0.0
+cat__esg_company_name_PA Consulting Group A/S,0.0
+cat__esg_company_name_PMC Ouvrie,0.0
+cat__esg_company_name_Pall Norden AB,0.0
+cat__esg_company_name_Miclev Medical Products AB,0.0
+cat__esg_company_name_Mesa Parts GmbH,0.0
+cat__esg_company_name_Mesa France,0.0
+cat__esg_company_name_Merck Life Science A/S,0.0
+cat__esg_company_name_Implement Consulting Group Malmoe AB,0.0
+cat__esg_company_name_Implement Consulting Group P/S,0.0
+cat__esg_company_name_Inovyn Europe Limited,0.0
+cat__esg_company_name_Kalundborg Forsyning A/S,0.0
+cat__esg_company_name_Kirsch Pharma GmbH,0.0
+"cat__esg_company_name_Kovac MED Co.,Ltd",0.0
+cat__esg_company_name_Kuehne + Nagel A/S,0.0
+cat__esg_company_name_Kuehne + Nagel Pte. Ltd.,0.0
+cat__esg_company_name_Kuwait Petroleum - Belgium,0.0
+cat__esg_company_name_Leguay Emballages,0.0
+cat__esg_company_name_Lemvigh-Muller A/S,0.0
+cat__esg_company_name_Life Technologies Limited,0.0
+cat__esg_company_name_MFS Technology (S) PTE LTD,0.0
+cat__esg_company_name_Mariager Salt Specialties A/S,0.0
+cat__esg_company_name_Maxell Europe Limited,0.0
+cat__esg_company_name_Ashland Industries Europe GmbH,0.0
+cat__esg_company_name_Aseptic Group,0.0
+cat__esg_company_name_Asahi Kasei Bioprocess Europe,0.0
+cat__fin_closing_date_2023-12-31,0.0
+cat__fin_closing_date_2023-03-31,0.0
+cat__fin_closing_date_2023-04-30,0.0
+cat__fin_closing_date_2023-06-30,0.0
+cat__fin_closing_date_2023-08-31,0.0
+cat__fin_closing_date_2023-09-30,0.0
+cat__fin_closing_date_2023-10-31,0.0
+cat__fin_closing_date_2023-11-30,0.0
+cat__fin_closing_date_2024-01-31,0.0
+cat__fin_closing_date_2025-03-31,0.0
+cat__fin_closing_date_2024-03-31,0.0
+cat__fin_closing_date_2024-04-30,0.0
+cat__fin_closing_date_2024-06-30,0.0
+cat__fin_closing_date_2024-08-31,0.0
+cat__fin_closing_date_2024-09-30,0.0
+cat__fin_closing_date_2024-10-31,0.0
+cat__fin_closing_date_2024-11-30,0.0
+cat__fin_closing_date_2023-01-31,0.0
+cat__fin_closing_date_2022-12-31,0.0
+cat__fin_closing_date_2022-11-30,0.0
+cat__fin_closing_date_2022-10-31,0.0
+"cat__fin_moodys_company_name_Xi'An Global Printing Co.,Ltd.",0.0
+cat__fin_moodys_company_name_Yara Danmark A/S,0.0
+cat__fin_moodys_company_name_Zirq Cables AS,0.0
+cat__fin_moodys_company_name_Zirq Medical A/S,0.0
+cat__fin_moodys_company_name_eutecma gmbh,0.0
+cat__fin_closing_date_2015-03-31,0.0
+cat__fin_closing_date_2016-12-31,0.0
+cat__fin_closing_date_2017-12-31,0.0
+cat__fin_closing_date_2018-12-31,0.0
+cat__fin_closing_date_2019-12-31,0.0
+cat__fin_closing_date_2020-12-31,0.0
+cat__fin_closing_date_2021-12-31,0.0
+cat__fin_closing_date_2022-06-30,0.0
+cat__fin_closing_date_2022-08-31,0.0
+cat__fin_closing_date_2022-09-30,0.0
+cat__fin_closing_date_2025-01-31,0.0
+cat__fin_closing_date_2025-04-30,0.0
+cat__esg_company_name_Almac Group Limited,0.0
+cat__fin_Implied_rating - original_B2,0.0
+cat__fin_output_text_Use caution. Mitigation actions required. Please follow risk mitigation actions as communicated by your Risk team. Reach out to your risk representative for further guidance.,0.0
+cat__fin_Implied_rating - original_A3,0.0
+cat__fin_Implied_rating - original_Aa1,0.0
+cat__fin_Implied_rating - original_Aa2,0.0
+cat__fin_Implied_rating - original_Aa3,0.0
+cat__fin_Implied_rating - original_Aaa,0.0
+cat__fin_Implied_rating - original_B1,0.0
+cat__fin_Implied_rating - original_B3,0.0
+cat__fin_closing_date_2025-06-30,0.0
+cat__fin_Implied_rating - original_Ba3,0.0
+cat__fin_Implied_rating - original_Baa1,0.0
+cat__fin_Implied_rating - original_Baa2,0.0
+cat__fin_Implied_rating - original_Caa-C,0.0
+cat__esg_company_name_AVISTA Green ApS,0.0
+cat__esg_company_name_Accenture A/S,0.0
+cat__esg_company_name_Advanex (Singapore) Pte. Ltd.,0.0
+"cat__fin_output_text_Use caution. Input from outdated and/or partial data, hence low quality credit rating & traffic light. Mitigation actions required. Request financial data from supplier as described in the risk process tab.",0.0
+cat__fin_output_text_Sourcing exclusion recommended. Mitigation actions required. Please follow risk mitigation actions as communicated by your Risk team. Reach out to your risk representative for further guidance.,0.0
+"cat__fin_output_text_Sourcing exclusion recommended. Input from outdated and/or partial data, hence low quality credit rating & traffic light. Mitigation actions required. Request financial data from supplier as described in the risk process tab.",0.0
+cat__fin_output_text_Approved for sourcing. No further actions required.,0.0
+cat__fin_closing_date_2025-08-31,0.0
+cat__fin_closing_date_2025-09-30,0.0
+cat__fin_closing_date_2025-12-31,0.0
+cat__fin_created_at_utc_2026-03-05 09:02:26.421112+00:00,0.0
+cat__fin_created_at_utc_2026-03-12 15:07:22.230528+00:00,0.0
+cat__fin_Status_Active,0.0
+cat__fin_Status_Dissolved,0.0
+cat__fin_Status_Dissolved (merger or take-over),0.0
+cat__fin_implied_rating_B,0.0
+cat__fin_implied_rating_Caa,0.0
+cat__fin_risk_level_Do not source,0.0
+cat__fin_risk_level_Take caution,0.0
+cat__fin_financial_level_High financial risk,0.0
+cat__fin_financial_level_Low financial risk,0.0
+cat__fin_financial_level_Medium financial risk,0.0
+cat__fin_moodys_company_name_Brenntag Nordic A/S,0.0
+cat__fin_moodys_company_name_Bording Danmark A/S,0.0
+cat__esg_company_name_Patheon Italia S.P.A.,0.0
+cat__nn_contract_type_Consultancy Agreement,0.0
+cat__contract_type_Confidentiality & Non-Disclosure,0.0
+cat__contract_type_Facility Management & Engineering,0.0
+cat__contract_type_IT,0.0
+cat__contract_type_Medical,0.0
+cat__contract_type_Production,0.0
+cat__contract_type_Sales,0.0
+cat__nn_contract_type_Advisory Services Agreement,0.0
+cat__nn_contract_type_Distributor Agreement,0.0
+cat__contract_currency_code_SEK,0.0
+cat__nn_contract_type_Engineering agreement,0.0
+cat__nn_contract_type_Freight Forwarder Agreement,0.0
+cat__nn_contract_type_Letter of Agreement,0.0
+cat__nn_contract_type_Master Service Agreement,0.0
+cat__nn_contract_type_Non Commercial Partnership Agreement,0.0
+cat__nn_contract_type_Non-Disclosure Agreement,0.0
+cat__nn_contract_type_Order form,0.0
+cat__contract_currency_code_SGD,0.0
+cat__contract_currency_code_NZD,0.0
+cat__contract_commodity_Distributor Delivery,0.0
+cat__incoterms_FCA Free carrier,0.0
+"cat__incoterms_CIF Costs, insurance & freight",0.0
+cat__incoterms_CIP Carriage and insurance paid,0.0
+cat__incoterms_DAF Delivered to frontier,0.0
+cat__incoterms_DAT Del.at Terminal-incl.unloading,0.0
+cat__incoterms_DDU Delivered duty unpaid,0.0
+cat__incoterms_DPU Delivered at Place Unloaded,0.0
+cat__incoterms_EXW Ex works,0.0
+cat__incoterms_FOB Free on board,0.0
+cat__contract_currency_code_JPY,0.0
+cat__contract_currency_code_BDT,0.0
+cat__contract_currency_code_BRL,0.0
+cat__contract_currency_code_CHF,0.0
+cat__contract_currency_code_CLP,0.0
+cat__contract_currency_code_CNH,0.0
+cat__contract_currency_code_GBP,0.0
+cat__contract_currency_code_IDR,0.0
+cat__nn_contract_type_Outsourcing Agreement,0.0
+cat__nn_contract_type_Product Agreement,0.0
+cat__nn_contract_type_Project Agreement,0.0
+cat__contract_commodity_Cleaning Services (GxP)',0.0
+cat__contract_commodity_Cell Culture Media,0.0
+cat__contract_commodity_Chemical Synthesis - Oligonucleotides,0.0
+cat__contract_commodity_Chemical Synthesis - Peptides,0.0
+cat__contract_commodity_Chemical Synthesis - Small Molecules,0.0
+cat__contract_commodity_Cleaning Equipment,0.0
+cat__contract_commodity_Cleaning Equipment & Products (Offices),0.0
+cat__contract_commodity_Cleaning Equipment (GxP),0.0
+cat__contract_commodity_Cleaning Unclassified,0.0
+cat__nn_contract_type_Quality Agreement,0.0
+cat__contract_commodity_Clinical Special Laboratory Services,0.0
+cat__contract_commodity_Clothing and Personal Safety Unclassified,0.0
+cat__contract_commodity_Connectivity,0.0
+cat__contract_commodity_Customs Clearance,0.0
+cat__contract_commodity_Detergents,0.0
+cat__contract_commodity_Devices,0.0
+cat__contract_commodity_Digital Agency,0.0
+cat__contract_commodity_Catering & Canteen Services',0.0
+cat__contract_commodity_Caps,0.0
+cat__contract_commodity_Bulk Packaging,0.0
+cat__contract_commodity_Bottles,0.0
+cat__nn_contract_type_Safety Data Exchange Agreement,0.0
+cat__nn_contract_type_Sales Agreement,0.0
+cat__nn_contract_type_Scope of Work,0.0
+cat__nn_contract_type_Service Level Agreement,0.0
+cat__nn_contract_type_Supply Agreement,0.0
+cat__nn_contract_type_Work Order,0.0
+"cat__contract_commodity_Accounting, Tax and Auditing Services",0.0
+cat__contract_commodity_Air Transportation,0.0
+cat__contract_commodity_Analytics Consulting,0.0
+cat__contract_commodity_Aseptic Filling,0.0
+cat__contract_commodity_Assembly & Packaging,0.0
+cat__contract_commodity_Assembly Lines,0.0
+cat__contract_commodity_Biologics - E.Coli,0.0
+cat__contract_commodity_Biologics - Mammalian,0.0
+cat__contract_commodity_Biopharm Sidechains Unclassified,0.0
+cat__incoterms_CFR Costs and freight,0.0
+"cat__payment_terms_O045 14 days -1,5%, 45 days",0.0
+cat__payment_terms_N00B Prepayment/Payment with order,0.0
+num__fin_flag_strong_liquidity,0.0
+num__fin_ebit_margin_missing_flag,0.0
+num__fin_flag_weak_implied_rating,0.0
+num__fin_flag_risk_do_not_source,0.0
+num__fin_flag_high_financial_risk_level,0.0
+num__fin_flag_financial_risk_score_high,0.0
+num__fin_flag_financial_risk_score_very_high,0.0
+num__fin_flag_severe_liquidity_stress,0.0
+num__fin_flag_gearing_high,0.0
+num__fin_flag_very_low_solvency,0.0
+num__fin_flag_long_term_gearing_high,0.0
+num__fin_flag_short_term_gearing_high,0.0
+num__fin_flag_debt_asset_high,0.0
+num__fin_flag_debt_asset_very_high,0.0
+num__fin_flag_long_term_liab_equity_high,0.0
+num__fin_flag_short_term_liab_equity_high,0.0
+num__fin_flag_interest_coverage_stress,0.0
+num__fin_profit_margin_missing_flag,0.0
+num__fin_interest_coverage_ratio_missing_flag,0.0
+num__fin_short_term_gearing_missing_flag,0.0
+num__fin_gearing_missing_flag,0.0
+num__terminated,0.0
+num__Preferred_supplier_tag,0.0
+num__end_year,0.0
+num__fin_Number_of_months,0.0
+num__fin_Current_liabilities_th_DKK,0.0
+num__fin_financial_risk_score,0.0
+num__esg_year,0.0
+num__esg_industry_max,0.0
+num__market_beta_1y,0.0
+num__Infrastructure,0.0
+num__Logistics_Competence,0.0
+num__Tracking_Tracing,0.0
+num__fin_financial_level_missing_flag,0.0
+num__fin_financial_risk_score_missing_flag,0.0
+num__fin_current_ratio_missing_flag,0.0
+num__fin_flag_low_solvency,0.0
+num__fin_flag_negative_profit_margin,0.0
+cat__payment_terms_N000 Net cash,0.0
+cat__payment_terms_F090 Invoice Date + 90 days,0.0
+cat__payment_terms_F010 Invoice Date + 10 days,0.0
+cat__payment_terms_F014 Invoice Date + 14 days,0.0
+cat__payment_terms_F015 Invoice Date + 15 days,0.0
+cat__payment_terms_F021 Invoice Date + 21 days,0.0
+cat__payment_terms_F028 Invoice Date + 28 days,0.0
+cat__payment_terms_F035 Invoice Date + 35 days,0.0
+cat__payment_terms_F055 Invoice Date + 55 days,0.0
+cat__payment_terms_F210 Invoice Date + 210 days,0.0
+num__fin_flag_negative_ebit_margin,0.0
+cat__payment_terms_FD1M Invoice Date + 1 month,0.0
+cat__payment_terms_L010 Current Month + 10 days,0.0
+cat__payment_terms_L015 Current Month + 15 days,0.0
+cat__payment_terms_L030 Current Month + 30 days,0.0
+cat__payment_terms_L045 Current Month + 45 days,0.0
+cat__payment_terms_L060 Current Month + 60 days,0.0
+cat__payment_terms_LB01 Current Month + 1 month,0.0
+cat__payment_terms_0001 Payable immediately Due net,0.0
+cat__term_type_perpetual,0.0
+cat__contract_status_published,0.0
+num__logistics_specific_no_votes,0.0
+num__fin_flag_profitability_stress,0.0
+num__fin_flag_negative_roe,0.0
+num__fin_flag_negative_roa,0.0
+num__fin_flag_multiple_financial_stress_signals,0.0
+num__fin_flag_severe_financial_stress,0.0
+num__market_flag_high_volume_shock,0.0
+num__market_flag_high_market_cap_volatility,0.0
+num__market_flag_negative_price_trend,0.0
+num__market_flag_high_beta,0.0
+num__market_flag_negative_eps,0.0
+num__market_log_vol_shock_ratio,0.0
+num__global_lifecycle_no_votes,0.0
+num__global_esg_no_votes,0.0
+num__global_market_no_votes,0.0
+num__global_supplier_macro_no_votes,0.0
+cat__contract_commodity_Disinfectants,0.0
+cat__contract_commodity_Dry Ice,0.0
+cat__fin_moodys_company_name_Biomerieux Denmark ApS,0.0
+cat__company_country_RUSSIAN FEDERATION,0.0
+cat__company_country_AUSTRIA,0.0
+cat__company_country_BELGIUM,0.0
+cat__company_country_BRAZIL,0.0
+cat__company_country_FINLAND,0.0
+cat__company_country_FRANCE,0.0
+cat__company_country_INDONESIA,0.0
+cat__company_country_NORWAY,0.0
+cat__company_country_SWEDEN,0.0
+"cat__team_Strategy, Sourcing & Negotiation CoE",0.0
+cat__company_country_SWITZERLAND,0.0
+cat__company_country_UNITED STATES,0.0
+cat__expiry_range_30 days,0.0
+cat__expiry_range_60 days,0.0
+cat__expiry_range_90 days,0.0
+cat__expiry_pressure_bucket_1_to_3y,0.0
+cat__expiry_pressure_bucket_5y_plus,0.0
+cat__unit_SSIMS,0.0
+cat__team_Raw Materials,0.0
+cat__contract_commodity_Durable,0.0
+cat__team_Aseptic Production,0.0
+cat__contract_commodity_Temperature Loggers,0.0
+cat__contract_commodity_Temporary Buildings Rental,0.0
+cat__contract_commodity_Transport Consumables,0.0
+cat__contract_commodity_Tubes,0.0
+cat__contract_commodity_UV,0.0
+cat__contract_commodity_Water,0.0
+cat__contract_commodity_Workshop Machinery,0.0
+cat__team_BF Integration,0.0
+cat__team_Oral Drug Product and Packaging,0.0
+cat__team_Bioprocessing,0.0
+cat__team_Devices & Needles,0.0
+cat__team_Drug Product Outsourcing,0.0
+cat__team_Drug Substance Outsourcing,0.0
+cat__team_Drug Substance Outsourcing API,0.0
+cat__team_Drug Substance Outsourcing ET,0.0
+cat__team_Negotiation & Capability Building,0.0
+cat__department_from_cost_center_Devices & Needles,0.0
+cat__department_from_cost_center_Drug Product Outsourcing,0.0
+cat__department_from_cost_center_Drug Substance Outsourcing,0.0
+cat__fin_moodys_company_name_Aspen Oss B.V.,0.0
+cat__fin_moodys_company_name_Air Liquide Danmark A/S,0.0
+cat__fin_moodys_company_name_Alflow Scandinavia A/S,0.0
+cat__fin_moodys_company_name_All4labels Denmark Sb A/S,0.0
+cat__fin_moodys_company_name_Alsiano A/S,0.0
+cat__fin_moodys_company_name_Apodannordic Pharmapackaging A/S,0.0
+cat__fin_moodys_company_name_Aseptic Group,0.0
+cat__fin_moodys_company_name_Ashland Industries Europe GmbH,0.0
+cat__fin_moodys_company_name_Aug. Hedinger GmbH & Co. KG,0.0
+cat__department_from_cost_center_Global Strategic Outsourcing & Devices,0.0
+cat__fin_moodys_company_name_Autajon Labels Belgium,0.0
+cat__fin_moodys_company_name_Avenue Mould Solutions Limited,0.0
+cat__fin_moodys_company_name_Avista Oil Danmark A/S,0.0
+cat__fin_moodys_company_name_BEWI Denmark A/S,0.0
+cat__fin_moodys_company_name_BWT Danmark A/S,0.0
+cat__fin_moodys_company_name_Bachmann Forming AG,0.0
+cat__fin_moodys_company_name_Becton Dickinson Denmark A/S,0.0
+cat__fin_moodys_company_name_Advanex (Singapore) Pte. Ltd.,0.0
+cat__fin_moodys_company_name_Accenture A/S,0.0
+cat__fin_moodys_company_name_AVISTA Green ApS,0.0
+cat__fin_moodys_company_name_AS3 BtB A/S,0.0
+cat__department_from_cost_center_HI Warehouse Expansion Program,0.0
+cat__department_from_cost_center_Purchasing Excellence External,0.0
+"cat__department_Alliance, Acquisitions & PPM CoE",0.0
+cat__department_Bioprocessing & Raw Materials,0.0
+cat__department_Devices & Needles,0.0
+"cat__department_Distribution, GxP services & Energy",0.0
+cat__department_Drug Product Outsourcing,0.0
+cat__department_Global Strategic Outsourcing & Devices,0.0
+cat__department_HI Warehouse Expansion Program,0.0
+cat__department_Purchasing Excellence External,0.0
+"cat__department_Quality, Production Services & Supplies",0.0
+cat__department_Strategic Sourcing US Hub,0.0
+"cat__department_Strategy, Sourcing & Negotiation CoE",0.0
+cat__fin_moodys_company_name_A/S Mortalin,0.0
+cat__fin_moodys_company_name_AH Metal Solutions A/S,0.0
+cat__contract_commodity_Technical Maintenance,0.0
+cat__contract_commodity_Sterilization,0.0
+cat__contract_commodity_Steam,0.0
+cat__contract_commodity_Laundry Service,0.0
+cat__contract_commodity_IT Hardware - End User,0.0
+cat__contract_commodity_Injection Moulding Machinery,0.0
+cat__contract_commodity_Inserts & Booklets,0.0
+cat__contract_commodity_Internal Consultancy Services,0.0
+cat__contract_commodity_Labels,0.0
+cat__contract_commodity_Laboratory Chemicals (Process Aids),0.0
+cat__contract_commodity_Laboratory Gases,0.0
+cat__contract_commodity_Law Firms,0.0
+cat__contract_commodity_Office Consumables,0.0
+cat__contract_commodity_Lifescience Chemicals,0.0
+cat__contract_commodity_Mammalian Cell Culture,0.0
+cat__contract_commodity_Management Consulting,0.0
+cat__contract_commodity_Metal,0.0
+cat__contract_commodity_Moulding Tools Unclassified,0.0
+cat__contract_commodity_Moulding and Pre-assembly,0.0
+cat__contract_commodity_Needles,0.0
+cat__contract_commodity_Human Resources Training,0.0
+cat__contract_commodity_GxP Dry Ice,0.0
+"cat__contract_commodity_Glass (Syringes, Vials, Cartridges)",0.0
+cat__contract_commodity_Gene Therapy,0.0
+cat__contract_commodity_Electricity,0.0
+cat__contract_commodity_Electronics and Other Components,0.0
+cat__contract_commodity_Excipients,0.0
+cat__contract_commodity_FM Consulting,0.0
+cat__contract_commodity_Facility Management Consulting,0.0
+cat__contract_commodity_Filters,0.0
+cat__contract_commodity_Filters for Production Equipment (excl. Ventilation),0.0
+cat__contract_commodity_Finished Devices,0.0
+cat__contract_commodity_Foils,0.0
+cat__contract_commodity_Freeze Dryers,0.0
+cat__contract_commodity_Freight Forwarding (Clinical Trial),0.0
+cat__contract_commodity_Fuel,0.0
+cat__contract_commodity_Future Devices Unclassified,0.0
+cat__contract_commodity_GMP Laboratory Analysis,0.0
+cat__contract_commodity_Gels,0.0
+cat__contract_commodity_Ocean Transportation,0.0
+"cat__contract_commodity_Oral Drug Product (Tablets, Capsules)",0.0
+cat__contract_commodity_Spray Drying (Drug Product Outsourcing),0.0
+cat__contract_commodity_Rubber Plungers,0.0
+cat__contract_commodity_Prefilled Plastic Components,0.0
+cat__contract_commodity_Primary Packaging,0.0
+cat__contract_commodity_Printed Packaging Materials,0.0
+cat__contract_commodity_Purchase of Real Estate/Land,0.0
+cat__contract_commodity_Resin,0.0
+cat__contract_commodity_Rewards and Recognition,0.0
+cat__contract_commodity_Rubber Laminate,0.0
+cat__contract_commodity_SIP (Devices & Needles),0.0
+cat__contract_commodity_Other Cleaning,0.0
+cat__contract_commodity_SaaS (Software as a Service),0.0
+cat__contract_commodity_Sales Commission,0.0
+cat__contract_commodity_Shipper Boxes,0.0
+cat__contract_commodity_Side Chains Unclassified,0.0
+cat__contract_commodity_Single Use Process Equipment,0.0
+cat__contract_commodity_Single Use Systems,0.0
+cat__contract_commodity_Small Molecules (Raw Materials),0.0
+cat__contract_commodity_Plastic Raw Materials,0.0
+cat__contract_commodity_Pest Control,0.0
+cat__contract_commodity_Personal Safety (PPE),0.0
+cat__contract_commodity_Patient Education,0.0
+cat__contract_commodity_Other Clinical Services',0.0
+cat__contract_commodity_Other Clothing and Personal Safety,0.0
+cat__contract_commodity_Other Critical Production Material,0.0
+cat__contract_commodity_Other Critical Production Materials,0.0
+cat__contract_commodity_Other Drug Product Manufacturing Services,0.0
+cat__contract_commodity_Other Drug Substance Manufacturing Services,0.0
+cat__contract_commodity_Other Energy & Utilities,0.0
+cat__contract_commodity_Other Energy Unclassified,0.0
+cat__contract_commodity_Other Laboratory Chemicals,0.0
+cat__contract_commodity_Other soft skills training,0.0
+cat__contract_commodity_Outsourced GMP Laboratory Analysis,0.0
+cat__contract_commodity_Outsourced Product Services,0.0
+cat__contract_commodity_PC & Accessories,0.0
+cat__contract_commodity_Packaging Consumables,0.0
+cat__contract_commodity_Packaging Lines,0.0
+cat__esg_company_name_PaperFoam B.V.,0.0
+cat__esg_company_name_Patheon UK Limited,0.0
+cat__contract_name_lower_essentra 3c packaging_notice for change in control_ amendment 5,0.0
+cat__contract_name_lower_catalent germany schorndorf gmbh_master_20171001_oa,0.0
+cat__contract_name_lower_catalent belgium_call-off_2024_wo15_capacity improvement program part ii,0.0
+cat__contract_name_lower_catalent bloomington_call-off_2023_aa1_storage cost,0.0
+cat__contract_name_lower_catalent bloomington_call-off_2024_amendment 2 to oa_updated prices,0.0
+cat__contract_name_lower_catalent bostonkansaswichester_call-off_2025_aa1_psa winchester,0.0
+cat__contract_name_lower_catalent bostonkansaswinchester_oa_2023_etavopivat spraydrying and tabletting,0.0
+cat__contract_name_lower_catalent cham_master_2023_oa_anagni pfs,0.0
+cat__contract_name_lower_catalent cham_stand-alone_2023_mou (belgium settlement),0.0
+cat__contract_name_lower_catalent indiana_call-off_2023_wo05_pp1_sc3 eng studies,0.0
+cat__contract_name_lower_catalent belgium_call-off_2023_wo05_consulting support for batch records,0.0
+"cat__contract_name_lower_catalent indiana_call-off_2023_wo06_pp1_sc4 tub labelling, templates, avi validation",0.0
+"cat__contract_name_lower_catalent, optima & nn_3-way cda_2024_",0.0
+cat__contract_name_lower_catalent_anagni_call-off_2024_oa_aa3_pfs1,0.0
+cat__contract_name_lower_catalent_bloomington_2023_pp#1_sc#5_storage costs,0.0
+cat__contract_name_lower_catalent_call-off_2020_wo01_cpv,0.0
+cat__contract_name_lower_catalent_call-off_2020_wo15_ppq sema d,0.0
+cat__contract_name_lower_catalent_call-off_2023_oa_aa6_swfi_price and capacity,0.0
+cat__contract_name_lower_catalent belgium_call-off_2024_oa_aa7_inclusion of sema k to appendix,0.0
+cat__contract_name_lower_catalent belgium_call-off_2023_oa_aa5_updated unit price,0.0
+cat__contract_name_lower_cbb_master_20150527_sa_cns-enzyme,0.0
+cat__contract_name_lower_cargill inc._master_2019_ sa,0.0
+cat__contract_name_lower_carbogen_call-off_2023_msa_aa2,0.0
+cat__contract_name_lower_carbogen_ufag_nn_stand alone_2023_cda_3way,0.0
+cat__contract_name_lower_carbogen_ufag_nn_stand alone_2023_cda_3way_fully signed,0.0
+cat__contract_name_lower_carbogen_ufag_nn_stand alone_2025_cda_3way,0.0
+cat__contract_name_lower_carbogen_waters_nn_stand alone_2025_cda_3 way,0.0
+cat__contract_name_lower_cardinal health_stand-alone_2019_bta,0.0
+cat__contract_name_lower_cargill inc._call-off_20180516_ts,0.0
+cat__contract_name_lower_cargill nordic as_call-off_2020_sa_aa2_app1-4_2021 price,0.0
+cat__contract_name_lower_catalent belgium_call-off_2022_oa_aa3_app16 safety stock,0.0
+cat__contract_name_lower_cargill nordic as_master_20041217_sa,0.0
+cat__contract_name_lower_cargill_nv_call-off_2022_sa_aa4_app1-4_new site,0.0
+cat__contract_name_lower_carolina container_master_2021_sa,0.0
+cat__contract_name_lower_cartondruck grafica ltda_amendment no. 1_2024,0.0
+cat__contract_name_lower_cartondruck gráfica ltda_master_2023_sa,0.0
+cat__contract_name_lower_catalent belgium_call-off_2019_wo2rev2_safetystock,0.0
+cat__contract_name_lower_catalent belgium_call-off_2020_oa_aa2_extension,0.0
+cat__contract_name_lower_catalent_call-off_2024_amendment 6_unit price for additional capacity,0.0
+cat__contract_name_lower_catalent_call-off_2024_stability study swfi,0.0
+cat__contract_name_lower_catalent_call-off_2024_wo#01_ppq batches,0.0
+cat__contract_name_lower_cavitech_call-off_2021_po 7776000027_co 03_pds290_290m509-21 clutch_48 cav dev tool,0.0
+cat__contract_name_lower_cavitech solutions ltd_call-off_20170516_sa_app_#g v02_fat sop_mldtools,0.0
+cat__contract_name_lower_cavitech solutions ltd_call-off_20171208_pa_app_appendix a,0.0
+cat__contract_name_lower_cavitech solutions ltd_master_20160408_sa_mldtool,0.0
+cat__contract_name_lower_cavitech solutions ltd_po _7776000132_2022_clutch_290m509-14,0.0
+cat__contract_name_lower_cavitech_2022_290m509-13_po 7776000057_clutch_phase 11,0.0
+cat__contract_name_lower_cavitech_2022_po 7776000060 290m513-14 piston rod guide phase 11,0.0
+cat__contract_name_lower_cavitech_call-off_2021_po 7776000027_co 01_pds290_290m509-21 clutch_48 cav dev tool,0.0
+cat__contract_name_lower_cavitech_call-off_2021_po 7776000027_pds290_290m509-21 clutch_48 cav dev tool,0.0
+cat__contract_name_lower_catalent_call-off_2024_wo#04_accumulated stops,0.0
+cat__contract_name_lower_cavitech_call-off_2022_co01_po 7776000036_290m503-13_ dial_phase 10,0.0
+cat__contract_name_lower_cavitech_call-off_2022_po 7776000050_290m503-14_ dial_phase 11,0.0
+cat__contract_name_lower_cavitech_call-off_2022_po 8000900726_290m513-15_prg,0.0
+cat__contract_name_lower_cavitech_solutions_ltd_call_off_2020_sa_aa1_app1_i,0.0
+cat__contract_name_lower_cbb wo#25 resin purchase,0.0
+cat__contract_name_lower_cbb_call-off_2021_sa_aa6_app2-5_price_contacts,0.0
+cat__contract_name_lower_cbb_call-off_2022_sa_aa7_app2_5_price_contacts,0.0
+cat__contract_name_lower_cathay_call-off_2024_msa_aa3.,0.0
+cat__contract_name_lower_cathay biotech_stand-alone_20110523_cosent letter agreement,0.0
+cat__contract_name_lower_cathay biotech_call-off_2018_ia_aa1,0.0
+cat__contract_name_lower_catelent_belgium_call-off_2024_wo#01_gmp certificates,0.0
+cat__contract_name_lower_catalent_call-off_2024_wo#05_campaign engineering batch,0.0
+cat__contract_name_lower_catalent_call-off_2024_wo#08 bowlers for vial line 2,0.0
+cat__contract_name_lower_catalent_call-off_2024_wo#08_change management fee april 2024,0.0
+"cat__contract_name_lower_catalent_call-off_wo01_2025_etavopivat development, supply, analytics-new",0.0
+"cat__contract_name_lower_catalent_call_off_ wo#02 buffer run, water run and heat mapping",0.0
+cat__contract_name_lower_catalent_germany_schorndorf_gmbh_call-off_2020_oa_aa2,0.0
+cat__contract_name_lower_catalent_germany_schorndorf_gmbh_call-off_2021_oa_aa4,0.0
+cat__contract_name_lower_catalent_germany_schorndorf_gmbh_call-off_2021_oa_aa5,0.0
+cat__contract_name_lower_catalent_germany_schorndorf_gmbh_call-off_2022_oa_aa6,0.0
+cat__contract_name_lower_catalent_germany_schorndorf_gmbh_call-off_2023_oa_aa6_discontinuation agreement,0.0
+cat__contract_name_lower_catalent_germany_schorndorf_gmbh_call-off_2023_oa_aa7_volume comitment,0.0
+cat__contract_name_lower_catalent_indiana_call off_2024_wo#02 pp8 iqc lab,0.0
+cat__contract_name_lower_catalent_indiana_call-off_2023_wo04_pp9_regulatorysupport,0.0
+cat__contract_name_lower_catalent_indiana_call-off_2024_wo#03_pp1_sc7_tub labelling templates,0.0
+cat__contract_name_lower_catalent_indiana_call-off_2024_wo#12 nda batches,0.0
+cat__contract_name_lower_carbogen_call-off_2021_wo_56,0.0
+cat__contract_name_lower_carbogen_call-off_2020_oa_aa5,0.0
+cat__contract_name_lower_carbogen_call-off_20191010_po_memo_batch_ca19-0264-ca19-0266,0.0
+cat__contract_name_lower_bramming plast industri as_call-off_20181101_sa_aa_amendment no.1,0.0
+cat__contract_name_lower_boehringer ingelheim_call-off_2024_aa8_quality related activities and equipment list,0.0
+cat__contract_name_lower_bording_bta_2021_supply of cooling labels,0.0
+cat__contract_name_lower_borealis_stand-alone_20080415_cda,0.0
+"cat__contract_name_lower_borregaard as_call-off_2020_sa_app 1,8 2q2020 prices",0.0
+cat__contract_name_lower_borregaard as_call-off_2020_sa_app 8 3q2020 prices,0.0
+cat__contract_name_lower_borregaard as_nn sa environmental appendix_2025_acetic acid 80%,0.0
+cat__contract_name_lower_borregaard_cda mutual_2025_bioethanol supply,0.0
+cat__contract_name_lower_bramming plast industri as_master_20170829_sa_product supply agreement,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2021_sa_aa6_app1_app4_gas fee,0.0
+cat__contract_name_lower_braunform gmbh_dmf transfer agreement_2025,0.0
+cat__contract_name_lower_braunform_call-off_2021_saidal 13mm caps sale,0.0
+"cat__contract_name_lower_braunform_call-off_2024_sa_aa4_app0,1,2,5,6,7,8,12,13_rtu scope and 2024-2025 prices",0.0
+cat__contract_name_lower_braunform_cda mutual_2025_rubber laminate,0.0
+cat__contract_name_lower_brenntag mid-south_call-off_2021_sa_aa3_app1_8_environmental program,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2021_sa_aa2_app1_app4_2nd ammonia site,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2021_sa_aa3_app1_app4_gas fee,0.0
+cat__contract_name_lower_boehringer ingelheim_call-off_2021_aa7 to world-wide supply agreement 2012,0.0
+cat__contract_name_lower_boehringer ingelheim pharma gmbh_master_20111108_sa,0.0
+cat__contract_name_lower_boehringer ingelheim pharma gmbh & co. kg_call-off_2021_wwsa_aa_06_sdea,0.0
+cat__contract_name_lower_bj fama high tec.ltd_stand-alone_2021_c4f,0.0
+cat__contract_name_lower_bigadan_cda mutual_2025_evaluate construction of biomethane plant in us,0.0
+cat__contract_name_lower_bio farma_call-off_2025_mou mutual_aa1_term extension,0.0
+cat__contract_name_lower_bio farma_master_2025_supply and license,0.0
+cat__contract_name_lower_bio springer_master_20190315_sa,0.0
+cat__contract_name_lower_biofarma_master_2025_sales agreement_record only,0.0
+cat__contract_name_lower_biomerieux_amendment 01 to sa_2025_endokits_and_license,0.0
+cat__contract_name_lower_biomerieux_master_2014_sa,0.0
+cat__contract_name_lower_bionord as_stand-alone_2016_bta,0.0
+cat__contract_name_lower_bioreliance_call-off_2024_msa_aa8_extension of contract_,0.0
+cat__contract_name_lower_bioreliance_cda_2025_outsourced gmp laboratory analysis audit,0.0
+cat__contract_name_lower_bioreliance_master_2018_msa,0.0
+cat__contract_name_lower_biospring_cda_2025_orion oligonucelotide project,0.0
+cat__contract_name_lower_bioton_stand-alone_2024_cda_bulk cartridge search,0.0
+cat__contract_name_lower_biovectra inc. diagnostic chemicals limited_stand-alone_2016_bta,0.0
+cat__contract_name_lower_biovectra inc. diagnostic chemicals limited_stand-alone_2016_bta_bta for iptg,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2021_sa_aa4_app1_app4_gas fee,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2022_pa_mar22_ammonia_index,0.0
+cat__contract_name_lower_carbogen_call-off_2016_msa_aa1,0.0
+cat__contract_name_lower_call-off-2022_gerresheimer_hrt simplexx_center dial_po7776000084,0.0
+cat__contract_name_lower_brenntagmidsouth_call-off_2022_sa_aa4_transport requirements,0.0
+cat__contract_name_lower_bsn medical ab_master_20190213_sa,0.0
+cat__contract_name_lower_bunzl safety_master_20090101_fta,0.0
+cat__contract_name_lower_bunzl_call-off_2022_aa8,0.0
+cat__contract_name_lower_bwt hoh as_stand-alone_2016_bta,0.0
+cat__contract_name_lower_c2x cda mutual agreement 2024,0.0
+cat__contract_name_lower_caldic denmark as_stand-alone_2014_bta,0.0
+cat__contract_name_lower_call-off_2022_wmt_216m004-45_connector pipe_po7776000085,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2022_sa_aa10_app1_app4_gas fee,0.0
+cat__contract_name_lower_call_off_2022_sønderborg værktøjsfabrik_216m001-36_cartridge holder_po7776000086,0.0
+cat__contract_name_lower_cambrex high point_master service agreement_2017_analytical services,0.0
+cat__contract_name_lower_cambrex_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_cambrex_mutual cda_2025_peptide synthesis coupling reagent,0.0
+cat__contract_name_lower_camfil as_stand alone_2022_bta,0.0
+cat__contract_name_lower_carbogen amcis_master_2020_oa_40k-psc,0.0
+cat__contract_name_lower_carbogen amics_call-off_2025_oa_aa3_it security (nis2),0.0
+cat__contract_name_lower_brenntag_standalone_pa_2023,0.0
+cat__contract_name_lower_brenntag_nordic_call-off_pa_2023_app4_sa,0.0
+cat__contract_name_lower_brenntag_nordic_as_call-off_2025_sa_aa 9,0.0
+cat__contract_name_lower_brenntag_amendment 8_2024,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2022_sa_aa11_app1_app4_gas fee,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2022_sa_aa12_app1_app4_gas fee,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2022_sa_aa13_app1_app4_gas fee,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2022_sa_aa5_app1_app4_gas fee,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2022_sa_aa8_app1_app4_gas fee,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2022_sa_aa9_app1_app4_gas fee,0.0
+"cat__contract_name_lower_brenntag nordic as_call-off_2022_sa_amendment 7_app. 4, 7",0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2022_sa_pricing jun22 ammonia index,0.0
+cat__contract_name_lower_brenntag nordic as_call-off_2027_sa_aa7_app1_app4_gas fee,0.0
+cat__contract_name_lower_brenntag nordic as_master_20180110_sa various materials,0.0
+cat__contract_name_lower_brenntag nordic as_stand-alone_2018_bta_natriumhypochlorit,0.0
+cat__contract_name_lower_brenntag nordic as_stand-alone_2018_bta_natronlund,0.0
+cat__contract_name_lower_brenntag nordic_nn environmental appendix 2025,0.0
+cat__contract_name_lower_brenntag nordic_nn pre-project agreement_2025_ethanol tanks,0.0
+cat__contract_name_lower_brenntag s.a._stand-alone_2016_bta,0.0
+cat__contract_name_lower_cbb_call-off_2025_sa_aa8__app2-5_price update,0.0
+cat__contract_name_lower_ccl label_amendment_2025_label tender outcome and appendix update,0.0
+cat__contract_name_lower_bewi_flamingo_as_call-off_2020_fta_aa1_app1,0.0
+cat__contract_name_lower_ds smith_packaging_call-off_2025_sa_aa4_appendices update,0.0
+cat__contract_name_lower_dobber healthcare_internal-doc_2021_cl_call-off 2021 to sa on volume commitments,0.0
+cat__contract_name_lower_dobber healthcare_master_20130411_sa,0.0
+cat__contract_name_lower_dong energy thermal power a/s_master_2017_sa_steam agreement,0.0
+cat__contract_name_lower_dorte egelund aps_stand-alone_2019_bta,0.0
+cat__contract_name_lower_drug plastics_cda and non-disclosure,0.0
+cat__contract_name_lower_ds smith_amendment no.3_2024_quality appendix,0.0
+cat__contract_name_lower_ds smith_master_2022_sa_corrugated boxes,0.0
+cat__contract_name_lower_dsm nutritional products europe ltd._call-off_2021_sa_aa1,0.0
+cat__contract_name_lower_dobber healthcare_amendment no.2_2023_price sheet update,0.0
+cat__contract_name_lower_dsm nutritional products europe ltd._call-off_2022_sa_aa2,0.0
+cat__contract_name_lower_dsm nutritional products europe ltd._call-off_2024_sa_aa3,0.0
+cat__contract_name_lower_dsm nutritional products europe ltd._master_20161214_sa,0.0
+cat__contract_name_lower_dsm nutritional products europe ltd._stand-alone_2014_bta,0.0
+cat__contract_name_lower_dsv air and sea holding_msa_2025_clinical logistics,0.0
+cat__contract_name_lower_dsv solutions a/s_cda_2022,0.0
+cat__contract_name_lower_dsv solutions_amendment07_2025_modification of limitation of liability,0.0
+cat__contract_name_lower_dobber healthcare_amendment_2025_upate of terms and prices,0.0
+cat__contract_name_lower_dobber healthcare leaflets bv_ aa3_2023_appendix update and new it security requirements appendix,0.0
+cat__contract_name_lower_ccl_call-off_2022_sa_aa4_app19,0.0
+cat__contract_name_lower_dhl global forwarding_master_2017_nnas_primary_ffa,0.0
+cat__contract_name_lower_dhl exel supply chain (denmark) _2023_lspa _warehouse service_governing agreement,0.0
+"cat__contract_name_lower_dhl global forwarding (danzas air & ocean)_contract, call off_2016_ffa_amendment 8",0.0
+"cat__contract_name_lower_dhl global forwarding (danzas air & ocean)_contract, call off_2016_ffa_amendment_9",0.0
+cat__contract_name_lower_dhl global forwarding_ammendment2_2024_lsow_brazil,0.0
+cat__contract_name_lower_dhl global forwarding_call-off_2023_nnas_primary_gfa_lsow_aurora_bonded_warehouse_amendment1,0.0
+cat__contract_name_lower_dhl global forwarding_call-off_2024_nnas_primary_aurora bonded warehouse_lsow_amendment2,0.0
+cat__contract_name_lower_dhl global forwarding_master_2015_nnas_primary_lspa_consumables,0.0
+cat__contract_name_lower_dhl lojistik _call-off_2024_nnas_primary distribution_lspa_aa1_term update,0.0
+cat__contract_name_lower_divi labs_cda_2025_peptide collaboration,0.0
+cat__contract_name_lower_dhl_call off no. 2_governing agreement_2025,0.0
+cat__contract_name_lower_dhl_call-off_2024_amendment 6 ps pac 1&2,0.0
+cat__contract_name_lower_dhl_call-off_2025_nnas_primary_dk road transportation_lsow_amendment1_bev-solution,0.0
+cat__contract_name_lower_dhl_call-off_lspa_ps pac 1_ps pac 2,0.0
+cat__contract_name_lower_dhl_confidentiality agreement_2025_global cda,0.0
+cat__contract_name_lower_dipharma francis_stand-alone_2020_assignment agreement_small molecule,0.0
+cat__contract_name_lower_diversey danmark aps_stand_alone_2015_bta,0.0
+cat__contract_name_lower_dsv_call-off no. 5_2024_lspa_capacity expansion,0.0
+cat__contract_name_lower_dsv_call-off_2024_lspa_aa4_capacityexpansion,0.0
+cat__contract_name_lower_dsv_call-off_no. 2_gdc2_security appendix_2024,0.0
+cat__contract_name_lower_emsur_stand alone_2020_bta,0.0
+cat__contract_name_lower_elos medtech tianjin co. ltd_call-off_20211225_oa_aa5_app13_c4f open text,0.0
+cat__contract_name_lower_elos medtech tianjin co. ltd_master_20091117_oa,0.0
+cat__contract_name_lower_elos medtech_call-off_2024_oa_amendment-8_aap9_aap12ap_price,0.0
+cat__contract_name_lower_elos_medtech_oa_aap_20230329,0.0
+cat__contract_name_lower_elpro-buchs ag_call-off-2025_fta_amendmen_04,0.0
+cat__contract_name_lower_emballator mellerud plast_master_2011_sa,0.0
+cat__contract_name_lower_empac gmbh_ supply agreement_2023_big bag,0.0
+cat__contract_name_lower_energifyn_supplyagreement_2025_gas,0.0
+cat__contract_name_lower_dte_nielsen___løjmar_bta_2021_supply_of_palletizing_material,0.0
+cat__contract_name_lower_energimiljø_cda_2025,0.0
+cat__contract_name_lower_eni-trade international_stand-alone_2018_bta,0.0
+cat__contract_name_lower_eskayef_call-off_2025_cma_aa2_price adjustment,0.0
+cat__contract_name_lower_eskayef_call-off_2025_sla_aa8_price adjustment,0.0
+cat__contract_name_lower_eskayef_master_2018_penfill,0.0
+cat__contract_name_lower_eson_pac_ab_call-off_sa_aa3_app17,0.0
+cat__contract_name_lower_essentra 3c packaging_call-off_2022_sa_aa4_app16,0.0
+cat__contract_name_lower_elos medtech tianjin co. ltd_call-off_20210930_oa_aa.,0.0
+cat__contract_name_lower_elos medtech tianjin co. ltd_call-off_20210907_oa_clause 20.3b coc waiver,0.0
+cat__contract_name_lower_elos medtech tianjin co. ltd_call-off_20210301_oa_aa,0.0
+cat__contract_name_lower_elos medtech tianjin co. ltd_call-off_20191015_oa_app,0.0
+cat__contract_name_lower_dustin a/s_catalogue extension_0438_2021,0.0
+cat__contract_name_lower_dustin_purchasing extension_2022_sweden punchout,0.0
+cat__contract_name_lower_dystar foam control corp_stand alone_2020_pa_price agreement from 2021,0.0
+cat__contract_name_lower_dystar foam control corp_stand-alone_20180101_pa_2018-2019,0.0
+"cat__contract_name_lower_ecolab (china) investment co., ltd_stand-alone_2015_bta",0.0
+cat__contract_name_lower_ecolab aps_stand-alone_2015_bta,0.0
+cat__contract_name_lower_ecolab_amendment to cda_2025_extension,0.0
+cat__contract_name_lower_ecolab_cda_two_way_2023,0.0
+cat__contract_name_lower_ecolab_cda_two_way_2023_amendment no.2_affiliates,0.0
+cat__contract_name_lower_edelmann group_cda_2025_mutual cda for knowledge sharing,0.0
+cat__contract_name_lower_egiss_2023_purchasing extension_brazil_new,0.0
+cat__contract_name_lower_eldrup lim aps_master_2019_bta,0.0
+cat__contract_name_lower_elis_call-off_2021_fta_aa2_yearly global rebate_france,0.0
+cat__contract_name_lower_elis_call-off_2021_fta_aa3_yearly global rebate_brazil,0.0
+"cat__contract_name_lower_elos medtech tianjin co. ltd _call-off_2020_oa_aa2_app0,12",0.0
+cat__contract_name_lower_dhl air forwarding_cda_2025_north america primary road distribution,0.0
+cat__contract_name_lower_detrex chemicals_master_2018_sa,0.0
+cat__contract_name_lower_desiccare_nn_cda_12feb25_packaging,0.0
+cat__contract_name_lower_constantia flexibles_master_2020_sa,0.0
+cat__contract_name_lower_colorcon_stand-alone_2014_bta,0.0
+cat__contract_name_lower_comar_cda and non-disclosure,0.0
+cat__contract_name_lower_compass group_catalogue extension_2022_nnpr catalogue,0.0
+cat__contract_name_lower_confidentialityagreement_norlys_2025,0.0
+cat__contract_name_lower_constantia flexibles_amendment no. 10_07022025,0.0
+"cat__contract_name_lower_constantia flexibles_call-off_2022_aa8_app5b,5c",0.0
+"cat__contract_name_lower_constantia flexibles_call-off_2022_aa9_app5b,5c",0.0
+cat__contract_name_lower_contract transfer_sp dk to sp se,0.0
+cat__contract_name_lower_corden pharma_call-off_2025_wo#2_aa1,0.0
+cat__contract_name_lower_controlant_master_2025_msa_temperatureloggers,0.0
+"cat__contract_name_lower_controlledpolymers_call-off_2020_sa_aa1_app1,12",0.0
+cat__contract_name_lower_controlledpolymers_master_20180905_sa,0.0
+cat__contract_name_lower_corden pharma spa_call-off_ 2023_loi_wo#01_technical transfer for glucalogue,0.0
+cat__contract_name_lower_corden pharma spa_call-off_2024_wo#01 wash and pack of stoppers,0.0
+cat__contract_name_lower_corden pharma spa_master_2024_oa_filling,0.0
+cat__contract_name_lower_corden pharma_call-off_2024_parent company guarantee_wo#2_msa,0.0
+cat__contract_name_lower_colly sanitary technologies ab_master_20151027_sa,0.0
+cat__contract_name_lower_colly flowtech ab_price_agreement_2025_pharmalok clamps,0.0
+cat__contract_name_lower_co 01_mgs roskilde_2024_dut_3423m510-01_housing_rkt_po7776000068,0.0
+cat__contract_name_lower_clik dome_call-off_2020_sa_aa1_app2.8,0.0
+cat__contract_name_lower_ccl_master_ 20120420_sa,0.0
+cat__contract_name_lower_ccl_master_ 20120420_sa_ amendment 5,0.0
+cat__contract_name_lower_cda_amcor usa & novo nordisk,0.0
+cat__contract_name_lower_ceca_stand-alone_2014_bta,0.0
+cat__contract_name_lower_centrica energy trading _cda_2025_energy supply services,0.0
+cat__contract_name_lower_ceva_cda_2025_global confidentiality agreement,0.0
+cat__contract_name_lower_chargepoint global msa_2025,0.0
+cat__contract_name_lower_charles de giorgio_master/call -off/ distribution agreement/ 2017,0.0
+"cat__contract_name_lower_cheerland biotechnology co., ltd_cda_2024",0.0
+cat__contract_name_lower_chemark aps_stand-alone_2018_bta,0.0
+cat__contract_name_lower_chemviron france sas_stand-alone_2018_bta,0.0
+cat__contract_name_lower_ci v devco aps_cda_2024_renewable energy sites,0.0
+cat__contract_name_lower_citribel nv_stand-alone_environmental agreement_2025,0.0
+cat__contract_name_lower_clariant_master_20101220_sa,0.0
+cat__contract_name_lower_clik dome systems_master_ 20121019_sa,0.0
+cat__contract_name_lower_corden pharma_call-off_2024_wo#2_msa_,0.0
+cat__contract_name_lower_corden pharma_call-off_2025_wo#3_gap closure for pre pv1,0.0
+cat__contract_name_lower_decotech_contract_call-off_2007_app7_pricing_2026,0.0
+cat__contract_name_lower_danpal_master_2020__fta,0.0
+cat__contract_name_lower_dako denmark as_master_2015_sa_now agilent tech,0.0
+cat__contract_name_lower_dalian new century graphic arts_call-off_2024_sa_aa5_appendices update,0.0
+cat__contract_name_lower_dalton call off_2024_wo_38_process validation batches (new ro pv batches) cmp-nan.,0.0
+cat__contract_name_lower_dalton call-off_2024_wo_37_stability study for pv batches of lyophilized cmp-nan,0.0
+cat__contract_name_lower_dalton_call-off_20180327_wo_10_biovectra,0.0
+cat__contract_name_lower_dalton_call-off_2021_wo_26,0.0
+cat__contract_name_lower_dalton_master_20150611_oa,0.0
+cat__contract_name_lower_dansk emballage aps_stand-alone_2018_bta,0.0
+cat__contract_name_lower_corden pharma_cda _mutual final agreement_2025_amendment(1),0.0
+cat__contract_name_lower_dansk salt as_stand-alone_2014_bta,0.0
+cat__contract_name_lower_danske commodities a/s _cda_2025_energy supply services,0.0
+cat__contract_name_lower_datwyler pharma packaging belgium_master_20170105_sa,0.0
+cat__contract_name_lower_datwyler_call-off_2025_development agreement_design change for cartridge plunger,0.0
+cat__contract_name_lower_datwyler_mutual cda_2025_rubber laminate,0.0
+cat__contract_name_lower_daye_call-off_2024_exwh_amendment no.1_product category list,0.0
+cat__contract_name_lower_de_ineos solvents germany gmbh_call-off_2022_09_08,0.0
+cat__contract_name_lower_d-s sikkerhedsudstyr_catalogue extensions_2022_nnpr catalogue,0.0
+cat__contract_name_lower_cytiva_call-off_2025_msa_aa3_source30q,0.0
+cat__contract_name_lower_cytiva_call-off_2025_msa_aa2_app_update_affiliate_list,0.0
+cat__contract_name_lower_cytiva_call-off_2023_sa_assignment new legal entity,0.0
+"cat__contract_name_lower_corden spa_call-off_2024_iqc validation, analysis etc.",0.0
+cat__contract_name_lower_corden spa_call-off_2025_oa_wo3_additional machinability trial,0.0
+"cat__contract_name_lower_corden spa_call-off_2025_wo04_stability studies, mvi, shipment",0.0
+cat__contract_name_lower_corden spa_call-off_2025_wo09_material procurement,0.0
+cat__contract_name_lower_corden_call-off_2024_analytical and validation services,0.0
+cat__contract_name_lower_corden_cda_2025_oligonucleotide manufacturing_project orion,0.0
+cat__contract_name_lower_cramsn research park_cda_dmtmm bf4-acid_2025-26,0.0
+cat__contract_name_lower_cti nc_sasol na_excise tax payment agreement_2025_three party tax agreement,0.0
+cat__contract_name_lower_cuc engineering as_stand-alone_20190101_pa,0.0
+cat__contract_name_lower_curia global_stand alone_2024_cda_mutual_smart rfq,0.0
+cat__contract_name_lower_curtec nederland b.v._stand-alone_2018_bta,0.0
+cat__contract_name_lower_cyklop-emballering_stand-alone_2019_bta,0.0
+cat__contract_name_lower_cytiva(pall)_call-off_2025_msa_settlement_alu bags,0.0
+cat__contract_name_lower_cytiva_call-off_2022_msa_resins_subagreement_aa4_app_2022_price list and app update,0.0
+cat__contract_name_lower_cytiva_call-off_2022_supplementary agreement to msa for sp sepharose big beads,0.0
+cat__contract_name_lower_bewi_novartis_nn_3 way cda_2025_tailor made parts & materials for drug product manufacturing project,0.0
+cat__contract_name_lower_bewi_call off_2021_novation to bta,0.0
+cat__esg_company_name_Pfizer INC,0.0
+cat__Country_Brazil,0.0
+cat__company_country_clean_Norway,0.0
+cat__company_country_clean_Russia,0.0
+cat__company_country_clean_Sweden,0.0
+cat__company_country_clean_Switzerland,0.0
+cat__company_country_clean_United States,0.0
+cat__Country_Austria,0.0
+cat__Country_Belgium,0.0
+cat__Country_China,0.0
+cat__company_country_clean_France,0.0
+cat__Country_Denmark,0.0
+cat__Country_Finland,0.0
+cat__Country_France,0.0
+cat__Country_Norway,0.0
+cat__Country_Sweden,0.0
+cat__Country_Switzerland,0.0
+cat__Country_United States,0.0
+cat__company_country_clean_Indonesia,0.0
+cat__company_country_clean_Finland,0.0
+cat__contract_name_lower_aga as_master_20010427_sa_delivery and rental agreement,0.0
+cat__Current_market_capitalisation_DKK_953.712.217,0.0
+cat__Current_market_capitalisation_DKK_112.918.290,0.0
+cat__Current_market_capitalisation_DKK_154.546.116,0.0
+cat__Current_market_capitalisation_DKK_2.511.971,0.0
+cat__Current_market_capitalisation_DKK_2.954.260,0.0
+cat__Current_market_capitalisation_DKK_29.786.781,0.0
+cat__Current_market_capitalisation_DKK_30.971.635,0.0
+cat__Current_market_capitalisation_DKK_85.602.561,0.0
+cat__Current_market_capitalisation_DKK_n.a.,0.0
+cat__company_country_clean_China,0.0
+cat__Risk level_stock_closing_price_Do not source,0.0
+cat__Risk level_stock_closing_price_Go ahead,0.0
+cat__Risk level_stock_closing_price_No data,0.0
+cat__Risk level_stock_closing_price_Take caution,0.0
+cat__company_country_clean_Austria,0.0
+cat__company_country_clean_Belgium,0.0
+cat__company_country_clean_Brazil,0.0
+cat__Code_AUT,0.0
+cat__Code_BEL,0.0
+cat__Code_BRA,0.0
+cat__contract_name_lower_advancion corporation_master_2024_sa_aa4,0.0
+cat__contract_name_lower_3c packaging_master_20130918_sa,0.0
+cat__contract_name_lower_aa1 to insulin penfill contract manufacture agreement,0.0
+cat__contract_name_lower_aa1 to insulin penfill supply agreement,0.0
+cat__contract_name_lower_abar_cda_2025_2025 anagni tender,0.0
+cat__contract_name_lower_acceledev chemical_cda_2025_tender process small molecules,0.0
+cat__contract_name_lower_accenture a/s_purchasing extension_2021_0438,0.0
+cat__contract_name_lower_adare pharma cda(mutual) agreement 2024,0.0
+cat__contract_name_lower_advanex (singapor) pte ltd_master_2010_oa,0.0
+cat__Code_CHE,0.0
+cat__contract_name_lower_advanex (singapore) pte ltd_call-off_2011_oa_aa1,0.0
+"cat__contract_name_lower_advanex (singapore) pte ltd_call-off_2013_oa_app_0,6,7,9,10 ed2",0.0
+"cat__contract_name_lower_advanex (singapore) pte ltd_call-off_2014_oa_app_0,9 ed3",0.0
+"cat__contract_name_lower_advanex (singapore) pte ltd_call-off_2015_oa_app_ 0,9 ed4",0.0
+"cat__contract_name_lower_advanex (singapore) pte ltd_call-off_2017_oa_app_ 0,9 ed5",0.0
+cat__contract_name_lower_advanex (singapore) pte ltd_call-off_2021_sa_aa2,0.0
+cat__contract_name_lower_aeterna_zentaris_call_off_2023_sa termination,0.0
+cat__contract_name_lower_3c packaging_call-off_2021_sa_aa3_change of control,0.0
+cat__contract_name_lower_290m660-22 housing 16 cav 1_ nr_7776000118_winther mould technology,0.0
+cat__contract_name_lower_290m660-21 housing 16 cav 1_ nr_7776000117_winther mould technology,0.0
+cat__contract_name_lower_25n expansion,0.0
+cat__Code_CHN,0.0
+cat__Code_DNK,0.0
+cat__Code_FIN,0.0
+cat__Code_FRA,0.0
+cat__Code_NOR,0.0
+cat__Code_SWE,0.0
+cat__Code_USA,0.0
+cat__contract_name_lower_0001_lyreco_technical contract_2021_punchout,0.0
+cat__contract_name_lower_0438_lyreco_technical contract_2021_punchout,0.0
+cat__contract_name_lower_2022_nemera capacity expansion 094b_ po7776000081,0.0
+cat__contract_name_lower_2022_nemera capacity expansion_092b cap_po 7776000080,0.0
+cat__contract_name_lower_2022_sønderborg_3423m130_po7776000072_prc,0.0
+cat__contract_name_lower_2022_sønderborg_3424m5151-1_po_7776000070_cartridge holder,0.0
+cat__contract_name_lower_2022_sønderborg_dv3423_3423516_po_7776000075 cap,0.0
+cat__contract_name_lower_2022_wms_ 290m610-03 _po7776000078_saxenda housing,0.0
+cat__Shares outstanding_n.a.,0.0
+cat__Shares outstanding_72.021.491,0.0
+cat__Shares outstanding_66.270.051,0.0
+cat__esg_company_name_UFAG Laboratorien AG,0.0
+cat__esg_company_name_Stibo Complete A/S,0.0
+cat__esg_company_name_Stok Emballage K/S,0.0
+cat__esg_company_name_Suzano S.A.,0.0
+cat__esg_company_name_SwissCo CDMO Operations GmbH,0.0
+cat__esg_company_name_Tech Group Europe Limited,0.0
+cat__esg_company_name_Thermo Fisher Scientific B.V.,0.0
+cat__esg_company_name_Troy X Investment Holding S.a r.l.,0.0
+cat__esg_company_name_Va-Q-Tec AG,0.0
+"cat__esg_sector_Chemicals, Petroleum, Rubber & Plastic",0.0
+cat__esg_company_name_West Pharmaceutical Services Deutschland GmbH & Co. KG,0.0
+"cat__esg_company_name_West Pharmaceutical Services, Inc.",0.0
+cat__esg_company_name_Yara Danmark A/S,0.0
+cat__esg_company_name_Zirq Cables AS,0.0
+cat__esg_risk_level_Do not source,0.0
+cat__esg_risk_level_Go ahead,0.0
+cat__esg_sector_Biotechnology and Life Sciences,0.0
+cat__esg_company_name_Stevanato Group Denmark A/S,0.0
+cat__esg_company_name_Steripack Medical Poland Sp. z o.o.,0.0
+cat__esg_company_name_Stena Recycling A/S,0.0
+cat__esg_company_name_Solvay Chemicals International,0.0
+cat__esg_company_name_Post Danmark A/S,0.0
+cat__esg_company_name_Presto Engineering France,0.0
+cat__esg_company_name_Quality Assistance,0.0
+cat__esg_company_name_RKT Rodinger Kunststoff- Technik GmbH,0.0
+cat__esg_company_name_Roquette Freres,0.0
+"cat__esg_company_name_SIBO G. Razvoj in proizvodnja embalaze, d.o.o. v angleskem jeziku: SIBO GROUP Packaging Development and Production LTD",0.0
+cat__esg_company_name_SPS Medical,0.0
+cat__esg_company_name_STA Pharmaceutical Hong Kong Limited,0.0
+cat__esg_company_name_Saniflex Aktiebolag,0.0
+cat__esg_company_name_Sanofi Winthrop Industrie,0.0
+cat__esg_company_name_Sartorius Stedim Biotech GmbH,0.0
+cat__esg_company_name_Sartorius Stedim UK Limited,0.0
+cat__esg_company_name_Schur Pack Denmark A/S,0.0
+cat__esg_company_name_SkyNRG B.V.,0.0
+cat__esg_company_name_Softbox Systems Limited,0.0
+cat__esg_sector_Business Services,0.0
+cat__esg_sector_Computer Hardware,0.0
+cat__Shares outstanding_59.955.983,0.0
+cat__supplier_sector_Waste Management & Treatment,0.0
+cat__supplier_sector_Metals & Metal Products,0.0
+cat__supplier_sector_Mining & Extraction,0.0
+cat__supplier_sector_Miscellaneous Manufacturing,0.0
+cat__supplier_sector_Printing & Publishing,0.0
+cat__supplier_sector_Textiles & Clothing Manufacturing,0.0
+"cat__supplier_sector_Travel, Personal & Leisure",0.0
+cat__supplier_sector_Utilities,0.0
+cat__moodys_risk_rating_Do not source,0.0
+cat__esg_sector_Construction,0.0
+cat__moodys_risk_rating_Go ahead,0.0
+cat__moodys_risk_rating_No data,0.0
+cat__moodys_risk_rating_Take caution,0.0
+cat__Shares outstanding_1.264.117.615,0.0
+cat__Shares outstanding_14.756.500,0.0
+cat__Shares outstanding_320.036.000,0.0
+cat__Shares outstanding_5.686.267.431,0.0
+"cat__supplier_sector_Leather, Stone, Clay & Glass products",0.0
+"cat__supplier_sector_Industrial, Electric & Electronic Machinery",0.0
+cat__supplier_sector_Food & Tobacco Manufacturing,0.0
+cat__supplier_sector_Construction,0.0
+cat__esg_sector_Food & Tobacco Manufacturing,0.0
+"cat__esg_sector_Industrial, Electric & Electronic Machinery",0.0
+cat__esg_sector_Metals & Metal Products,0.0
+cat__esg_sector_Mining & Extraction,0.0
+cat__esg_sector_Miscellaneous Manufacturing,0.0
+cat__esg_sector_Retail,0.0
+cat__esg_sector_Textiles & Clothing Manufacturing,0.0
+"cat__esg_sector_Travel, Personal & Leisure",0.0
+cat__esg_sector_Utilities,0.0
+cat__esg_sector_Waste Management & Treatment,0.0
+cat__esg_sector_Wholesale,0.0
+cat__Risk level_No data,0.0
+cat__supplier_sector_Biotechnology and Life Sciences,0.0
+cat__supplier_sector_Business Services,0.0
+cat__supplier_sector_Computer Hardware,0.0
+cat__contract_name_lower_aeternazentaris_master_2019_sa,0.0
+cat__contract_name_lower_aga as_master_20170601_fta,0.0
+cat__contract_name_lower_bewi_ stand-alone_ 2021 _ stock agreement pockets,0.0
+cat__contract_name_lower_azenta - 7779010066 - 2024 - po,0.0
+cat__contract_name_lower_avenue_call-off_2022_216m010-32_po7776000089_flexpen nut,0.0
+cat__contract_name_lower_avenue_po 7776000045_216m010-31_flexpen nut,0.0
+cat__contract_name_lower_avista oil_amendment 1_2024_basic design,0.0
+cat__contract_name_lower_avista_oil_amendment 2_2024_release of budget to equipment,0.0
+cat__contract_name_lower_avista_oil_pre-engineering_and_be_agreement_20231204,0.0
+cat__contract_name_lower_azelis denmark as_stand-alone_2017_bta,0.0
+cat__contract_name_lower_azenta - 7779009105 - 2023 - po,0.0
+cat__contract_name_lower_azenta uk ltd _7779011110_s70_2024,0.0
+cat__contract_name_lower_avenue mould solutions ltd - framework agreement - 2025 - gc for supply of moulding tools,0.0
+cat__contract_name_lower_bachem ag_2025_wo10_a1_price amendment_,0.0
+cat__contract_name_lower_bachem ag_call-off_2025_wo#34_process validation of cagrilinitide 150l spps in bubendorf,0.0
+cat__contract_name_lower_bachem ag_call-off_wo9_aa1_capacity and volume commitment of cagrilintide 2025-2027,0.0
+cat__contract_name_lower_bachem ag_wo42_additional tests_cagrilintide 1st gen,0.0
+cat__contract_name_lower_bachem ag_wo8_aa1_prepayment of equipment building k cagrilintide,0.0
+"cat__contract_name_lower_bachem, thermo fisher & nn_3-way cda_2025_sharing of cagrilintide msds",0.0
+cat__contract_name_lower_bachem_call-off_2023_wo8_building k,0.0
+cat__contract_name_lower_avenue_2022_loi_216m010-33 flexpen,0.0
+cat__contract_name_lower_avecia_cda_2025_oligonucleotide manufacturing_project orion,0.0
+cat__contract_name_lower_agc biologics_amendment_2025_biologics cda,0.0
+cat__contract_name_lower_aug. hedinger gmbh_master_20071125_sa,0.0
+cat__contract_name_lower_aspen operations proprietary limited_master_2023_oa_human insulin vials filling and pack,0.0
+cat__contract_name_lower_aspen oss b.v._master_20151106_sa,0.0
+cat__contract_name_lower_aspen_amendment_3_2024_sa,0.0
+cat__contract_name_lower_aspen_call-off_2025_ oa_aa1_capacity and pricing update,0.0
+cat__contract_name_lower_astrazeneca_cda_2022,0.0
+cat__contract_name_lower_asymchem_cda_2025_peptide market scan,0.0
+cat__contract_name_lower_aug-hedinger_noc letter_050324,0.0
+cat__contract_name_lower_aug. hedinger_call off_2020_sa_aa3_app. update ed. 10,0.0
+cat__contract_name_lower_avecia_call-off_2025_wo#12_gmp stability study for nedosiran (bcr),0.0
+cat__contract_name_lower_august faller_amendment 7_2025_term update,0.0
+cat__contract_name_lower_august faller_master_20121128_sa,0.0
+cat__contract_name_lower_autajon_amendment 5_2025_label tender,0.0
+cat__contract_name_lower_autajon_technical contract_2020_2020-2022 pricing,0.0
+cat__contract_name_lower_autajongroupe_call-off_2024_aa4_appendices update,0.0
+cat__contract_name_lower_autajongroupe_master_20131701_sa,0.0
+cat__contract_name_lower_avangrid inc._cda_2023_energy demand and consumption,0.0
+cat__contract_name_lower_bachem_call-off_2024_wo#11_stability study (1st generation process) bubendorf,0.0
+cat__contract_name_lower_bachem_call-off_2025_co#1_wo#30_additional analysis and stability study of dasiglucagon,0.0
+cat__contract_name_lower_bachem_call-off_2025_co#1_wo#37_additional report for dc 20 use test,0.0
+cat__contract_name_lower_becton dickinson france s.a.s._call-off_aa2_2025_component name change,0.0
+cat__contract_name_lower_baumann_springs_ltd_call-off_20240614_oa_aa10,0.0
+cat__contract_name_lower_baumann_springs_ltd_call-off_2025_oa_aa12_app11_2025h2 price update,0.0
+"cat__contract_name_lower_baumann_springs_ltd_call_off_2020_oa_aa4_app1,13",0.0
+cat__contract_name_lower_baxter oncology gmbh_optima pharma gmbh_novo nordisk as_ 3 way cda _2024,0.0
+cat__contract_name_lower_bayer_call-off_2022_sa_aa3_app6-7_termination letter,0.0
+cat__contract_name_lower_becton dickinson as_stand-alone_20180101_pa_january2018-december 2019 various materials pricing,0.0
+cat__contract_name_lower_becton dickinson france s.a.s._call-off_aa1_2025_change of mold ownership,0.0
+cat__contract_name_lower_becton dickinson_supply agreement_2024_plunger rod and backstop for manual pfs,0.0
+"cat__contract_name_lower_bachem_call-off_2025_wo#31_dasi repack, zp4207 ppq 2&3, mbpr update",0.0
+cat__contract_name_lower_beijing pharm high tech_stand_alone_2014_bta,0.0
+cat__contract_name_lower_belcher pharmaceuticals_nn_cda_2025,0.0
+cat__contract_name_lower_berendsen textil service as_call-off_2020_fta_aa1_global yearly rebate,0.0
+cat__contract_name_lower_beroe order form-2026,0.0
+cat__contract_name_lower_berry group_cda and non-disclosure,0.0
+cat__contract_name_lower_berry superfos_nn_nda_2025,0.0
+cat__contract_name_lower_bewi flamingo as_master_20140901_fta,0.0
+cat__contract_name_lower_baumann_springs_ltd_call-off_20230821_oa_aa9,0.0
+cat__contract_name_lower_baumann_springs_ltd_call-off_20230329_oa_aa,0.0
+cat__contract_name_lower_baumann_springs_ltd_call-off_2022_oa_aa6_adding extra production site,0.0
+cat__contract_name_lower_baumann_springs_ltd_call-off_20220630_oa_aa,0.0
+cat__contract_name_lower_bachem_call-off_2025_wo#35_additional mibi endotoxin and microbial testing,0.0
+cat__contract_name_lower_bachem_call-off_2025_wo#38_dmf compilation_chc,0.0
+cat__contract_name_lower_bachem_call-off_2025_wo#39_additional aad method validations for dasiglucagon,0.0
+cat__contract_name_lower_bachem_cda_2025_oligonucleotide manufacturing_project orion,0.0
+cat__contract_name_lower_bachem_stand-alone_ 20181213_wo 2,0.0
+cat__contract_name_lower_bachem_stand-alone_20181213_wo 3,0.0
+cat__contract_name_lower_bachmann_forming_ag_stand-alone_2024_bta_vf,0.0
+cat__contract_name_lower_basell sales & marketing company b.v._cda_2023_potential business opportunity,0.0
+cat__contract_name_lower_basf corp_msa_2024_nmp & formic acid supply to us,0.0
+cat__contract_name_lower_basf se_master_20090409_sa,0.0
+cat__contract_name_lower_basic term agreement - dv3321 trays,0.0
+cat__contract_name_lower_baumann singapore_call-off_2022_po 777600009_3423m110_spring retainer_v1,0.0
+cat__contract_name_lower_baumann springs ltd_call-off_20220127_oa_aa5_app3-5,0.0
+cat__contract_name_lower_baumann springs ltd_call-off_master_oa_2010_aa13_app14_nis2,0.0
+cat__contract_name_lower_baumann springs ltd_loi_2022_duratouch,0.0
+cat__contract_name_lower_ashland_master_20240708_sa,0.0
+cat__contract_name_lower_ashland industries europe gmbh_amendment 1_2025_pricing agreement nmp,0.0
+cat__contract_name_lower_aseptic process equipment_stand-alone_2015_bta,0.0
+cat__contract_name_lower_alflow scandinavia as_stand-alone_2015_bta,0.0
+cat__contract_name_lower_ajay sqm_compliance document_2025_ethics and anti-corruption document,0.0
+cat__contract_name_lower_albemarle corporation_call-off_20190910_wo13_snac,0.0
+cat__contract_name_lower_albemarle corporation_master_2016_sa,0.0
+"cat__contract_name_lower_albemarle europe, sprl_call-off_2019_memo",0.0
+cat__contract_name_lower_albemarle_call-off_2021_sa_aa3_app13,0.0
+cat__contract_name_lower_albis_coverletter_20150824_cl,0.0
+cat__contract_name_lower_alcami cda mutual agreement 2024,0.0
+cat__contract_name_lower_alflow scandinavia as_stand-alone_20180101_pa,0.0
+cat__contract_name_lower_altium healthcare mutual cda 6dec2024,0.0
+cat__contract_name_lower_alloga/ah uk holdco 1 limited_cda_2025_global confidentiality agreement,0.0
+cat__contract_name_lower_alltrista_cda and non-disclosure,0.0
+cat__contract_name_lower_almac group limited_call-off_2025_cda mutual_aa1_term extension,0.0
+cat__contract_name_lower_almac_cda_2025_phosphoramidite manufacturing,0.0
+cat__contract_name_lower_alplalndenpharma_cda and non-disclosure,0.0
+cat__contract_name_lower_alps_call-off_2020_sa_app_environmental appendix,0.0
+cat__contract_name_lower_alps_master_20080107_sa,0.0
+cat__contract_name_lower_airgas specialty products_master_2020_sa_ammonia liquid,0.0
+cat__contract_name_lower_air_liquide_danmark_as_call-off_2020_sa_aa4,0.0
+cat__contract_name_lower_air liquide_supply agreement_2025_giu,0.0
+cat__contract_name_lower_air liquide_amendment 6_2025_contract extension,0.0
+cat__contract_name_lower_agc_call-off_2025_sa_wo13_stability study,0.0
+cat__contract_name_lower_agc_wo15_2025_nitrosamine risk assessment,0.0
+cat__contract_name_lower_agilent technologies denmark aps_stand alone_2020_pa_price agreement from 2021,0.0
+cat__contract_name_lower_agilent_cda_2025_oligonucleotide manufacturing_project orion,0.0
+cat__contract_name_lower_agunsa_cda_2025_3pl tender chile,0.0
+cat__contract_name_lower_ah metal solutions a/s_master_20120713_sa,0.0
+cat__contract_name_lower_ah_metal_solutions_call-off_20220204_sa_app,0.0
+cat__contract_name_lower_ah_metal_solutions_call-off_20220531_sa_app,0.0
+cat__contract_name_lower_ah_metal_solutions_call-off_20220608_sa_app,0.0
+cat__contract_name_lower_aifchem xtalpi_cda_2025_tender process small molecules,0.0
+cat__contract_name_lower_air liquide as_amendment 1_2024_dry ice and gas,0.0
+cat__contract_name_lower_air liquide danmark as_call-off_2019_sa_app_suppliers for zero enrollment,0.0
+"cat__contract_name_lower_air liquide danmark as_master_20011110_sa_nitrogen, delivery and rental agreement",0.0
+cat__contract_name_lower_air liquide danmark as_stand-alone_2017_bta,0.0
+cat__contract_name_lower_air liquide danmark as_stand-alone_2018_bta_bottled glasses,0.0
+cat__contract_name_lower_alsiano_stand alone_2014_bta,0.0
+cat__contract_name_lower_ambiopharm_cda_2025_peptide collaboration,0.0
+cat__contract_name_lower_as3 btb a/s_purchasing extension_2021_0438,0.0
+cat__contract_name_lower_angene international_cda_2025_tender process small molecules,0.0
+cat__contract_name_lower_andersonbrecon inc (pci linden road)_master_may 2024_cmo oa_sdd fa&p,0.0
+cat__contract_name_lower_andersonbrecon inc(pci)_call-off_2025_wo08_artwork changes,0.0
+cat__contract_name_lower_andersonbrecon inc_pci_call-off_2025_wo#09_idle resources,0.0
+cat__contract_name_lower_andersonbrecon inc_pci_call-off_2025_wo01_linden rd qc lab,0.0
+cat__contract_name_lower_andersonbrecon inc_pci_call-off_2025_wo07_light box,0.0
+cat__contract_name_lower_andersonbrecon inc_pci_call-off_2025_wo10_ozempic destruction costs and ap,0.0
+cat__contract_name_lower_andersonbrecon(pci)_call-off_2023_wo#1_ich serialization,0.0
+cat__contract_name_lower_angus chemie gmbh_call-off_2022_sa_aa2_appendix update,0.0
+cat__contract_name_lower_amcor flexibles rorschach_stand-alone_2015_bta,0.0
+cat__contract_name_lower_angus chemie gmbh_call-off_2022_sa_aa3_appendix update,0.0
+cat__contract_name_lower_angus chemie gmbh_master_20150922_sa,0.0
+cat__contract_name_lower_angus chemie gmbh_master_2020_sa_tris supply agreement and aa1,0.0
+cat__contract_name_lower_antalis a/s_cda_2025_packaging consumables and load carriers,0.0
+cat__contract_name_lower_apodannordic pharmapackaging as_stand-alone_2015_bta,0.0
+cat__contract_name_lower_aptar csp technologies sas_cda_2021_primary packaging for blister films,0.0
+cat__contract_name_lower_arkema france_cda_triethylamine,0.0
+cat__contract_name_lower_andersonbrecon inc (pci linden road)_call-off_2025_ oa_aa3__itot,0.0
+cat__contract_name_lower_andersonbrecon inc (pci linden road)_call-off_2025_ oa_aa2__it security appendix,0.0
+cat__contract_name_lower_andersonbrecon (pci)_call-off_2025_aa3_co-pack_it security,0.0
+cat__contract_name_lower_andersonbrecon (pci)_call-off_2025_aa1_oa-pa_it security,0.0
+cat__contract_name_lower_amcor flexibles_amendment no. 2 to sa,0.0
+cat__contract_name_lower_amcor flexibles_cda_2025_rfx packaging consumables and load carriers,0.0
+cat__contract_name_lower_amcor_cda and non-disclosure,0.0
+cat__contract_name_lower_amendement no.2 _quality appendix to sa - shipper boxes_20-09-2023,0.0
+cat__contract_name_lower_amendment 1 price agreement - ace mold - framework agreement - 2025 - supply of moulding tools,0.0
+cat__contract_name_lower_amendment no 6 ccl_rfq 2023,0.0
+cat__contract_name_lower_amendment price agreement 2025 sønderborg værktøjsfabrik a/s_master_20151202_sa_mldtools,0.0
+cat__contract_name_lower_americhemeurope_call-off_2025_sa_amendment no 2,0.0
+cat__contract_name_lower_anaergia_nn_cda_2023,0.0
+cat__contract_name_lower_anaspec_mutual cda_2025_peptide synthesis coupling reagent,0.0
+cat__contract_name_lower_anderson brecon & ats_3 way cda_2024_equipment for autoinjector assembly,0.0
+cat__contract_name_lower_anderson brecon (pci)_call-off_2024_aa1_raw material and pricing update,0.0
+cat__contract_name_lower_anderson brecon_pci_master_2023_oa,0.0
+cat__contract_name_lower_anderson brecon_pci_master_2023_pa_blister/bottle packaging development,0.0
+cat__contract_name_lower_andersonbrecon (pci)_call-off_2024_aa2_pricing update and facility security,0.0
+cat__contract_name_lower_ørsted_master_2019_sa biogas certificates,0.0
