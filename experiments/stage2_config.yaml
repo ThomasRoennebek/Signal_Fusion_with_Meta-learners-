@@ -1,0 +1,20 @@
+data:
+  stage1_processed_path: "Data/processed/stage1_output.csv"
+  final_output_path: "Data/processed/stage2_final.csv"
+
+maml:
+  n_ways: 2      # Binary classification for contracts
+  k_shots: 5     # Support set size per class (e.g. 5 risky, 5 safe)
+  inner_lr: 0.01
+  outer_lr: 0.001
+  inner_steps: 5 # Adaptation steps for the inner loop
+  epochs: 50
+
+mlp_architecture:
+  input_dim: 100  # Will be dynamically set or adjusted based on your features
+  hidden_dim_1: 128
+  hidden_dim_2: 64
+  dropout: 0.2
+
+calibration:
+  method: "temperature_scaling"
