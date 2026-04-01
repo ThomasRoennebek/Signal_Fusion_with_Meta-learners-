@@ -4,7 +4,7 @@ mlp.py — Reusable PyTorch utilities for tabular MLP training.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from typing import Optional
 
 import copy
@@ -16,10 +16,6 @@ import torch
 import torch.nn as nn
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
-
-# ---------------------------------------------------------------------
-# Reproducibility
-# ---------------------------------------------------------------------
 
 def set_seed(seed: int = 42) -> None:
     """
@@ -33,10 +29,6 @@ def set_seed(seed: int = 42) -> None:
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
-
-# ---------------------------------------------------------------------
-# Model definition
-# ---------------------------------------------------------------------
 
 class TabularMLP(nn.Module):
     def __init__(
@@ -73,10 +65,6 @@ class MLPTrainingConfig:
     hidden_dim_2: int = 64
     dropout: float = 0.2
 
-
-# ---------------------------------------------------------------------
-# Tensor / dataloader helpers
-# ---------------------------------------------------------------------
 
 def _to_dense_if_needed(X):
     """
@@ -178,10 +166,6 @@ def make_weighted_dataloaders(
     return train_loader, val_loader
 
 
-# ---------------------------------------------------------------------
-# Model builder
-# ---------------------------------------------------------------------
-
 def build_mlp(
     input_dim: int,
     lr: float = 1e-3,
@@ -214,10 +198,6 @@ def build_mlp(
     return model, criterion, optimizer, device
 
 
-# ---------------------------------------------------------------------
-# Training / evaluation
-# ---------------------------------------------------------------------
-
 def evaluate_mlp(
     model: nn.Module,
     loader: torch.utils.data.DataLoader,
@@ -226,9 +206,6 @@ def evaluate_mlp(
 ) -> tuple[float, float, float]:
     """
     Evaluate MLP on a dataloader.
-
-    Returns:
-        avg_loss, rmse, mae
     """
     model.eval()
     total_loss = 0.0
@@ -245,7 +222,6 @@ def evaluate_mlp(
             total_loss += loss.item() * xb.size(0)
 
             probs = torch.sigmoid(logits)
-
             preds.append(probs.cpu().numpy())
             targets.append(yb.cpu().numpy())
 
@@ -272,9 +248,6 @@ def train_mlp(
 ) -> tuple[nn.Module, pd.DataFrame]:
     """
     Train an MLP with early stopping on validation loss.
-
-    Returns:
-        best_model, training_history
     """
     best_val_loss = float("inf")
     best_state_dict: Optional[dict] = None
@@ -294,10 +267,8 @@ def train_mlp(
             yb = yb.to(device)
 
             optimizer.zero_grad()
-
             logits = model(xb)
             loss = criterion(logits, yb)
-
             loss.backward()
             optimizer.step()
 
@@ -372,3 +343,117 @@ def predict_mlp(
             preds.append(probs.cpu().numpy())
 
     return np.vstack(preds).ravel()
+
+
+def fit_mlp_model(
+    X_train,
+    X_val,
+    y_train,
+    y_val,
+    preprocessor,
+    sample_weight=None,
+    config: Optional[MLPTrainingConfig] = None,
+    seed: int = 42,
+    verbose: bool = True,
+) -> dict:
+    """
+    High-level wrapper to fit one MLP experiment with configurable parameters.
+
+    Returns
+    -------
+    dict
+        Bundle containing:
+        - model
+        - preprocessor
+        - device
+        - history
+        - config
+    """
+    if config is None:
+        config = MLPTrainingConfig()
+
+    set_seed(seed)
+
+    X_train_tensor, X_val_tensor, y_train_tensor, y_val_tensor = build_tabular_tensors(
+        preprocessor=preprocessor,
+        X_train=X_train,
+        X_val=X_val,
+        y_train=y_train,
+        y_val=y_val,
+    )
+
+    if sample_weight is None:
+        train_loader, val_loader = make_dataloaders(
+            X_train_tensor=X_train_tensor,
+            X_val_tensor=X_val_tensor,
+            y_train_tensor=y_train_tensor,
+            y_val_tensor=y_val_tensor,
+            train_batch_size=config.train_batch_size,
+            val_batch_size=config.val_batch_size,
+            shuffle_train=True,
+        )
+    else:
+        train_loader, val_loader = make_weighted_dataloaders(
+            X_train_tensor=X_train_tensor,
+            X_val_tensor=X_val_tensor,
+            y_train_tensor=y_train_tensor,
+            y_val_tensor=y_val_tensor,
+            sample_weight=sample_weight,
+            train_batch_size=config.train_batch_size,
+            val_batch_size=config.val_batch_size,
+        )
+
+    model, criterion, optimizer, device = build_mlp(
+        input_dim=X_train_tensor.shape[1],
+        lr=config.lr,
+        weight_decay=config.weight_decay,
+        hidden_dim_1=config.hidden_dim_1,
+        hidden_dim_2=config.hidden_dim_2,
+        dropout=config.dropout,
+    )
+
+    model, history = train_mlp(
+        model=model,
+        train_loader=train_loader,
+        val_loader=val_loader,
+        criterion=criterion,
+        optimizer=optimizer,
+        device=device,
+        n_epochs=config.n_epochs,
+        patience=config.patience,
+        verbose=verbose,
+    )
+
+    return {
+        "model": model,
+        "preprocessor": preprocessor,
+        "device": device,
+        "history": history,
+        "config": asdict(config),
+    }
+
+
+def predict_mlp_bundle(
+    mlp_bundle: dict,
+    X_input,
+) -> np.ndarray:
+    """
+    Predict from a fitted MLP bundle returned by fit_mlp_model().
+    """
+    preprocessor = mlp_bundle["preprocessor"]
+    model = mlp_bundle["model"]
+    device = mlp_bundle["device"]
+
+    X_proc = preprocessor.transform(X_input)
+    X_proc = _to_dense_if_needed(X_proc)
+
+    X_tensor = torch.tensor(X_proc, dtype=torch.float32)
+    y_dummy = torch.zeros((X_tensor.shape[0], 1), dtype=torch.float32)
+
+    loader = torch.utils.data.DataLoader(
+        torch.utils.data.TensorDataset(X_tensor, y_dummy),
+        batch_size=256,
+        shuffle=False,
+    )
+
+    return predict_mlp(model=model, loader=loader, device=device)

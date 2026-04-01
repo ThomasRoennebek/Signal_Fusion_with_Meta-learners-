@@ -1,6 +1,6 @@
 """
 metrics.py — Evaluation metrics for Stage 1 weak-label distillation,
-gold-label binary classification, and ranking.
+gold-label binary classification, calibration, and ranking.
 
 Design intent
 -------------
@@ -16,12 +16,12 @@ This module separates evaluation into three explicit streams:
 3) Ranking
    Top-K prioritization quality for decision support, where identifying
    the most relevant contracts first is often more important than only
-   optimizing a fixed threshold classification metric.
+   optimizing a fixed-threshold classification metric.
 """
 
 from __future__ import annotations
 
-from typing import Iterable, Sequence
+from typing import Sequence
 
 import numpy as np
 import pandas as pd
@@ -35,6 +35,7 @@ from sklearn.metrics import (
     log_loss,
     mean_absolute_error,
     mean_squared_error,
+    ndcg_score,
     r2_score,
     roc_auc_score,
 )
@@ -71,7 +72,7 @@ def _has_both_classes(y_true: np.ndarray) -> bool:
 
 
 # =============================================================================
-# Stage 1 — Weak label distillation / regression evaluation
+# Stage 1 — Weak-label distillation / regression evaluation
 # =============================================================================
 
 def evaluate_predictions(
@@ -83,7 +84,8 @@ def evaluate_predictions(
     Evaluate continuous predictions against a continuous target such as
     Snorkel's renegotiation_prob.
 
-    Interpretation:
+    Interpretation
+    --------------
     These metrics measure weak-label distillation quality, not real predictive
     validity against gold labels.
     """
@@ -108,7 +110,11 @@ def regression_metrics(
     """
     Alias for evaluate_predictions().
     """
-    return evaluate_predictions(y_true=y_true, y_pred=y_pred, model_name=model_name)
+    return evaluate_predictions(
+        y_true=y_true,
+        y_pred=y_pred,
+        model_name=model_name,
+    )
 
 
 def weak_label_distillation_metrics(
@@ -118,20 +124,6 @@ def weak_label_distillation_metrics(
 ) -> pd.DataFrame:
     """
     Explicit wrapper for Stage 1 weak-label distillation evaluation.
-
-    Parameters
-    ----------
-    y_true_soft : array-like
-        Soft targets, e.g. Snorkel LabelModel probabilities.
-    y_pred_soft : array-like
-        Predicted soft scores from the student model.
-    model_name : str
-        Name of the model.
-
-    Returns
-    -------
-    pd.DataFrame
-        Single-row metric table.
     """
     return evaluate_predictions(
         y_true=y_true_soft,
@@ -141,10 +133,10 @@ def weak_label_distillation_metrics(
 
 
 # =============================================================================
-# Stage 1 / Stage 2 — Binary classification / gold label evaluation
+# Calibration
 # =============================================================================
 
-def expected_calibration_error(
+def compute_ece(
     y_true,
     y_pred_proba,
     n_bins: int = 10,
@@ -164,18 +156,13 @@ def expected_calibration_error(
         return np.nan
 
     bin_edges = np.linspace(0.0, 1.0, n_bins + 1)
+    bin_ids = np.digitize(y_pred_proba, bin_edges[1:-1], right=True)
+
     ece = 0.0
     n = len(y_true)
 
-    for i in range(n_bins):
-        left = bin_edges[i]
-        right = bin_edges[i + 1]
-
-        if i == n_bins - 1:
-            mask = (y_pred_proba >= left) & (y_pred_proba <= right)
-        else:
-            mask = (y_pred_proba >= left) & (y_pred_proba < right)
-
+    for bin_idx in range(n_bins):
+        mask = bin_ids == bin_idx
         if not np.any(mask):
             continue
 
@@ -187,6 +174,21 @@ def expected_calibration_error(
         ece += (len(bin_true) / n) * abs(acc - conf)
 
     return float(ece)
+
+
+def expected_calibration_error(
+    y_true,
+    y_pred_proba,
+    n_bins: int = 10,
+) -> float:
+    """
+    Alias for compute_ece().
+    """
+    return compute_ece(
+        y_true=y_true,
+        y_pred_proba=y_pred_proba,
+        n_bins=n_bins,
+    )
 
 
 def calibration_table(
@@ -244,6 +246,22 @@ def calibration_table(
     return pd.DataFrame(rows)
 
 
+def brier_score(
+    y_true,
+    y_pred_proba,
+) -> float:
+    """
+    Brier score for binary probabilistic predictions.
+    """
+    y_true = _to_1d_array(y_true, dtype=int)
+    y_pred_proba = _safe_binary_probabilities(y_pred_proba)
+    return float(brier_score_loss(y_true, y_pred_proba))
+
+
+# =============================================================================
+# Stage 1 / Stage 2 — Binary classification / gold label evaluation
+# =============================================================================
+
 def classification_metrics(
     y_true,
     y_pred_proba,
@@ -267,10 +285,13 @@ def classification_metrics(
         "model": model_name,
         "auc": roc_auc_score(y_true, y_pred_proba) if _has_both_classes(y_true) else np.nan,
         "ap": average_precision_score(y_true, y_pred_proba) if _has_both_classes(y_true) else np.nan,
+        "logloss": log_loss(y_true, y_pred_proba, labels=[0, 1]),
         "f1": f1_score(y_true, y_pred, zero_division=0),
         "accuracy": accuracy_score(y_true, y_pred),
-        "brier": brier_score_loss(y_true, y_pred_proba),
-        "ece": expected_calibration_error(y_true, y_pred_proba),
+        "brier": brier_score(y_true, y_pred_proba),
+        "ece": compute_ece(y_true, y_pred_proba),
+        "pred_mean": float(np.mean(y_pred_proba)),
+        "true_mean": float(np.mean(y_true)),
     }
 
     if verbose:
@@ -316,6 +337,8 @@ def evaluate_on_gold_binary(
         "gold_accuracy": np.nan,
         "gold_pred_mean": float(np.mean(y_pred_prob)),
         "gold_true_mean": float(np.mean(y_true_gold)),
+        "n_eval_rows": int(len(y_true_gold)),
+        "n_positive": int(np.sum(y_true_gold)),
     }
 
     if _has_both_classes(y_true_gold):
@@ -327,8 +350,8 @@ def evaluate_on_gold_binary(
         y_pred_prob,
         labels=[0, 1],
     )
-    result["gold_brier"] = brier_score_loss(y_true_gold, y_pred_prob)
-    result["gold_ece"] = expected_calibration_error(y_true_gold, y_pred_prob)
+    result["gold_brier"] = brier_score(y_true_gold, y_pred_prob)
+    result["gold_ece"] = compute_ece(y_true_gold, y_pred_prob)
     result["gold_f1"] = f1_score(y_true_gold, y_pred, zero_division=0)
     result["gold_accuracy"] = accuracy_score(y_true_gold, y_pred)
 
@@ -431,9 +454,6 @@ def ndcg_at_k(
 ) -> float:
     """
     Normalized Discounted Cumulative Gain (NDCG)@K.
-
-    More informative than Precision@K when correct hits near the very top
-    of the ranking should matter more than lower ranked hits.
     """
     y_true = _to_1d_array(y_true, dtype=int)
     y_score = _to_1d_array(y_score, dtype=float)
@@ -441,15 +461,16 @@ def ndcg_at_k(
     if len(y_true) == 0:
         return np.nan
 
-    actual_dcg = dcg_at_k(y_true, y_score, k=k)
+    k = min(k, len(y_true))
 
-    ideal_scores = y_true.astype(float)
-    ideal_dcg = dcg_at_k(y_true, ideal_scores, k=k)
-
-    if ideal_dcg == 0:
-        return np.nan
-
-    return float(actual_dcg / ideal_dcg)
+    # sklearn handles normalization robustly
+    return float(
+        ndcg_score(
+            y_true.reshape(1, -1),
+            y_score.reshape(1, -1),
+            k=k,
+        )
+    )
 
 
 def map_score(
@@ -479,22 +500,6 @@ def ranking_metrics(
 ) -> pd.DataFrame:
     """
     Explicit ranking evaluation API.
-
-    Parameters
-    ----------
-    y_true_gold : array-like
-        Binary gold labels.
-    y_score : array-like
-        Ranking scores or probabilities.
-    model_name : str
-        Model name.
-    k_values : sequence of int
-        K values for top-K ranking metrics.
-
-    Returns
-    -------
-    pd.DataFrame
-        Single-row ranking metric table.
     """
     y_true_gold = _to_1d_array(y_true_gold, dtype=int)
     y_score = _to_1d_array(y_score, dtype=float)
@@ -514,7 +519,7 @@ def ranking_metrics(
 
 
 # =============================================================================
-# per task aggregation for Stage 2
+# Per-group / per-task aggregation for Stage 2
 # =============================================================================
 
 def evaluate_grouped_gold_binary(
@@ -526,31 +531,11 @@ def evaluate_grouped_gold_binary(
     k_values: Sequence[int] = (5, 10, 20),
 ) -> pd.DataFrame:
     """
-    Evaluate gold label binary performance per task/group  per department.
+    Evaluate gold label binary performance per task/group, e.g. per department.
 
-   Stage 2 meta-learning evaluation with both:
+    Useful for Stage 2 meta-learning evaluation with both:
     - per-task metrics
     - aggregate metrics across tasks
-
-    Parameters
-    ----------
-    df : pd.DataFrame
-        DataFrame containing group labels, gold labels, and prediction scores.
-    group_col : str
-        Column identifying the task/group, e.g. department.
-    y_true_col : str
-        Column with binary gold labels.
-    y_pred_col : str
-        Column with predicted probabilities or ranking scores.
-    threshold : float
-        Threshold for threshold-dependent metrics.
-    k_values : sequence of int
-        K values for ranking metrics.
-
-    Returns
-    -------
-    pd.DataFrame
-        One row per group.
     """
     rows = []
 
