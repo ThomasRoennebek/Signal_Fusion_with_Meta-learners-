@@ -188,7 +188,7 @@ def build_mlp(
         dropout=dropout,
     ).to(device)
 
-    criterion = nn.BCEWithLogitsLoss()
+    criterion = nn.BCEWithLogitsLoss() # Binary Cross Entropy with Logits Loss
     optimizer = torch.optim.Adam(
         model.parameters(),
         lr=lr,
