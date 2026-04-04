@@ -1,5 +1,10 @@
 """
 mlp.py — Reusable PyTorch utilities for tabular MLP training.
+
+https://pytorch-tabular.readthedocs.io/en/latest/tutorials/02-Exploring%20Advanced%20Features%20with%20PyTorch%20Tabular/
+
+https://pythonandml.github.io/dlbook/content/multilayer_perceptrons/mlp_pytorch.html
+
 """
 
 from __future__ import annotations
