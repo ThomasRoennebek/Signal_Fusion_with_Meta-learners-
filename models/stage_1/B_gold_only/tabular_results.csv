@@ -1,4 +1,4 @@
 model,rmse,mae,r2,pred_mean,true_mean,condition
-Mean Predictor_B_gold_only,0.0,0.0,1.0,1.0,1.0,B_gold_only
-Elastic Net_B_gold_only,0.0,0.0,1.0,1.0,1.0,B_gold_only
-XGBoost_B_gold_only,0.0,0.0,1.0,1.0,1.0,B_gold_only
+Mean Predictor_B_gold_only,0.5234550508987555,0.5220588235294118,-0.4613610149942333,0.45588235294117646,0.75,B_gold_only
+Elastic Net_B_gold_only,0.34251413919589985,0.13310719791261583,0.374315010404756,0.8629830730673996,0.75,B_gold_only
+XGBoost_B_gold_only,0.4337619401180932,0.23287147283554077,-0.003463577040065502,0.9488314762711525,0.75,B_gold_only

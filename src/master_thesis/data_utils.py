@@ -123,13 +123,34 @@ def make_gold_contract_split(
         random_state=seed,
     )
 
-    train_idx, test_idx = next(
-        gss.split(
-            df_gold_contracts[["contract_id"]],
-            df_gold_contracts["gold_y"],
-            groups=df_gold_contracts["contract_id"],
+    # Rebuild the split until both classes appear in both sets
+    max_attempts = 100
+    for attempt in range(max_attempts):
+        train_idx, test_idx = next(
+            gss.split(
+                df_gold_contracts[["contract_id"]],
+                df_gold_contracts["gold_y"],
+                groups=df_gold_contracts["contract_id"],
+            )
         )
-    )
+        
+        y_train_split = df_gold_contracts.iloc[train_idx]["gold_y"]
+        y_test_split = df_gold_contracts.iloc[test_idx]["gold_y"]
+        
+        if len(set(y_train_split)) > 1 and len(set(y_test_split)) > 1:
+            break
+            
+        # Increment seed for next attempt
+        if gss.random_state is not None:
+            gss.random_state += 1
+
+    # Hard sanity check to abort if it's still degenerate
+    if len(set(y_train_split)) < 2 or len(set(y_test_split)) < 2:
+        raise ValueError(
+            f"Failed to find a valid train/test split where both classes (0 and 1) "
+            f"are present in both sets after {max_attempts} attempts. "
+            f"Train set labels: {set(y_train_split)}, Test set labels: {set(y_test_split)}"
+        )
 
     gold_train_contract_ids = set(df_gold_contracts.iloc[train_idx]["contract_id"])
     gold_test_contract_ids = set(df_gold_contracts.iloc[test_idx]["contract_id"])
