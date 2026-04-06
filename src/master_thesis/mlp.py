@@ -46,13 +46,16 @@ class TabularMLP(nn.Module):
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(input_dim, hidden_dim_1),
+            nn.BatchNorm1d(hidden_dim_1),
             nn.ReLU(),
             nn.Dropout(dropout),
             nn.Linear(hidden_dim_1, hidden_dim_2),
+            nn.BatchNorm1d(hidden_dim_2),
             nn.ReLU(),
             nn.Dropout(dropout),
             nn.Linear(hidden_dim_2, 1),
         )
+
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.net(x)
