@@ -185,15 +185,27 @@ def prepare_snorkel_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
 @labeling_function()
 def lf_global_expired_contract(x):
-    if pd.notna(x.days_until_expiry) and x.days_until_expiry < 0:
+    days = getattr(x, "days_until_expiry", np.nan)
+    if pd.notna(days) and days < 0:
         return YES
+        
+    years = getattr(x, "years_to_expiry", np.nan)
+    if pd.notna(years) and years < 0:
+        return YES
+        
     return ABSTAIN
 
 
 @labeling_function()
 def lf_global_near_expiry_contract(x):
-    if pd.notna(x.days_until_expiry) and 0 <= x.days_until_expiry <= 180:
+    days = getattr(x, "days_until_expiry", np.nan)
+    if pd.notna(days) and 0 <= days <= 180:
         return YES
+        
+    years = getattr(x, "years_to_expiry", np.nan)
+    if pd.notna(years) and years == 0:
+        return YES
+        
     return ABSTAIN
 
 
@@ -478,8 +490,15 @@ def lf_global_high_ppi_pressure(x):
 def lf_logistics_expired_or_near_expiry(x):
     if not is_logistics_department(getattr(x, "department", "")):
         return ABSTAIN
-    if pd.notna(x.days_until_expiry) and x.days_until_expiry <= 180:
+        
+    days = getattr(x, "days_until_expiry", np.nan)
+    if pd.notna(days) and days <= 180:
         return YES
+        
+    years = getattr(x, "years_to_expiry", np.nan)
+    if pd.notna(years) and years <= 0:
+        return YES
+        
     return ABSTAIN
 
 

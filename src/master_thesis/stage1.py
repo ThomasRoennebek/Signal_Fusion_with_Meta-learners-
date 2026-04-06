@@ -114,6 +114,10 @@ def fit_all_stage1_models(
     y_train = np.asarray(y_train).astype(float)
     y_val = np.asarray(y_val).astype(float)
 
+    print(f"\n{'='*50}")
+    print(f"========== Starting Condition: {condition_name} ==========")
+    print(f"{'='*50}")
+    
     df_tabular_models, df_tabular_results = fit_tabular_baselines(
         X_train=X_train,
         X_val=X_val,
@@ -133,6 +137,7 @@ def fit_all_stage1_models(
         add_numeric_missing_indicator=True,
     )
 
+    print(f"[{condition_name}] Fitting PyTorch MLP...")
     mlp_bundle = fit_mlp_model(
         X_train=X_train,
         X_val=X_val,
@@ -144,6 +149,7 @@ def fit_all_stage1_models(
         seed=seed,
         verbose=verbose,
     )
+    print(f"[{condition_name}] PyTorch MLP fitting complete!")
 
     return {
         "condition_name": condition_name,

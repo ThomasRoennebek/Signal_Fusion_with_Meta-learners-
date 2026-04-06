@@ -1,0 +1,4 @@
+model,rmse,mae,r2,pred_mean,true_mean,condition
+Mean Predictor_B_gold_only,0.0,0.0,1.0,1.0,1.0,B_gold_only
+Elastic Net_B_gold_only,0.0,0.0,1.0,1.0,1.0,B_gold_only
+XGBoost_B_gold_only,0.0,0.0,1.0,1.0,1.0,B_gold_only

@@ -403,6 +403,7 @@ def fit_tabular_baselines(
     fitted_models: dict[str, Any] = {}
     result_frames: list[pd.DataFrame] = []
 
+    print(f"[{condition_name}] Fitting Mean Predictor...")
     mean_model, _, df_mean = fit_mean_predictor(
         y_train=y_train,
         y_val=y_val,
@@ -410,7 +411,9 @@ def fit_tabular_baselines(
     )
     fitted_models["Mean Predictor"] = mean_model
     result_frames.append(df_mean)
+    print(f"[{condition_name}] Mean Predictor fitting complete.")
 
+    print(f"[{condition_name}] Fitting Elastic Net (this can take time if unscaled)...")
     elastic_model, _, df_elastic = fit_elastic_net(
         X_train=X_train,
         X_val=X_val,
@@ -426,7 +429,9 @@ def fit_tabular_baselines(
     )
     fitted_models["Elastic Net"] = elastic_model
     result_frames.append(df_elastic)
+    print(f"[{condition_name}] Elastic Net fitting complete.")
 
+    print(f"[{condition_name}] Fitting XGBoost...")
     xgb_model, _, df_xgb = fit_xgboost_regressor(
         X_train=X_train,
         X_val=X_val,
@@ -442,6 +447,7 @@ def fit_tabular_baselines(
     )
     fitted_models["XGBoost"] = xgb_model
     result_frames.append(df_xgb)
+    print(f"[{condition_name}] XGBoost fitting complete.")
 
     df_results = pd.concat(result_frames, ignore_index=True)
     df_results["condition"] = condition_name
