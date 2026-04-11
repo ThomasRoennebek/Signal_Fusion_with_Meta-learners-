@@ -1,24 +1,108 @@
+# -----------------------------------------------------------------------------
+# Stage 2 Experiment Configuration
+#
+# Purpose:
+# This configuration defines the experimental setup for Stage 2,
+# which evaluates department-level adaptation using gold-labeled contracts.
+#
+# Stage 2 implements a pretrain-then-adapt paradigm:
+# - A pretrained MLP from Stage 1 (trained on weak, gold or hybrid labels) is used
+#   as the initialization.
+# - Meta-learning methods (e.g., ANIL, FOMAML) are trained across departments
+#   using episodic support/query splits.
+# - The final evaluation focuses on adapting the model to a target department
+#   (typically Logistics) using a small number of gold labels.
+#
+# Key responsibilities controlled by this file:
+# - loading Stage 1 pretrained model and preprocessor
+# - defining the Stage 2 dataset and feature set
+# - specifying support/query episode structure
+# - selecting the adaptation method (fine-tuning, ANIL, FOMAML, etc.)
+# - configuring meta-training and evaluation settings
+# - controlling artifact saving for reproducibility
+#
+# This file mirrors the role of the Stage 1 configuration and ensures that
+# Stage 2 experiments are fully reproducible and comparable across methods.
+# -----------------------------------------------------------------------------
 
 
 
 
+seed: 42
+verbose: true
+
+# -----------------------------------------------------------------------------
+# Data
+# -----------------------------------------------------------------------------
 data:
-  stage1_processed_path: "Data/processed/stage1_output.csv"
-  final_output_path: "Data/processed/stage2_final.csv"
+  data_filename: "contract_with_gold.csv" # to put the file name of the merged contract-year + gold-label table
+  target_col: "gold_y"
+  group_col: "contract_id"
+  department_col: "department"
+  observation_year_col: "observation_year"
 
-maml:
-  n_ways: 2      # Binary classification for contracts
-  k_shots: 5     # Support set size per class (e.g. 5 risky, 5 safe)
+# -----------------------------------------------------------------------------
+# Feature set
+# -----------------------------------------------------------------------------
+features:
+  source: "stage1_preprocessor"
+
+# -----------------------------------------------------------------------------
+# Stage 1 initialization
+# -----------------------------------------------------------------------------
+stage1_init:
+  init_name: "A_weak_only"   # A_weak_only | B_gold_only | C_hybrid | random
+  model_filename: "mlp_pretrained.pt"
+  preprocessor_filename: "mlp_pretrained_preprocessor.joblib"
+
+# -----------------------------------------------------------------------------
+# Stage 2 task setup
+# -----------------------------------------------------------------------------
+task_config:
+  target_department: "Logistics"
+  require_both_query_classes: false # for now because data is small
+  min_query_contracts: 1
+  exclude_departments: [] # empty initially
+
+support_config:
+  n_support_pos: 2
+  n_support_neg: 2
+
+# -----------------------------------------------------------------------------
+# Stage 2 method selection
+# -----------------------------------------------------------------------------
+method: "anil"   # finetune | anil | fomaml | maml | pooled_gold_mlp | pooled_gold_xgb             # anil as default?, make finetune the default first
+
+# -----------------------------------------------------------------------------
+# Meta-learning hyperparameters
+# -----------------------------------------------------------------------------
+meta_config:
+  meta_batch_size: 2
+  meta_iterations: 200
   inner_lr: 0.01
   outer_lr: 0.001
-  inner_steps: 5 # Adaptation steps for the inner loop
-  epochs: 50
+  inner_steps: 3
+  target_inner_steps: 5
+  n_repeats: 20
 
-mlp_architecture:
-  input_dim: 100  # Will be dynamically set or adjusted based on your features
-  hidden_dim_1: 128
+# -----------------------------------------------------------------------------
+# MLP architecture
+# -----------------------------------------------------------------------------
+mlp_config: # matching stage 1 architecture
+  hidden_dim_1: 256
   hidden_dim_2: 64
-  dropout: 0.2
+  dropout: 0.3
 
-calibration:
-  method: "temperature_scaling"
+# -----------------------------------------------------------------------------
+# Evaluation
+# -----------------------------------------------------------------------------
+evaluation:
+  ranking_k: 10
+  calibration_method: null
+
+# -----------------------------------------------------------------------------
+# Saving
+# -----------------------------------------------------------------------------
+output:
+  save_predictions: true
+  save_history: true

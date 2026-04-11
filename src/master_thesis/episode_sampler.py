@@ -5,51 +5,34 @@ This module is responsible for:
 - building the department-level gold-label task table
 - summarizing label availability per department
 - filtering valid departments for few-shot meta-learning
-- sampling support/query splits
+- sampling contract-aware support/query splits
 - sampling meta-batches of department tasks
 - constructing held-out Logistics meta-test episodes
 
-
-	•	ANIL
-	•	FOMAML
-	•	fine-tuning baseline
-	•	adaptation curves
-	•	ablations
-
-Core functions:
-build_department_task_table(...)
-summarize_department_tasks(...)
-filter_valid_departments(...)
-sample_support_query_split(...)
-sample_meta_batch(...)
-make_logistics_meta_test_split(...)
-
-
+This module prepares episodic task data for:
+- ANIL
+- FOMAML
+- fine-tuning baseline
+- adaptation curves
+- ablations
 """
 
-# 1. Imports
-# 2. Data containers / typing helpers
-# 3. Summary + validation helpers
-# 4. Task table construction
-# 5. Support/query sampling
-# 6. Meta-batch sampling
-# 7. Logistics meta-test construction
-
-# -----------
-# 1. Imports
 from __future__ import annotations
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 import pandas as pd
 
-# 2. Data containers / typing helpers
+
 # ============================================================================
 # Private helpers
 # ============================================================================
 
-
-def _validate_required_columns(df: pd.DataFrame, required_cols: Sequence[str], df_name: str) -> None:
+def _validate_required_columns(
+    df: pd.DataFrame,
+    required_cols: Sequence[str],
+    df_name: str,
+) -> None:
     """
     Raise a clear error if required columns are missing from a dataframe.
     """
@@ -118,6 +101,10 @@ def _sample_rows(
 ) -> pd.DataFrame:
     """
     Sample n rows without replacement from a dataframe.
+
+    Note:
+    This helper is currently not used in the contract-aware episode sampler,
+    but is kept as a utility in case fixed-size row-level sampling is needed later.
     """
     if n < 0:
         raise ValueError("n must be non-negative.")
@@ -131,100 +118,184 @@ def _sample_rows(
     return df.loc[sampled_idx].copy()
 
 
-# 4. Task table construction
 # ============================================================================
 # Public API: task table construction and summaries
 # ============================================================================
 
-
 def build_department_task_table(
-    features_df: pd.DataFrame, # gives the predictor
-    gold_labels_df: pd.DataFrame, # gives the target
+    features_df: pd.DataFrame,
     feature_cols: Sequence[str],
     contract_id_col: str = "contract_id",
     department_col: str = "department",
-    target_col: str = "gold_label",
-    gold_target_source_col: Optional[str] = None,
+    target_col: str = "gold_y",
+    observation_year_col: str = "observation_year",
     drop_missing_features: bool = False,
 ) -> pd.DataFrame:
     """
     Build the master Stage 2 task table.
 
-    Expected behavior:
-    - merge final feature table with manual gold labels
-    - keep one row per contract
+    Behavior:
     - keep only gold-labeled rows
-    - standardize target to 0/1
-    - retain department + id + selected feature columns
-
-    Parameters
-    ----------
-    features_df:
-        Dataframe containing final modeling features.
-    gold_labels_df:
-        Dataframe containing manual gold labels.
-    feature_cols:
-        Feature columns to retain for episodic learning.
-    contract_id_col:
-        Unique contract identifier column.
-    department_col:
-        Department/task column.
-    target_col:
-        Name of the target column in the returned dataframe.
-    gold_target_source_col:
-        Column in gold_labels_df that contains the original gold label.
-        If None, this function assumes target_col already exists in gold_labels_df.
-    drop_missing_features:
-        If True, drop rows with missing values in feature columns.
-        If False, keep them for later preprocessing/imputation.
+    - drop rows without department
+    - retain contract-year structure
+    - keep selected feature columns
+    - optionally drop rows with missing feature values
 
     Returns
     -------
     pd.DataFrame
-        Clean Stage 2 task table.
+        Task table containing:
+        - contract_id
+        - department
+        - observation_year
+        - gold_y
+        - feature columns
     """
-    raise NotImplementedError("Implement once you share the exact column names and label conventions.")
+    required_cols = [
+        contract_id_col,
+        department_col,
+        observation_year_col,
+        target_col,
+    ] + list(feature_cols)
+
+    _validate_required_columns(
+        features_df,
+        required_cols,
+        "features_df",
+    )
+
+    # Keep only gold-labeled rows
+    task_df = features_df.loc[
+        features_df[target_col].notna()
+    ].copy()
+
+    # Drop rows without department
+    task_df = task_df.loc[
+        task_df[department_col].notna()
+    ].copy()
+
+    # Ensure binary integer target
+    task_df[target_col] = task_df[target_col].astype(int)
+
+    # Optionally drop rows with missing features
+    if drop_missing_features:
+        task_df = task_df.dropna(subset=list(feature_cols)).copy()
+
+    # Keep only required columns
+    keep_cols = [
+        contract_id_col,
+        department_col,
+        observation_year_col,
+        target_col,
+    ] + list(feature_cols)
+
+    task_df = task_df.loc[:, keep_cols].copy()
+    task_df = task_df.reset_index(drop=True)
+
+    print("Stage 2 task table created")
+    print("Rows:", len(task_df))
+    print("Unique contracts:", task_df[contract_id_col].nunique())
+    print("Departments:", task_df[department_col].nunique())
+    print("Positive labels:", int((task_df[target_col] == 1).sum()))
+    print("Negative labels:", int((task_df[target_col] == 0).sum()))
+
+    return task_df
 
 
 def summarize_department_tasks(
     task_df: pd.DataFrame,
     department_col: str = "department",
-    target_col: str = "gold_label",
+    target_col: str = "gold_y",
+    contract_id_col: str = "contract_id",
 ) -> pd.DataFrame:
     """
-    Summarize task availability per department.
+    Summarize gold-label availability per department.
 
-    Suggested output columns:
+    Includes both row-level and contract-level counts.
+
+    Output columns include:
     - department
-    - n_total
-    - n_pos
-    - n_neg
-    - pos_rate
-
-    Returns
-    -------
-    pd.DataFrame
-        Department-level summary table.
+    - n_total_rows
+    - n_pos_rows
+    - n_neg_rows
+    - n_total_contracts
+    - n_pos_contracts
+    - n_neg_contracts
+    - pos_rate_rows
+    - pos_rate_contracts
     """
-    raise NotImplementedError("Implement once we confirm the exact target encoding and desired summary columns.")
+    _validate_required_columns(
+        task_df,
+        [department_col, target_col, contract_id_col],
+        "task_df",
+    )
+
+    # Row-level summary
+    row_summary = (
+        task_df
+        .groupby(department_col)
+        .agg(
+            n_total_rows=(target_col, "count"),
+            n_pos_rows=(target_col, lambda x: int((x == 1).sum())),
+            n_neg_rows=(target_col, lambda x: int((x == 0).sum())),
+        )
+        .reset_index()
+    )
+
+    # Contract-level summary
+    contract_level = (
+        task_df[[department_col, contract_id_col, target_col]]
+        .drop_duplicates(subset=[department_col, contract_id_col])
+        .groupby(department_col)
+        .agg(
+            n_total_contracts=(contract_id_col, "count"),
+            n_pos_contracts=(target_col, lambda x: int((x == 1).sum())),
+            n_neg_contracts=(target_col, lambda x: int((x == 0).sum())),
+        )
+        .reset_index()
+    )
+
+    summary = row_summary.merge(
+        contract_level,
+        on=department_col,
+        how="left",
+    )
+
+    summary["pos_rate_rows"] = summary["n_pos_rows"] / summary["n_total_rows"]
+    summary["pos_rate_contracts"] = summary["n_pos_contracts"] / summary["n_total_contracts"]
+
+    summary = summary.sort_values(
+        by=["n_total_contracts", "n_total_rows"],
+        ascending=[False, False],
+    ).reset_index(drop=True)
+
+    print("Department task summary created")
+    print("Departments:", len(summary))
+    print("Total labeled rows:", int(summary["n_total_rows"].sum()))
+    print("Total positive rows:", int(summary["n_pos_rows"].sum()))
+    print("Total negative rows:", int(summary["n_neg_rows"].sum()))
+    print("Total labeled contracts:", int(summary["n_total_contracts"].sum()))
+    print("Total positive contracts:", int(summary["n_pos_contracts"].sum()))
+    print("Total negative contracts:", int(summary["n_neg_contracts"].sum()))
+
+    return summary
 
 
 def filter_valid_departments(
     task_df: pd.DataFrame,
     department_col: str = "department",
-    target_col: str = "gold_label",
+    target_col: str = "gold_y",
+    contract_id_col: str = "contract_id",
     n_support_pos: int = 2,
     n_support_neg: int = 2,
-    min_query_size: int = 1,
+    min_query_contracts: int = 1,
     require_both_query_classes: bool = False,
 ) -> Tuple[pd.DataFrame, List[str], pd.DataFrame]:
     """
     Filter departments that can support the requested few-shot episode setup.
 
-    Validity should typically require:
-    - enough positive examples for support
-    - enough negative examples for support
-    - enough remaining rows to create a non-empty query set
+    Validation is contract-aware:
+    support/query feasibility is checked at the contract level.
 
     Parameters
     ----------
@@ -234,14 +305,16 @@ def filter_valid_departments(
         Department/task column.
     target_col:
         Binary target column.
+    contract_id_col:
+        Contract ID used for contract-aware validation.
     n_support_pos:
-        Number of positive support examples required.
+        Number of positive support contracts required.
     n_support_neg:
-        Number of negative support examples required.
-    min_query_size:
-        Minimum number of query examples after removing support rows.
+        Number of negative support contracts required.
+    min_query_contracts:
+        Minimum number of query contracts remaining after support selection.
     require_both_query_classes:
-        If True, query set must contain at least one positive and one negative example.
+        If True, require at least one positive and one negative contract to remain in query.
 
     Returns
     -------
@@ -250,21 +323,101 @@ def filter_valid_departments(
     valid_departments:
         List of valid department names.
     validity_summary_df:
-        Department-level summary with validity flags/reasons.
+        Department-level summary with validity flags and reasons.
     """
-    raise NotImplementedError("Implement after we decide the exact episode eligibility rules.")
+    _validate_required_columns(
+        task_df,
+        [department_col, target_col, contract_id_col],
+        "task_df",
+    )
+
+    summary = summarize_department_tasks(
+        task_df=task_df,
+        department_col=department_col,
+        target_col=target_col,
+        contract_id_col=contract_id_col,
+    ).copy()
+
+    required_support_contracts = n_support_pos + n_support_neg
+
+    summary["remaining_contracts_after_support"] = (
+        summary["n_total_contracts"] - required_support_contracts
+    )
+
+    summary["enough_pos_for_support"] = summary["n_pos_contracts"] >= n_support_pos
+    summary["enough_neg_for_support"] = summary["n_neg_contracts"] >= n_support_neg
+    summary["enough_total_for_query"] = (
+        summary["remaining_contracts_after_support"] >= min_query_contracts
+    )
+
+    if require_both_query_classes:
+        summary["enough_pos_for_query"] = (
+            summary["n_pos_contracts"] - n_support_pos
+        ) >= 1
+        summary["enough_neg_for_query"] = (
+            summary["n_neg_contracts"] - n_support_neg
+        ) >= 1
+
+        summary["valid_department"] = (
+            summary["enough_pos_for_support"]
+            & summary["enough_neg_for_support"]
+            & summary["enough_total_for_query"]
+            & summary["enough_pos_for_query"]
+            & summary["enough_neg_for_query"]
+        )
+    else:
+        summary["valid_department"] = (
+            summary["enough_pos_for_support"]
+            & summary["enough_neg_for_support"]
+            & summary["enough_total_for_query"]
+        )
+
+    def _build_reason(row: pd.Series) -> str:
+        reasons = []
+
+        if not row["enough_pos_for_support"]:
+            reasons.append("insufficient_positive_contracts_for_support")
+        if not row["enough_neg_for_support"]:
+            reasons.append("insufficient_negative_contracts_for_support")
+        if not row["enough_total_for_query"]:
+            reasons.append("insufficient_query_contracts")
+
+        if require_both_query_classes:
+            if not row["enough_pos_for_query"]:
+                reasons.append("no_positive_contract_left_for_query")
+            if not row["enough_neg_for_query"]:
+                reasons.append("no_negative_contract_left_for_query")
+
+        return "valid" if not reasons else "|".join(reasons)
+
+    summary["validity_reason"] = summary.apply(_build_reason, axis=1)
+
+    valid_departments = (
+        summary.loc[summary["valid_department"], department_col]
+        .astype(str)
+        .tolist()
+    )
+
+    filtered_task_df = task_df.loc[
+        task_df[department_col].astype(str).isin(valid_departments)
+    ].copy()
+
+    print("Department validity filtering completed")
+    print("Valid departments:", len(valid_departments))
+    print("Invalid departments:", len(summary) - len(valid_departments))
+
+    return filtered_task_df, valid_departments, summary
 
 
 # ============================================================================
 # Public API: support/query and episode sampling
 # ============================================================================
 
-# 5. Support/query sampling
 def sample_support_query_split(
     dept_df: pd.DataFrame,
     feature_cols: Sequence[str],
     department_name: Optional[str] = None,
-    target_col: str = "gold_label",
+    target_col: str = "gold_y",
     department_col: str = "department",
     contract_id_col: str = "contract_id",
     n_support_pos: int = 2,
@@ -273,50 +426,102 @@ def sample_support_query_split(
     random_state: Optional[int] = None,
 ) -> Dict[str, Any]:
     """
-    Sample one support/query episode for a single department.
+    Sample one contract-aware support/query episode for a single department.
 
-    Recommended default:
-    - support = balanced class sample
-    - query = remainder
+    Support/query splitting is done at the contract level:
+    the same contract_id will never appear in both support and query.
 
-    Parameters
-    ----------
-    dept_df:
-        Dataframe containing rows from one department only.
-    feature_cols:
-        Feature columns used by the learner.
-    department_name:
-        Optional override for the department name in the returned episode.
-    target_col:
-        Binary target column.
-    department_col:
-        Department column.
-    contract_id_col:
-        Contract ID column.
-    n_support_pos:
-        Number of positive examples in support.
-    n_support_neg:
-        Number of negative examples in support.
-    query_strategy:
-        Strategy for query construction. Start with "remainder".
-    random_state:
-        Seed for reproducible sampling.
+    Support set construction:
+    - sample n_support_pos positive contracts
+    - sample n_support_neg negative contracts
+    - include all rows of those contracts in support
+
+    Query set construction:
+    - all remaining contracts and their rows
 
     Returns
     -------
     Dict[str, Any]
-        Episode dictionary containing raw dataframes, ids, and X/y arrays.
+        Episode dictionary containing support/query dataframes and X/y arrays.
     """
-    raise NotImplementedError("Implement after we confirm support/query policy and target encoding.")
+    _validate_required_columns(
+        dept_df,
+        [department_col, target_col, contract_id_col] + list(feature_cols),
+        "dept_df",
+    )
+
+    if department_name is None:
+        dept_values = dept_df[department_col].dropna().unique().tolist()
+        if len(dept_values) != 1:
+            raise ValueError(
+                f"dept_df must contain exactly one department. Found: {dept_values}"
+            )
+        department_name = str(dept_values[0])
+
+    if query_strategy != "remainder":
+        raise ValueError("Currently only query_strategy='remainder' is supported.")
+
+    rng = _get_rng(random_state)
+
+    # Contract-level labels
+    contract_labels = (
+        dept_df[[contract_id_col, target_col]]
+        .drop_duplicates(subset=[contract_id_col])
+        .copy()
+    )
+
+    pos_contracts = contract_labels.loc[
+        contract_labels[target_col] == 1, contract_id_col
+    ].to_numpy()
+
+    neg_contracts = contract_labels.loc[
+        contract_labels[target_col] == 0, contract_id_col
+    ].to_numpy()
+
+    if len(pos_contracts) < n_support_pos:
+        raise ValueError(
+            f"Department '{department_name}' has only {len(pos_contracts)} positive contracts, "
+            f"but {n_support_pos} are required."
+        )
+
+    if len(neg_contracts) < n_support_neg:
+        raise ValueError(
+            f"Department '{department_name}' has only {len(neg_contracts)} negative contracts, "
+            f"but {n_support_neg} are required."
+        )
+
+    support_pos_contracts = rng.choice(pos_contracts, size=n_support_pos, replace=False)
+    support_neg_contracts = rng.choice(neg_contracts, size=n_support_neg, replace=False)
+
+    support_contracts = set(np.concatenate([support_pos_contracts, support_neg_contracts]))
+
+    support_df = dept_df.loc[
+        dept_df[contract_id_col].isin(support_contracts)
+    ].copy()
+
+    query_df = dept_df.loc[
+        ~dept_df[contract_id_col].isin(support_contracts)
+    ].copy()
+
+    if len(query_df) == 0:
+        raise ValueError(f"Department '{department_name}' produced an empty query set.")
+
+    return _make_episode_dict(
+        department=department_name,
+        support_df=support_df,
+        query_df=query_df,
+        feature_cols=feature_cols,
+        target_col=target_col,
+        contract_id_col=contract_id_col,
+    )
 
 
-# 6. Meta-batch sampling
 def sample_meta_batch(
     task_df: pd.DataFrame,
     feature_cols: Sequence[str],
     valid_departments: Sequence[str],
     department_col: str = "department",
-    target_col: str = "gold_label",
+    target_col: str = "gold_y",
     contract_id_col: str = "contract_id",
     meta_batch_size: int = 4,
     n_support_pos: int = 2,
@@ -325,52 +530,67 @@ def sample_meta_batch(
     random_state: Optional[int] = None,
 ) -> List[Dict[str, Any]]:
     """
-    Sample a meta-batch of department episodes for one outer-loop iteration.
+    Sample a meta-batch of contract-aware department episodes.
 
-    Recommended behavior:
+    Behavior:
     - sample departments uniformly from valid_departments
     - sample one episode per department
     - return a list of episode dictionaries
-
-    Parameters
-    ----------
-    task_df:
-        Stage 2 task table containing valid departments.
-    feature_cols:
-        Feature columns used by the learner.
-    valid_departments:
-        Departments eligible for episodic sampling.
-    department_col:
-        Department/task column.
-    target_col:
-        Binary target column.
-    contract_id_col:
-        Contract ID column.
-    meta_batch_size:
-        Number of department tasks in one batch.
-    n_support_pos:
-        Number of positive support examples per task.
-    n_support_neg:
-        Number of negative support examples per task.
-    query_strategy:
-        Query construction strategy.
-    random_state:
-        Seed for reproducible batch sampling.
-
-    Returns
-    -------
-    List[Dict[str, Any]]
-        List of episode dictionaries.
     """
-    raise NotImplementedError("Implement after we settle valid-department sampling and batch behavior.")
+    _validate_required_columns(
+        task_df,
+        [department_col, target_col, contract_id_col] + list(feature_cols),
+        "task_df",
+    )
 
-# 7. Logistics meta-test construction
+    if len(valid_departments) == 0:
+        raise ValueError("valid_departments is empty.")
+
+    rng = _get_rng(random_state)
+
+    if meta_batch_size > len(valid_departments):
+        raise ValueError(
+            f"meta_batch_size={meta_batch_size} exceeds number of valid departments={len(valid_departments)}."
+        )
+
+    chosen_departments = rng.choice(
+        np.array(valid_departments, dtype=object),
+        size=meta_batch_size,
+        replace=False,
+    )
+
+    batch: List[Dict[str, Any]] = []
+
+    for dept in chosen_departments:
+        dept_df = task_df.loc[
+            task_df[department_col].astype(str) == str(dept)
+        ].copy()
+
+        episode_seed = int(rng.integers(0, 1_000_000_000))
+
+        episode = sample_support_query_split(
+            dept_df=dept_df,
+            feature_cols=feature_cols,
+            department_name=str(dept),
+            target_col=target_col,
+            department_col=department_col,
+            contract_id_col=contract_id_col,
+            n_support_pos=n_support_pos,
+            n_support_neg=n_support_neg,
+            query_strategy=query_strategy,
+            random_state=episode_seed,
+        )
+        batch.append(episode)
+
+    return batch
+
+
 def make_logistics_meta_test_split(
     task_df: pd.DataFrame,
     feature_cols: Sequence[str],
     target_department: str = "Logistics",
     department_col: str = "department",
-    target_col: str = "gold_label",
+    target_col: str = "gold_y",
     contract_id_col: str = "contract_id",
     n_support_pos: int = 5,
     n_support_neg: int = 5,
@@ -379,68 +599,74 @@ def make_logistics_meta_test_split(
     base_random_state: int = 42,
 ) -> List[Dict[str, Any]]:
     """
-    Construct repeated held-out meta-test episodes for the target department.
+    Construct repeated held-out contract-aware meta-test episodes for the target department.
 
     Recommended use:
     - keep target_department held out during meta-training
     - create repeated support/query splits for stable evaluation
-
-    Parameters
-    ----------
-    task_df:
-        Stage 2 task table.
-    feature_cols:
-        Feature columns used by the learner.
-    target_department:
-        Held-out department used for meta-testing.
-    department_col:
-        Department/task column.
-    target_col:
-        Binary target column.
-    contract_id_col:
-        Contract ID column.
-    n_support_pos:
-        Number of positive support examples.
-    n_support_neg:
-        Number of negative support examples.
-    n_repeats:
-        Number of repeated target episodes.
-    query_strategy:
-        Query construction strategy.
-    base_random_state:
-        Base seed used to create reproducible repeated splits.
-
-    Returns
-    -------
-    List[Dict[str, Any]]
-        Repeated target-department episodes.
     """
-    raise NotImplementedError("Implement after we confirm the held-out Logistics protocol.")
+    _validate_required_columns(
+        task_df,
+        [department_col, target_col, contract_id_col] + list(feature_cols),
+        "task_df",
+    )
+
+    target_df = task_df.loc[
+        task_df[department_col].astype(str) == str(target_department)
+    ].copy()
+
+    if len(target_df) == 0:
+        raise ValueError(f"No rows found for target_department='{target_department}'.")
+
+    episodes: List[Dict[str, Any]] = []
+
+    for repeat_idx in range(n_repeats):
+        seed = base_random_state + repeat_idx
+
+        episode = sample_support_query_split(
+            dept_df=target_df,
+            feature_cols=feature_cols,
+            department_name=str(target_department),
+            target_col=target_col,
+            department_col=department_col,
+            contract_id_col=contract_id_col,
+            n_support_pos=n_support_pos,
+            n_support_neg=n_support_neg,
+            query_strategy=query_strategy,
+            random_state=seed,
+        )
+        episode["repeat_idx"] = repeat_idx
+        episode["episode_seed"] = seed
+        episodes.append(episode)
+
+    return episodes
 
 
 # ============================================================================
 # Optional convenience utilities
 # ============================================================================
 
-
 def describe_episode(
     episode: Dict[str, Any],
-    target_col: str = "gold_label",
+    target_col: str = "gold_y",
+    contract_id_col: str = "contract_id",
 ) -> Dict[str, Any]:
     """
     Return a lightweight summary of one sampled episode.
 
-    Useful for notebook inspection and debugging.
+    Includes both row counts and contract counts.
     """
     support_df = episode["support_df"]
     query_df = episode["query_df"]
 
     return {
         "department": episode["department"],
-        "support_size": len(support_df),
-        "query_size": len(query_df),
-        "support_pos": int((support_df[target_col] == 1).sum()) if target_col in support_df.columns else None,
-        "support_neg": int((support_df[target_col] == 0).sum()) if target_col in support_df.columns else None,
-        "query_pos": int((query_df[target_col] == 1).sum()) if target_col in query_df.columns else None,
-        "query_neg": int((query_df[target_col] == 0).sum()) if target_col in query_df.columns else None,
+        "support_rows": len(support_df),
+        "query_rows": len(query_df),
+        "support_contracts": support_df[contract_id_col].nunique() if contract_id_col in support_df.columns else None,
+        "query_contracts": query_df[contract_id_col].nunique() if contract_id_col in query_df.columns else None,
+        "support_pos_rows": int((support_df[target_col] == 1).sum()) if target_col in support_df.columns else None,
+        "support_neg_rows": int((support_df[target_col] == 0).sum()) if target_col in support_df.columns else None,
+        "query_pos_rows": int((query_df[target_col] == 1).sum()) if target_col in query_df.columns else None,
+        "query_neg_rows": int((query_df[target_col] == 0).sum()) if target_col in query_df.columns else None,
     }
