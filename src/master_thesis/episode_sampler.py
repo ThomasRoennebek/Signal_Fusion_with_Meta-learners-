@@ -61,7 +61,7 @@ def _extract_xy(
     """
     _validate_required_columns(df, list(feature_cols) + [target_col], "episode dataframe")
 
-    X = df.loc[:, feature_cols].to_numpy(dtype=float)
+    X = df.loc[:, feature_cols].to_numpy()
     y = df.loc[:, target_col].to_numpy(dtype=int)
 
     return X, y
@@ -188,6 +188,9 @@ def build_department_task_table(
         observation_year_col,
         target_col,
     ] + list(feature_cols)
+
+    # Deduplicate keeping order to prevent groupby errors if a primary col is also a feature
+    keep_cols = list(dict.fromkeys(keep_cols))
 
     task_df = task_df.loc[:, keep_cols].copy()
     task_df = task_df.reset_index(drop=True)

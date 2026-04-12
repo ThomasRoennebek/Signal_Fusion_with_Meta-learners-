@@ -1,0 +1,19 @@
+{
+  "method": "finetune",
+  "status": "smoke_test_passed",
+  "target_department": "Logistics",
+  "support_size": 18,
+  "query_size": 39,
+  "support_shape": [
+    18,
+    1100
+  ],
+  "query_shape": [
+    39,
+    1100
+  ],
+  "support_pos": 14,
+  "support_neg": 4,
+  "query_pos": 22,
+  "query_neg": 17
+}
