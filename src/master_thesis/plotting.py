@@ -226,3 +226,37 @@ def plot_precision_recall_curve(
     plt.tight_layout()
 
     return fig, ax
+
+# ---------------------------------------
+# Meta-Learning plots
+# ---------------------------------------
+
+def plot_adaptation_curve(
+    loss_histories: dict[str, list[float]],
+    title: str = "Inner-Loop Adaptation Loss",
+    figsize: tuple[int, int] = (8, 5),
+):
+    """
+    Plot the inner-loop adaptation loss across steps for multiple algorithms.
+
+    Parameters
+    ----------
+    loss_histories : dict
+        A dictionary mapping algorithm names to their list of loss values per step.
+        e.g., {"MAML": [0.8, 0.5, 0.3], "Fine-Tuning": [0.8, 0.7, 0.65]}
+    """
+    fig, ax = plt.subplots(figsize=figsize)
+
+    for model_name, losses in loss_histories.items():
+        steps = range(1, len(losses) + 1)
+        ax.plot(steps, losses, marker="o", label=model_name)
+
+    ax.set_xlabel("Inner Gradient Step")
+    ax.set_ylabel("Adaptation Loss")
+    ax.set_title(title)
+    ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
+    ax.legend()
+    plt.grid(True, linestyle="--", alpha=0.6)
+    plt.tight_layout()
+
+    return fig, ax
