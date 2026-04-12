@@ -35,7 +35,7 @@ verbose: true
 # Data
 # -----------------------------------------------------------------------------
 data:
-  data_filename: "contract_with_gold.csv" # to put the file name of the merged contract-year + gold-label table
+  data_filename: "contract_with_features_labeled_stage2_test.csv" # to put the file name of the merged contract-year + gold-label table
   target_col: "gold_y"
   group_col: "contract_id"
   department_col: "department"
@@ -71,7 +71,7 @@ support_config:
 # -----------------------------------------------------------------------------
 # Stage 2 method selection
 # -----------------------------------------------------------------------------
-method: "anil"   # finetune | anil | fomaml | maml | pooled_gold_mlp | pooled_gold_xgb             # anil as default?, make finetune the default first
+method: "finetune"   # finetune | anil | fomaml | maml | pooled_gold_mlp | pooled_gold_xgb             # anil as default?, make finetune the default first
 
 # -----------------------------------------------------------------------------
 # Meta-learning hyperparameters
