@@ -359,63 +359,76 @@ def run_finetune_baseline(
             "target_department": prepared["target_department"],
         }
 
-    # ---------------------------------------------------------
-    # 3. Take the first episode for smoke testing
-    # ---------------------------------------------------------
-    episode = target_episodes[0]
+    import copy
+    import pandas as pd
+    from master_thesis.metrics import evaluate_on_gold_binary
 
-    support_df = episode["support_df"]
-    query_df = episode["query_df"]
-
-    X_support = support_df[feature_cols]
-    y_support = support_df[target_col].to_numpy()
-
-    X_query = query_df[feature_cols]
-    y_query = query_df[target_col].to_numpy()
-
-    # ---------------------------------------------------------
-    # 4. Transform with the Stage 1 preprocessor
-    # ---------------------------------------------------------
-    X_support_proc = preprocessor.transform(X_support)
-    X_query_proc = preprocessor.transform(X_query)
-
-    if hasattr(X_support_proc, "toarray"):
-        X_support_proc = X_support_proc.toarray()
-    if hasattr(X_query_proc, "toarray"):
-        X_query_proc = X_query_proc.toarray()
-
-    # ---------------------------------------------------------
-    # 5. Build Stage 2 model with matching input dim
-    # ---------------------------------------------------------
+    inner_lr = config["meta_config"]["inner_lr"]
+    target_inner_steps = config["meta_config"]["target_inner_steps"]
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    model = build_stage2_model_from_config(
-        input_dim=X_support_proc.shape[1],
+    base_model = build_stage2_model_from_config(
+        input_dim=preprocessor.transform(target_episodes[0]["support_df"][feature_cols].iloc[:2]).shape[1],
         config=config,
         device=device,
     )
-
-    # ---------------------------------------------------------
-    # 6. Load Stage 1 pretrained weights
-    # ---------------------------------------------------------
-    model = load_stage1_model_weights(
-        model=model,
+    base_model = load_stage1_model_weights(
+        model=base_model,
         model_path=paths.stage1_model_path,
         device=device,
     )
+    
+    all_metrics = []
+    criterion = torch.nn.BCEWithLogitsLoss()
+
+    for ep_idx, episode in enumerate(target_episodes):
+        X_supp_raw = episode["support_df"][feature_cols]
+        X_query_raw = episode["query_df"][feature_cols]
+        
+        X_supp = preprocessor.transform(X_supp_raw)
+        X_query = preprocessor.transform(X_query_raw)
+        if hasattr(X_supp, "toarray"): X_supp = X_supp.toarray()
+        if hasattr(X_query, "toarray"): X_query = X_query.toarray()
+        
+        y_supp = torch.tensor(episode["support_df"][target_col].to_numpy(), dtype=torch.float32, device=device).view(-1, 1)
+        y_query_np = episode["query_df"][target_col].to_numpy()
+        
+        X_supp_t = torch.tensor(X_supp, dtype=torch.float32, device=device)
+        X_query_t = torch.tensor(X_query, dtype=torch.float32, device=device)
+        
+        adapted_model = copy.deepcopy(base_model)
+        adapted_model.train()
+        optimizer = torch.optim.Adam(adapted_model.parameters(), lr=inner_lr)
+        
+        for _ in range(target_inner_steps):
+            optimizer.zero_grad()
+            logits = adapted_model(X_supp_t)
+            loss = criterion(logits, y_supp)
+            loss.backward()
+            optimizer.step()
+            
+        adapted_model.eval()
+        with torch.no_grad():
+            logits_query = adapted_model(X_query_t)
+            probs = torch.sigmoid(logits_query).cpu().numpy().ravel()
+            
+        metrics = evaluate_on_gold_binary(y_query_np, probs, model_name="FINETUNE") # All Caps to match visually
+        metrics["episode_idx"] = ep_idx
+        all_metrics.append(metrics)
+
+    eval_result = {
+        "method": "finetune",
+        "status": "success",
+        "n_target_episodes": len(target_episodes),
+        "raw_metrics": pd.concat(all_metrics, ignore_index=True),
+    }
 
     return {
         "method": "finetune",
-        "status": "smoke_test_passed",
+        "status": "fully_integrated",
         "target_department": prepared["target_department"],
-        "support_size": len(support_df),
-        "query_size": len(query_df),
-        "support_shape": list(X_support_proc.shape),
-        "query_shape": list(X_query_proc.shape),
-        "support_pos": int((y_support == 1).sum()),
-        "support_neg": int((y_support == 0).sum()),
-        "query_pos": int((y_query == 1).sum()),
-        "query_neg": int((y_query == 0).sum()),
+        "weight_path": str(paths.stage1_model_path),
+        "target_eval_result": eval_result,
     }
 
 
@@ -424,30 +437,49 @@ def run_anil_method(
     prepared: Dict[str, Any],
 ) -> Dict[str, Any]:
     """
-    Run the ANIL Stage 2 method.
-
-    Current version:
-    - calls ANIL meta-training placeholder
-    - calls ANIL target-evaluation placeholder
-    - returns a structured summary
-
-    Full ANIL optimization will be implemented later.
+    Run the fully integrated ANIL Stage 2 method.
     """
+    from master_thesis.anil import meta_train_anil, evaluate_anil_on_target_episodes
+    
     feature_cols = prepared["feature_cols"]
     task_df = prepared["filtered_task_df"]
     meta_train_departments = prepared["meta_train_departments"]
     target_episodes = prepared["target_episodes"]
+    paths = prepared["paths"]
 
     target_col = config["data"]["target_col"]
     department_col = config["data"]["department_col"]
     contract_id_col = config["data"]["group_col"]
 
     meta_cfg = config["meta_config"]
+    
+    # ---------------------------------------------------------
+    # 1. Pipeline Initialization
+    # ---------------------------------------------------------
+    preprocessor = load_stage1_preprocessor(paths.stage1_preprocessor_path)
+    if preprocessor is None:
+        raise ValueError("ANIL requires a Stage 1 preprocessor.")
+        
+    dummy_processed = preprocessor.transform(task_df[feature_cols].iloc[:2])
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    model = build_stage2_model_from_config(
+        input_dim=dummy_processed.shape[1],
+        config=config,
+        device=device,
+    )
+    model = load_stage1_model_weights(
+        model=model,
+        model_path=paths.stage1_model_path,
+        device=device,
+    )
 
     # ---------------------------------------------------------
-    # 1. Meta-train ANIL across source departments
+    # 2. Meta-train ANIL across source departments
     # ---------------------------------------------------------
     meta_train_result = meta_train_anil(
+        model=model,
+        preprocessor=preprocessor,
         task_df=task_df,
         feature_cols=feature_cols,
         meta_train_departments=meta_train_departments,
@@ -459,26 +491,39 @@ def run_anil_method(
         inner_lr=meta_cfg["inner_lr"],
         outer_lr=meta_cfg["outer_lr"],
         inner_steps=meta_cfg["inner_steps"],
+        n_support_pos=config["support_config"].get("n_support_pos", 1),
+        n_support_neg=config["support_config"].get("n_support_neg", 1),
+        device=device,
         random_state=config["seed"],
     )
+    
+    trained_model = meta_train_result["model"]
+    
+    # ---------------------------------------------------------
+    # 3. Save Final Meta-Network Weights to Disk!
+    # ---------------------------------------------------------
+    save_path = paths.output_dir / "anil_initialized.pt"
+    torch.save(trained_model.state_dict(), save_path)
 
     # ---------------------------------------------------------
-    # 2. Evaluate on held-out target episodes
+    # 4. Evaluate on held-out target episodes
     # ---------------------------------------------------------
     eval_result = evaluate_anil_on_target_episodes(
-        model=None,  # placeholder until ANIL training returns a real model
+        model=trained_model,
+        preprocessor=preprocessor,
         target_episodes=target_episodes,
         feature_cols=feature_cols,
         target_col=target_col,
         inner_lr=meta_cfg["inner_lr"],
         target_inner_steps=meta_cfg["target_inner_steps"],
+        device=device,
     )
 
     return {
         "method": "anil",
-        "status": "skeleton_connected",
+        "status": "fully_integrated",
         "target_department": prepared["target_department"],
-        "meta_train_result": meta_train_result,
+        "weight_path": str(save_path),
         "target_eval_result": eval_result,
     }
 
@@ -488,27 +533,49 @@ def run_fomaml_method(
     prepared: Dict[str, Any],
 ) -> Dict[str, Any]:
     """
-    Run the FOMAML Stage 2 method.
-
-    Current version:
-    - calls FOMAML meta-training placeholder
-    - calls FOMAML target-evaluation placeholder
-    - returns a structured summary
-
-    Full FOMAML optimization will be implemented later.
+    Run the fully integrated FOMAML Stage 2 method.
     """
+    from master_thesis.FOMAML import meta_train_fomaml, evaluate_fomaml_on_target_episodes
+    
     feature_cols = prepared["feature_cols"]
     task_df = prepared["filtered_task_df"]
     meta_train_departments = prepared["meta_train_departments"]
     target_episodes = prepared["target_episodes"]
+    paths = prepared["paths"]
 
     target_col = config["data"]["target_col"]
     department_col = config["data"]["department_col"]
     contract_id_col = config["data"]["group_col"]
 
     meta_cfg = config["meta_config"]
+    
+    # ---------------------------------------------------------
+    # 1. Pipeline Initialization
+    # ---------------------------------------------------------
+    preprocessor = load_stage1_preprocessor(paths.stage1_preprocessor_path)
+    if preprocessor is None:
+        raise ValueError("FOMAML requires a Stage 1 preprocessor.")
+        
+    dummy_processed = preprocessor.transform(task_df[feature_cols].iloc[:2])
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    model = build_stage2_model_from_config(
+        input_dim=dummy_processed.shape[1],
+        config=config,
+        device=device,
+    )
+    model = load_stage1_model_weights(
+        model=model,
+        model_path=paths.stage1_model_path,
+        device=device,
+    )
 
+    # ---------------------------------------------------------
+    # 2. Meta-train FOMAML
+    # ---------------------------------------------------------
     meta_train_result = meta_train_fomaml(
+        model=model,
+        preprocessor=preprocessor,
         task_df=task_df,
         feature_cols=feature_cols,
         meta_train_departments=meta_train_departments,
@@ -520,23 +587,39 @@ def run_fomaml_method(
         inner_lr=meta_cfg["inner_lr"],
         outer_lr=meta_cfg["outer_lr"],
         inner_steps=meta_cfg["inner_steps"],
+        n_support_pos=config["support_config"].get("n_support_pos", 1),
+        n_support_neg=config["support_config"].get("n_support_neg", 1),
+        device=device,
         random_state=config["seed"],
     )
 
+    trained_model = meta_train_result["model"]
+    
+    # ---------------------------------------------------------
+    # 3. Save Final Meta-Network Weights to Disk!
+    # ---------------------------------------------------------
+    save_path = paths.output_dir / "fomaml_initialized.pt"
+    torch.save(trained_model.state_dict(), save_path)
+
+    # ---------------------------------------------------------
+    # 4. Evaluate on target episodes
+    # ---------------------------------------------------------
     eval_result = evaluate_fomaml_on_target_episodes(
-        model=None,  # placeholder until FOMAML training returns a real model
+        model=trained_model,  
+        preprocessor=preprocessor,
         target_episodes=target_episodes,
         feature_cols=feature_cols,
         target_col=target_col,
         inner_lr=meta_cfg["inner_lr"],
         target_inner_steps=meta_cfg["target_inner_steps"],
+        device=device,
     )
 
     return {
         "method": "fomaml",
-        "status": "skeleton_connected",
+        "status": "fully_integrated",
         "target_department": prepared["target_department"],
-        "meta_train_result": meta_train_result,
+        "weight_path": str(save_path),
         "target_eval_result": eval_result,
     }
 
@@ -545,27 +628,49 @@ def run_maml_method(
     prepared: Dict[str, Any],
 ) -> Dict[str, Any]:
     """
-    Run the full MAML Stage 2 method.
-
-    Current version:
-    - calls MAML meta-training placeholder
-    - calls MAML target-evaluation placeholder
-    - returns a structured summary
-
-    Full second-order optimization will be implemented later.
+    Run the fully integrated MAML Stage 2 method.
     """
+    from master_thesis.maml import meta_train_maml, evaluate_maml_on_target_episodes
+    
     feature_cols = prepared["feature_cols"]
     task_df = prepared["filtered_task_df"]
     meta_train_departments = prepared["meta_train_departments"]
     target_episodes = prepared["target_episodes"]
+    paths = prepared["paths"]
 
     target_col = config["data"]["target_col"]
     department_col = config["data"]["department_col"]
     contract_id_col = config["data"]["group_col"]
 
     meta_cfg = config["meta_config"]
+    
+    # ---------------------------------------------------------
+    # 1. Pipeline Initialization
+    # ---------------------------------------------------------
+    preprocessor = load_stage1_preprocessor(paths.stage1_preprocessor_path)
+    if preprocessor is None:
+        raise ValueError("MAML requires a Stage 1 preprocessor.")
+        
+    dummy_processed = preprocessor.transform(task_df[feature_cols].iloc[:2])
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    model = build_stage2_model_from_config(
+        input_dim=dummy_processed.shape[1],
+        config=config,
+        device=device,
+    )
+    model = load_stage1_model_weights(
+        model=model,
+        model_path=paths.stage1_model_path,
+        device=device,
+    )
 
+    # ---------------------------------------------------------
+    # 2. Meta-train Full MAML
+    # ---------------------------------------------------------
     meta_train_result = meta_train_maml(
+        model=model,
+        preprocessor=preprocessor,
         task_df=task_df,
         feature_cols=feature_cols,
         meta_train_departments=meta_train_departments,
@@ -577,23 +682,39 @@ def run_maml_method(
         inner_lr=meta_cfg["inner_lr"],
         outer_lr=meta_cfg["outer_lr"],
         inner_steps=meta_cfg["inner_steps"],
+        n_support_pos=config["support_config"].get("n_support_pos", 1),
+        n_support_neg=config["support_config"].get("n_support_neg", 1),
+        device=device,
         random_state=config["seed"],
     )
 
+    trained_model = meta_train_result["model"]
+    
+    # ---------------------------------------------------------
+    # 3. Save Final Meta-Network Weights to Disk!
+    # ---------------------------------------------------------
+    save_path = paths.output_dir / "maml_initialized.pt"
+    torch.save(trained_model.state_dict(), save_path)
+
+    # ---------------------------------------------------------
+    # 4. Evaluate on target episodes
+    # ---------------------------------------------------------
     eval_result = evaluate_maml_on_target_episodes(
-        model=None,  # placeholder until MAML training returns a real model
+        model=trained_model,  
+        preprocessor=preprocessor,
         target_episodes=target_episodes,
         feature_cols=feature_cols,
         target_col=target_col,
         inner_lr=meta_cfg["inner_lr"],
         target_inner_steps=meta_cfg["target_inner_steps"],
+        device=device,
     )
 
     return {
         "method": "maml",
-        "status": "skeleton_connected",
+        "status": "fully_integrated",
         "target_department": prepared["target_department"],
-        "meta_train_result": meta_train_result,
+        "weight_path": str(save_path),
         "target_eval_result": eval_result,
     }
 
@@ -649,8 +770,20 @@ def save_stage2_result(
     with open(output_dir / "stage2_config_snapshot.json", "w", encoding="utf-8") as f:
         json.dump(config, f, indent=2)
 
+    def _make_serializable(obj):
+        import pandas as pd
+        if isinstance(obj, pd.DataFrame):
+            return obj.to_dict(orient="records")
+        if isinstance(obj, dict):
+            return {k: _make_serializable(v) for k, v in obj.items()}
+        if isinstance(obj, list):
+            return [_make_serializable(v) for v in obj]
+        return obj
+
+    safe_result = _make_serializable(result)
+
     with open(output_dir / "stage2_result.json", "w", encoding="utf-8") as f:
-        json.dump(result, f, indent=2)
+        json.dump(safe_result, f, indent=2)
 
 
 # ============================================================================

@@ -260,3 +260,165 @@ def plot_adaptation_curve(
     plt.tight_layout()
 
     return fig, ax
+
+def plot_metric_boxplots(
+    metrics_df: pd.DataFrame,
+    metric_col: str = "gold_auroc",
+    title: str | None = None,
+    figsize: tuple[int, int] = (8, 6)
+):
+    """
+    Plot the mathematical distribution (variance) of an evaluation metric across multiple random splits.
+    This visually proves which Meta-Learning algorithm is the most stable.
+    """
+    fig, ax = plt.subplots(figsize=figsize)
+    sns.boxplot(data=metrics_df, x="model", y=metric_col, hue="model", ax=ax, palette="Set2")
+    
+    if title is None:
+        title = f"Algorithm Stability across Multiple Splits ({metric_col.replace('gold_', '').upper()})"
+    
+    ax.set_title(title, fontweight="bold")
+    ax.set_ylabel(metric_col.replace('gold_', '').upper())
+    ax.set_xlabel("Algorithm")
+    plt.grid(True, linestyle="--", alpha=0.3)
+    plt.tight_layout()
+    
+    return fig, ax
+
+def plot_aggregated_metrics(
+    aggregated_df: pd.DataFrame,
+    metric_col: str = "gold_auroc",
+    title: str | None = None,
+    figsize: tuple[int, int] = (8, 6)
+):
+    """
+    Plot a Bar Chart proving the Mean performance, with Error Bars representing the Standard Deviation.
+    """
+    means = aggregated_df[(metric_col, "mean")]
+    stds = aggregated_df[(metric_col, "std")]
+    models = aggregated_df.index
+    
+    fig, ax = plt.subplots(figsize=figsize)
+    
+    x_pos = np.arange(len(models))
+    # Note: Use a generic color cycle rather than hard-coding 3 colors in case more models are added
+    ax.bar(x_pos, means, yerr=stds, align='center', alpha=0.8, ecolor='black', capsize=8, color=sns.color_palette("muted", len(models)))
+    
+    if title is None:
+        title = f"Mean Performance vs Variance ({metric_col.replace('gold_', '').upper()})"
+        
+    ax.set_ylabel(metric_col.replace('gold_', '').upper())
+    ax.set_xlabel("Algorithm")
+    ax.set_xticks(x_pos)
+    ax.set_xticklabels(models)
+    ax.set_title(title, fontweight="bold")
+    ax.yaxis.grid(True, linestyle="--", alpha=0.3)
+    
+    plt.tight_layout()
+    return fig, ax
+
+def plot_calibration_reliability(
+    calib_df: pd.DataFrame,
+    model_name: str = "Model",
+    title: str | None = None,
+    figsize: tuple[int, int] = (6, 6)
+):
+    """
+    Plot a Reliability Diagram (Calibration Curve) using the binned calibration_table.
+    Perfectly calibrated models should fall perfectly on the y=x dashed line.
+    """
+    fig, ax = plt.subplots(figsize=figsize)
+    
+    # Extract the numeric valid bins
+    valid_bins = calib_df.dropna(subset=["mean_pred", "event_rate"])
+    mean_preds = valid_bins["mean_pred"]
+    empirical_rates = valid_bins["event_rate"]
+    
+    ax.plot(mean_preds, empirical_rates, marker='o', linewidth=2, label=model_name)
+    
+    # Plot the ideal y=x perfectly calibrated line
+    ax.plot([0, 1], [0, 1], linestyle='--', color='gray', label="Perfectly Calibrated")
+    
+    if title is None:
+        title = f"Calibration Reliability Diagram - {model_name}"
+        
+    ax.set_title(title, fontweight="bold")
+    ax.set_xlabel("Mean Predicted Probability")
+    ax.set_ylabel("Empirical Event Rate (True Probability)")
+    ax.legend()
+    plt.grid(True, linestyle="--", alpha=0.3)
+    plt.tight_layout()
+    
+    return fig, ax
+
+
+def plot_k_shot_curve(
+    k_shot_df: pd.DataFrame,
+    metric_col: str = "gold_auroc",
+    title: str | None = None,
+    figsize: tuple[int, int] = (8, 6)
+):
+    """
+    Plot a Line Graph demonstrating how Model Performance scales as the number of Support Examples increases.
+    Expects k_shot_df to have columns: 'k_shots', 'model', and metric_col.
+    """
+    fig, ax = plt.subplots(figsize=figsize)
+    
+    sns.lineplot(data=k_shot_df, x="k_shots", y=metric_col, hue="model", marker="o", ax=ax, linewidth=2)
+    
+    if title is None:
+        title = f"K-Shot Adaptation Scaling Curve ({metric_col.replace('gold_', '').upper()})"
+        
+    ax.set_title(title, fontweight="bold")
+    ax.set_xlabel("Number of Support Examples (K-shots)")
+    ax.set_ylabel(metric_col.replace('gold_', '').upper())
+    
+    ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
+    
+    plt.grid(True, linestyle="--", alpha=0.3)
+    plt.tight_layout()
+    
+    return fig, ax
+
+# ---------------------------------------
+# Meta-Learning: Comparisons
+# ---------------------------------------
+
+def plot_grouped_model_comparison(
+    master_df: pd.DataFrame,
+    metrics: list[str] = ["gold_auroc", "gold_ap"],
+    title: str = "Mean Metrics Comparison",
+    figsize: tuple[int, int] = (10, 6)
+):
+    """
+    A Grouped Bar Chart comparing Mean AUROC/F1/ECE across methods.
+    """
+    mean_df = master_df.groupby("model")[metrics].mean().reset_index()
+    melted_df = pd.melt(mean_df, id_vars="model", var_name="Metric", value_name="Score")
+    
+    fig, ax = plt.subplots(figsize=figsize)
+    sns.barplot(data=melted_df, x="Metric", y="Score", hue="model", ax=ax, palette="Set2")
+    ax.set_title(title)
+    ax.set_ylim(0.4, 1.0)
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.tight_layout()
+    return fig, ax
+
+def plot_boxplots_repeats(
+    master_df: pd.DataFrame,
+    metric: str = "gold_auroc",
+    title: str = "Variance across 20-Split Iterations",
+    figsize: tuple[int, int] = (10, 6)
+):
+    """
+    A Boxplot generator to visualize the variance (Mean/Std) across the iterated episodes.
+    """
+    fig, ax = plt.subplots(figsize=figsize)
+    sns.boxplot(data=master_df, x="model", y=metric, ax=ax, palette="Pastel1", showmeans=True,
+                meanprops={"marker":"o", "markerfacecolor":"white", "markeredgecolor":"black"})
+    sns.stripplot(data=master_df, x="model", y=metric, ax=ax, color="black", alpha=0.3, jitter=True)
+    ax.set_title(title)
+    ax.set_ylabel(metric.upper())
+    ax.set_xlabel("Algorithms")
+    plt.tight_layout()
+    return fig, ax

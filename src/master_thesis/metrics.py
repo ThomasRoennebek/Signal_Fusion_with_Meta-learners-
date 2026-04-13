@@ -381,6 +381,40 @@ def gold_label_classification_metrics(
         k_values=k_values,
     )
 
+def sweep_decision_thresholds(
+    y_true,
+    y_pred_proba,
+    thresholds: Sequence[float] = (0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+) -> pd.DataFrame:
+    """
+    Test multiple probability thresholds to find the optimal decision boundary for F1/Precision/Recall.
+    """
+    y_true = _to_1d_array(y_true, dtype=int)
+    y_pred_proba = _safe_binary_probabilities(y_pred_proba)
+    
+    rows = []
+    
+    for t in thresholds:
+        y_pred = (y_pred_proba >= t).astype(int)
+        
+        true_pos = np.sum((y_pred == 1) & (y_true == 1))
+        pred_pos = np.sum(y_pred == 1)
+        actual_pos = np.sum(y_true == 1)
+        
+        precision = float(true_pos / pred_pos) if pred_pos > 0 else 0.0
+        recall = float(true_pos / actual_pos) if actual_pos > 0 else 0.0
+        f1 = float(f1_score(y_true, y_pred, zero_division=0))
+            
+        rows.append({
+            "threshold": float(t),
+            "f1": f1,
+            "precision": precision,
+            "recall": recall,
+            "accuracy": float(accuracy_score(y_true, y_pred))
+        })
+        
+    return pd.DataFrame(rows)
+
 
 # =============================================================================
 # Ranking metrics

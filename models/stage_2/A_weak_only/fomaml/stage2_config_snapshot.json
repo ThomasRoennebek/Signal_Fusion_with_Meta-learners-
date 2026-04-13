@@ -26,7 +26,7 @@
     "n_support_pos": 1,
     "n_support_neg": 1
   },
-  "method": "finetune",
+  "method": "fomaml",
   "meta_config": {
     "meta_batch_size": 2,
     "meta_iterations": 25,
