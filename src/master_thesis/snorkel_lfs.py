@@ -116,9 +116,9 @@ def prepare_snorkel_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         "fin_flag_interest_coverage_weak",
         "fin_flag_low_solvency",
         "fin_flag_very_low_solvency",
-        "fin_flag_negative_profit_margin",
+        "fin_flag_negative_ebit_margin",  # Updated: fin_flag_negative_profit_margin dropped as duplicate of fin_flag_negative_ebit_margin in feature engineering v4.
         "fin_flag_negative_ebit_margin",
-        "fin_flag_profitability_stress",
+        "fin_flag_negative_ebit_margin",  # Updated: fin_flag_profitability_stress dropped as duplicate of fin_flag_negative_ebit_margin in feature engineering v4.
         "fin_flag_negative_roe",
         "fin_flag_negative_roa",
         "fin_flag_multiple_financial_stress_signals",
@@ -140,7 +140,7 @@ def prepare_snorkel_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     numeric_cols = [
         "days_until_expiry",
         "contract_age_years",
-        "years_to_expiry",
+        "years_to_expiry_capped",  # Updated: years_to_expiry replaced with years_to_expiry_capped after feature engineering v4.
         "news_article_count",
         "news_negative_count",
         "news_negative_ratio",
@@ -183,30 +183,6 @@ def prepare_snorkel_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 # Global lifecycle / expiry LFs
 # ══════════════════════════════════════════════════════════════════════════
 
-@labeling_function()
-def lf_global_expired_contract(x):
-    days = getattr(x, "days_until_expiry", np.nan)
-    if pd.notna(days) and days < 0:
-        return YES
-        
-    years = getattr(x, "years_to_expiry", np.nan)
-    if pd.notna(years) and years < 0:
-        return YES
-        
-    return ABSTAIN
-
-
-@labeling_function()
-def lf_global_near_expiry_contract(x):
-    days = getattr(x, "days_until_expiry", np.nan)
-    if pd.notna(days) and 0 <= days <= 180:
-        return YES
-        
-    years = getattr(x, "years_to_expiry", np.nan)
-    if pd.notna(years) and years == 0:
-        return YES
-        
-    return ABSTAIN
 
 
 @labeling_function()
@@ -280,9 +256,7 @@ def lf_global_financial_liquidity_stress(x):
 @labeling_function()
 def lf_global_financial_profitability_stress(x):
     if (
-        safe_int_flag(getattr(x, "fin_flag_profitability_stress", 0)) == 1
-        or safe_int_flag(getattr(x, "fin_flag_negative_profit_margin", 0)) == 1
-        or safe_int_flag(getattr(x, "fin_flag_negative_ebit_margin", 0)) == 1
+        safe_int_flag(getattr(x, "fin_flag_negative_ebit_margin", 0)) == 1  # Updated: fin_flag_profitability_stress and fin_flag_negative_profit_margin dropped as duplicates of fin_flag_negative_ebit_margin in feature engineering v4.
     ):
         return YES
     return ABSTAIN
@@ -315,7 +289,7 @@ def lf_global_financial_no_signal_strong_liquidity(x):
 
 @labeling_function()
 def lf_global_esg_very_low_overall(x):
-    if pd.notna(x.esg_esg_overall) and x.esg_esg_overall <= 2:
+    if pd.notna(x.esg_esg_industry_adjusted) and x.esg_esg_industry_adjusted < 2:  # Updated: esg_esg_overall (1-8 scale) replaced with esg_esg_industry_adjusted (0-10 scale); threshold adjusted from <3 equivalent to approximately <2.
         return YES
     return ABSTAIN
 
@@ -447,13 +421,6 @@ def lf_global_many_contracts_same_supplier(x):
     return ABSTAIN
 
 
-@labeling_function()
-def lf_global_missing_environmental_appendix(x):
-    val = getattr(x, "has_environmental_appendix", np.nan)
-    if pd.notna(val) and safe_int_flag(val) == 0:
-        return YES
-    return ABSTAIN
-
 
 @labeling_function()
 def lf_global_open_ended_and_old_and_many_contracts(x):
@@ -482,6 +449,27 @@ def lf_global_high_ppi_pressure(x):
     return ABSTAIN
 
 
+@labeling_function()
+def lf_global_lpi_relative_risk(x):
+    if safe_int_flag(getattr(x, "lpi_below_supplier_median", 0)) == 1:
+        return YES
+    return ABSTAIN
+
+
+@labeling_function()
+def lf_global_old_and_near_expiry(x):
+    if safe_int_flag(getattr(x, "is_old_and_near_expiry", 0)) == 1:
+        return YES
+    return ABSTAIN
+
+
+@labeling_function()
+def lf_global_esg_below_peer_min(x):
+    if safe_int_flag(getattr(x, "esg_below_industry_min", 0)) == 1:
+        return YES
+    return ABSTAIN
+
+
 # ══════════════════════════════════════════════════════════════════════════
 # Logistics-specific LFs
 # ══════════════════════════════════════════════════════════════════════════
@@ -495,7 +483,7 @@ def lf_logistics_expired_or_near_expiry(x):
     if pd.notna(days) and days <= 180:
         return YES
         
-    years = getattr(x, "years_to_expiry", np.nan)
+    years = getattr(x, "years_to_expiry_capped", np.nan)  # Updated: years_to_expiry replaced with years_to_expiry_capped after feature engineering v4.
     if pd.notna(years) and years <= 0:
         return YES
         
@@ -607,11 +595,10 @@ def lf_logistics_outdated_contract_proxy(x):
 
 LF_GROUPS: dict[str, list] = {
     "global_lifecycle": [
-        lf_global_expired_contract,
-        lf_global_near_expiry_contract,
         lf_global_old_perpetual_contract,
         lf_global_old_contract,
         lf_global_expiry_pressure_bucket,
+        lf_global_old_and_near_expiry,
     ],
     "global_financial": [
         lf_global_financial_severe_stress,
@@ -628,6 +615,7 @@ LF_GROUPS: dict[str, list] = {
         lf_global_esg_low_industry_adjusted,
         lf_global_esg_low_env_or_social,
         lf_global_esg_low_governance,
+        lf_global_esg_below_peer_min,
     ],
     "global_news": [
         lf_global_news_high_relevance_negative,
@@ -643,10 +631,10 @@ LF_GROUPS: dict[str, list] = {
     ],
     "global_supplier_macro": [
         lf_global_many_contracts_same_supplier,
-        lf_global_missing_environmental_appendix,
         lf_global_open_ended_and_old_and_many_contracts,
         lf_global_low_lpi,
         lf_global_high_ppi_pressure,
+        lf_global_lpi_relative_risk,
     ],
     "logistics_specific": [
         lf_logistics_expired_or_near_expiry,
