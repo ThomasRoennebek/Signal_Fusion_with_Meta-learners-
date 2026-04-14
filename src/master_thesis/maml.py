@@ -13,7 +13,6 @@ from typing import Any, Dict, List, Optional
 import torch.nn.functional as F
 import torch.func
 
-from master_thesis.stage2 import build_stage2_model_from_config
 from master_thesis.episode_sampler import sample_support_query_split
 from master_thesis.metrics import evaluate_on_gold_binary
 
@@ -62,12 +61,11 @@ def adapt_maml_on_episode(
         # 2. Backpropagate with create_graph=True to enable Full Hessian 2nd order derivatives!
         grads = torch.autograd.grad(loss, params.values(), create_graph=True, allow_unused=True)
         
-        # 3. Functional SGD Update with STRICT Titanium Clipping
+        # 3. Functional SGD Update with differentiable SGD update
         safe_params = {}
         for (name, param), grad in zip(params.items(), grads):
             if grad is not None:
-                clipped_grad = torch.clamp(grad, min=-1.0, max=1.0)
-                safe_params[name] = param - inner_lr * clipped_grad
+                safe_params[name] = param - inner_lr * grad
             else:
                 safe_params[name] = param
                 
@@ -105,9 +103,10 @@ def meta_train_maml(
     history = []
     train_df = task_df[task_df[department_col].isin(meta_train_departments)].copy()
 
+    total_skipped = 0
     for iteration in range(meta_iterations):
         outer_optimizer.zero_grad()
-        outer_loss = 0.0
+        valid_query_losses = []
         
         batch_depts = random.choices(meta_train_departments, k=meta_batch_size)
         
@@ -131,26 +130,38 @@ def meta_train_maml(
             )
 
             # --- Full MAML Inner Loop ---
-            # Update all parameters, using create_graph=True inside!
             adapted_params = adapt_maml_on_episode(model, X_supp, y_supp, inner_lr, inner_steps)
             
             # --- Full MAML Outer Loop ---
             buffers = dict(model.named_buffers())
             logits = torch.func.functional_call(model, (adapted_params, buffers), X_query)
             
-            # Accumulate Total Loss
-            outer_loss += criterion(logits, y_query)
+            # Check for NaN in current episode loss
+            loss_val = criterion(logits, y_query)
+            if torch.isfinite(loss_val):
+                valid_query_losses.append(loss_val)
+            else:
+                total_skipped += 1
 
-        if isinstance(outer_loss, torch.Tensor):
-            # Magical PyTorch backpropagation. 
-            # Because the inner loop used create_graph=True, PyTorch backpropagates
-            # strictly through the massive Hessian matrix (Second-Order!). 
+        if valid_query_losses:
+            outer_loss = torch.stack(valid_query_losses).mean()
             outer_loss.backward()
+            
+            # Numerical stability: clip outer-loop meta-gradients after backpropagation
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+            
             outer_optimizer.step()
             
             if (iteration + 1) % 10 == 0:
-                print(f"MAML Meta-Iteration {iteration+1:03d} | Global Loss: {outer_loss.item():.4f}")
-            history.append({"iteration": iteration + 1, "meta_loss": float(outer_loss.item())})
+                print(f"MAML Meta-Iteration {iteration+1:03d} | Global Loss: {outer_loss.item():.4f} | Skipped: {total_skipped}")
+            history.append({
+                "iteration": iteration + 1, 
+                "meta_loss": float(outer_loss.item()),
+                "n_skipped": total_skipped
+            })
+        else:
+            if (iteration + 1) % 10 == 0:
+                print(f"MAML Meta-Iteration {iteration+1:03d} | [WARNING] All episodes skipped due to NaN.")
             
     return {"method": "maml", "status": "success", "history": pd.DataFrame(history), "model": model}
 

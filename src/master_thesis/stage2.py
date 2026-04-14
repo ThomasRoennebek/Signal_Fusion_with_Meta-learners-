@@ -245,6 +245,12 @@ def prepare_stage2_tasks(config: Dict[str, Any]) -> Dict[str, Any]:
     paths = resolve_stage2_paths(config)
     df = load_stage2_dataframe(paths.task_table_path)
 
+    # Backward compatibility for older Stage 1 preprocessors.
+    # The feature was renamed during feature engineering from
+    # lpi_relative_risk to lpi_below_supplier_median.
+    if "lpi_relative_risk" not in df.columns and "lpi_below_supplier_median" in df.columns:
+        df["lpi_relative_risk"] = df["lpi_below_supplier_median"]
+
     preprocessor = load_stage1_preprocessor(paths.stage1_preprocessor_path)
     feature_cols = get_feature_cols(config, preprocessor=preprocessor)
 
@@ -525,6 +531,7 @@ def run_anil_method(
         "target_department": prepared["target_department"],
         "weight_path": str(save_path),
         "target_eval_result": eval_result,
+        "history": meta_train_result.get("history"),
     }
 
 
@@ -621,6 +628,7 @@ def run_fomaml_method(
         "target_department": prepared["target_department"],
         "weight_path": str(save_path),
         "target_eval_result": eval_result,
+        "history": meta_train_result.get("history"),
     }
 
 def run_maml_method(
@@ -716,6 +724,7 @@ def run_maml_method(
         "target_department": prepared["target_department"],
         "weight_path": str(save_path),
         "target_eval_result": eval_result,
+        "history": meta_train_result.get("history"),
     }
 
 
@@ -772,13 +781,26 @@ def save_stage2_result(
 
     def _make_serializable(obj):
         import pandas as pd
+        import torch
+        from pathlib import Path
+
         if isinstance(obj, pd.DataFrame):
             return obj.to_dict(orient="records")
+        if isinstance(obj, pd.Series):
+            return obj.to_dict()
+        if isinstance(obj, Path):
+            return str(obj)
+        if isinstance(obj, torch.nn.Module):
+            return f"<torch.nn.Module: {obj.__class__.__name__}>"
         if isinstance(obj, dict):
             return {k: _make_serializable(v) for k, v in obj.items()}
         if isinstance(obj, list):
             return [_make_serializable(v) for v in obj]
-        return obj
+        try:
+            json.dumps(obj)
+            return obj
+        except TypeError:
+            return str(obj)
 
     safe_result = _make_serializable(result)
 

@@ -1,9 +1,10 @@
 department,n_total_rows,n_pos_rows,n_neg_rows,n_total_contracts,n_pos_contracts,n_neg_contracts,pos_rate_rows,pos_rate_contracts
+Devices & Needles,42,15,27,11,5,6,0.35714285714285715,0.45454545454545453
 Logistics,57,36,21,10,5,5,0.631578947368421,0.5
-Devices & Needles,23,15,8,7,5,2,0.6521739130434783,0.7142857142857143
-"Quality, Production Services & Supplies",20,0,20,5,0,5,0.0,0.0
-Drug Product Outsourcing,10,4,6,5,3,2,0.4,0.6
-Raw Materials & Energy,19,18,1,4,3,1,0.9473684210526315,0.75
-Drug Substance Outsourcing,11,3,8,4,1,3,0.2727272727272727,0.25
-Bioprocessing and Excipients,19,13,6,3,2,1,0.6842105263157895,0.6666666666666666
-"Alliance, Acquisitions & PPM CoE",21,11,10,2,1,1,0.5238095238095238,0.5
+Drug Product Outsourcing,9,4,5,5,3,2,0.4444444444444444,0.6
+Drug Substance Outsourcing,18,3,15,4,1,3,0.16666666666666666,0.25
+Raw Materials & Energy,18,18,0,3,3,0,1.0,1.0
+"Alliance, Acquisitions & PPM CoE",16,11,5,2,1,1,0.6875,0.5
+Bioprocessing and Excipients,13,13,0,2,2,0,1.0,1.0
+Bioprocessing & Raw Materials,11,0,11,1,0,1,0.0,0.0
+Packaging Material,2,0,2,1,0,1,0.0,0.0

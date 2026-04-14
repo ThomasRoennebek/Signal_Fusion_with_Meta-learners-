@@ -607,3 +607,47 @@ def summarize_grouped_metrics(
     summary = summary.rename(columns={"index": "metric"})
     summary.insert(0, "grouping", group_col)
     return summary
+
+
+def calculate_shap_divergence(
+    shap_values_pre: np.ndarray,
+    shap_values_post: np.ndarray,
+    feature_names: list[str] | None = None,
+) -> dict[str, float]:
+    """
+    Quantify the 'Brain Shift' — the change in feature importance ranking 
+    and magnitude after adaptation.
+
+    Calculates:
+    1. divergence_score: Total variation distance (0.0 to 1.0) between normalized importance bags.
+    2. top_5_stability: Jaccard similarity between top-5 features.
+    """
+    # 1. Normalize importances to [0, 1] relative to the sum of importance
+    imp_pre = np.abs(shap_values_pre).mean(axis=0)
+    imp_post = np.abs(shap_values_post).mean(axis=0)
+    
+    norm_pre = imp_pre / (np.sum(imp_pre) + 1e-9)
+    norm_post = imp_post / (np.sum(imp_post) + 1e-9)
+    
+    # Total shift (TV distance: sum|p-q|/2)
+    # 0.0 means identical, 1.0 means completely disjoint feature priorities
+    total_shift = float(np.sum(np.abs(norm_pre - norm_post)) / 2.0)
+    
+    # Rank change
+    if feature_names:
+        df_ranks = pd.DataFrame({
+            "feature": feature_names,
+            "pre": imp_pre,
+            "post": imp_post
+        })
+        top_pre = set(df_ranks.sort_values("pre", ascending=False).head(5)["feature"])
+        top_post = set(df_ranks.sort_values("post", ascending=False).head(5)["feature"])
+        
+        overlap = len(top_pre.intersection(top_post)) / 5.0
+    else:
+        overlap = np.nan
+
+    return {
+        "divergence_score": total_shift,
+        "top_5_stability": overlap,
+    }

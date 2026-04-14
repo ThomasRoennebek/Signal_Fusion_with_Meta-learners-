@@ -422,3 +422,46 @@ def plot_boxplots_repeats(
     ax.set_xlabel("Algorithms")
     plt.tight_layout()
     return fig, ax
+
+
+def set_thesis_style():
+    """
+    Apply a consistent, premium aesthetic to all plots.
+    """
+    sns.set_theme(style="whitegrid", palette="muted")
+    plt.rcParams.update({
+        "figure.dpi": 300,
+        "font.family": "serif",
+        "font.serif": ["Times New Roman", "DejaVu Serif"],
+        "axes.labelsize": 10,
+        "axes.titlesize": 12,
+        "xtick.labelsize": 9,
+        "ytick.labelsize": 9,
+        "legend.fontsize": 9,
+        "figure.titlesize": 14,
+    })
+
+
+def plot_interaction_heatmap(
+    pivot_df: pd.DataFrame,
+    title: str = "Hyperparameter Interaction Heatmap",
+    metric_label: str = "AUROC",
+    figsize: tuple[int, int] = (8, 6),
+    cmap: str = "viridis"
+):
+    """
+    Plot a heatmap showing the interaction between two hyperparameters 
+    (e.g., K-Shot vs Inner Steps).
+    """
+    fig, ax = plt.subplots(figsize=figsize)
+    sns.heatmap(
+        pivot_df, 
+        annot=True, 
+        fmt=".3f", 
+        cmap=cmap, 
+        cbar_kws={'label': metric_label},
+        ax=ax
+    )
+    ax.set_title(title, fontweight="bold", pad=20)
+    plt.tight_layout()
+    return fig, ax

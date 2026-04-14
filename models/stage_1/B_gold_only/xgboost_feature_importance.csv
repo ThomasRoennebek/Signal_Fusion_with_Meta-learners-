@@ -1,301 +1,222 @@
 feature,importance
-cat__payment_terms_F060 Invoice Date + 60 days,0.3844281
-num__start_year,0.28232214
-num__expiry_year,0.15927939
-num__open_ended_contract,0.1526188
-num__start_year_capped,0.009820474
-num__fin_Total_assets_th_DKK,0.0050508655
-num__market_flag_stock_price_take_caution_or_worse,0.0024838794
-cat__payment_terms_F045 Invoice Date + 45 days,0.0017418688
-num__years_to_expiry,0.0008456149
-num__contract_value,0.0007434108
-num__Year,0.000104969775
-num__fin_Total_shareholders'_funds_and_liabilitiesth_DKK,6.669685e-05
-num__news_article_count,6.213384e-05
-num__contract_value_dkk,3.8868147e-05
-num__esg_row_missing_pct,3.723679e-05
-num__contracts_per_supplier,3.6602716e-05
-cat__term_type_auto_renew,2.8855324e-05
-cat__contract_currency_code_EUR,2.5024006e-05
-cat__contract_commodity_Fuel,2.2942426e-05
-num__news_avg_relevance_score,2.1985887e-05
-num__fin_Non-current_assetsth_DKK,1.8636694e-05
-num__fin_Other_current_assetsth_DKK,1.8194627e-05
-num__missingindicator_contract_value_dkk,1.5683925e-05
-num__contract_owner_cost_centre,1.560707e-05
-num__fin_EBITDA_th_DKK,1.554495e-05
-num__fin_risk_level_missing_flag,1.4130764e-05
-num__fin_Net_income_th_DKK,1.4062821e-05
-num__fin_Interest_paid_th_DKK,1.0616153e-05
-num__fin_EBIT_th_DKK,9.414378e-06
-cat__esg_company_name_Flextronics International Gesellschaft m.b.H.,9.341686e-06
-cat__contract_commodity_Shipper Boxes,7.945185e-06
-num__fin_roa_net_income,7.68316e-06
-num__fin_implied_rating_missing_flag,6.6246603e-06
-num__fin_Long_term_debtth_DKK,6.2368176e-06
-num__PPI_Value,5.523011e-06
-cat__Risk level_Do not source,4.479201e-06
-num__fin_closing_year,4.3955793e-06
-num__fin_Net_assets_turnover,3.4911188e-06
-num__fin_roe_net_income,3.4122897e-06
-cat__fin_closing_date_2023-12-31,3.388968e-06
-num__fin_Total_liabilities_Equity_ratio,2.7254857e-06
-num__fin_long_term_liabilities_equity_ratio,2.7194596e-06
-num__contract_age_years,2.2907927e-06
-num__news_row_missing_pct,2.2023692e-06
-num__news_positive_count,2.1161172e-06
-num__observation_year,2.0825366e-06
-num__fin_Net_Salesth_DKK,2.0384948e-06
-cat__contract_commodity_Plastic Raw Materials,1.2943811e-06
-cat__department_from_cost_center_Bioprocessing & Raw Materials,1.2737733e-06
-num__missingindicator_news_article_count,1.1790609e-06
-num__fin_Shareholders_funds_th_DKK,1.0888464e-06
-cat__incoterms_DDP Delivered duty paid,1.0083776e-06
-num__International_Shipments,9.903052e-07
-num__missingindicator_fin_Number_of_employees,7.693533e-07
-num__Timeliness,7.0521156e-07
-num__LPI_Score,6.1629606e-07
-cat__incoterms_DAP Del.at Place-excl.unloading,5.717394e-07
-num__missingindicator_price_volatility_score,0.0
-num__missingindicator_fin_Net_assets_turnover,0.0
-num__missingindicator_fin_roa_net_income,0.0
-num__missingindicator_market_cap_volatility,0.0
-num__missingindicator_Price_trends_52 weeks_%,0.0
-num__missingindicator_market_beta_1y,0.0
-num__missingindicator_Earnings_per_share_DKK,0.0
-num__missingindicator_Book_value_per_share_DKK,0.0
-num__missingindicator_avg_closing_price,0.0
-num__missingindicator_fin_roe_net_income,0.0
-num__missingindicator_fin_debt_asset_ratio,0.0
-num__missingindicator_esg_industry_max,0.0
-num__missingindicator_fin_solvency_ratio_asset_based,0.0
-num__missingindicator_fin_implied_rating_ordinal,0.0
-num__missingindicator_market_log_vol_shock_ratio,0.0
-num__missingindicator_has_environmental_appendix,0.0
-cat__contract_status_published,0.0
-num__missingindicator_fin_interest_coverage_ratio,0.0
+cat__payment_terms_F060 Invoice Date + 60 days,0.36283815
+num__expiry_year,0.20996763
+num__missingindicator_contract_value_dkk,0.19622195
+num__start_year,0.1275829
+num__start_year_capped,0.067898564
+cat__payment_terms_F045 Invoice Date + 45 days,0.015895117
+num__market_flag_stock_price_take_caution_or_worse,0.01478582
+num__fin_Total_shareholders'_funds_and_liabilitiesth_DKK,0.0030391654
+num__news_article_count,0.0006716633
+num__observation_year,0.00021814967
+num__contract_value,9.651686e-05
+num__open_ended_contract,8.581467e-05
+num__days_until_expiry,7.314958e-05
+cat__contract_commodity_Shipper Boxes,7.101317e-05
+num__contract_value_dkk,6.799193e-05
+num__contract_age_years,5.577672e-05
+cat__contract_currency_code_EUR,5.1397397e-05
+num__market_data_available,4.3311175e-05
+cat__expiry_pressure_bucket_5y_plus,4.327204e-05
+cat__contract_commodity_Fuel,4.060747e-05
+num__years_to_expiry_capped,3.739005e-05
+num__contracts_per_supplier,2.8731369e-05
+cat__term_type_auto_renew,2.7570959e-05
+num__fin_profit_margin,2.2095779e-05
+num__fin_ebit_margin,2.0469635e-05
+num__fin_EBITDA_margin,1.6365902e-05
+num__contract_owner_cost_centre,1.5118989e-05
+num__fin_Cash_ratio,1.4316625e-05
+num__PPI_Value,9.222031e-06
+cat__fin_Implied_rating - original_B1,7.9422825e-06
+cat__fin_closing_date_2023-12-31,5.621385e-06
+num__fin_long_term_gearing,4.5514666e-06
+cat__fin_moodys_company_name_Flextronics International Gesellschaft m.b.H.,4.393264e-06
+num__fin_implied_rating_missing_flag,4.194993e-06
+num__fin_Net_assets_turnover,3.7018465e-06
+num__fin_Total_liabilities_Equity_ratio,3.083015e-06
+num__fin_roe_net_income,2.7612841e-06
+num__fin_short_term_liabilities_equity_ratio,2.3972104e-06
+num__fin_roa_net_income,2.256868e-06
+num__news_avg_relevance_score,1.6799507e-06
+num__fin_current_ratio_missing_flag,1.5170075e-06
+num__missingindicator_esg_env_score,1.4732603e-06
+cat__Risk level_Do not source,1.3326423e-06
+num__fin_ebit_margin_missing_flag,1.2337277e-06
+cat__contract_commodity_Needles,1.1780548e-06
+num__fin_financial_level_missing_flag,1.1116234e-06
+num__fin_interest_coverage_ratio_missing_flag,1.0367729e-06
+num__esg_row_missing_pct,1.0315149e-06
+cat__Risk level_Go ahead,9.663985e-07
+num__fin_solvency_ratio_asset_based,8.887391e-07
+num__missingindicator_fin_Number_of_employees,8.125507e-07
+num__fin_current_ratio,8.0928976e-07
+cat__incoterms_DDU Delivered duty unpaid,7.495832e-07
+num__LPI_Score,7.402718e-07
+num__news_positive_count,5.3863386e-07
+num__news_avg_sentiment_score,5.251713e-07
+num__news_row_missing_pct,4.7404762e-07
+num__International_Shipments,4.662193e-07
+num__news_neutral_count,4.504793e-07
+num__fin_flag_risk_do_not_source,4.1573193e-07
+num__missingindicator_esg_esg_overall,3.9259936e-07
+cat__Country_Denmark,0.0
 cat__term_type_fixed,0.0
 cat__term_type_perpetual,0.0
 cat__payment_terms_F030 Invoice Date + 30 days,0.0
-num__missingindicator_fin_short_term_liabilities_equity_ratio,0.0
-num__missingindicator_fin_long_term_liabilities_equity_ratio,0.0
-num__missingindicator_fin_Total_liabilities_Equity_ratio,0.0
-num__missingindicator_price_trend_slope,0.0
-num__missingindicator_vol_trend_slope,0.0
-num__missingindicator_avg_market_cap,0.0
-num__missingindicator_news_negative_count,0.0
+cat__Risk level_stock_closing_price_Go ahead,0.0
+cat__company_country_clean_Denmark,0.0
+cat__incoterms_DAP Del.at Place-excl.unloading,0.0
+cat__fin_Implied_rating - original_B3,0.0
+num__missingindicator_days_until_expiry,0.0
+cat__incoterms_DDP Delivered duty paid,0.0
+cat__incoterms_FOB Free on board,0.0
+"cat__supplier_sector_Chemicals, Petroleum, Rubber & Plastic",0.0
+cat__Risk level_stock_closing_price_Do not source,0.0
+cat__Current_market_capitalisation_DKK_n.a.,0.0
+cat__contract_status_published,0.0
+num__missingindicator_fin_implied_rating_ordinal,0.0
+num__missingindicator_years_to_expiry_capped,0.0
+num__missingindicator_market_log_vol_shock_ratio,0.0
 num__missingindicator_news_neutral_count,0.0
 num__missingindicator_news_avg_sentiment_score,0.0
 num__missingindicator_news_avg_relevance_score,0.0
 num__missingindicator_news_max_relevance_score,0.0
-num__missingindicator_esg_industry_min,0.0
 num__missingindicator_news_negative_ratio,0.0
-num__missingindicator_Year,0.0
 num__missingindicator_avg_vol,0.0
-num__missingindicator_esg_gov_weight,0.0
-num__missingindicator_std_vol,0.0
-num__missingindicator_esg_gov_score,0.0
-num__missingindicator_esg_social_weight,0.0
-num__missingindicator_esg_social_score,0.0
-num__missingindicator_esg_env_weight,0.0
-num__missingindicator_esg_env_score,0.0
-num__missingindicator_max_vol,0.0
-num__missingindicator_esg_esg_industry_adjusted,0.0
-num__missingindicator_esg_esg_overall,0.0
-num__missingindicator_min_vol,0.0
 num__missingindicator_vol_stability_score,0.0
-num__missingindicator_esg_year,0.0
-num__missingindicator_vol_shock_ratio,0.0
-num__missingindicator_fin_financial_risk_score,0.0
-num__missingindicator_news_positive_count,0.0
-cat__expiry_pressure_bucket_3_to_5y,0.0
-cat__incoterms_DDU Delivered duty unpaid,0.0
-cat__esg_risk_level_Do not source,0.0
-cat__fin_implied_rating_B,0.0
-cat__fin_implied_rating_Baa,0.0
-cat__fin_risk_level_Do not source,0.0
-cat__fin_risk_level_Go ahead,0.0
-cat__fin_financial_level_High financial risk,0.0
-cat__fin_financial_level_Low financial risk,0.0
-cat__fin_output_text_Approved for sourcing. No further actions required.,0.0
-cat__fin_output_text_Sourcing exclusion recommended. Mitigation actions required. Please follow risk mitigation actions as communicated by your Risk team. Reach out to your risk representative for further guidance.,0.0
-cat__fin_Implied_rating - original_B1,0.0
-cat__fin_Implied_rating - original_B3,0.0
 cat__fin_Implied_rating - original_Baa1,0.0
-cat__esg_company_name_Nemera LA Verpilliere,0.0
-cat__esg_company_name_SkyNRG B.V.,0.0
-cat__esg_risk_level_Go ahead,0.0
-cat__fin_created_at_utc_2026-03-12 15:07:22.230528+00:00,0.0
-"cat__esg_sector_Chemicals, Petroleum, Rubber & Plastic",0.0
-cat__esg_sector_Metals & Metal Products,0.0
-cat__Risk level_Go ahead,0.0
-"cat__supplier_sector_Chemicals, Petroleum, Rubber & Plastic",0.0
-cat__supplier_sector_Metals & Metal Products,0.0
-cat__moodys_risk_rating_Do not source,0.0
-cat__moodys_risk_rating_Go ahead,0.0
-cat__Shares outstanding_n.a.,0.0
-cat__Current_market_capitalisation_DKK_n.a.,0.0
-cat__Risk level_stock_closing_price_Do not source,0.0
-cat__Risk level_stock_closing_price_Go ahead,0.0
-cat__company_country_clean_Denmark,0.0
-cat__Country_Denmark,0.0
-cat__fin_Status_Active,0.0
-cat__fin_closing_date_2025-03-31,0.0
-cat__incoterms_FOB Free on board,0.0
-cat__company_country_DENMARK,0.0
+num__missingindicator_vol_shock_ratio,0.0
+num__missingindicator_vol_trend_slope,0.0
+num__missingindicator_market_cap_volatility,0.0
+num__missingindicator_Price_trends_52 weeks_%,0.0
+num__missingindicator_Earnings_per_share_DKK,0.0
+num__missingindicator_avg_closing_price,0.0
+num__missingindicator_price_volatility_score,0.0
+num__missingindicator_price_trend_slope,0.0
 cat__contract_currency_code_JPY,0.0
-cat__contract_currency_code_SEK,0.0
+cat__fin_output_text_Sourcing exclusion recommended. Mitigation actions required. Please follow risk mitigation actions as communicated by your Risk team. Reach out to your risk representative for further guidance.,0.0
 "cat__contract_type_Finance, Legal & Procurement",0.0
+cat__contract_currency_code_SEK,0.0
+cat__fin_closing_date_2024-03-31,0.0
+cat__department_Logistics,0.0
+cat__department_Packaging Material,0.0
+num__missingindicator_news_negative_count,0.0
+cat__fin_moodys_company_name_Nemera LA Verpilliere,0.0
+cat__fin_moodys_company_name_SkyNRG B.V.,0.0
+cat__fin_closing_date_2022-12-31,0.0
+cat__fin_closing_date_2023-03-31,0.0
+cat__moodys_risk_rating_Go ahead,0.0
+cat__fin_closing_date_2024-12-31,0.0
+cat__fin_output_text_Approved for sourcing. No further actions required.,0.0
+cat__fin_closing_date_2025-03-31,0.0
+cat__fin_financial_level_High financial risk,0.0
+cat__fin_risk_level_Go ahead,0.0
+cat__fin_risk_level_Do not source,0.0
+cat__moodys_risk_rating_Do not source,0.0
+cat__fin_created_at_utc_2026-03-12 15:07:22.230528+00:00,0.0
+cat__fin_Status_Active,0.0
+cat__fin_implied_rating_B,0.0
+cat__department_Devices & Needles,0.0
+cat__department_from_cost_center_Devices & Needles,0.0
+cat__department_from_cost_center_Bioprocessing & Raw Materials,0.0
+cat__expiry_pressure_bucket_within_1y,0.0
+cat__fin_implied_rating_Baa,0.0
 cat__contract_type_Production,0.0
 cat__nn_contract_type_Logistics Services Provider Agreement,0.0
 cat__nn_contract_type_Other,0.0
 cat__contract_commodity_4PL,0.0
 cat__contract_commodity_Electronics and Other Components,0.0
+cat__supplier_sector_Metals & Metal Products,0.0
 cat__contract_commodity_Metal,0.0
-cat__contract_commodity_Needles,0.0
+cat__fin_financial_level_Low financial risk,0.0
+cat__contract_commodity_Plastic Raw Materials,0.0
 cat__team_Devices & Needles,0.0
 cat__unit_GSOD,0.0
 cat__unit_SSIMS,0.0
+cat__company_country_DENMARK,0.0
 cat__expiry_pressure_bucket_1_to_3y,0.0
-cat__fin_closing_date_2024-12-31,0.0
-num__missingindicator_fin_long_term_gearing,0.0
-cat__expiry_pressure_bucket_5y_plus,0.0
-cat__expiry_pressure_bucket_within_1y,0.0
-cat__department_from_cost_center_Devices & Needles,0.0
-cat__department_Devices & Needles,0.0
-cat__department_Logistics,0.0
-cat__department_Packaging Material,0.0
-cat__fin_moodys_company_name_Flextronics International Gesellschaft m.b.H.,0.0
-cat__fin_moodys_company_name_Nemera LA Verpilliere,0.0
-cat__fin_moodys_company_name_SkyNRG B.V.,0.0
-cat__fin_closing_date_2022-12-31,0.0
-cat__fin_closing_date_2023-03-31,0.0
-cat__fin_closing_date_2024-03-31,0.0
-num__missingindicator_fin_short_term_gearing,0.0
-num__missingindicator_fin_Costs_of_goods_soldth_DKK,0.0
+cat__expiry_pressure_bucket_3_to_5y,0.0
+cat__Shares outstanding_n.a.,0.0
+num__missingindicator_news_positive_count,0.0
 num__missingindicator_fin_Cash_ratio,0.0
-num__esg_env_weight,0.0
-num__esg_social_weight,0.0
-num__esg_gov_score,0.0
-num__esg_gov_weight,0.0
-num__esg_industry_min,0.0
-num__esg_industry_max,0.0
-num__news_negative_count,0.0
-num__news_neutral_count,0.0
-num__news_avg_sentiment_score,0.0
-num__news_max_relevance_score,0.0
-num__news_negative_ratio,0.0
-num__news_has_high_relevance_negative_news,0.0
-num__Customs,0.0
-num__Infrastructure,0.0
-num__Logistics_Competence,0.0
+num__missingindicator_news_article_count,0.0
+num__fin_flag_strong_liquidity,0.0
 num__Tracking_Tracing,0.0
-num__fin_financial_level_missing_flag,0.0
-num__fin_financial_risk_score_missing_flag,0.0
-num__fin_current_ratio_missing_flag,0.0
-num__fin_gearing_missing_flag,0.0
-num__fin_short_term_gearing_missing_flag,0.0
-num__fin_long_term_gearing_missing_flag,0.0
-num__fin_interest_coverage_ratio_missing_flag,0.0
-num__fin_profit_margin_missing_flag,0.0
-num__fin_ebit_margin_missing_flag,0.0
+num__Timeliness,0.0
 num__fin_implied_rating_ordinal,0.0
-num__fin_flag_weak_implied_rating,0.0
 num__fin_flag_moderate_or_worse_rating,0.0
 num__fin_flag_risk_take_caution_or_worse,0.0
-num__fin_flag_risk_do_not_source,0.0
-num__esg_social_score,0.0
-num__esg_env_score,0.0
 num__fin_flag_financial_risk_score_high,0.0
-num__esg_esg_industry_adjusted,0.0
-num__end_year,0.0
-num__fin_Number_of_months,0.0
-num__fin_Operating_revenue_Turnover_th_DKK,0.0
-num__fin_Gross_profit_th_DKK,0.0
-num__fin_Costs_of_goods_soldth_DKK,0.0
-num__fin_Current_assets_th_DKK,0.0
-num__fin_Cash_and_cash_equivalent_th_DKK,0.0
-num__fin_Current_liabilities_th_DKK,0.0
-num__fin_Non_current_liabilities_th_DKK,0.0
-num__fin_Other_non_current_liabilitiesth_DKK,0.0
-num__fin_Other_current_liabilitiesth_DKK,0.0
-num__fin_Working_capital_th_DKK,0.0
-num__fin_profit_margin,0.0
-num__fin_Gross_margin,0.0
-num__fin_EBITDA_margin,0.0
-num__fin_ebit_margin,0.0
-num__fin_current_ratio,0.0
-num__fin_gearing,0.0
-num__fin_Cash_ratio,0.0
-num__fin_long_term_gearing,0.0
-num__fin_short_term_gearing,0.0
-num__fin_short_term_liabilities_equity_ratio,0.0
-num__fin_interest_coverage_ratio,0.0
-num__fin_solvency_ratio_asset_based,0.0
-num__fin_debt_asset_ratio,0.0
-num__fin_Number_of_employees,0.0
-num__fin_financial_risk_score,0.0
-num__esg_year,0.0
-num__esg_esg_overall,0.0
-num__fin_flag_high_financial_risk_level,0.0
 num__fin_flag_financial_risk_score_very_high,0.0
-num__missingindicator_fin_gearing,0.0
-num__esg_data_available,0.0
-num__market_data_available,0.0
-num__missingindicator_fin_closing_year,0.0
-num__missingindicator_fin_Number_of_months,0.0
-num__missingindicator_fin_Net_Salesth_DKK,0.0
-num__missingindicator_fin_Operating_revenue_Turnover_th_DKK,0.0
-num__missingindicator_fin_Gross_profit_th_DKK,0.0
-num__missingindicator_fin_EBIT_th_DKK,0.0
-num__missingindicator_fin_Net_income_th_DKK,0.0
-num__missingindicator_fin_Interest_paid_th_DKK,0.0
-num__missingindicator_fin_EBITDA_th_DKK,0.0
-num__terminated,0.0
-num__missingindicator_fin_Total_assets_th_DKK,0.0
-num__missingindicator_fin_Non-current_assetsth_DKK,0.0
-num__missingindicator_fin_Current_assets_th_DKK,0.0
-num__missingindicator_fin_Cash_and_cash_equivalent_th_DKK,0.0
-num__missingindicator_fin_Total_shareholders'_funds_and_liabilitiesth_DKK,0.0
-num__missingindicator_fin_Long_term_debtth_DKK,0.0
-num__missingindicator_fin_Other_current_assetsth_DKK,0.0
-num__missingindicator_fin_Shareholders_funds_th_DKK,0.0
-num__missingindicator_fin_Current_liabilities_th_DKK,0.0
-num__missingindicator_fin_Non_current_liabilities_th_DKK,0.0
-num__missingindicator_fin_Other_non_current_liabilitiesth_DKK,0.0
-num__missingindicator_fin_Other_current_liabilitiesth_DKK,0.0
-num__missingindicator_fin_Working_capital_th_DKK,0.0
-num__missingindicator_fin_profit_margin,0.0
-num__missingindicator_fin_Gross_margin,0.0
-num__missingindicator_fin_EBITDA_margin,0.0
-num__missingindicator_fin_ebit_margin,0.0
-num__missingindicator_fin_current_ratio,0.0
-num__news_data_available,0.0
-num__financial_data_available,0.0
 num__fin_flag_liquidity_stress,0.0
-num__financial_row_missing_pct,0.0
 num__fin_flag_severe_liquidity_stress,0.0
-num__fin_flag_strong_liquidity,0.0
 num__fin_flag_gearing_high,0.0
+num__fin_flag_negative_roe,0.0
 num__fin_flag_long_term_gearing_high,0.0
 num__fin_flag_short_term_gearing_high,0.0
 num__fin_flag_debt_asset_high,0.0
-num__fin_flag_debt_asset_very_high,0.0
 num__fin_flag_long_term_liab_equity_high,0.0
 num__fin_flag_short_term_liab_equity_high,0.0
 num__fin_flag_interest_coverage_stress,0.0
 num__fin_flag_interest_coverage_weak,0.0
 num__fin_flag_low_solvency,0.0
 num__fin_flag_very_low_solvency,0.0
-num__fin_flag_negative_profit_margin,0.0
+num__Infrastructure,0.0
+num__Customs,0.0
+num__news_has_high_relevance_negative_news,0.0
+num__news_negative_ratio,0.0
+num__end_year,0.0
+num__fin_Number_of_months,0.0
+num__fin_gearing,0.0
+num__fin_interest_coverage_ratio,0.0
+num__fin_debt_asset_ratio,0.0
+num__fin_Number_of_employees,0.0
+num__fin_financial_risk_score,0.0
+num__esg_esg_overall,0.0
+num__esg_esg_industry_adjusted,0.0
+num__esg_env_score,0.0
+num__esg_env_weight,0.0
+num__esg_social_score,0.0
+num__esg_social_weight,0.0
+num__esg_gov_score,0.0
+num__esg_gov_weight,0.0
+num__esg_industry_min,0.0
+num__esg_industry_max,0.0
+num__news_negative_count,0.0
+num__news_max_relevance_score,0.0
 num__fin_flag_negative_ebit_margin,0.0
-num__fin_flag_profitability_stress,0.0
-num__fin_flag_negative_roe,0.0
 num__fin_flag_negative_roa,0.0
+num__missingindicator_esg_industry_max,0.0
+num__missingindicator_fin_roe_net_income,0.0
+num__missingindicator_fin_current_ratio,0.0
+num__missingindicator_fin_gearing,0.0
+num__terminated,0.0
+num__missingindicator_fin_long_term_gearing,0.0
+num__missingindicator_fin_Total_liabilities_Equity_ratio,0.0
+num__missingindicator_fin_short_term_liabilities_equity_ratio,0.0
+num__missingindicator_fin_interest_coverage_ratio,0.0
+num__missingindicator_fin_solvency_ratio_asset_based,0.0
+num__missingindicator_fin_debt_asset_ratio,0.0
+num__missingindicator_fin_roa_net_income,0.0
 num__fin_total_stress_flags,0.0
+num__missingindicator_fin_Net_assets_turnover,0.0
+num__missingindicator_fin_financial_risk_score,0.0
+num__missingindicator_esg_esg_industry_adjusted,0.0
+num__missingindicator_esg_env_weight,0.0
+num__missingindicator_esg_social_score,0.0
+num__missingindicator_esg_social_weight,0.0
+num__missingindicator_esg_gov_score,0.0
+num__missingindicator_esg_gov_weight,0.0
+num__missingindicator_esg_industry_min,0.0
+num__missingindicator_fin_ebit_margin,0.0
+num__missingindicator_fin_EBITDA_margin,0.0
+num__missingindicator_fin_profit_margin,0.0
+num__missingindicator_fin_Total_shareholders'_funds_and_liabilitiesth_DKK,0.0
 num__fin_flag_multiple_financial_stress_signals,0.0
 num__fin_flag_severe_financial_stress,0.0
-num__market_has_stock_view,0.0
+num__esg_below_industry_min,0.0
+num__supplier_is_publicly_listed,0.0
 num__market_flag_high_volume_shock,0.0
 num__market_flag_high_market_cap_volatility,0.0
 num__market_flag_negative_volume_trend,0.0
@@ -303,4 +224,12 @@ num__market_flag_negative_price_trend,0.0
 num__market_flag_negative_52w_price_trend,0.0
 num__market_flag_high_beta,0.0
 num__market_flag_negative_eps,0.0
+num__lpi_relative_risk,0.0
+num__is_old_and_near_expiry,0.0
+num__lpi_below_supplier_median,0.0
+num__has_environmental_appendix,0.0
+num__financial_data_available,0.0
+num__esg_data_available,0.0
+num__news_data_available,0.0
+num__missingindicator_fin_Number_of_months,0.0
 cat__Code_DNK,0.0

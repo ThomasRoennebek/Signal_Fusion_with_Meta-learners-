@@ -6,7 +6,7 @@ authors = [
     { name = "ThomasRoennebek", email = "hansen.fodbold@live.dk" }
 ]
 readme = "README.md"
-requires-python = "==3.12.*"
+requires-python = ">=3.12"
 dependencies = [
     "jupyter",
     "notebook",
@@ -25,6 +25,7 @@ dependencies = [
     "torchaudio",
     "snorkel",
     "xgboost",
+    "shap",
 ]
 
 [tool.poetry]

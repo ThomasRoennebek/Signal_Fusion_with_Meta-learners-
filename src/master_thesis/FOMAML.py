@@ -18,7 +18,6 @@ from typing import Any, Dict, List, Optional
 import torch.nn.functional as F
 import torch.func
 
-from master_thesis.stage2 import build_stage2_model_from_config
 from master_thesis.episode_sampler import sample_support_query_split
 from master_thesis.metrics import evaluate_on_gold_binary
 
@@ -67,13 +66,11 @@ def adapt_fomaml_on_episode(
         # 2. Backpropagate with create_graph=False (First-Order Approximation Magic!)
         grads = torch.autograd.grad(loss, params.values(), create_graph=False, allow_unused=True)
         
-        # 3. Manual Functional SGD Update across the ENTIRE network with Strict Clipping!
+        # 3. Manual Functional SGD Update across the ENTIRE network with no inner-loop clipping!
         safe_params = {}
         for (name, param), grad in zip(params.items(), grads):
             if grad is not None:
-                # Mathematically cap the gradients to stop PyTorch from exploding to infinity/NaN
-                clipped_grad = torch.clamp(grad, min=-1.0, max=1.0)
-                safe_params[name] = param - inner_lr * clipped_grad
+                safe_params[name] = param - inner_lr * grad
             else:
                 safe_params[name] = param
         params = safe_params
@@ -111,9 +108,10 @@ def meta_train_fomaml(
     history = []
     train_df = task_df[task_df[department_col].isin(meta_train_departments)].copy()
 
+    total_skipped = 0
     for iteration in range(meta_iterations):
         outer_optimizer.zero_grad()
-        outer_loss = 0.0
+        valid_query_losses = []
         
         batch_depts = random.choices(meta_train_departments, k=meta_batch_size)
         
@@ -137,27 +135,38 @@ def meta_train_fomaml(
             )
 
             # --- FOMAML Inner Loop ---
-            # Update all parameters (not just the head)!
             adapted_params = adapt_fomaml_on_episode(model, X_supp, y_supp, inner_lr, inner_steps)
             
             # --- FOMAML Outer Loop ---
             buffers = dict(model.named_buffers())
             logits = torch.func.functional_call(model, (adapted_params, buffers), X_query)
             
-            # Accumulate Total Loss
-            outer_loss += criterion(logits, y_query)
+            # Check for NaN in current episode loss
+            loss_val = criterion(logits, y_query)
+            if torch.isfinite(loss_val):
+                valid_query_losses.append(loss_val)
+            else:
+                total_skipped += 1
 
-        if isinstance(outer_loss, torch.Tensor):
-            # Magical PyTorch backpropagation. 
-            # Because the inner loop used create_graph=False, PyTorch intelligently ignores
-            # the massive inner Hessian matrix (First-Order!). The gradients flow linearly 
-            # and flawlessly back to ALL initial parameters globally.
+        if valid_query_losses:
+            outer_loss = torch.stack(valid_query_losses).mean()
             outer_loss.backward()
+            
+            # Numerical stability: clip outer-loop meta-gradients after backpropagation
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+            
             outer_optimizer.step()
             
             if (iteration + 1) % 10 == 0:
-                print(f"FOMAML Meta-Iteration {iteration+1:03d} | Global Loss: {outer_loss.item():.4f}")
-            history.append({"iteration": iteration + 1, "meta_loss": float(outer_loss.item())})
+                print(f"FOMAML Meta-Iteration {iteration+1:03d} | Global Loss: {outer_loss.item():.4f} | Skipped: {total_skipped}")
+            history.append({
+                "iteration": iteration + 1, 
+                "meta_loss": float(outer_loss.item()),
+                "n_skipped": total_skipped
+            })
+        else:
+            if (iteration + 1) % 10 == 0:
+                print(f"FOMAML Meta-Iteration {iteration+1:03d} | [WARNING] All episodes skipped due to NaN.")
             
     return {"method": "fomaml", "status": "success", "history": pd.DataFrame(history), "model": model}
 

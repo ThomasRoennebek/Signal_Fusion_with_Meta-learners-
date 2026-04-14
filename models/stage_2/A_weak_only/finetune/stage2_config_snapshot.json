@@ -23,16 +23,16 @@
     "exclude_departments": []
   },
   "support_config": {
-    "n_support_pos": 1,
-    "n_support_neg": 1
+    "n_support_pos": 2,
+    "n_support_neg": 2
   },
   "method": "finetune",
   "meta_config": {
-    "meta_batch_size": 2,
-    "meta_iterations": 25,
-    "inner_lr": 0.001,
-    "outer_lr": 0.001,
-    "inner_steps": 3,
+    "meta_batch_size": 1,
+    "meta_iterations": 100,
+    "inner_lr": 0.0001,
+    "outer_lr": 0.0005,
+    "inner_steps": 5,
     "target_inner_steps": 5,
     "n_repeats": 20
   },
