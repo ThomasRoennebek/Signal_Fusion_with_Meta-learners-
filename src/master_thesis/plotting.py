@@ -36,6 +36,17 @@ THESIS_PALETTE = {
     "light_grey": "#DDDDDD",
 }
 
+DTU_PALETTE = {
+    "primary": "#990000",  # DTU Red
+    "secondary": "#2F3EE0", # DTU Blue (accent)
+    "black": "#000000",
+    "grey": "#707070",
+    "light_grey": "#E7E7E7",
+    "accent_red": "#E31837",
+    "accent_yellow": "#F6D04D",
+    "accent_green": "#00C1D4", # DTU Teal/Green
+}
+
 METHOD_COLORS = {
     "zero_shot": THESIS_PALETTE["grey"],
     "zero-shot": THESIS_PALETTE["grey"],
@@ -53,18 +64,9 @@ METHOD_COLORS = {
     "mean predictor": THESIS_PALETTE["grey"],
 }
 
-VIEW_COLORS = {
-    "contract_core": THESIS_PALETTE["blue"],
-    "financial": THESIS_PALETTE["vermillion"],
-    "esg": THESIS_PALETTE["green"],
-    "news": THESIS_PALETTE["orange"],
-    "market": THESIS_PALETTE["purple"],
-    "macro_logistics": THESIS_PALETTE["sky_blue"],
-    "labels": THESIS_PALETTE["grey"],
-}
-
 
 def set_thesis_style(
+    palette: str = "thesis",
     font_family: str = "serif",
     font_name: str = "Times New Roman",
     font_scale: float = 1.15,
@@ -74,14 +76,12 @@ def set_thesis_style(
     """
     Apply a clean, publication-ready plotting style for all thesis figures.
 
-    The default style is intentionally minimal: white background, no top/right
-    spines, colorblind-safe colors, embedded fonts for PDF export, and high-DPI
-    saving. It works for EDA plots, heatmaps, model evaluation, and SHAP figures.
-
-    Returns
-    -------
-    dict[str, str]
-        Method-specific color mapping that can be reused in plots.
+    Parameters
+    ----------
+    palette : str
+        The color palette to use. Options: "thesis" (standard colorblind-safe) 
+        or "dtu" (Technical University of Denmark branding).
+    ...
     """
     latex_available = shutil.which("latex") is not None
     use_latex = use_latex_if_available and latex_available
@@ -92,6 +92,34 @@ def set_thesis_style(
         font=font_name,
         font_scale=font_scale,
     )
+
+    # Determine color cycle based on palette
+    if palette.lower() == "dtu":
+        color_cycle = [
+            DTU_PALETTE["primary"],
+            DTU_PALETTE["secondary"],
+            DTU_PALETTE["accent_green"],
+            DTU_PALETTE["accent_red"],
+            DTU_PALETTE["accent_yellow"],
+            DTU_PALETTE["grey"],
+        ]
+        # Update METHOD_COLORS dynamically for DTU
+        METHOD_COLORS.update({
+            "finetune": DTU_PALETTE["secondary"],
+            "anil": DTU_PALETTE["accent_green"],
+            "fomaml": DTU_PALETTE["accent_yellow"],
+            "maml": DTU_PALETTE["primary"],
+        })
+    else:
+        color_cycle = [
+            THESIS_PALETTE["blue"],
+            THESIS_PALETTE["vermillion"],
+            THESIS_PALETTE["green"],
+            THESIS_PALETTE["orange"],
+            THESIS_PALETTE["sky_blue"],
+            THESIS_PALETTE["purple"],
+            THESIS_PALETTE["grey"],
+        ]
 
     plt.rcParams.update({
         # Resolution
@@ -125,16 +153,8 @@ def set_thesis_style(
         "savefig.pad_inches": 0.05,
         "pdf.fonttype": 42,
         "ps.fonttype": 42,
-        # Color cycle: Okabe-Ito inspired
-        "axes.prop_cycle": plt.cycler(color=[
-            THESIS_PALETTE["blue"],
-            THESIS_PALETTE["vermillion"],
-            THESIS_PALETTE["green"],
-            THESIS_PALETTE["orange"],
-            THESIS_PALETTE["sky_blue"],
-            THESIS_PALETTE["purple"],
-            THESIS_PALETTE["grey"],
-        ]),
+        # Color cycle
+        "axes.prop_cycle": plt.cycler(color=color_cycle),
     })
 
     return METHOD_COLORS
@@ -1324,335 +1344,6 @@ def plot_view_level_shap_importance(
     ax.set_title(title)
     ax.set_xlabel("Mean absolute SHAP value")
     ax.set_ylabel("Data view")
-    despine_thesis(ax)
-    plt.tight_layout()
-    return fig, ax
-
-# -----------------------------------------------------------------------------
-# Representation / embedding diagnostics
-# -----------------------------------------------------------------------------
-
-def compute_2d_projection(
-    X,
-    method: str = "pca",
-    random_state: int = 42,
-    perplexity: float = 30.0,
-    n_neighbors: int = 15,
-    min_dist: float = 0.1,
-) -> pd.DataFrame:
-    """
-    Reduce a feature matrix or model embedding matrix to two dimensions.
-
-    This helper is intended for qualitative diagnostics such as:
-    - checking whether departments form distinct task clusters
-    - checking whether gold-label classes separate before/after adaptation
-    - visualizing whether a learned representation changes after adaptation
-
-    Parameters
-    ----------
-    X:
-        Array-like matrix with shape (n_samples, n_features).
-    method:
-        One of {"pca", "tsne", "umap"}. UMAP requires the optional `umap-learn`
-        package. If UMAP is unavailable, use PCA or t-SNE instead.
-    random_state:
-        Random seed for reproducibility.
-    perplexity:
-        t-SNE perplexity. Automatically capped for very small datasets.
-    n_neighbors:
-        UMAP neighborhood size.
-    min_dist:
-        UMAP minimum distance.
-
-    Returns
-    -------
-    pd.DataFrame
-        Columns: dim_1, dim_2.
-    """
-    X_arr = np.asarray(X)
-    if X_arr.ndim != 2:
-        raise ValueError(f"X must be 2-dimensional. Got shape {X_arr.shape}.")
-    if X_arr.shape[0] < 2:
-        raise ValueError("At least two samples are required for a 2D projection.")
-
-    method = method.lower()
-
-    if method == "pca":
-        from sklearn.decomposition import PCA
-
-        reducer = PCA(n_components=2, random_state=random_state)
-        coords = reducer.fit_transform(X_arr)
-
-    elif method == "tsne":
-        from sklearn.manifold import TSNE
-
-        safe_perplexity = min(float(perplexity), max(1.0, (X_arr.shape[0] - 1) / 3))
-        reducer = TSNE(
-            n_components=2,
-            random_state=random_state,
-            perplexity=safe_perplexity,
-            init="pca",
-            learning_rate="auto",
-        )
-        coords = reducer.fit_transform(X_arr)
-
-    elif method == "umap":
-        try:
-            import umap  # type: ignore
-        except ImportError as exc:
-            raise ImportError(
-                "UMAP projection requires the optional package `umap-learn`. "
-                "Install it or use method='pca' or method='tsne'."
-            ) from exc
-
-        safe_neighbors = min(int(n_neighbors), max(2, X_arr.shape[0] - 1))
-        reducer = umap.UMAP(
-            n_components=2,
-            n_neighbors=safe_neighbors,
-            min_dist=min_dist,
-            random_state=random_state,
-        )
-        coords = reducer.fit_transform(X_arr)
-
-    else:
-        raise ValueError("method must be one of: 'pca', 'tsne', 'umap'")
-
-    return pd.DataFrame(coords, columns=["dim_1", "dim_2"])
-
-
-def plot_embedding_projection(
-    projection_df: pd.DataFrame,
-    hue_col: str,
-    style_col: str | None = None,
-    size_col: str | None = None,
-    title: str = "2D Representation Projection",
-    subtitle: str | None = None,
-    palette: dict | str | None = None,
-    alpha: float = 0.85,
-    s: int = 55,
-    figsize: tuple[int, int] = (8, 6),
-):
-    """
-    Plot a 2D PCA/t-SNE/UMAP projection with thesis styling.
-
-    The function expects a DataFrame containing `dim_1`, `dim_2`, and a hue
-    column. It does not compute the projection itself; use `compute_2d_projection`
-    first when needed.
-    """
-    _require_columns(projection_df, ["dim_1", "dim_2", hue_col])
-
-    fig, ax = plt.subplots(figsize=figsize)
-    sns.scatterplot(
-        data=projection_df,
-        x="dim_1",
-        y="dim_2",
-        hue=hue_col,
-        style=style_col,
-        size=size_col,
-        palette=palette,
-        alpha=alpha,
-        s=s,
-        edgecolor="white",
-        linewidth=0.4,
-        ax=ax,
-    )
-    ax.set_title(title)
-    if subtitle:
-        ax.text(0.0, 1.02, subtitle, transform=ax.transAxes, fontsize=9, color="#555555")
-    ax.set_xlabel("Projection dimension 1")
-    ax.set_ylabel("Projection dimension 2")
-    ax.legend(frameon=False, bbox_to_anchor=(1.02, 1), loc="upper left")
-    despine_thesis(ax)
-    plt.tight_layout()
-    return fig, ax
-
-
-def plot_department_embedding_projection(
-    X,
-    metadata_df: pd.DataFrame,
-    department_col: str = "department",
-    method: str = "pca",
-    title: str | None = None,
-    random_state: int = 42,
-    figsize: tuple[int, int] = (9, 6),
-):
-    """
-    Project feature/model embeddings and color contracts by department.
-
-    Thesis use:
-    This plot is a qualitative diagnostic of task heterogeneity. If departments
-    form distinct clusters, it supports the claim that procurement departments
-    behave like different tasks and that department-specific adaptation may be
-    useful. If departments strongly overlap, it suggests that Stage 1 weak
-    supervision may already capture much of the shared contract structure.
-    """
-    _require_columns(metadata_df, [department_col])
-    projection_df = compute_2d_projection(X, method=method, random_state=random_state)
-    projection_df[department_col] = metadata_df[department_col].reset_index(drop=True).astype(str)
-
-    return plot_embedding_projection(
-        projection_df=projection_df,
-        hue_col=department_col,
-        title=title or f"{method.upper()} Projection of Contract Representation by Department",
-        subtitle="Qualitative diagnostic of department/task structure; not a performance metric.",
-        palette=None,
-        figsize=figsize,
-    )
-
-
-def plot_gold_label_embedding_projection(
-    X,
-    metadata_df: pd.DataFrame,
-    label_col: str = "gold_y",
-    department_col: str | None = "department",
-    target_department: str | None = None,
-    method: str = "pca",
-    title: str | None = None,
-    random_state: int = 42,
-    figsize: tuple[int, int] = (8, 6),
-):
-    """
-    Project feature/model embeddings and color points by gold labels.
-
-    Optionally filters to one department, for example Logistics. This is useful
-    for checking whether Stage 1 already separates the target department's gold
-    labels or whether adaptation is needed.
-    """
-    required = [label_col]
-    if target_department is not None and department_col is not None:
-        required.append(department_col)
-    _require_columns(metadata_df, required)
-
-    meta = metadata_df.reset_index(drop=True).copy()
-    X_arr = np.asarray(X)
-
-    if target_department is not None and department_col is not None:
-        mask = meta[department_col].astype(str).eq(str(target_department)).to_numpy()
-        meta = meta.loc[mask].reset_index(drop=True)
-        X_arr = X_arr[mask]
-
-    projection_df = compute_2d_projection(X_arr, method=method, random_state=random_state)
-    projection_df[label_col] = meta[label_col].map({0: "No", 1: "Yes"}).fillna(meta[label_col].astype(str))
-    if department_col is not None and department_col in meta.columns:
-        projection_df[department_col] = meta[department_col].astype(str)
-
-    label_palette = {"No": THESIS_PALETTE["blue"], "Yes": THESIS_PALETTE["vermillion"]}
-    dept_text = f" — {target_department}" if target_department else ""
-
-    return plot_embedding_projection(
-        projection_df=projection_df,
-        hue_col=label_col,
-        title=title or f"{method.upper()} Projection by Gold Label{dept_text}",
-        subtitle="Qualitative diagnostic of label separability; main evidence should come from repeated metrics.",
-        palette=label_palette,
-        figsize=figsize,
-    )
-
-
-def plot_pre_post_adaptation_projection(
-    pre_embeddings,
-    post_embeddings,
-    metadata_df: pd.DataFrame,
-    label_col: str = "gold_y",
-    method: str = "pca",
-    title: str = "Representation Shift Before and After Adaptation",
-    random_state: int = 42,
-    figsize: tuple[int, int] = (12, 5),
-):
-    """
-    Compare pre-adaptation and post-adaptation embeddings in a shared 2D space.
-
-    The reducer is fitted on the concatenated pre/post embeddings so both panels
-    share the same coordinate system. This makes the figure useful for asking:
-    did few-shot adaptation change the representation in a way that makes the
-    target labels more separable?
-
-    This is a qualitative representation diagnostic and should be interpreted
-    together with AUROC, log-loss, ECE, Precision@K and NDCG@K.
-    """
-    _require_columns(metadata_df, [label_col])
-    pre_arr = np.asarray(pre_embeddings)
-    post_arr = np.asarray(post_embeddings)
-    if pre_arr.shape != post_arr.shape:
-        raise ValueError(f"pre_embeddings and post_embeddings must have the same shape. Got {pre_arr.shape} and {post_arr.shape}.")
-
-    combined = np.vstack([pre_arr, post_arr])
-    projection = compute_2d_projection(combined, method=method, random_state=random_state)
-    n = pre_arr.shape[0]
-
-    meta = metadata_df.reset_index(drop=True).copy()
-    label_values = meta[label_col].map({0: "No", 1: "Yes"}).fillna(meta[label_col].astype(str))
-
-    plot_df = pd.concat([
-        projection.iloc[:n].assign(stage="Pre-adaptation", label=label_values.values),
-        projection.iloc[n:].assign(stage="Post-adaptation", label=label_values.values),
-    ], ignore_index=True)
-
-    label_palette = {"No": THESIS_PALETTE["blue"], "Yes": THESIS_PALETTE["vermillion"]}
-
-    fig, axes = plt.subplots(1, 2, figsize=figsize, sharex=True, sharey=True)
-    for ax, stage in zip(axes, ["Pre-adaptation", "Post-adaptation"]):
-        stage_df = plot_df.loc[plot_df["stage"] == stage]
-        sns.scatterplot(
-            data=stage_df,
-            x="dim_1",
-            y="dim_2",
-            hue="label",
-            palette=label_palette,
-            alpha=0.9,
-            s=60,
-            edgecolor="white",
-            linewidth=0.4,
-            ax=ax,
-        )
-        ax.set_title(stage)
-        ax.set_xlabel("Projection dimension 1")
-        ax.set_ylabel("Projection dimension 2")
-        despine_thesis(ax)
-        ax.legend(title=label_col, frameon=False)
-
-    fig.suptitle(title)
-    plt.tight_layout()
-    return fig, axes
-
-
-def plot_embedding_shift_magnitude(
-    pre_embeddings,
-    post_embeddings,
-    metadata_df: pd.DataFrame | None = None,
-    group_col: str | None = None,
-    title: str = "Embedding Shift Magnitude After Adaptation",
-    figsize: tuple[int, int] = (8, 5),
-):
-    """
-    Plot how much each observation moved in embedding space after adaptation.
-
-    If `group_col` is provided, shift magnitudes are shown by group, for example
-    by gold label or department. This can reveal whether adaptation changes the
-    representation more strongly for one class or task subset.
-    """
-    pre_arr = np.asarray(pre_embeddings)
-    post_arr = np.asarray(post_embeddings)
-    if pre_arr.shape != post_arr.shape:
-        raise ValueError(f"pre_embeddings and post_embeddings must have the same shape. Got {pre_arr.shape} and {post_arr.shape}.")
-
-    shift = np.linalg.norm(post_arr - pre_arr, axis=1)
-    plot_df = pd.DataFrame({"shift_magnitude": shift})
-
-    if metadata_df is not None and group_col is not None:
-        _require_columns(metadata_df, [group_col])
-        plot_df[group_col] = metadata_df.reset_index(drop=True)[group_col].values
-
-    fig, ax = plt.subplots(figsize=figsize)
-    if group_col is not None and group_col in plot_df.columns:
-        sns.boxplot(data=plot_df, x=group_col, y="shift_magnitude", ax=ax, showfliers=False)
-        sns.stripplot(data=plot_df, x=group_col, y="shift_magnitude", ax=ax, color="black", alpha=0.45, size=3, jitter=True)
-        ax.set_xlabel(group_col)
-    else:
-        sns.histplot(data=plot_df, x="shift_magnitude", bins=30, kde=True, ax=ax)
-        ax.set_xlabel("Embedding shift magnitude")
-    ax.set_title(title)
-    ax.set_ylabel("Shift magnitude")
     despine_thesis(ax)
     plt.tight_layout()
     return fig, ax
