@@ -1,0 +1,11 @@
+metric,value
+Number of rows,9201
+Unique contract_id,2209
+Unique supplier_id,583
+Number of departments,14
+Observation years covered,2015 - 2025
+Numeric columns,121
+Categorical columns,41
+Boolean columns,0
+Columns with missing values,91
+Duplicate contract_ids,6992

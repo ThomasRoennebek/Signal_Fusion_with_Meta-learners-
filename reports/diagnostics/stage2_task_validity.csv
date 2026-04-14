@@ -1,0 +1,5 @@
+department,gold_total,gold_yes,gold_no,gold_yes_rate,valid_k2,valid_k5,valid_k10,suggested_role
+Devices & Needles,62,33,29,0.5323,True,True,True,source_task
+Packaging Material,12,0,12,0.0,False,False,False,invalid_one_class
+Logistics,9,9,0,1.0,False,False,False,target_candidate
+Bioprocessing and Excipients,1,1,0,1.0,False,False,False,invalid_one_class
