@@ -1,861 +1,732 @@
 feature,importance
-num__missingindicator_fin_Number_of_months,0.2672906
-num__lpi_relative_risk,0.12570408
-num__fin_implied_rating_missing_flag,0.12070998
-num__fin_flag_moderate_or_worse_rating,0.090248175
-num__Tracking_Tracing,0.042714603
-num__contract_age_years,0.024980217
-num__Customs,0.02129987
-cat__department_Bioprocessing & Raw Materials,0.015439925
-cat__incoterms_FCA Free carrier,0.013679789
-num__LPI_Score,0.012507699
-num__start_year,0.011921559
-num__fin_flag_multiple_financial_stress_signals,0.0116204405
-num__contract_value_dkk,0.008057742
-num__expiry_year,0.0074290163
-cat__contract_commodity_Warehouse Operations - Storage,0.0068663904
-cat__department_from_cost_center_Drug Substance Outsourcing,0.0062987013
-num__missingindicator_years_to_expiry_capped,0.0062415204
-cat__contract_commodity_Outsourced Product Services,0.0056563285
-cat__contract_currency_code_EUR,0.0053808847
-num__esg_row_missing_pct,0.005118891
-num__fin_total_stress_flags,0.0050721993
-cat__department_Logistics,0.0049263705
-num__fin_flag_severe_financial_stress,0.0049062725
-num__missingindicator_fin_financial_risk_score,0.00444168
-cat__contract_currency_code_BRL,0.0038155448
-num__missingindicator_fin_debt_asset_ratio,0.0037634894
-cat__fin_moodys_company_name_SkyNRG B.V.,0.0036094664
-cat__team_Devices & Needles,0.003550164
-cat__department_Drug Substance Outsourcing,0.0034417957
-num__news_has_high_relevance_negative_news,0.0032719825
-cat__contract_currency_code_USD,0.0032567035
-cat__Risk level_Go ahead,0.0029351944
-num__news_negative_count,0.002853272
-num__Timeliness,0.0027648152
-cat__nn_contract_type_Other,0.0026246782
-num__news_positive_count,0.0025900803
-cat__contract_type_Research & Development,0.002521309
-cat__fin_moodys_company_name_Novozymes A/S,0.0024306178
-"cat__supplier_sector_Transport, Freight & Storage",0.0024124607
-num__fin_financial_level_missing_flag,0.0024055569
-num__esg_esg_industry_adjusted,0.0023591218
-num__esg_social_score,0.002256005
-cat__Risk level_Do not source,0.0021547552
-num__fin_implied_rating_ordinal,0.0021268814
-cat__department_Devices & Needles,0.002117806
-cat__fin_implied_rating_Ba,0.002005918
-cat__contract_commodity_Needles,0.0019543713
-cat__fin_implied_rating_Baa,0.0019178911
-num__esg_env_weight,0.0018568197
-cat__contract_commodity_Electronics and Other Components,0.0018176828
-num__missingindicator_fin_implied_rating_ordinal,0.0017846001
-cat__fin_moodys_company_name_All4labels Denmark Sb A/S,0.0017670228
-num__contracts_per_supplier,0.0017329198
-cat__contract_commodity_4PL,0.0017300624
-cat__department_Packaging Material,0.0017244545
-cat__fin_risk_level_Take caution,0.0016397292
-num__observation_year,0.0016382127
-num__market_flag_negative_52w_price_trend,0.0016165583
-num__esg_social_weight,0.001609344
-num__missingindicator_esg_esg_overall,0.0015996147
-num__fin_flag_liquidity_stress,0.0015802678
-num__contract_value,0.0014619839
-num__start_year_capped,0.00143304
-cat__incoterms_DDP Delivered duty paid,0.0014146623
-cat__contract_commodity_Fuel,0.0014054411
-cat__department_from_cost_center_Devices & Needles,0.0014003929
-cat__fin_Implied_rating - original_B3,0.0013732798
-num__news_neutral_count,0.0013607395
-num__esg_env_score,0.0013520286
-cat__term_type_auto_renew,0.0013341197
-num__Price_trends_52 weeks_%,0.0012887307
-cat__contract_type_Production,0.0012574197
-num__fin_interest_coverage_ratio,0.0011825988
-num__news_article_count,0.0011817808
-cat__payment_terms_F045 Invoice Date + 45 days,0.0011631472
-cat__contract_currency_code_JPY,0.0011593545
-cat__fin_moodys_company_name_DHL Global Forwarding (Denmark) A/S,0.0011492344
-cat__contract_commodity_Shipper Boxes,0.0010879223
-num__esg_gov_weight,0.0010774782
-num__fin_flag_risk_take_caution_or_worse,0.0010588667
-cat__fin_Implied_rating - original_Baa3,0.0010316827
-num__fin_flag_risk_do_not_source,0.0010097072
-cat__fin_closing_date_2023-12-31,0.0010034441
-num__news_avg_sentiment_score,0.0009923186
-num__news_row_missing_pct,0.0009423852
-num__news_max_relevance_score,0.0009313068
-num__market_flag_negative_volume_trend,0.0009254339
-num__PPI_Value,0.0009242653
-num__days_until_expiry,0.00091385044
-num__news_avg_relevance_score,0.00090922107
-num__contract_owner_cost_centre,0.00090261473
-cat__incoterms_FOB Free on board,0.00089621404
-cat__nn_contract_type_Logistics Services Provider Agreement,0.000884503
-num__fin_ebit_margin_missing_flag,0.00087567465
-num__market_flag_stock_price_take_caution_or_worse,0.0008696616
-cat__supplier_sector_Metals & Metal Products,0.000867744
-"cat__fin_output_text_Use caution. Input from outdated and/or partial data, hence low quality credit rating & traffic light. Mitigation actions required. Request financial data from supplier as described in the risk process tab.",0.0008536694
-cat__contract_currency_code_DKK,0.00084846024
-cat__expiry_pressure_bucket_1_to_3y,0.00081607845
-num__fin_Total_shareholders'_funds_and_liabilitiesth_DKK,0.0007816757
-cat__contract_currency_code_SEK,0.00077190413
-cat__contract_commodity_Freights Forwarding - Road,0.00076751417
-num__missingindicator_fin_gearing,0.00075927615
-num__fin_Number_of_employees,0.0007362202
-cat__contract_commodity_Freights Forwarding - Air,0.0007103332
-"cat__supplier_sector_Chemicals, Petroleum, Rubber & Plastic",0.0007021069
-num__fin_flag_severe_liquidity_stress,0.00067435054
-cat__fin_moodys_company_name_Nemera LA Verpilliere,0.00066922413
-num__market_data_available,0.0006411319
-num__missingindicator_avg_vol,0.0006321469
-num__fin_current_ratio,0.00062830653
-cat__unit_GSOD,0.000620235
-num__International_Shipments,0.0006164338
-num__fin_Cash_ratio,0.00061463506
-num__news_negative_ratio,0.0006067207
-num__missingindicator_news_article_count,0.0006016247
-cat__incoterms_DAP Del.at Place-excl.unloading,0.000582326
-num__years_to_expiry_capped,0.0005773449
-cat__contract_commodity_Plastic Raw Materials,0.00057549856
-cat__Shares outstanding_414.555.046,0.00057451375
-num__fin_short_term_liabilities_equity_ratio,0.0005706485
-cat__contract_commodity_Road Transportation,0.00056779344
-num__fin_debt_asset_ratio,0.0005503634
-cat__nn_contract_type_Supply Agreement,0.0005248714
-num__open_ended_contract,0.0005143382
-cat__Current_market_capitalisation_DKK_154.546.116,0.00050615054
-num__fin_Total_liabilities_Equity_ratio,0.00050198036
-num__missingindicator_fin_Net_assets_turnover,0.0005002019
-cat__fin_Implied_rating - original_Ba1,0.00048597017
-num__fin_current_ratio_missing_flag,0.00048104321
-cat__incoterms_CPT Carriage paid,0.00047778216
-cat__fin_implied_rating_Aa,0.00047675642
-cat__fin_moodys_company_name_ISS Facility Services A/S,0.00047234233
-cat__expiry_pressure_bucket_3_to_5y,0.00046132944
-"cat__team_Quality, Production Services & Supplies",0.0004530366
-cat__term_type_fixed,0.00045208458
-num__missingindicator_fin_EBITDA_margin,0.00044780876
-num__fin_solvency_ratio_asset_based,0.00044552895
-num__fin_roe_net_income,0.00043875683
-cat__contract_commodity_Cleaning Unclassified,0.0004376668
-cat__expiry_pressure_bucket_5y_plus,0.00043375895
-num__fin_long_term_gearing,0.00042325436
-cat__fin_Implied_rating - original_Baa1,0.00041102807
-cat__fin_closing_date_2022-12-31,0.00040724268
-num__esg_esg_overall,0.00040706163
-num__missingindicator_fin_long_term_gearing,0.00039669403
-cat__nn_contract_type_Confidentiality Agreement,0.0003943965
-cat__contract_commodity_Distributor Delivery,0.00039183768
-num__Infrastructure,0.00038661328
-num__market_flag_negative_price_trend,0.00037836778
-num__fin_flag_low_solvency,0.00035980958
-cat__payment_terms_F030 Invoice Date + 30 days,0.00035629654
-"cat__supplier_sector_Wood, Furniture & Paper Manufacturing",0.00034006138
-cat__nn_contract_type_Distributor Agreement,0.00032540158
-num__fin_flag_strong_liquidity,0.0003223827
-num__fin_profit_margin,0.00031918677
-cat__nn_contract_type_Freight Forwarder Agreement,0.0003181627
-num__missingindicator_PPI_Value,0.0003155028
-cat__contract_commodity_Excipients,0.0003140012
-cat__contract_commodity_Moulding Tools Unclassified,0.00029498944
-num__fin_ebit_margin,0.00028895473
-num__esg_gov_score,0.00028782204
-cat__payment_terms_F060 Invoice Date + 60 days,0.0002805684
-num__vol_stability_score,0.00028041188
-cat__team_Raw Materials & Energy,0.00027687434
-cat__fin_moodys_company_name_Novartis Pharma AG,0.00027456987
-num__fin_interest_coverage_ratio_missing_flag,0.00026673742
-num__market_cap_volatility,0.00023903519
-cat__fin_moodys_company_name_Merck Life Science A/S,0.00023619336
-cat__company_country_DENMARK,0.00023598754
-num__fin_gearing,0.0002318434
-num__avg_vol,0.00023028805
-"cat__contract_type_Finance, Legal & Procurement",0.00022356374
-cat__contract_type_Distribution,0.00021982126
-num__fin_roa_net_income,0.00021950033
-cat__moodys_risk_rating_Do not source,0.00021731156
-cat__fin_moodys_company_name_Linde Gas A/S,0.00021243727
-num__missingindicator_fin_Number_of_employees,0.0002037417
-num__fin_EBITDA_margin,0.00020128429
-num__missingindicator_vol_stability_score,0.00018219804
-cat__fin_Status_Dissolved,0.00017667779
-cat__Risk level_Take caution,0.00017578686
-cat__fin_risk_level_Go ahead,0.0001729269
-cat__fin_Implied_rating - original_Ba2,0.00016886259
-cat__contract_commodity_Cartons,0.00016571635
-cat__fin_moodys_company_name_Lonza Sales AG,0.00016496233
-cat__nn_contract_type_Framework Trading Agreement,0.00016422631
-cat__payment_terms_F015 Invoice Date + 15 days,0.00016376634
-num__vol_trend_slope,0.00014474137
-cat__fin_closing_date_2021-12-31,0.00013783606
-cat__nn_contract_type_Basic Terms Agreement,0.00013478941
-cat__fin_Implied_rating - original_A1,0.00012410874
-cat__department_from_cost_center_Bioprocessing & Raw Materials,0.000117191
-"cat__fin_moodys_company_name_Cytiva, Filial af Cytiva Europe GmbH, Tyskland",0.00011672514
-cat__fin_Status_Active,0.00011564234
-cat__team_BF Integration,0.000115454095
-num__Earnings_per_share_DKK,0.00011520556
-num__fin_Net_assets_turnover,0.000113282
-cat__fin_closing_date_2025-12-31,0.00011204314
-cat__fin_moodys_company_name_Smurfit Westrock Danmark A/S,0.00011065738
-cat__fin_moodys_company_name_Sonderborg Vaerktojsfabrik A/S,0.00010747085
-cat__moodys_risk_rating_Go ahead,0.00010314624
-cat__contract_commodity_Ocean Transportation,0.0001029517
-num__esg_below_industry_min,0.00010131996
-cat__contract_commodity_Waste Management,9.975349e-05
-cat__fin_Implied_rating - original_Aa2,9.969718e-05
-cat__company_country_clean_Denmark,9.8061806e-05
-num__missingindicator_fin_interest_coverage_ratio,9.7033066e-05
-cat__supplier_sector_Wholesale,9.566239e-05
-cat__fin_closing_date_2025-03-31,9.3668394e-05
-cat__fin_moodys_company_name_Zirq Cables AS,9.247092e-05
-cat__fin_closing_date_2024-12-31,9.2279595e-05
-cat__supplier_sector_Utilities,9.095749e-05
-cat__company_country_BRAZIL,9.087672e-05
-num__market_flag_negative_eps,9.070786e-05
-cat__fin_moodys_company_name_Novo Nordisk Production Belgium SA,8.785291e-05
-cat__fin_Implied_rating - original_B2,8.382947e-05
-cat__contract_currency_code_CHF,8.286161e-05
-num__price_volatility_score,8.1804385e-05
-num__price_trend_slope,7.965278e-05
-cat__contract_commodity_Sterilization,7.899734e-05
-cat__contract_commodity_Other Warehousing,7.722839e-05
-cat__contract_currency_code_CNY,7.53081e-05
-cat__fin_moodys_company_name_Agilent Technologies Denmark ApS,7.432815e-05
-cat__Code_DNK,6.892902e-05
-cat__supplier_sector_Business Services,6.73447e-05
-cat__fin_moodys_company_name_Elis Danmark A/S,6.6153225e-05
-cat__fin_implied_rating_A,6.559293e-05
-cat__fin_closing_date_2023-06-30,6.558502e-05
-cat__fin_output_text_Approved for sourcing. No further actions required.,6.544634e-05
-"cat__fin_output_text_Sourcing exclusion recommended. Input from outdated and/or partial data, hence low quality credit rating & traffic light. Mitigation actions required. Request financial data from supplier as described in the risk process tab.",6.516571e-05
-num__avg_closing_price,6.475859e-05
-cat__fin_moodys_company_name_SPS Medical,6.2934276e-05
-cat__contract_commodity_Packaging Lines,6.1737366e-05
-cat__fin_moodys_company_name_W. R. Grace & Co.-Conn.,6.158325e-05
-cat__fin_moodys_company_name_Deloitte Statsautoriseret Revisionspartnerselskab,6.107636e-05
-cat__nn_contract_type_Service Agreement,6.0889473e-05
-num__fin_flag_long_term_liab_equity_high,6.0600243e-05
-cat__fin_moodys_company_name_ICM A/S,5.9969385e-05
-cat__fin_closing_date_2022-06-30,5.319052e-05
-cat__contract_commodity_Warehouse Operations - Inbound,5.2834544e-05
-cat__fin_moodys_company_name_Va-Q-Tec AG,5.263316e-05
-num__missingindicator_contract_value_dkk,5.2407246e-05
-cat__Current_market_capitalisation_DKK_29.786.781,5.1055813e-05
-cat__contract_commodity_Side Chains Unclassified,5.0620645e-05
-cat__fin_moodys_company_name_Synoptik A/S,5.029546e-05
-cat__nn_contract_type_Outsourcing Agreement,4.957529e-05
-cat__supplier_sector_Retail,4.2137894e-05
-cat__fin_moodys_company_name_Almac Group Limited,4.108919e-05
-cat__fin_moodys_company_name_Becton Dickinson Denmark A/S,4.0790605e-05
-cat__fin_moodys_company_name_AVISTA Green ApS,3.8951126e-05
-cat__company_country_SWEDEN,3.8125305e-05
-cat__fin_moodys_company_name_Ypsomed AG,3.739432e-05
-cat__supplier_sector_Waste Management & Treatment,3.5900994e-05
-cat__fin_moodys_company_name_F.I.S. Fabbrica Italiana Sintetici S.P.A.,3.208938e-05
-cat__contract_commodity_Personal Safety (PPE),3.0776475e-05
-num__vol_shock_ratio,2.9402718e-05
-cat__fin_risk_level_Do not source,2.8036893e-05
-num__missingindicator_LPI_Score,2.5302477e-05
-cat__nn_contract_type_Work Order,2.445264e-05
-"cat__supplier_sector_Industrial, Electric & Electronic Machinery",2.1807242e-05
-cat__contract_commodity_Outsourced GMP Laboratory Analysis,1.8911718e-05
-num__missingindicator_fin_Cash_ratio,1.8411432e-05
-cat__fin_Implied_rating - original_Baa2,1.8133487e-05
-cat__fin_financial_level_Medium financial risk,1.6869155e-05
-cat__contract_type_Facility Management & Engineering,1.6807608e-05
-cat__incoterms_EXW Ex works,1.6210743e-05
-cat__department_Raw Materials & Energy,1.50493215e-05
-cat__contract_commodity_Other Clinical Services',1.3345155e-05
-"cat__contract_commodity_Glass (Syringes, Vials, Cartridges)",1.0395994e-05
-num__esg_industry_min,8.392512e-06
-num__market_log_vol_shock_ratio,7.2511248e-06
-cat__payment_terms_L060 Current Month + 60 days,4.761282e-06
-cat__payment_terms_L045 Current Month + 45 days,3.750867e-06
-cat__contract_commodity_Support Proteins and BIO APIs Unclassified,6.729814e-07
-cat__incoterms_DDU Delivered duty unpaid,1.9347958e-07
-cat__fin_moodys_company_name_Sartorius Stedim UK Limited,0.0
-cat__fin_moodys_company_name_Quality Assistance,0.0
-cat__fin_moodys_company_name_Zirq Medical A/S,0.0
-cat__fin_moodys_company_name_Scantago A/S,0.0
-cat__fin_moodys_company_name_RKT Rodinger Kunststoff- Technik GmbH,0.0
-cat__fin_moodys_company_name_eutecma gmbh,0.0
-"cat__fin_moodys_company_name_SIBO G. Razvoj in proizvodnja embalaze, d.o.o. v angleskem jeziku: SIBO GROUP Packaging Development and Production LTD",0.0
-cat__fin_moodys_company_name_Sartorius Stedim Biotech GmbH,0.0
-cat__fin_moodys_company_name_Sanofi Winthrop Industrie,0.0
-cat__fin_moodys_company_name_SCHOTT Pharma Schweiz AG,0.0
-cat__fin_closing_date_2017-06-30,0.0
-cat__fin_closing_date_2015-03-31,0.0
-num__missingindicator_contract_value,0.0
-cat__fin_moodys_company_name_Saniflex Aktiebolag,0.0
-cat__fin_moodys_company_name_STA Pharmaceutical Hong Kong Limited,0.0
-cat__fin_moodys_company_name_Roquette Freres,0.0
-cat__fin_moodys_company_name_SPX Flow Technology Danmark A/S,0.0
-cat__fin_closing_date_2016-12-31,0.0
-cat__fin_moodys_company_name_Watson-Marlow Flexicon A/S,0.0
-cat__fin_moodys_company_name_Schoeller-Plast-Enterprise A/S,0.0
+num__missingindicator_fin_implied_rating_ordinal,0.15200286
+num__fin_implied_rating_missing_flag,0.14348246
+num__missingindicator_fin_Number_of_months,0.12814239
+num__fin_flag_moderate_or_worse_rating,0.07907944
+num__lpi_relative_risk,0.068327695
+num__Customs,0.045310486
+num__Tracking_Tracing,0.033399526
+num__contract_age_years,0.028652053
+cat__department_Bioprocessing & Raw Materials,0.014990414
+cat__contract_commodity_Printed Packaging Materials,0.014436348
+cat__incoterms_FCA Free carrier,0.012804879
+num__fin_flag_multiple_financial_stress_signals,0.011525937
+num__open_ended_contract,0.0107774455
+cat__contract_commodity_Outsourced Product Services,0.009510605
+num__contract_value_dkk,0.009386682
+num__start_year,0.009172361
+num__LPI_Score,0.008999172
+num__missingindicator_fin_debt_asset_ratio,0.008521577
+cat__contract_commodity_Warehouse Operations - Storage,0.0077767433
+num__missingindicator_esg_esg_overall,0.0076648
+num__expiry_year,0.0063111903
+cat__Risk level_Go ahead,0.00623502
+cat__contract_currency_code_EUR,0.0061982055
+num__fin_total_stress_flags,0.0047971844
+cat__department_Logistics,0.0045500975
+cat__fin_moodys_company_name_SkyNRG B.V.,0.00412076
+num__fin_flag_severe_financial_stress,0.003938638
+num__esg_row_missing_pct,0.0035045748
+cat__fin_moodys_company_name_Novozymes A/S,0.0034563025
+cat__contract_currency_code_DKK,0.0032544602
+cat__payment_terms_F060 Invoice Date + 60 days,0.0032481463
+cat__contract_commodity_Needles,0.0032281869
+cat__contract_currency_code_USD,0.0031730947
+cat__contract_type_Research & Development,0.00312833
+num__news_negative_count,0.003075971
+cat__team_Devices & Needles,0.0027492438
+num__news_has_high_relevance_negative_news,0.0026351039
+cat__department_Devices & Needles,0.0025884192
+num__Infrastructure,0.0025793377
+num__start_year_capped,0.0025072715
+cat__fin_risk_level_Take caution,0.0025016768
+num__esg_esg_industry_adjusted,0.0024031987
+num__esg_social_score,0.0023662993
+num__fin_financial_level_missing_flag,0.0022267806
+cat__contract_commodity_Electronics and Other Components,0.0021681222
+num__fin_implied_rating_ordinal,0.0021554024
+cat__fin_implied_rating_Ba,0.0020478687
+cat__fin_closing_date_2024-12-31,0.0020305498
+num__esg_env_weight,0.0019349343
+num__contracts_per_supplier,0.0019316858
+cat__payment_terms_F045 Invoice Date + 45 days,0.0019307605
+num__news_positive_count,0.0018785994
+num__esg_env_score,0.0017497895
+cat__fin_Implied_rating - original_Baa1,0.0017473374
+cat__fin_implied_rating_B,0.0017033156
+cat__term_type_auto_renew,0.001684274
+cat__nn_contract_type_Other,0.0016704375
+cat__contract_commodity_4PL,0.001640436
+"cat__supplier_sector_Transport, Freight & Storage",0.0016006378
+cat__contract_commodity_Plastic Raw Materials,0.0016001783
+cat__contract_commodity_Fuel,0.00154031
+num__market_flag_negative_52w_price_trend,0.0015172107
+cat__fin_Implied_rating - original_Baa3,0.0015074419
+cat__department_from_cost_center_Devices & Needles,0.0014981936
+num__fin_flag_liquidity_stress,0.0014803171
+num__news_article_count,0.0014792772
+cat__department_from_cost_center_Drug Substance Outsourcing,0.0014199736
+cat__Current_market_capitalisation_DKK_154.546.116,0.0013073136
+num__Price_trends_52 weeks_%,0.0012478383
+num__esg_gov_weight,0.0012410873
+cat__fin_moodys_company_name_Nemera LA Verpilliere,0.0012409444
+cat__supplier_sector_Metals & Metal Products,0.0011732338
+cat__contract_commodity_Shipper Boxes,0.0011665066
+cat__contract_currency_code_SEK,0.0011602022
+cat__contract_currency_code_JPY,0.0011601144
+cat__incoterms_CPT Carriage paid,0.0011268298
+num__news_row_missing_pct,0.0011253566
+num__fin_interest_coverage_ratio,0.0011246954
+num__fin_flag_severe_liquidity_stress,0.0011188538
+num__market_flag_stock_price_take_caution_or_worse,0.0011078708
+num__news_neutral_count,0.0010851239
+num__contract_value,0.0010670964
+num__news_avg_relevance_score,0.0010620803
+num__esg_social_weight,0.001060755
+cat__incoterms_DDP Delivered duty paid,0.0010369476
+"cat__fin_output_text_Use caution. Input from outdated and/or partial data, hence low quality credit rating & traffic light. Mitigation actions required. Request financial data from supplier as described in the risk process tab.",0.0010115149
+num__missingindicator_news_article_count,0.0009916786
+num__missingindicator_avg_vol,0.0009914696
+num__news_max_relevance_score,0.000984264
+num__fin_Number_of_employees,0.0009768059
+cat__nn_contract_type_Logistics Services Provider Agreement,0.00097187754
+num__fin_flag_risk_do_not_source,0.00096801255
+num__missingindicator_fin_roa_net_income,0.0009566278
+cat__moodys_risk_rating_Take caution,0.00093900756
+num__news_negative_ratio,0.000897211
+num__PPI_Value,0.00088309246
+num__contract_owner_cost_centre,0.00084222906
+cat__contract_commodity_Road Transportation,0.00083281467
+cat__incoterms_FOB Free on board,0.00082237145
+num__observation_year,0.00080819946
+num__news_avg_sentiment_score,0.00080037676
+num__missingindicator_fin_Net_assets_turnover,0.00079881767
+cat__fin_moodys_company_name_DHL Global Forwarding (Denmark) A/S,0.0007678036
+num__International_Shipments,0.00075950986
+cat__fin_Implied_rating - original_B3,0.0007564482
+cat__expiry_pressure_bucket_1_to_3y,0.0007336209
+num__Timeliness,0.00071724755
+cat__contract_commodity_Freights Forwarding - Air,0.0007147706
+cat__Risk level_Do not source,0.0006976579
+cat__Shares outstanding_414.555.046,0.00068957976
+cat__contract_commodity_Freights Forwarding - Road,0.00066998246
+num__years_to_expiry_capped,0.000668212
+num__fin_Cash_ratio,0.00066384475
+cat__fin_implied_rating_Aa,0.0006345911
+"cat__supplier_sector_Industrial, Electric & Electronic Machinery",0.0006308231
+cat__incoterms_DAP Del.at Place-excl.unloading,0.00062710984
+cat__fin_closing_date_2023-12-31,0.0006111934
+num__fin_long_term_gearing,0.0006097953
+"cat__supplier_sector_Chemicals, Petroleum, Rubber & Plastic",0.0005752448
+cat__team_Raw Materials & Energy,0.0005703035
+num__fin_current_ratio,0.0005520077
+cat__moodys_risk_rating_Do not source,0.00055116555
+"cat__team_Quality, Production Services & Supplies",0.000538404
+cat__nn_contract_type_Distributor Agreement,0.00052861415
+num__fin_current_ratio_missing_flag,0.0005198242
+num__fin_Total_shareholders'_funds_and_liabilitiesth_DKK,0.00051866705
+cat__expiry_pressure_bucket_3_to_5y,0.0005147213
+num__market_data_available,0.00050207664
+cat__fin_closing_date_2022-12-31,0.0004997941
+num__fin_flag_risk_take_caution_or_worse,0.00048037985
+num__fin_solvency_ratio_asset_based,0.000478389
+num__fin_gearing,0.00042453504
+"cat__department_Quality, Production Services & Supplies",0.0004226109
+num__fin_Total_liabilities_Equity_ratio,0.0004202134
+num__fin_debt_asset_ratio,0.00041066168
+cat__Risk level_Take caution,0.00039586163
+num__vol_shock_ratio,0.0003815107
+num__esg_gov_score,0.00038020159
+cat__payment_terms_F030 Invoice Date + 30 days,0.00037969006
+cat__company_country_clean_China,0.00035890334
+cat__contract_commodity_Cartons,0.00035864
+num__esg_esg_overall,0.0003475895
+num__fin_profit_margin,0.00034453423
+cat__fin_moodys_company_name_ISS Facility Services A/S,0.00032408803
+cat__expiry_pressure_bucket_5y_plus,0.00031649543
+cat__contract_commodity_Distributor Delivery,0.00030951764
+cat__contract_type_Distribution,0.00029859925
+num__missingindicator_PPI_Value,0.0002922474
+num__fin_interest_coverage_ratio_missing_flag,0.0002892414
+cat__department_Packaging Material,0.00028715245
+num__fin_short_term_liabilities_equity_ratio,0.0002869822
+num__fin_EBITDA_margin,0.000284686
+num__vol_stability_score,0.00027280088
+cat__contract_commodity_Cleaning Unclassified,0.00025966123
+cat__expiry_pressure_bucket_within_1y,0.00024676768
+num__vol_trend_slope,0.00023514323
+cat__nn_contract_type_Freight Forwarder Agreement,0.00023265708
+cat__fin_moodys_company_name_Novartis Pharma AG,0.00023084656
+num__fin_flag_low_solvency,0.00021535555
+num__missingindicator_fin_EBITDA_margin,0.00021234388
+num__market_flag_negative_eps,0.00020839466
+cat__fin_risk_level_Go ahead,0.00019116045
+cat__nn_contract_type_Framework Trading Agreement,0.00018935539
+num__avg_vol,0.00018233921
+cat__fin_Implied_rating - original_A3,0.00017936276
+cat__fin_Implied_rating - original_Aaa,0.00017667038
+num__missingindicator_Customs,0.00017114093
+cat__contract_commodity_Warehouse Operations - Inbound,0.00016030147
+num__market_cap_volatility,0.00015910085
+num__missingindicator_news_negative_count,0.00015743046
+cat__Shares outstanding_1.264.117.615,0.00015601199
+cat__term_type_fixed,0.00015074438
+cat__fin_moodys_company_name_Smurfit Westrock Danmark A/S,0.00014022778
+cat__fin_moodys_company_name_Lonza Sales AG,0.0001400323
+cat__fin_Status_Active,0.0001393874
+num__fin_roe_net_income,0.00013544052
+cat__fin_closing_date_2021-12-31,0.00013398638
+"cat__supplier_sector_Wood, Furniture & Paper Manufacturing",0.00013328057
+cat__company_country_clean_Denmark,0.0001283968
+cat__fin_implied_rating_A,0.00012603503
+num__fin_flag_strong_liquidity,0.00012586813
+num__Earnings_per_share_DKK,0.00012356865
+num__fin_roa_net_income,0.00012354254
+num__fin_ebit_margin_missing_flag,0.00011967042
+cat__nn_contract_type_Basic Terms Agreement,0.00011650353
+cat__payment_terms_F015 Invoice Date + 15 days,0.000112025366
+cat__company_country_DENMARK,0.00011127013
+"cat__contract_type_Finance, Legal & Procurement",0.00011122094
+num__esg_below_industry_min,0.000109100074
+cat__contract_type_Production,0.00010682588
+cat__supplier_sector_Utilities,0.00010449112
+cat__fin_financial_level_High financial risk,0.000100056124
+num__fin_ebit_margin,9.573838e-05
+cat__contract_commodity_Waste Management,9.504722e-05
+cat__contract_currency_code_CHF,9.4547664e-05
+cat__fin_moodys_company_name_F.I.S. Fabbrica Italiana Sintetici S.P.A.,9.1743015e-05
+"cat__fin_moodys_company_name_Cytiva, Filial af Cytiva Europe GmbH, Tyskland",9.110107e-05
+num__missingindicator_LPI_Score,9.085162e-05
+cat__contract_commodity_Sterilization,8.655829e-05
+cat__contract_commodity_Management Consulting,8.566156e-05
+num__price_volatility_score,8.515232e-05
+num__fin_flag_long_term_liab_equity_high,8.309407e-05
+cat__fin_moodys_company_name_Enestia Belgium,8.2846185e-05
+cat__contract_commodity_Side Chains Unclassified,8.260432e-05
+num__fin_flag_very_low_solvency,8.155319e-05
+cat__fin_moodys_company_name_Agilent Technologies Denmark ApS,8.138043e-05
+cat__company_country_clean_Brazil,7.939029e-05
+cat__contract_commodity_Ocean Transportation,7.5075e-05
+cat__department_Drug Substance Outsourcing,7.464516e-05
+cat__fin_moodys_company_name_Deloitte Statsautoriseret Revisionspartnerselskab,7.4449206e-05
+num__price_trend_slope,7.2084986e-05
+cat__fin_moodys_company_name_Ypsomed AG,7.067281e-05
+cat__fin_Implied_rating - original_Aa2,7.061089e-05
+cat__fin_moodys_company_name_DSV Contract Logistics A/S,7.055356e-05
+num__missingindicator_fin_roe_net_income,7.050288e-05
+num__missingindicator_fin_Number_of_employees,6.929048e-05
+cat__fin_moodys_company_name_SPS Medical,6.77898e-05
+num__missingindicator_news_positive_count,6.6640445e-05
+cat__contract_commodity_Other Warehousing,6.341517e-05
+cat__supplier_sector_Waste Management & Treatment,6.298873e-05
+cat__fin_moodys_company_name_Zirq Cables AS,6.127243e-05
+num__missingindicator_fin_long_term_gearing,6.063421e-05
+num__fin_Net_assets_turnover,5.921056e-05
+cat__supplier_sector_Wholesale,5.8915684e-05
+num__esg_industry_max,5.8758862e-05
+cat__fin_moodys_company_name_ICM A/S,5.701589e-05
+cat__nn_contract_type_Service Agreement,5.70045e-05
+num__avg_closing_price,5.651911e-05
+cat__company_country_BRAZIL,5.350733e-05
+cat__fin_moodys_company_name_W. R. Grace & Co.-Conn.,5.2620377e-05
+num__missingindicator_contract_value_dkk,5.2559903e-05
+cat__supplier_sector_Retail,5.2056923e-05
+cat__contract_commodity_Moulding Tools Unclassified,5.043913e-05
+cat__fin_moodys_company_name_Almac Group Limited,4.831597e-05
+num__missingindicator_fin_gearing,4.765388e-05
+cat__fin_moodys_company_name_Novo Nordisk Production Belgium SA,4.751261e-05
+cat__fin_moodys_company_name_Synoptik A/S,4.5205667e-05
+cat__contract_commodity_Personal Safety (PPE),4.425624e-05
+cat__nn_contract_type_Outsourcing Agreement,4.2901986e-05
+cat__payment_terms_L030 Current Month + 30 days,4.2048472e-05
+cat__fin_moodys_company_name_Roquette Freres,4.1713327e-05
+cat__fin_implied_rating_Baa,4.0974115e-05
+cat__fin_moodys_company_name_Becton Dickinson Denmark A/S,3.9041533e-05
+cat__payment_terms_F014 Invoice Date + 14 days,3.6623314e-05
+cat__contract_commodity_Outsourced GMP Laboratory Analysis,3.3501685e-05
+"cat__fin_moodys_company_name_Kovac MED Co.,Ltd",3.1284577e-05
+cat__contract_commodity_Other Energy Unclassified,2.7793598e-05
+cat__nn_contract_type_Confidentiality Agreement,2.7028269e-05
+num__missingindicator_fin_Cash_ratio,2.5164276e-05
+cat__nn_contract_type_Supply Agreement,2.0124562e-05
+cat__supplier_sector_Food & Tobacco Manufacturing,1.9657919e-05
+num__market_log_vol_shock_ratio,1.8858156e-05
+cat__department_from_cost_center_Bioprocessing & Raw Materials,1.5384854e-05
+cat__contract_commodity_Aseptic Filling,1.5207981e-05
+"cat__supplier_sector_Leather, Stone, Clay & Glass products",1.384187e-05
+cat__company_country_clean_United States,1.3242529e-05
+num__fin_financial_risk_score,8.02825e-06
+cat__department_Raw Materials & Energy,7.605331e-06
+cat__unit_SSIMS,6.8343056e-06
+cat__incoterms_EXW Ex works,6.6671714e-06
+cat__unit_GSOD,5.539539e-06
+cat__payment_terms_L045 Current Month + 45 days,5.148731e-06
+cat__contract_commodity_Prefilled Plastic Components,4.3516075e-06
+cat__fin_moodys_company_name_Excella GmbH & Co. KG,0.0
 cat__fin_moodys_company_name_Schur Pack Denmark A/S,0.0
-cat__fin_moodys_company_name_VWR International A/S,0.0
-cat__fin_moodys_company_name_UFAG Laboratorien AG,0.0
-cat__fin_moodys_company_name_Troy X Investment Holding S.a r.l.,0.0
-cat__fin_moodys_company_name_Tosoh Bioscience GmbH,0.0
-"cat__fin_moodys_company_name_West Pharmaceutical Services, Inc.",0.0
-cat__fin_moodys_company_name_Topp Trykluft A/S,0.0
-cat__fin_moodys_company_name_Thermo Fisher Scientific B.V.,0.0
-cat__fin_moodys_company_name_Tech Group Europe Limited,0.0
-"cat__fin_moodys_company_name_Xi'An Global Printing Co.,Ltd.",0.0
-cat__fin_moodys_company_name_TN Rayong CO LTD,0.0
-cat__fin_moodys_company_name_SwissCo CDMO Operations GmbH,0.0
-cat__fin_moodys_company_name_Suzano S.A.,0.0
-cat__fin_moodys_company_name_Stok Emballage K/S,0.0
-cat__fin_moodys_company_name_Stibo Complete A/S,0.0
-cat__fin_moodys_company_name_Stevanato Group Denmark A/S,0.0
-cat__fin_moodys_company_name_Steris Corp,0.0
-cat__fin_moodys_company_name_Steripack Medical Poland Sp. z o.o.,0.0
-cat__fin_moodys_company_name_Prosci Nordics ApS,0.0
-cat__fin_moodys_company_name_Sterimed UK Holdings LTD,0.0
-cat__fin_moodys_company_name_Sterigenics Denmark A/S,0.0
-cat__fin_moodys_company_name_Stena Recycling A/S,0.0
-cat__fin_moodys_company_name_Steiert Praezisionsformenbau GmbH,0.0
-cat__fin_moodys_company_name_Yara Danmark A/S,0.0
-cat__fin_moodys_company_name_Solvias AG,0.0
-cat__fin_moodys_company_name_West Pharmaceutical Services Deutschland GmbH & Co. KG,0.0
-cat__fin_moodys_company_name_Softbox Systems Limited,0.0
-num__missingindicator_fin_Total_shareholders'_funds_and_liabilitiesth_DKK,0.0
-num__missingindicator_fin_profit_margin,0.0
-cat__fin_moodys_company_name_Sensitech EMEA B.V.,0.0
-cat__incoterms_DAF Delivered to frontier,0.0
-cat__fin_moodys_company_name_PMC Ouvrie,0.0
-cat__fin_moodys_company_name_Professional Packaging Systems A/S,0.0
-num__missingindicator_fin_solvency_ratio_asset_based,0.0
-cat__fin_moodys_company_name_Kuehne + Nagel Pte. Ltd.,0.0
-cat__fin_moodys_company_name_Kuwait Petroleum - Belgium,0.0
-cat__fin_moodys_company_name_L. Thalund Instrument ApS,0.0
+cat__fin_moodys_company_name_Parker Hannifin Danmark ApS,0.0
 cat__fin_moodys_company_name_Leguay Emballages,0.0
-cat__fin_moodys_company_name_Leman A/S,0.0
-cat__fin_moodys_company_name_Lemvigh-Muller A/S,0.0
-cat__fin_moodys_company_name_Life Technologies Limited,0.0
-cat__fin_moodys_company_name_Linds Handel ApS,0.0
-"cat__fin_moodys_company_name_Kovac MED Co.,Ltd",0.0
-num__missingindicator_fin_short_term_liabilities_equity_ratio,0.0
-cat__fin_moodys_company_name_Lugaia AG,0.0
-cat__fin_moodys_company_name_Lyngholm Filtration ApS,0.0
-cat__fin_moodys_company_name_MFS Technology (S) PTE LTD,0.0
-cat__fin_moodys_company_name_MGS Lynge A/S,0.0
-cat__fin_moodys_company_name_MGS Roskilde A/S,0.0
-"cat__fin_moodys_company_name_Macco Organiques, s.r.o.",0.0
-cat__fin_moodys_company_name_Kuehne + Nagel A/S,0.0
-cat__fin_moodys_company_name_Kirsch Pharma GmbH,0.0
+cat__fin_moodys_company_name_PaperFoam B.V.,0.0
+cat__fin_moodys_company_name_Pall Norden AB,0.0
+cat__fin_moodys_company_name_PMC Ouvrie,0.0
+cat__fin_moodys_company_name_Our New Energy Consulting ApS,0.0
+cat__fin_moodys_company_name_PA Consulting Group A/S,0.0
+cat__fin_moodys_company_name_OneSeal ApS,0.0
+cat__fin_moodys_company_name_Scantago A/S,0.0
+cat__fin_moodys_company_name_Omni Mold Ltd.,0.0
+cat__fin_moodys_company_name_Fisher Scientific Biotech Line ApS,0.0
+cat__fin_moodys_company_name_Europart Danmark A/S,0.0
+cat__fin_moodys_company_name_L. Thalund Instrument ApS,0.0
+cat__fin_moodys_company_name_Osvaldo Fernandes SA Artes Graficas,0.0
+cat__fin_moodys_company_name_Sensitech EMEA B.V.,0.0
+cat__fin_moodys_company_name_Schoeller-Plast-Enterprise A/S,0.0
+cat__fin_moodys_company_name_RKT Rodinger Kunststoff- Technik GmbH,0.0
+cat__fin_moodys_company_name_Sartorius Stedim UK Limited,0.0
+cat__fin_moodys_company_name_Fibrant B.V.,0.0
+cat__fin_moodys_company_name_Prosci Nordics ApS,0.0
+cat__fin_moodys_company_name_Flamma S.P.A.,0.0
+cat__fin_moodys_company_name_SCHOTT Pharma Schweiz AG,0.0
+"cat__fin_moodys_company_name_SIBO G. Razvoj in proizvodnja embalaze, d.o.o. v angleskem jeziku: SIBO GROUP Packaging Development and Production LTD",0.0
+cat__fin_moodys_company_name_SPX Flow Technology Danmark A/S,0.0
+cat__fin_moodys_company_name_Professional Packaging Systems A/S,0.0
 cat__fin_moodys_company_name_Presto Engineering France,0.0
-num__missingindicator_fin_roe_net_income,0.0
+cat__fin_moodys_company_name_Post Danmark A/S,0.0
+cat__fin_moodys_company_name_Kuehne + Nagel A/S,0.0
+cat__fin_moodys_company_name_Pharma-Skan ApS,0.0
+cat__fin_moodys_company_name_STA Pharmaceutical Hong Kong Limited,0.0
+cat__fin_moodys_company_name_Saniflex Aktiebolag,0.0
+cat__fin_moodys_company_name_Fait Plast S.P.A.,0.0
+cat__fin_moodys_company_name_FJ Industries A/S,0.0
+cat__fin_moodys_company_name_Pfizer INC,0.0
+cat__fin_moodys_company_name_Sanofi Winthrop Industrie,0.0
+cat__fin_moodys_company_name_Sartorius Stedim Biotech GmbH,0.0
+cat__fin_moodys_company_name_Patheon UK Limited,0.0
+cat__fin_moodys_company_name_Patheon Italia S.P.A.,0.0
+cat__fin_moodys_company_name_Quality Assistance,0.0
+cat__fin_moodys_company_name_Farusa Emballage A/S,0.0
+cat__fin_moodys_company_name_OPTIMA pharma GmbH,0.0
+cat__fin_moodys_company_name_Nolato Cerbo AB,0.0
+cat__fin_moodys_company_name_Nuova Ompi S.R.L.,0.0
+cat__fin_moodys_company_name_Husky Injection Molding Systems,0.0
+cat__fin_moodys_company_name_Linds Handel ApS,0.0
+cat__fin_moodys_company_name_Gerresheimer Horsovsky Tyn spol. s r.o.,0.0
+cat__fin_moodys_company_name_Merck Life Science A/S,0.0
+cat__fin_moodys_company_name_Gerresheimer Vaerloese A/S,0.0
+cat__fin_moodys_company_name_Kebo AG,0.0
 cat__fin_moodys_company_name_Getinge Danmark A/S,0.0
 cat__fin_moodys_company_name_Grathwol A/S,0.0
+cat__fin_moodys_company_name_Maxell Europe Limited,0.0
+cat__fin_moodys_company_name_Softbox Systems Limited,0.0
 cat__fin_moodys_company_name_Groesfjeld Advanced Cleaning Solutions ApS,0.0
 cat__fin_moodys_company_name_Hamilton Nordic AB,0.0
+cat__fin_moodys_company_name_Marius Pedersen A/S,0.0
+cat__Code_SWE,0.0
 cat__fin_moodys_company_name_Holm & Halby A/S,0.0
-cat__fin_moodys_company_name_Husky Injection Molding Systems,0.0
 cat__fin_moodys_company_name_IGS B.V.,0.0
+cat__fin_moodys_company_name_Leman A/S,0.0
+cat__fin_moodys_company_name_Mariager Salt Specialties A/S,0.0
+cat__fin_moodys_company_name_Kalundborg Forsyning A/S,0.0
 cat__fin_moodys_company_name_Implement Consulting Group Malmoe AB,0.0
-cat__fin_moodys_company_name_Kebo AG,0.0
+"cat__fin_moodys_company_name_Macco Organiques, s.r.o.",0.0
 cat__fin_moodys_company_name_Implement Consulting Group P/S,0.0
 cat__fin_moodys_company_name_Inovyn Europe Limited,0.0
 cat__fin_moodys_company_name_Insatech A/S,0.0
+cat__fin_moodys_company_name_MGS Roskilde A/S,0.0
 cat__fin_moodys_company_name_J. Krebs & Co. A/S,0.0
 cat__fin_moodys_company_name_K+S Minerals and Agriculture GmbH,0.0
+cat__fin_moodys_company_name_MGS Lynge A/S,0.0
+cat__fin_moodys_company_name_MFS Technology (S) PTE LTD,0.0
 cat__fin_moodys_company_name_Kalundborg Bioenergi ApS,0.0
-cat__fin_moodys_company_name_Kalundborg Forsyning A/S,0.0
-cat__fin_moodys_company_name_Mariager Salt Specialties A/S,0.0
-cat__fin_moodys_company_name_Marius Pedersen A/S,0.0
-cat__fin_moodys_company_name_Maxell Europe Limited,0.0
-cat__fin_closing_date_2018-06-30,0.0
-cat__fin_moodys_company_name_Nuova Ompi S.R.L.,0.0
-cat__fin_moodys_company_name_OPTIMA pharma GmbH,0.0
-cat__fin_moodys_company_name_Omni Mold Ltd.,0.0
-cat__fin_moodys_company_name_OneSeal ApS,0.0
-cat__fin_moodys_company_name_Osvaldo Fernandes SA Artes Graficas,0.0
-cat__fin_moodys_company_name_Our New Energy Consulting ApS,0.0
-cat__fin_moodys_company_name_PA Consulting Group A/S,0.0
-cat__fin_moodys_company_name_Pall Norden AB,0.0
-num__missingindicator_fin_Total_liabilities_Equity_ratio,0.0
-cat__fin_moodys_company_name_PaperFoam B.V.,0.0
-cat__fin_moodys_company_name_Parker Hannifin Danmark ApS,0.0
-cat__fin_moodys_company_name_Patheon Italia S.P.A.,0.0
-cat__fin_moodys_company_name_Patheon UK Limited,0.0
-cat__fin_moodys_company_name_Pfizer INC,0.0
-cat__fin_moodys_company_name_Pharma-Skan ApS,0.0
-cat__fin_moodys_company_name_Post Danmark A/S,0.0
-num__missingindicator_fin_ebit_margin,0.0
-num__missingindicator_fin_current_ratio,0.0
+cat__fin_moodys_company_name_Lyngholm Filtration ApS,0.0
+cat__fin_moodys_company_name_Mesa France,0.0
+cat__fin_moodys_company_name_Gerresheimer Buende GmbH,0.0
+cat__fin_moodys_company_name_Georg Utz AG,0.0
+cat__fin_moodys_company_name_Geodis CL Pharma,0.0
+cat__fin_moodys_company_name_Flexcoat Produtos Auto-Adesivos S/A,0.0
+cat__fin_moodys_company_name_Flextronics International Gesellschaft m.b.H.,0.0
+cat__fin_moodys_company_name_Lemvigh-Muller A/S,0.0
 cat__fin_moodys_company_name_Novadan ApS,0.0
 cat__fin_moodys_company_name_Norris Print-Tech A/S,0.0
-cat__fin_moodys_company_name_Mesa France,0.0
-cat__fin_moodys_company_name_Mesa Parts GmbH,0.0
-cat__fin_moodys_company_name_Miclev Medical Products AB,0.0
-cat__fin_moodys_company_name_Millmount Healthcare Limited,0.0
-cat__fin_moodys_company_name_Mm Eson Pac AB,0.0
-cat__fin_moodys_company_name_NTG Neptun Transport A/S,0.0
-cat__fin_moodys_company_name_Nalco Danmark ApS,0.0
-cat__fin_moodys_company_name_Nicapac AB,0.0
-cat__fin_moodys_company_name_Nichepharm Lifesciences Private Limited,0.0
-cat__fin_moodys_company_name_Nilaus Plast ApS,0.0
-cat__fin_moodys_company_name_Nilfisk A/S,0.0
-cat__fin_moodys_company_name_Nippon Gases Danmark A/S,0.0
-cat__fin_moodys_company_name_Nolato Cerbo AB,0.0
-cat__fin_moodys_company_name_Norchim,0.0
 cat__fin_moodys_company_name_Nordmann Nordic AB,0.0
-cat__fin_closing_date_2017-12-31,0.0
-cat__fin_closing_date_2023-10-31,0.0
-cat__fin_closing_date_2018-12-31,0.0
+cat__fin_moodys_company_name_Life Technologies Limited,0.0
+cat__fin_moodys_company_name_Norchim,0.0
+cat__fin_moodys_company_name_Lugaia AG,0.0
+cat__fin_moodys_company_name_Formteknik Group Anderstorp AB,0.0
+cat__fin_moodys_company_name_Nippon Gases Danmark A/S,0.0
+cat__fin_moodys_company_name_Nilfisk A/S,0.0
+cat__fin_moodys_company_name_Nilaus Plast ApS,0.0
+cat__fin_moodys_company_name_Nichepharm Lifesciences Private Limited,0.0
+cat__fin_moodys_company_name_Nicapac AB,0.0
+cat__fin_moodys_company_name_Fujifilm Diosynth Biotechnologies UK Limited,0.0
+cat__fin_moodys_company_name_Nalco Danmark ApS,0.0
+cat__fin_moodys_company_name_NTG Neptun Transport A/S,0.0
+cat__fin_moodys_company_name_Kirsch Pharma GmbH,0.0
+cat__fin_moodys_company_name_Kuwait Petroleum - Belgium,0.0
+cat__fin_moodys_company_name_Gemu ApS,0.0
+cat__fin_moodys_company_name_Genewiz UK Limited,0.0
+cat__fin_moodys_company_name_Genpack A/S,0.0
+cat__fin_moodys_company_name_Mm Eson Pac AB,0.0
+cat__fin_moodys_company_name_Linde Gas A/S,0.0
+cat__fin_moodys_company_name_Millmount Healthcare Limited,0.0
+cat__fin_moodys_company_name_Miclev Medical Products AB,0.0
+cat__fin_moodys_company_name_Mesa Parts GmbH,0.0
+cat__Code_NOR,0.0
+cat__fin_moodys_company_name_Kuehne + Nagel Pte. Ltd.,0.0
+cat__Country_France,0.0
+cat__fin_moodys_company_name_Solvias AG,0.0
+cat__fin_moodys_company_name_Sonderborg Vaerktojsfabrik A/S,0.0
+cat__supplier_sector_Printing & Publishing,0.0
+"cat__supplier_sector_Public Administration, Education, Health Social Services",0.0
+cat__supplier_sector_Textiles & Clothing Manufacturing,0.0
+cat__Code_FIN,0.0
+"cat__supplier_sector_Travel, Personal & Leisure",0.0
+cat__Code_DNK,0.0
+cat__moodys_risk_rating_Go ahead,0.0
+cat__moodys_risk_rating_No data,0.0
+cat__Code_CHN,0.0
+cat__Shares outstanding_118.361.220,0.0
+cat__Shares outstanding_14.756.500,0.0
+cat__Shares outstanding_320.036.000,0.0
+cat__Shares outstanding_5.686.267.431,0.0
+cat__Shares outstanding_59.955.983,0.0
 cat__Shares outstanding_6.072.451,0.0
+cat__Shares outstanding_66.270.051,0.0
 cat__Shares outstanding_72.021.491,0.0
+cat__supplier_sector_Miscellaneous Manufacturing,0.0
+cat__supplier_sector_Mining & Extraction,0.0
+cat__supplier_sector_Construction,0.0
+cat__fin_Implied_rating - original_B2,0.0
+cat__fin_output_text_Sourcing exclusion recommended. Mitigation actions required. Please follow risk mitigation actions as communicated by your Risk team. Reach out to your risk representative for further guidance.,0.0
+cat__fin_output_text_Use caution. Mitigation actions required. Please follow risk mitigation actions as communicated by your Risk team. Reach out to your risk representative for further guidance.,0.0
+cat__fin_Implied_rating - original_A1,0.0
+cat__fin_Implied_rating - original_A2,0.0
+cat__fin_Implied_rating - original_Aa1,0.0
+cat__fin_Implied_rating - original_Aa3,0.0
+cat__fin_Implied_rating - original_B1,0.0
+cat__fin_Implied_rating - original_Ba1,0.0
+cat__supplier_sector_Computer Hardware,0.0
+cat__fin_Implied_rating - original_Ba2,0.0
+cat__fin_Implied_rating - original_Ba3,0.0
+cat__fin_Implied_rating - original_Baa2,0.0
+cat__fin_Implied_rating - original_Caa-C,0.0
+cat__Risk level_No data,0.0
+cat__supplier_sector_Biotechnology and Life Sciences,0.0
+cat__supplier_sector_Business Services,0.0
 cat__Shares outstanding_n.a.,0.0
 cat__Current_market_capitalisation_DKK_103.353.116,0.0
 cat__Current_market_capitalisation_DKK_112.918.290,0.0
-num__fin_Number_of_months,0.0
+cat__company_country_clean_Switzerland,0.0
+cat__company_country_clean_Indonesia,0.0
+cat__company_country_clean_Ireland,0.0
+cat__company_country_clean_Norway,0.0
+cat__Country_Switzerland,0.0
+cat__company_country_clean_Russia,0.0
+cat__company_country_clean_Saudi Arabia,0.0
+cat__company_country_clean_Sweden,0.0
+cat__Country_Sweden,0.0
+cat__company_country_clean_Finland,0.0
+cat__Country_Austria,0.0
+cat__Country_Norway,0.0
+cat__Country_Ireland,0.0
+cat__Country_Belgium,0.0
+cat__Country_Brazil,0.0
+cat__Country_China,0.0
+cat__Country_Denmark,0.0
+cat__company_country_clean_France,0.0
+cat__Country_United States,0.0
+cat__Code_CHE,0.0
+cat__Current_market_capitalisation_DKK_86.737.935,0.0
+cat__Code_BRA,0.0
 cat__Current_market_capitalisation_DKK_2.511.971,0.0
 cat__Current_market_capitalisation_DKK_2.954.260,0.0
+cat__Current_market_capitalisation_DKK_29.786.781,0.0
 cat__Current_market_capitalisation_DKK_30.971.635,0.0
+cat__Code_BEL,0.0
 cat__Current_market_capitalisation_DKK_85.602.561,0.0
-cat__Current_market_capitalisation_DKK_86.737.935,0.0
 cat__Current_market_capitalisation_DKK_953.712.217,0.0
+cat__Code_AUT,0.0
 cat__Current_market_capitalisation_DKK_n.a.,0.0
 cat__Risk level_stock_closing_price_Do not source,0.0
 cat__Risk level_stock_closing_price_Go ahead,0.0
 cat__Risk level_stock_closing_price_No data,0.0
-cat__Shares outstanding_66.270.051,0.0
-cat__Shares outstanding_59.955.983,0.0
-cat__supplier_sector_Food & Tobacco Manufacturing,0.0
-cat__Shares outstanding_5.686.267.431,0.0
-num__fin_flag_financial_risk_score_high,0.0
-cat__supplier_sector_Mining & Extraction,0.0
-cat__supplier_sector_Miscellaneous Manufacturing,0.0
-cat__supplier_sector_Printing & Publishing,0.0
-"cat__supplier_sector_Public Administration, Education, Health Social Services",0.0
-cat__supplier_sector_Textiles & Clothing Manufacturing,0.0
-"cat__supplier_sector_Travel, Personal & Leisure",0.0
-num__esg_industry_max,0.0
-cat__moodys_risk_rating_No data,0.0
-cat__moodys_risk_rating_Take caution,0.0
-cat__Shares outstanding_1.264.117.615,0.0
-cat__Shares outstanding_118.361.220,0.0
-cat__Shares outstanding_14.756.500,0.0
-cat__Shares outstanding_320.036.000,0.0
-num__fin_financial_risk_score,0.0
 cat__Risk level_stock_closing_price_Take caution,0.0
 cat__company_country_clean_Austria,0.0
 cat__company_country_clean_Belgium,0.0
-cat__company_country_clean_Brazil,0.0
-cat__Country_France,0.0
-cat__Country_Ireland,0.0
-cat__Country_Norway,0.0
-cat__Country_Sweden,0.0
-cat__Country_Switzerland,0.0
-cat__Country_United States,0.0
-cat__Code_AUT,0.0
-cat__Code_BEL,0.0
-cat__Code_BRA,0.0
-cat__Code_CHE,0.0
-cat__Code_CHN,0.0
-cat__Code_FIN,0.0
-cat__Code_FRA,0.0
-cat__Code_NOR,0.0
-cat__Code_SWE,0.0
-cat__Country_Finland,0.0
-cat__Country_Denmark,0.0
-cat__Country_China,0.0
-cat__company_country_clean_Norway,0.0
-cat__company_country_clean_China,0.0
-num__end_year,0.0
-cat__company_country_clean_Finland,0.0
-cat__company_country_clean_France,0.0
-cat__company_country_clean_Indonesia,0.0
-cat__company_country_clean_Ireland,0.0
-cat__company_country_clean_Russia,0.0
-cat__Country_Brazil,0.0
-cat__company_country_clean_Saudi Arabia,0.0
-cat__company_country_clean_Sweden,0.0
-cat__company_country_clean_Switzerland,0.0
-cat__company_country_clean_United States,0.0
-cat__Country_Austria,0.0
-cat__Country_Belgium,0.0
-"cat__supplier_sector_Leather, Stone, Clay & Glass products",0.0
-cat__supplier_sector_Construction,0.0
+"cat__fin_output_text_Sourcing exclusion recommended. Input from outdated and/or partial data, hence low quality credit rating & traffic light. Mitigation actions required. Request financial data from supplier as described in the risk process tab.",0.0
+cat__fin_output_text_Approved for sourcing. No further actions required.,0.0
+cat__fin_financial_level_Medium financial risk,0.0
+cat__fin_closing_date_2015-03-31,0.0
+cat__fin_moodys_company_name_Watson-Marlow Flexicon A/S,0.0
+cat__fin_moodys_company_name_West Pharmaceutical Services Deutschland GmbH & Co. KG,0.0
+"cat__fin_moodys_company_name_West Pharmaceutical Services, Inc.",0.0
+"cat__fin_moodys_company_name_Xi'An Global Printing Co.,Ltd.",0.0
+cat__fin_moodys_company_name_Yara Danmark A/S,0.0
+cat__fin_moodys_company_name_Zirq Medical A/S,0.0
+cat__fin_moodys_company_name_eutecma gmbh,0.0
+cat__fin_closing_date_2016-12-31,0.0
+cat__fin_moodys_company_name_VWR International A/S,0.0
+cat__fin_closing_date_2017-06-30,0.0
+cat__fin_closing_date_2017-12-31,0.0
+cat__fin_closing_date_2018-06-30,0.0
+cat__fin_closing_date_2018-12-31,0.0
 cat__fin_closing_date_2019-06-30,0.0
-cat__fin_closing_date_2024-01-31,0.0
-cat__fin_closing_date_2024-04-30,0.0
-cat__fin_closing_date_2024-05-31,0.0
-cat__fin_closing_date_2024-06-30,0.0
-cat__fin_closing_date_2024-08-31,0.0
-cat__fin_closing_date_2024-09-30,0.0
-cat__fin_closing_date_2024-10-31,0.0
-cat__fin_closing_date_2024-11-30,0.0
-num__has_environmental_appendix,0.0
-cat__fin_closing_date_2025-01-31,0.0
-num__lpi_below_supplier_median,0.0
+cat__fin_closing_date_2019-12-31,0.0
+cat__fin_closing_date_2020-12-31,0.0
+cat__fin_moodys_company_name_Va-Q-Tec AG,0.0
+cat__fin_moodys_company_name_UFAG Laboratorien AG,0.0
+cat__fin_closing_date_2022-08-31,0.0
+cat__fin_moodys_company_name_Stibo Complete A/S,0.0
+cat__fin_moodys_company_name_Steiert Praezisionsformenbau GmbH,0.0
+cat__fin_moodys_company_name_Stena Recycling A/S,0.0
+cat__fin_moodys_company_name_Sterigenics Denmark A/S,0.0
+cat__fin_moodys_company_name_Sterimed UK Holdings LTD,0.0
+cat__fin_moodys_company_name_Steripack Medical Poland Sp. z o.o.,0.0
+cat__fin_moodys_company_name_Steris Corp,0.0
+cat__fin_moodys_company_name_Stevanato Group Denmark A/S,0.0
+cat__fin_moodys_company_name_Stok Emballage K/S,0.0
+cat__fin_moodys_company_name_Troy X Investment Holding S.a r.l.,0.0
+cat__fin_moodys_company_name_Suzano S.A.,0.0
+cat__fin_moodys_company_name_SwissCo CDMO Operations GmbH,0.0
+cat__fin_moodys_company_name_TN Rayong CO LTD,0.0
+cat__fin_moodys_company_name_Tech Group Europe Limited,0.0
+cat__fin_moodys_company_name_Thermo Fisher Scientific B.V.,0.0
+cat__fin_moodys_company_name_Topp Trykluft A/S,0.0
+cat__fin_moodys_company_name_Tosoh Bioscience GmbH,0.0
+cat__fin_closing_date_2022-06-30,0.0
+cat__fin_closing_date_2022-09-30,0.0
+cat__fin_financial_level_Low financial risk,0.0
+cat__fin_created_at_utc_2026-03-05 09:02:26.421112+00:00,0.0
+cat__fin_closing_date_2025-03-31,0.0
 cat__fin_closing_date_2025-04-30,0.0
 cat__fin_closing_date_2025-05-31,0.0
 cat__fin_closing_date_2025-06-30,0.0
 cat__fin_closing_date_2025-08-31,0.0
 cat__fin_closing_date_2025-09-30,0.0
-cat__fin_closing_date_2024-03-31,0.0
-num__financial_data_available,0.0
-cat__supplier_sector_Computer Hardware,0.0
-cat__fin_closing_date_2023-11-30,0.0
-cat__fin_closing_date_2019-12-31,0.0
-cat__fin_closing_date_2020-12-31,0.0
-num__news_data_available,0.0
-cat__fin_closing_date_2022-08-31,0.0
-cat__fin_closing_date_2022-09-30,0.0
-cat__fin_closing_date_2022-10-31,0.0
+cat__fin_closing_date_2025-12-31,0.0
+cat__fin_created_at_utc_2026-03-12 15:07:22.230528+00:00,0.0
+cat__fin_closing_date_2024-11-30,0.0
+cat__fin_Status_Dissolved,0.0
+cat__fin_Status_Dissolved (merger or take-over),0.0
+cat__fin_implied_rating_Aaa,0.0
+cat__fin_moodys_company_name_Eurofins Miljo Luft A/S,0.0
+cat__fin_implied_rating_Caa,0.0
+cat__fin_risk_level_Do not source,0.0
+cat__Code_FRA,0.0
+cat__fin_closing_date_2025-01-31,0.0
+cat__fin_closing_date_2024-10-31,0.0
+cat__Country_Finland,0.0
+cat__fin_closing_date_2023-09-30,0.0
 cat__fin_closing_date_2022-11-30,0.0
-num__esg_data_available,0.0
 cat__fin_closing_date_2023-01-31,0.0
 cat__fin_closing_date_2023-03-31,0.0
 cat__fin_closing_date_2023-04-30,0.0
 cat__fin_closing_date_2023-05-31,0.0
+cat__fin_closing_date_2023-06-30,0.0
 cat__fin_closing_date_2023-08-31,0.0
-cat__fin_closing_date_2023-09-30,0.0
-cat__fin_moodys_company_name_Gerresheimer Horsovsky Tyn spol. s r.o.,0.0
-num__is_old_and_near_expiry,0.0
-cat__fin_created_at_utc_2026-03-05 09:02:26.421112+00:00,0.0
-cat__fin_created_at_utc_2026-03-12 15:07:22.230528+00:00,0.0
-cat__fin_Status_Dissolved (merger or take-over),0.0
-cat__fin_Implied_rating - original_Aa3,0.0
-cat__fin_Implied_rating - original_Aaa,0.0
-cat__fin_Implied_rating - original_B1,0.0
-num__fin_flag_interest_coverage_weak,0.0
-num__fin_flag_interest_coverage_stress,0.0
-num__fin_flag_short_term_liab_equity_high,0.0
-cat__fin_Implied_rating - original_Ba3,0.0
-num__fin_flag_debt_asset_high,0.0
-cat__fin_Implied_rating - original_Caa-C,0.0
-num__fin_flag_short_term_gearing_high,0.0
-num__fin_flag_long_term_gearing_high,0.0
-cat__Risk level_No data,0.0
-num__fin_flag_gearing_high,0.0
-cat__supplier_sector_Biotechnology and Life Sciences,0.0
-num__fin_flag_financial_risk_score_very_high,0.0
-num__fin_flag_very_low_solvency,0.0
-cat__fin_Implied_rating - original_Aa1,0.0
-cat__fin_Implied_rating - original_A3,0.0
-num__supplier_is_publicly_listed,0.0
-num__market_flag_high_beta,0.0
-cat__fin_implied_rating_Aaa,0.0
-cat__fin_implied_rating_B,0.0
-num__market_flag_high_market_cap_volatility,0.0
-num__market_flag_high_volume_shock,0.0
-cat__fin_implied_rating_Caa,0.0
-num__fin_flag_negative_roa,0.0
-cat__fin_Implied_rating - original_A2,0.0
-cat__fin_financial_level_High financial risk,0.0
-cat__fin_financial_level_Low financial risk,0.0
-cat__fin_output_text_Sourcing exclusion recommended. Mitigation actions required. Please follow risk mitigation actions as communicated by your Risk team. Reach out to your risk representative for further guidance.,0.0
-num__fin_flag_negative_roe,0.0
-cat__fin_output_text_Use caution. Mitigation actions required. Please follow risk mitigation actions as communicated by your Risk team. Reach out to your risk representative for further guidance.,0.0
-num__fin_flag_negative_ebit_margin,0.0
-cat__fin_moodys_company_name_Gerresheimer Vaerloese A/S,0.0
-cat__fin_moodys_company_name_FJ Industries A/S,0.0
-cat__fin_moodys_company_name_Gerresheimer Buende GmbH,0.0
-cat__contract_commodity_GxP Archiving,0.0
-num__missingindicator_market_log_vol_shock_ratio,0.0
-num__missingindicator_Timeliness,0.0
-num__missingindicator_Tracking_Tracing,0.0
-cat__contract_commodity_Future Devices Unclassified,0.0
-cat__contract_commodity_GMP Laboratory Analysis,0.0
-cat__contract_commodity_Gels,0.0
-cat__contract_commodity_Gene Therapy,0.0
-cat__contract_commodity_GxP Dry Ice,0.0
-cat__contract_commodity_Freeze Dryers,0.0
-cat__contract_commodity_GxP Gas,0.0
-cat__contract_commodity_Human Resources Training,0.0
-cat__contract_commodity_IT Hardware - End User,0.0
-cat__contract_commodity_Industrial Commodities,0.0
-cat__contract_commodity_Injection Moulding Machinery,0.0
-cat__contract_commodity_Inserts & Booklets,0.0
-cat__contract_commodity_Internal Consultancy Services,0.0
-cat__contract_commodity_Freight Forwarding (Clinical Trial),0.0
-cat__contract_commodity_Foils,0.0
-cat__fin_moodys_company_name_Georg Utz AG,0.0
-cat__contract_commodity_Durable,0.0
+cat__fin_closing_date_2023-10-31,0.0
+cat__fin_closing_date_2024-09-30,0.0
+cat__fin_closing_date_2023-11-30,0.0
+cat__fin_closing_date_2024-01-31,0.0
+cat__fin_closing_date_2024-03-31,0.0
+cat__fin_closing_date_2024-04-30,0.0
+cat__fin_closing_date_2024-05-31,0.0
+cat__fin_closing_date_2024-06-30,0.0
+cat__fin_closing_date_2024-08-31,0.0
+cat__fin_closing_date_2022-10-31,0.0
+cat__company_country_CHINA,0.0
+cat__fin_moodys_company_name_Eurofins Biopharma Product Testingdenmark A/S,0.0
+cat__contract_currency_code_SGD,0.0
+cat__contract_type_Facility Management & Engineering,0.0
+cat__contract_type_IT,0.0
+cat__contract_type_Medical,0.0
+cat__contract_type_Sales,0.0
+cat__nn_contract_type_Advisory Services Agreement,0.0
+cat__nn_contract_type_Consultancy Agreement,0.0
+cat__nn_contract_type_Engineering agreement,0.0
+cat__nn_contract_type_Lease Agreement,0.0
+cat__nn_contract_type_Letter of Agreement,0.0
+cat__nn_contract_type_License Agreement,0.0
+cat__nn_contract_type_Master Service Agreement,0.0
+cat__nn_contract_type_Non Commercial Partnership Agreement,0.0
+cat__nn_contract_type_Non-Disclosure Agreement,0.0
+cat__nn_contract_type_Order form,0.0
+cat__nn_contract_type_Product Agreement,0.0
+cat__nn_contract_type_Project Agreement,0.0
+cat__nn_contract_type_Quality Agreement,0.0
+cat__contract_type_Confidentiality & Non-Disclosure,0.0
+cat__contract_currency_code_SAR,0.0
+cat__nn_contract_type_Sales Agreement,0.0
+cat__contract_currency_code_NZD,0.0
+cat__payment_terms_N000 Net cash,0.0
+cat__payment_terms_N00B Prepayment/Payment with order,0.0
+"cat__payment_terms_O045 14 days -1,5%, 45 days",0.0
+cat__incoterms_CFR Costs and freight,0.0
+"cat__incoterms_CIF Costs, insurance & freight",0.0
+cat__incoterms_CIP Carriage and insurance paid,0.0
+cat__incoterms_DAF Delivered to frontier,0.0
+cat__incoterms_DAT Del.at Terminal-incl.unloading,0.0
+cat__incoterms_DDU Delivered duty unpaid,0.0
+cat__incoterms_DPU Delivered at Place Unloaded,0.0
+cat__contract_currency_code_BDT,0.0
+cat__contract_currency_code_BRL,0.0
+cat__contract_currency_code_CLP,0.0
+cat__contract_currency_code_CNH,0.0
+cat__contract_currency_code_CNY,0.0
+cat__contract_currency_code_GBP,0.0
+cat__contract_currency_code_IDR,0.0
+cat__nn_contract_type_Safety Data Exchange Agreement,0.0
+cat__nn_contract_type_Scope of Work,0.0
+cat__fin_moodys_company_name_Elpro-Buchs AG,0.0
+cat__contract_commodity_Cleaning Equipment & Products (Offices),0.0
+cat__contract_commodity_Cleaning Services (GxP)',0.0
+cat__contract_commodity_Clinical Special Laboratory Services,0.0
+cat__contract_commodity_Clothing and Personal Safety Unclassified,0.0
+cat__contract_commodity_Connectivity,0.0
+cat__contract_commodity_Customs Clearance,0.0
 cat__contract_commodity_Detergents,0.0
 cat__contract_commodity_Devices,0.0
 cat__contract_commodity_Digital Agency,0.0
 cat__contract_commodity_Disinfectants,0.0
-cat__term_type_perpetual,0.0
 cat__contract_commodity_Dry Ice,0.0
 cat__contract_commodity_Dry Ice and Gas,0.0
+cat__contract_commodity_Durable,0.0
 cat__contract_commodity_Electricity,0.0
-cat__contract_commodity_Finished Devices,0.0
-cat__contract_status_published,0.0
 cat__contract_commodity_EtOH,0.0
-num__missingindicator_days_until_expiry,0.0
+cat__contract_commodity_Excipients,0.0
 cat__contract_commodity_FM Consulting,0.0
 cat__contract_commodity_Facility Management Consulting,0.0
-cat__contract_commodity_Filters,0.0
-cat__contract_commodity_Filters for Production Equipment (excl. Ventilation),0.0
-cat__contract_commodity_Labels,0.0
-cat__contract_commodity_Laboratory Chemicals,0.0
-cat__contract_commodity_Laboratory Chemicals (Process Aids),0.0
-cat__contract_commodity_Packaging Consumables,0.0
-cat__contract_commodity_Other Drug Product Manufacturing Services,0.0
-cat__contract_commodity_Other Drug Substance Manufacturing Services,0.0
-cat__contract_commodity_Other Energy & Utilities,0.0
-cat__contract_commodity_Other Energy Unclassified,0.0
-cat__contract_commodity_Other Laboratory Chemicals,0.0
-cat__contract_commodity_Other soft skills training,0.0
-cat__contract_commodity_PC & Accessories,0.0
-cat__contract_commodity_Patient Education,0.0
-cat__contract_commodity_Laboratory Gases,0.0
-cat__contract_commodity_Pest Control,0.0
-num__missingindicator_price_trend_slope,0.0
-cat__contract_commodity_Prefilled Plastic Components,0.0
-cat__contract_commodity_Primary Packaging,0.0
-cat__contract_commodity_Printed Packaging Materials,0.0
-cat__contract_commodity_Process Aids,0.0
-cat__contract_commodity_Purchase of Real Estate/Land,0.0
-cat__contract_commodity_Other Distribution Expenses,0.0
-cat__contract_commodity_Other Critical Production Materials,0.0
-cat__contract_commodity_Other Critical Production Material,0.0
-cat__contract_commodity_Other Clothing and Personal Safety,0.0
-cat__contract_commodity_Laundry Service,0.0
-cat__contract_commodity_Law Firms,0.0
-cat__contract_commodity_Life Science Chemicals,0.0
-cat__contract_commodity_Lifescience Chemicals,0.0
-cat__contract_commodity_Mammalian Cell Culture,0.0
-cat__contract_commodity_Management Consulting,0.0
-cat__contract_commodity_Medical Kits,0.0
-cat__contract_commodity_Metal,0.0
-num__missingindicator_International_Shipments,0.0
-cat__contract_commodity_Moulding and Pre-assembly,0.0
-num__missingindicator_Infrastructure,0.0
-num__missingindicator_Customs,0.0
-cat__contract_commodity_Office Consumables,0.0
-"cat__contract_commodity_Oral Drug Product (Tablets, Capsules)",0.0
-cat__contract_commodity_Other Cleaning,0.0
-cat__contract_commodity_Customs Clearance,0.0
-cat__contract_commodity_Connectivity,0.0
-cat__contract_commodity_Clothing and Personal Safety Unclassified,0.0
-cat__payment_terms_F180 Invoice Date + 180 days,0.0
-cat__contract_type_IT,0.0
-cat__contract_type_Medical,0.0
-cat__payment_terms_L010 Current Month + 10 days,0.0
-cat__payment_terms_FD1M Invoice Date + 1 month,0.0
-cat__contract_type_Sales,0.0
-cat__nn_contract_type_Advisory Services Agreement,0.0
-cat__payment_terms_F210 Invoice Date + 210 days,0.0
-cat__nn_contract_type_Consultancy Agreement,0.0
-cat__nn_contract_type_Master Service Agreement,0.0
-cat__payment_terms_F090 Invoice Date + 90 days,0.0
-cat__nn_contract_type_Engineering agreement,0.0
-cat__payment_terms_F055 Invoice Date + 55 days,0.0
-cat__payment_terms_F042 Invoice Date + 42 days,0.0
-cat__nn_contract_type_Lease Agreement,0.0
-cat__nn_contract_type_Letter of Agreement,0.0
-cat__nn_contract_type_License Agreement,0.0
-cat__payment_terms_L015 Current Month + 15 days,0.0
-cat__payment_terms_L030 Current Month + 30 days,0.0
-cat__contract_type_Confidentiality & Non-Disclosure,0.0
-cat__contract_currency_code_SGD,0.0
-cat__incoterms_CIP Carriage and insurance paid,0.0
-cat__incoterms_DPU Delivered at Place Unloaded,0.0
-"cat__incoterms_CIF Costs, insurance & freight",0.0
-cat__incoterms_CFR Costs and freight,0.0
-cat__contract_currency_code_BDT,0.0
-"cat__payment_terms_O045 14 days -1,5%, 45 days",0.0
-cat__contract_currency_code_CLP,0.0
-cat__contract_currency_code_CNH,0.0
-cat__payment_terms_N00B Prepayment/Payment with order,0.0
-cat__payment_terms_N000 Net cash,0.0
-cat__contract_currency_code_GBP,0.0
-cat__contract_currency_code_IDR,0.0
-cat__payment_terms_LB01 Current Month + 1 month,0.0
-cat__contract_currency_code_NZD,0.0
-cat__contract_currency_code_SAR,0.0
-cat__payment_terms_F035 Invoice Date + 35 days,0.0
-cat__nn_contract_type_Non Commercial Partnership Agreement,0.0
-cat__contract_commodity_Clinical Special Laboratory Services,0.0
-cat__contract_commodity_Cell Culture Media,0.0
+cat__contract_commodity_Cleaning Equipment (GxP),0.0
+cat__contract_commodity_Cleaning Equipment,0.0
+cat__nn_contract_type_Service Level Agreement,0.0
+cat__contract_commodity_Chemical Synthesis - Small Molecules,0.0
+cat__nn_contract_type_Statement of Work,0.0
+cat__nn_contract_type_Work Order,0.0
+"cat__contract_commodity_Accounting, Tax and Auditing Services",0.0
+cat__contract_commodity_Air Transportation,0.0
+cat__contract_commodity_Analytics Consulting,0.0
+cat__contract_commodity_Assembly & Packaging,0.0
+cat__contract_commodity_Assembly Lines,0.0
+cat__contract_commodity_Biologics - E.Coli,0.0
 cat__contract_commodity_Biologics - Mammalian,0.0
 cat__contract_commodity_Biopharm Sidechains Unclassified,0.0
 cat__contract_commodity_Bottles,0.0
 cat__contract_commodity_Bulk Packaging,0.0
 cat__contract_commodity_Caps,0.0
-cat__payment_terms_F010 Invoice Date + 10 days,0.0
 cat__contract_commodity_Catering & Canteen Services',0.0
+cat__contract_commodity_Cell Culture Media,0.0
 cat__contract_commodity_Chemical Synthesis - Oligonucleotides,0.0
-cat__nn_contract_type_Non-Disclosure Agreement,0.0
 cat__contract_commodity_Chemical Synthesis - Peptides,0.0
-cat__contract_commodity_Chemical Synthesis - Small Molecules,0.0
-cat__contract_commodity_Cleaning Equipment,0.0
-cat__contract_commodity_Cleaning Equipment & Products (Offices),0.0
-cat__contract_commodity_Cleaning Equipment (GxP),0.0
-cat__contract_commodity_Cleaning Services (GxP)',0.0
+cat__payment_terms_LB01 Current Month + 1 month,0.0
+cat__payment_terms_L060 Current Month + 60 days,0.0
+cat__payment_terms_L015 Current Month + 15 days,0.0
+num__market_flag_negative_price_trend,0.0
+num__is_old_and_near_expiry,0.0
+num__lpi_below_supplier_median,0.0
+num__financial_data_available,0.0
+num__esg_data_available,0.0
+num__news_data_available,0.0
+num__missingindicator_contract_value,0.0
+num__missingindicator_fin_Total_shareholders'_funds_and_liabilitiesth_DKK,0.0
+num__missingindicator_fin_profit_margin,0.0
+num__missingindicator_fin_ebit_margin,0.0
+num__missingindicator_fin_current_ratio,0.0
+num__missingindicator_fin_Total_liabilities_Equity_ratio,0.0
+num__missingindicator_fin_short_term_liabilities_equity_ratio,0.0
+num__missingindicator_fin_interest_coverage_ratio,0.0
+num__missingindicator_fin_solvency_ratio_asset_based,0.0
+num__missingindicator_fin_financial_risk_score,0.0
+num__missingindicator_esg_esg_industry_adjusted,0.0
+num__missingindicator_esg_env_score,0.0
+num__market_flag_high_beta,0.0
+num__market_flag_negative_volume_trend,0.0
+cat__payment_terms_L010 Current Month + 10 days,0.0
+num__market_flag_high_market_cap_volatility,0.0
+num__end_year,0.0
+num__fin_Number_of_months,0.0
+num__esg_industry_min,0.0
+num__fin_flag_financial_risk_score_high,0.0
+num__fin_flag_financial_risk_score_very_high,0.0
+num__fin_flag_gearing_high,0.0
+num__fin_flag_long_term_gearing_high,0.0
+num__fin_flag_short_term_gearing_high,0.0
+num__fin_flag_debt_asset_high,0.0
+num__fin_flag_short_term_liab_equity_high,0.0
+num__fin_flag_interest_coverage_stress,0.0
+num__fin_flag_interest_coverage_weak,0.0
+num__fin_flag_negative_ebit_margin,0.0
+num__fin_flag_negative_roe,0.0
+num__fin_flag_negative_roa,0.0
+num__supplier_is_publicly_listed,0.0
+num__market_flag_high_volume_shock,0.0
+num__missingindicator_esg_env_weight,0.0
+num__missingindicator_esg_social_score,0.0
+num__missingindicator_esg_social_weight,0.0
+num__missingindicator_esg_gov_score,0.0
+num__missingindicator_Timeliness,0.0
+num__missingindicator_market_log_vol_shock_ratio,0.0
+num__missingindicator_years_to_expiry_capped,0.0
+num__missingindicator_has_environmental_appendix,0.0
+cat__contract_status_published,0.0
+cat__term_type_perpetual,0.0
 cat__payment_terms_0001 Payable immediately Due net,0.0
-cat__contract_commodity_Biologics - E.Coli,0.0
-cat__contract_commodity_Assembly Lines,0.0
-cat__contract_commodity_Assembly & Packaging,0.0
-cat__contract_commodity_Aseptic Filling,0.0
-cat__nn_contract_type_Order form,0.0
-cat__payment_terms_F028 Invoice Date + 28 days,0.0
-cat__nn_contract_type_Product Agreement,0.0
-cat__nn_contract_type_Project Agreement,0.0
-cat__nn_contract_type_Quality Agreement,0.0
-cat__nn_contract_type_Safety Data Exchange Agreement,0.0
-cat__nn_contract_type_Sales Agreement,0.0
-cat__nn_contract_type_Scope of Work,0.0
-cat__nn_contract_type_Service Level Agreement,0.0
-cat__nn_contract_type_Statement of Work,0.0
+cat__payment_terms_F010 Invoice Date + 10 days,0.0
 cat__payment_terms_F021 Invoice Date + 21 days,0.0
-cat__payment_terms_F014 Invoice Date + 14 days,0.0
-"cat__contract_commodity_Accounting, Tax and Auditing Services",0.0
-cat__contract_commodity_Air Transportation,0.0
-cat__contract_commodity_Analytics Consulting,0.0
-cat__contract_commodity_R&D Consulting,0.0
-cat__contract_commodity_Resin,0.0
-cat__contract_commodity_Rewards and Recognition,0.0
-cat__fin_moodys_company_name_Bussetti & Co Gesellschaft m.b.H.,0.0
-cat__fin_moodys_company_name_Bachmann Forming AG,0.0
-cat__fin_moodys_company_name_Biomerieux Denmark ApS,0.0
-cat__fin_moodys_company_name_Biomerieux SA,0.0
-cat__fin_moodys_company_name_Bording Danmark A/S,0.0
-cat__fin_moodys_company_name_Bramming Plast-Industri A/S,0.0
-cat__fin_moodys_company_name_Brenntag Nordic A/S,0.0
-cat__fin_moodys_company_name_Bunzl Distribution Danmark A/S,0.0
-cat__fin_moodys_company_name_CCL Label A/S,0.0
-cat__fin_moodys_company_name_Conrum A/S,0.0
-cat__fin_moodys_company_name_CUC Engineering A/S,0.0
-cat__fin_moodys_company_name_Camfil A/S,0.0
-cat__fin_moodys_company_name_Catalent Anagni S.R.L.,0.0
-cat__fin_moodys_company_name_Catalent Germany Schorndorf GmbH,0.0
-cat__fin_moodys_company_name_Cavitech Solutions Limited,0.0
-cat__fin_moodys_company_name_Colorcon Limited,0.0
-cat__fin_moodys_company_name_Combitherm A/S,0.0
-cat__fin_moodys_company_name_BWT Danmark A/S,0.0
-cat__fin_moodys_company_name_BEWI Denmark A/S,0.0
-cat__fin_moodys_company_name_Avista Oil Danmark A/S,0.0
-cat__fin_moodys_company_name_Avenue Mould Solutions Limited,0.0
+cat__payment_terms_F028 Invoice Date + 28 days,0.0
+cat__payment_terms_F035 Invoice Date + 35 days,0.0
+cat__payment_terms_F042 Invoice Date + 42 days,0.0
+cat__payment_terms_F055 Invoice Date + 55 days,0.0
+cat__payment_terms_F090 Invoice Date + 90 days,0.0
+cat__payment_terms_F180 Invoice Date + 180 days,0.0
+cat__payment_terms_F210 Invoice Date + 210 days,0.0
+cat__payment_terms_FD1M Invoice Date + 1 month,0.0
+num__missingindicator_Tracking_Tracing,0.0
+num__missingindicator_International_Shipments,0.0
+num__missingindicator_Infrastructure,0.0
+num__missingindicator_news_negative_ratio,0.0
+num__missingindicator_esg_gov_weight,0.0
+num__missingindicator_esg_industry_min,0.0
+num__missingindicator_esg_industry_max,0.0
+num__missingindicator_news_neutral_count,0.0
+num__missingindicator_news_avg_sentiment_score,0.0
+num__missingindicator_news_avg_relevance_score,0.0
+num__missingindicator_news_max_relevance_score,0.0
+num__missingindicator_vol_stability_score,0.0
+num__missingindicator_price_trend_slope,0.0
+num__missingindicator_vol_shock_ratio,0.0
+num__missingindicator_vol_trend_slope,0.0
+num__missingindicator_market_cap_volatility,0.0
+num__missingindicator_Price_trends_52 weeks_%,0.0
+num__missingindicator_Earnings_per_share_DKK,0.0
+num__missingindicator_avg_closing_price,0.0
+num__missingindicator_price_volatility_score,0.0
+cat__contract_commodity_Filters,0.0
+cat__contract_commodity_Filters for Production Equipment (excl. Ventilation),0.0
+cat__contract_commodity_Finished Devices,0.0
+cat__department_Global Strategic Outsourcing & Devices,0.0
+cat__department_Strategic Sourcing US Hub,0.0
+"cat__department_Strategy, Sourcing & Negotiation CoE",0.0
+cat__fin_moodys_company_name_A P Moller-Maersk A/S,0.0
+cat__fin_moodys_company_name_A/S Mortalin,0.0
+cat__fin_moodys_company_name_AH Metal Solutions A/S,0.0
 cat__fin_moodys_company_name_AS3 BtB A/S,0.0
+cat__fin_moodys_company_name_AVISTA Green ApS,0.0
 cat__fin_moodys_company_name_Accenture A/S,0.0
 cat__fin_moodys_company_name_Advanex (Singapore) Pte. Ltd.,0.0
 cat__fin_moodys_company_name_Air Liquide Danmark A/S,0.0
 cat__fin_moodys_company_name_Alfa Laval Nordic A/S,0.0
 cat__fin_moodys_company_name_Alflow Scandinavia A/S,0.0
-num__missingindicator_esg_env_score,0.0
+cat__fin_moodys_company_name_All4labels Denmark Sb A/S,0.0
 cat__fin_moodys_company_name_Alsiano A/S,0.0
 cat__fin_moodys_company_name_Apodannordic Pharmapackaging A/S,0.0
 cat__fin_moodys_company_name_Asahi Kasei Bioprocess Europe,0.0
 cat__fin_moodys_company_name_Aseptic Group,0.0
-cat__fin_moodys_company_name_Ashland Industries Europe GmbH,0.0
-cat__fin_moodys_company_name_Aspen Oss B.V.,0.0
-cat__fin_moodys_company_name_Aug. Hedinger GmbH & Co. KG,0.0
-cat__fin_moodys_company_name_Autajon Labels Belgium,0.0
-cat__fin_moodys_company_name_Compass Group Danmark A/S,0.0
-cat__fin_moodys_company_name_Corden Pharma Societa' PER Azioni IN Breve Corden Pharma S.P.A.,0.0
-cat__fin_moodys_company_name_A/S Mortalin,0.0
-cat__fin_moodys_company_name_Flamma S.P.A.,0.0
-cat__fin_moodys_company_name_Europart Danmark A/S,0.0
-cat__fin_moodys_company_name_Excella GmbH & Co. KG,0.0
-cat__incoterms_DAT Del.at Terminal-incl.unloading,0.0
-cat__fin_moodys_company_name_Fait Plast S.P.A.,0.0
-cat__fin_moodys_company_name_Farusa Emballage A/S,0.0
-cat__fin_moodys_company_name_Fibrant B.V.,0.0
-cat__fin_moodys_company_name_Fisher Scientific Biotech Line ApS,0.0
-cat__fin_moodys_company_name_Flexcoat Produtos Auto-Adesivos S/A,0.0
-cat__fin_moodys_company_name_Corden Pharma Switzerland LLC,0.0
-cat__fin_moodys_company_name_Flextronics International Gesellschaft m.b.H.,0.0
-cat__fin_moodys_company_name_Formteknik Group Anderstorp AB,0.0
-cat__fin_moodys_company_name_Fujifilm Diosynth Biotechnologies UK Limited,0.0
-cat__fin_moodys_company_name_Gemu ApS,0.0
-cat__fin_moodys_company_name_Genewiz UK Limited,0.0
-cat__fin_moodys_company_name_Genpack A/S,0.0
-cat__fin_moodys_company_name_Geodis CL Pharma,0.0
-cat__fin_moodys_company_name_Eurofins Miljo Luft A/S,0.0
-cat__fin_moodys_company_name_Eurofins Biopharma Product Testingdenmark A/S,0.0
-cat__fin_moodys_company_name_Enestia Belgium,0.0
-cat__fin_moodys_company_name_Elpro-Buchs AG,0.0
-cat__fin_moodys_company_name_Curtec Nederland B.V.,0.0
-cat__fin_moodys_company_name_Cyklop-Emballering A/S,0.0
-cat__fin_moodys_company_name_Cytiva Denmark ApS,0.0
-num__missingindicator_esg_esg_industry_adjusted,0.0
-cat__fin_moodys_company_name_D-S Sikkerhedsudstyr A/S,0.0
-num__missingindicator_fin_roa_net_income,0.0
-cat__fin_moodys_company_name_DHL Supply Chain Denmark A/S,0.0
-cat__fin_moodys_company_name_DSV Contract Logistics A/S,0.0
-cat__fin_moodys_company_name_Dansk Salt A/S,0.0
-cat__fin_moodys_company_name_Dansk Traeemballage A/S,0.0
-cat__fin_moodys_company_name_Dorte Egelund ApS,0.0
-cat__fin_moodys_company_name_Dustin A/S,0.0
-cat__fin_moodys_company_name_EMPAC GmbH,0.0
-cat__fin_moodys_company_name_Ecolab ApS,0.0
-cat__fin_moodys_company_name_Eldrup Lim ApS,0.0
-cat__fin_moodys_company_name_AH Metal Solutions A/S,0.0
-cat__fin_moodys_company_name_A P Moller-Maersk A/S,0.0
-num__missingindicator_price_volatility_score,0.0
-cat__team_Drug Product Outsourcing,0.0
-cat__contract_commodity_Water,0.0
-cat__contract_commodity_Workshop Machinery,0.0
-cat__team_Aseptic Production,0.0
-num__missingindicator_market_cap_volatility,0.0
-cat__team_Bioprocessing,0.0
-cat__team_Bioprocessing and Excipients,0.0
-num__missingindicator_vol_trend_slope,0.0
-cat__team_Drug Substance Outsourcing,0.0
-num__missingindicator_news_max_relevance_score,0.0
-cat__team_Drug Substance Outsourcing API,0.0
-cat__team_Drug Substance Outsourcing ET,0.0
-cat__team_Negotiation & Capability Building,0.0
-cat__team_Oral Drug Product and Packaging,0.0
-num__missingindicator_vol_shock_ratio,0.0
-cat__team_Raw Materials,0.0
-num__missingindicator_news_negative_ratio,0.0
-num__missingindicator_Price_trends_52 weeks_%,0.0
-num__missingindicator_Earnings_per_share_DKK,0.0
-cat__contract_commodity_UV,0.0
-cat__contract_commodity_Tubes,0.0
-cat__contract_commodity_Rubber Laminate,0.0
-cat__contract_commodity_Rubber Plungers,0.0
-cat__contract_commodity_SIP (Devices & Needles),0.0
-cat__contract_commodity_SaaS (Software as a Service),0.0
-cat__contract_commodity_Sales Commission,0.0
-num__missingindicator_avg_closing_price,0.0
-cat__contract_commodity_Single Use Process Equipment,0.0
-cat__contract_commodity_Single Use Systems,0.0
-cat__contract_commodity_Small Molecules (Raw Materials),0.0
-cat__contract_commodity_Spray Drying (Drug Product Outsourcing),0.0
-cat__contract_commodity_Steam,0.0
-cat__contract_commodity_Technical Maintenance,0.0
-cat__contract_commodity_Temperature Loggers,0.0
-cat__contract_commodity_Temporary Buildings Rental,0.0
-cat__contract_commodity_Transport Consumables,0.0
-"cat__team_Strategy, Sourcing & Negotiation CoE",0.0
-cat__unit_SSIMS,0.0
-"cat__department_Strategy, Sourcing & Negotiation CoE",0.0
-num__missingindicator_esg_gov_score,0.0
-cat__department_from_cost_center_Drug Product Outsourcing,0.0
-num__missingindicator_esg_industry_min,0.0
-cat__department_from_cost_center_Global Strategic Outsourcing & Devices,0.0
-cat__department_from_cost_center_HI Warehouse Expansion Program,0.0
-"cat__department_Alliance, Acquisitions & PPM CoE",0.0
-num__missingindicator_esg_gov_weight,0.0
-cat__department_Bioprocessing and Excipients,0.0
-cat__department_Drug Product Outsourcing,0.0
-cat__company_country_AUSTRIA,0.0
-num__missingindicator_esg_social_weight,0.0
-cat__department_Global Strategic Outsourcing & Devices,0.0
 cat__department_HI Warehouse Expansion Program,0.0
-num__missingindicator_esg_social_score,0.0
-num__missingindicator_esg_env_weight,0.0
-"cat__department_Quality, Production Services & Supplies",0.0
-cat__department_Strategic Sourcing US Hub,0.0
-num__missingindicator_esg_industry_max,0.0
-num__missingindicator_news_negative_count,0.0
-cat__expiry_pressure_bucket_within_1y,0.0
-num__missingindicator_news_positive_count,0.0
+cat__department_Drug Product Outsourcing,0.0
+cat__team_Raw Materials,0.0
+cat__department_Bioprocessing and Excipients,0.0
+cat__company_country_AUSTRIA,0.0
 cat__company_country_BELGIUM,0.0
 num__terminated,0.0
-cat__company_country_CHINA,0.0
-num__missingindicator_news_avg_relevance_score,0.0
 cat__company_country_FINLAND,0.0
 cat__company_country_FRANCE,0.0
 cat__company_country_INDONESIA,0.0
@@ -863,8 +734,135 @@ cat__company_country_IRELAND,0.0
 cat__company_country_NORWAY,0.0
 cat__company_country_Novo Nordisk Saudi Arabia,0.0
 cat__company_country_RUSSIAN FEDERATION,0.0
+cat__company_country_SWEDEN,0.0
 cat__company_country_SWITZERLAND,0.0
 cat__company_country_UNITED STATES,0.0
-num__missingindicator_news_avg_sentiment_score,0.0
-num__missingindicator_news_neutral_count,0.0
+cat__department_from_cost_center_Drug Product Outsourcing,0.0
+cat__department_from_cost_center_Global Strategic Outsourcing & Devices,0.0
+cat__department_from_cost_center_HI Warehouse Expansion Program,0.0
+"cat__department_Alliance, Acquisitions & PPM CoE",0.0
+cat__fin_moodys_company_name_Ashland Industries Europe GmbH,0.0
+cat__fin_moodys_company_name_Aspen Oss B.V.,0.0
+cat__fin_moodys_company_name_Aug. Hedinger GmbH & Co. KG,0.0
+cat__fin_moodys_company_name_Autajon Labels Belgium,0.0
+cat__fin_moodys_company_name_Compass Group Danmark A/S,0.0
+cat__fin_moodys_company_name_Conrum A/S,0.0
+cat__fin_moodys_company_name_Corden Pharma Societa' PER Azioni IN Breve Corden Pharma S.P.A.,0.0
+cat__fin_moodys_company_name_Corden Pharma Switzerland LLC,0.0
+cat__fin_moodys_company_name_Curtec Nederland B.V.,0.0
+cat__fin_moodys_company_name_Cyklop-Emballering A/S,0.0
+cat__fin_moodys_company_name_Cytiva Denmark ApS,0.0
+cat__fin_moodys_company_name_D-S Sikkerhedsudstyr A/S,0.0
+cat__fin_moodys_company_name_DHL Supply Chain Denmark A/S,0.0
+cat__fin_moodys_company_name_Dansk Salt A/S,0.0
+cat__fin_moodys_company_name_Dansk Traeemballage A/S,0.0
+cat__fin_moodys_company_name_Dorte Egelund ApS,0.0
+cat__fin_moodys_company_name_Dustin A/S,0.0
+cat__fin_moodys_company_name_EMPAC GmbH,0.0
+cat__fin_moodys_company_name_Ecolab ApS,0.0
+cat__fin_moodys_company_name_Eldrup Lim ApS,0.0
+cat__fin_moodys_company_name_Elis Danmark A/S,0.0
+cat__fin_moodys_company_name_Combitherm A/S,0.0
+cat__fin_moodys_company_name_Colorcon Limited,0.0
+cat__fin_moodys_company_name_Cavitech Solutions Limited,0.0
+cat__fin_moodys_company_name_Bording Danmark A/S,0.0
+cat__fin_moodys_company_name_Avenue Mould Solutions Limited,0.0
+cat__fin_moodys_company_name_Avista Oil Danmark A/S,0.0
+cat__fin_moodys_company_name_BEWI Denmark A/S,0.0
+cat__fin_moodys_company_name_BWT Danmark A/S,0.0
+cat__fin_moodys_company_name_Bachmann Forming AG,0.0
+cat__fin_moodys_company_name_Biomerieux Denmark ApS,0.0
+cat__fin_moodys_company_name_Biomerieux SA,0.0
+cat__fin_moodys_company_name_Bramming Plast-Industri A/S,0.0
+cat__fin_moodys_company_name_Catalent Germany Schorndorf GmbH,0.0
+cat__fin_moodys_company_name_Brenntag Nordic A/S,0.0
+cat__fin_moodys_company_name_Bunzl Distribution Danmark A/S,0.0
+cat__fin_moodys_company_name_Bussetti & Co Gesellschaft m.b.H.,0.0
+cat__fin_moodys_company_name_CCL Label A/S,0.0
+cat__fin_moodys_company_name_CUC Engineering A/S,0.0
+cat__fin_moodys_company_name_Camfil A/S,0.0
+cat__fin_moodys_company_name_Catalent Anagni S.R.L.,0.0
+"cat__team_Strategy, Sourcing & Negotiation CoE",0.0
+cat__team_Oral Drug Product and Packaging,0.0
+cat__contract_commodity_Foils,0.0
+cat__contract_commodity_Laboratory Gases,0.0
+cat__contract_commodity_Law Firms,0.0
+cat__contract_commodity_Life Science Chemicals,0.0
+cat__contract_commodity_Lifescience Chemicals,0.0
+cat__contract_commodity_Mammalian Cell Culture,0.0
+cat__contract_commodity_Medical Kits,0.0
+cat__contract_commodity_Metal,0.0
+cat__contract_commodity_Moulding and Pre-assembly,0.0
+cat__contract_commodity_Office Consumables,0.0
+"cat__contract_commodity_Oral Drug Product (Tablets, Capsules)",0.0
+cat__contract_commodity_Other Cleaning,0.0
+cat__contract_commodity_Other Clinical Services',0.0
+cat__contract_commodity_Other Clothing and Personal Safety,0.0
+cat__contract_commodity_Other Critical Production Material,0.0
+cat__contract_commodity_Other Critical Production Materials,0.0
+cat__contract_commodity_Other Distribution Expenses,0.0
+cat__contract_commodity_Other Drug Product Manufacturing Services,0.0
+cat__contract_commodity_Other Drug Substance Manufacturing Services,0.0
+cat__contract_commodity_Laundry Service,0.0
+cat__contract_commodity_Laboratory Chemicals (Process Aids),0.0
+cat__team_Negotiation & Capability Building,0.0
+cat__contract_commodity_Laboratory Chemicals,0.0
+cat__contract_commodity_Freeze Dryers,0.0
+cat__contract_commodity_Freight Forwarding (Clinical Trial),0.0
+cat__contract_commodity_Future Devices Unclassified,0.0
+cat__contract_commodity_GMP Laboratory Analysis,0.0
+cat__contract_commodity_Gels,0.0
+cat__contract_commodity_Gene Therapy,0.0
+"cat__contract_commodity_Glass (Syringes, Vials, Cartridges)",0.0
+cat__contract_commodity_GxP Archiving,0.0
+cat__contract_commodity_GxP Dry Ice,0.0
+cat__contract_commodity_GxP Gas,0.0
+cat__contract_commodity_Human Resources Training,0.0
+cat__contract_commodity_IT Hardware - End User,0.0
+cat__contract_commodity_Industrial Commodities,0.0
+cat__contract_commodity_Injection Moulding Machinery,0.0
+cat__contract_commodity_Inserts & Booklets,0.0
+cat__contract_commodity_Internal Consultancy Services,0.0
+cat__contract_commodity_Labels,0.0
+cat__contract_commodity_Other Energy & Utilities,0.0
+cat__contract_commodity_Other Laboratory Chemicals,0.0
+cat__contract_commodity_Other soft skills training,0.0
+cat__contract_commodity_PC & Accessories,0.0
+cat__contract_commodity_Support Proteins and BIO APIs Unclassified,0.0
+cat__contract_commodity_Technical Maintenance,0.0
+cat__contract_commodity_Temperature Loggers,0.0
+cat__contract_commodity_Temporary Buildings Rental,0.0
+cat__contract_commodity_Transport Consumables,0.0
+cat__contract_commodity_Tubes,0.0
+cat__contract_commodity_UV,0.0
+cat__contract_commodity_Water,0.0
+cat__contract_commodity_Workshop Machinery,0.0
+cat__team_Aseptic Production,0.0
+cat__team_BF Integration,0.0
+cat__team_Bioprocessing,0.0
+cat__team_Bioprocessing and Excipients,0.0
+cat__team_Drug Product Outsourcing,0.0
+cat__team_Drug Substance Outsourcing,0.0
+cat__team_Drug Substance Outsourcing API,0.0
+cat__team_Drug Substance Outsourcing ET,0.0
+cat__contract_commodity_Steam,0.0
+cat__contract_commodity_Spray Drying (Drug Product Outsourcing),0.0
+cat__contract_commodity_Small Molecules (Raw Materials),0.0
+cat__contract_commodity_R&D Consulting,0.0
+cat__contract_commodity_Packaging Consumables,0.0
+cat__contract_commodity_Packaging Lines,0.0
+cat__contract_commodity_Patient Education,0.0
+cat__contract_commodity_Pest Control,0.0
+cat__contract_commodity_Primary Packaging,0.0
+cat__contract_commodity_Process Aids,0.0
+cat__contract_commodity_Purchase of Real Estate/Land,0.0
+cat__contract_commodity_Resin,0.0
+cat__contract_commodity_Single Use Systems,0.0
+cat__contract_commodity_Rewards and Recognition,0.0
+cat__contract_commodity_Rubber Laminate,0.0
+cat__contract_commodity_Rubber Plungers,0.0
+cat__contract_commodity_SIP (Devices & Needles),0.0
+cat__contract_commodity_SaaS (Software as a Service),0.0
+cat__contract_commodity_Sales Commission,0.0
+cat__contract_commodity_Single Use Process Equipment,0.0
 cat__Code_USA,0.0

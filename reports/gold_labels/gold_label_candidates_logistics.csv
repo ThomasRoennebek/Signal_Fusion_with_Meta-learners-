@@ -1,29 +1,30 @@
-target_department,candidate_bucket,contract_id,contract_number,contract_name,supplier_id,supplier_display_name,department,renegotiation_prob,contract_age_years,payment_terms,incoterms,contract_value_dkk
-Logistics,likely_yes_high_score,46854,46854,TFND_Call-off_2014_NNAS_Primary_FFA_Amendment1_BE Clause,18077,XPO TRANSPORT SOLUTIONS SUD FRANCE DUP#37124 IN 1000,Logistics,0.999999999999938,11,F030 Invoice Date + 30 days,,
-Logistics,likely_yes_high_score,46860,46860,XPO_Call-off_2017_NNAS_Primary_FFA_Amendment2_4PLsetup,18077,XPO TRANSPORT SOLUTIONS SUD FRANCE DUP#37124 IN 1000,Logistics,0.999999999999938,8,F030 Invoice Date + 30 days,,0.0
-Logistics,likely_yes_high_score,46847,46847,TFND_Master_2010_NNAS_Primary_FFA,18077,XPO TRANSPORT SOLUTIONS SUD FRANCE DUP#37124 IN 1000,Logistics,0.999999999999938,15,F030 Invoice Date + 30 days,,
-Logistics,likely_yes_high_score,46134,46135,Leman_Call-off_2015_NNAS_Primary_FFA_Amendment1 Legal Name Change,8880,LEMAN A/S,Logistics,0.9999999999994924,10,F030 Invoice Date + 30 days,,0.0
-Logistics,likely_yes_high_score,46139,46140,Leman_Call-off_2017_NNAS_Primary_FFA_Amendment3_4PL Setup,8880,LEMAN A/S,Logistics,0.9999999999994924,8,F030 Invoice Date + 30 days,,0.0
-Logistics,likely_yes_high_score,47409,47410,Neptun_Call-off_2017_NNAS_Primary_FFA_Amendment1_4PLsetup,1708,NEPTUN TRANSPORT A/S,Logistics,0.9999999998342588,13,F030 Invoice Date + 30 days,,
-Logistics,likely_yes_high_score,46918,46918,BHS_Call-off_2017_NNAS_Primary_FFA_Amendment1_4PLsetup,2820,BHS LOGISTICS A/S,Logistics,0.9999999998342588,8,F030 Invoice Date + 30 days,,0.0
-Logistics,likely_yes_high_score,1138,1138,DHL GLOBAL FORWARDING_MASTER_2017_NNAS_Primary_FFA,35965,DHL Global Forwarding,Logistics,0.9990507629932204,8,F060 Invoice Date + 60 days,,2200000.0
-Logistics,likely_yes_high_score,256511,257767,Kuehne + Nagel A/S_CDA_2022,50022,KUEHNE + NAGEL A/S,Logistics,0.4515148347676232,3,F030 Invoice Date + 30 days,,0.0
-Logistics,likely_yes_high_score,467944,468104,Kuehne + Nagel_Call-Off_no. 1_RDC_Capacity & medicinal products_2024,272874,KUEHNE  NAGEL S PTE LTD,Logistics,0.3426021273851813,1,F060 Invoice Date + 60 days,,178915.0
-Logistics,likely_no_low_score,432598,433352,DHL Global Forwarding_Call-off_2024_NNAS_Primary_Aurora Bonded Warehouse_LSOW_Amendment2,12443,DHL GLOBAL FORWARDING (BRAZIL) LOGISTICS LTDA,Logistics,0.0016958982382678,1,F060 Invoice Date + 60 days,DDP Delivered duty paid,0.0
-Logistics,likely_no_low_score,548166,547548,Tucker Company Worldwide Inc_Mutual CDA_2025_RFQ for North America Road Distibution,261015,"TUCKER COMPANY WORLDWIDE, INC.",Logistics,0.00837743387697,0,F015 Invoice Date + 15 days,EXW Ex works,0.0
-Logistics,likely_no_low_score,547995,547387,Whitely Logistics_CDA_2025_North America Primary Road Distribution,153274,,Logistics,0.0085455900816739,0,,,0.0
-Logistics,likely_no_low_score,331713,332795,Geodis CL Pharma_Master_2023_NNAS_Primary_LSA_VDR_Warehousing_and_Transportation,313884,GEODIS CL PHARMA,Logistics,0.0109508189667268,2,F045 Invoice Date + 45 days,,27000000.0
-Logistics,likely_no_low_score,280205,281726,Leman_2022_Call-off_FFA_Letter of Indemnity_Russia Shipments,8880,LEMAN A/S,Logistics,0.0165071886414026,3,F030 Invoice Date + 30 days,CPT Carriage paid,0.0
-Logistics,likely_no_low_score,293538,294898,LEMAN_Call-Off_2023_Primary_FFA_AA7_Cryosure containers,8880,LEMAN A/S,Logistics,0.0165071886414026,2,F030 Invoice Date + 30 days,CPT Carriage paid,0.0
-Logistics,likely_no_low_score,547984,547376,MD Logistics_CDA_2025_North America Primary Road Distribution,27777,MDLOGISTICS,Logistics,0.021752440036993,0,F030 Invoice Date + 30 days,,0.0
-Logistics,likely_no_low_score,376471,377247,DHL EXEL SUPPLY CHAIN (DENMARK) _2023_LSPA _Warehouse Service_GOVERNING AGREEMENT,9625,DHL EXEL SUPPLY CHAIN (DENMARK) A/S,Logistics,0.0315939963229307,2,,EXW Ex works,0.0
-Logistics,likely_no_low_score,489905,489612,Kuehne Nagel A/S_Call Off_2025_Amendment05_Rate Adjustment,8820,KUEHNE + NAGEL A/S,Logistics,0.0315939963229307,0,F045 Invoice Date + 45 days,CPT Carriage paid,2032292.95
-Logistics,likely_no_low_score,352925,353934,DHL EXEL SUPPLY CHAIN (DENMARK)_Master_2023_LSPA _Warehouse Service,9625,DHL EXEL SUPPLY CHAIN (DENMARK) A/S,Logistics,0.0315939963229307,2,,EXW Ex works,0.0
-Logistics,uncertain_near_0_5,580943,579817,DHL_Call Off No. 2_Governing Agreement_2025,9625,DHL EXEL SUPPLY CHAIN (DENMARK) A/S,Logistics,0.2992491843377503,0,F030 Invoice Date + 30 days,,44600000.0
-Logistics,uncertain_near_0_5,573766,572789,UPS_CDA_2025_Global Confidentiality Agreement,495128,BV UNITED PARCEL SERVICE BELGIUM,Logistics,0.2419033220313601,0,F060 Invoice Date + 60 days,,0.0
-Logistics,uncertain_near_0_5,570975,570033,MOVIANTO INTERNATIONAL B.V. _Confidentiality Agreement_2025_Global CDA,495131,MOVIANTO DEUTSCHLAND GMBH,Logistics,0.2419033220313601,0,F060 Invoice Date + 60 days,,0.0
-Logistics,uncertain_near_0_5,570890,569947,DHL_Confidentiality Agreement_2025_Global CDA,496137,DP DHL RESEARCH & INNOVATION GMBH,Logistics,0.2419033220313601,0,F060 Invoice Date + 60 days,,0.0
-Logistics,uncertain_near_0_5,505649,505450,DSV Air and Sea Holding_MSA_2025_Clinical Logistics,441168,DSV AIR & SEA HOLDING A/S,Logistics,0.2419033220313601,0,F060 Invoice Date + 60 days,,268000000.0
-Logistics,uncertain_near_0_5,194362,194375,Neff AS_Master_2021_NNAS_Primary_LSA_DK,1698,NEFF A/S,Logistics,0.2419033220313601,4,F045 Invoice Date + 45 days,,0.0
-Logistics,uncertain_near_0_5,91087,91095,DHL_Global_Forwarding_Master_2017_NNAS_Primary_GFA,5843,DHL GLOBAL FORWARDING (DENMARK) A/S,Logistics,0.2128144448675182,4,,,0.0
-Logistics,uncertain_near_0_5,117673,117684,DHL Global Forwarding_Master_2021_NNAS_Primary_LSOW_Brazil Road Freight,12443,DHL GLOBAL FORWARDING (BRAZIL) LOGISTICS LTDA,Logistics,0.2128144448675182,4,F060 Invoice Date + 60 days,,0.0
+target_department,candidate_bucket,contract_id,contract_name,supplier_id,supplier_display_name,department,renegotiation_prob,contract_age_years,years_to_expiry_capped,payment_terms,incoterms,contract_value_dkk
+Logistics,likely_yes_high_score,46854,TFND_Call-off_2014_NNAS_Primary_FFA_Amendment1_BE Clause,18077,XPO TRANSPORT SOLUTIONS SUD FRANCE DUP#37124 IN 1000,Logistics,0.9999999999998932,11,,F030 Invoice Date + 30 days,,
+Logistics,likely_yes_high_score,46860,XPO_Call-off_2017_NNAS_Primary_FFA_Amendment2_4PLsetup,18077,XPO TRANSPORT SOLUTIONS SUD FRANCE DUP#37124 IN 1000,Logistics,0.9999999999998932,8,,F030 Invoice Date + 30 days,,0.0
+Logistics,likely_yes_high_score,46847,TFND_Master_2010_NNAS_Primary_FFA,18077,XPO TRANSPORT SOLUTIONS SUD FRANCE DUP#37124 IN 1000,Logistics,0.9999999999998932,15,,F030 Invoice Date + 30 days,,
+Logistics,likely_yes_high_score,46134,Leman_Call-off_2015_NNAS_Primary_FFA_Amendment1 Legal Name Change,8880,LEMAN A/S,Logistics,0.9999999999982212,10,,F030 Invoice Date + 30 days,,0.0
+Logistics,likely_yes_high_score,46139,Leman_Call-off_2017_NNAS_Primary_FFA_Amendment3_4PL Setup,8880,LEMAN A/S,Logistics,0.9999999999982212,8,,F030 Invoice Date + 30 days,,0.0
+Logistics,likely_yes_high_score,47409,Neptun_Call-off_2017_NNAS_Primary_FFA_Amendment1_4PLsetup,1708,NEPTUN TRANSPORT A/S,Logistics,0.9999999997572682,13,,F030 Invoice Date + 30 days,,
+Logistics,likely_yes_high_score,46918,BHS_Call-off_2017_NNAS_Primary_FFA_Amendment1_4PLsetup,2820,BHS LOGISTICS A/S,Logistics,0.9999999997572682,8,,F030 Invoice Date + 30 days,,0.0
+Logistics,likely_yes_high_score,47982,DSV Road_Call-off_2017_NNAS_Primary_FFA_AA1_4PL setup,3241,DSV ROAD A/S,Logistics,0.9999999996425804,15,,F030 Invoice Date + 30 days,,
+Logistics,likely_yes_high_score,1138,DHL GLOBAL FORWARDING_MASTER_2017_NNAS_Primary_FFA,35965,DHL Global Forwarding,Logistics,0.9981776099595018,8,2.0,F060 Invoice Date + 60 days,,2200000.0
+Logistics,likely_yes_high_score,411786,LSL_Call-off_2024_LSPA_Address Change,341144,"LIFE SCIENCE LOGISTICS, LLC PARADIGM TOPCO, LLC",Logistics,0.4848979170077941,2,,F060 Invoice Date + 60 days,,0.0
+Logistics,likely_no_low_score,456272,DSV_Call-off no. 5_2024_LSPA_Capacity Expansion,11641,DSV SOLUTIONS A/S,Logistics,0.0023607034863483,1,,F060 Invoice Date + 60 days,EXW Ex works,12000000.0
+Logistics,likely_no_low_score,469290,DSV_Call-off_SoOP_no.6_Security Appendix 2024,11641,DSV SOLUTIONS A/S,Logistics,0.0023607034863483,1,,F060 Invoice Date + 60 days,EXW Ex works,0.0
+Logistics,likely_no_low_score,280205,Leman_2022_Call-off_FFA_Letter of Indemnity_Russia Shipments,8880,LEMAN A/S,Logistics,0.0029269208017508,3,,F030 Invoice Date + 30 days,CPT Carriage paid,0.0
+Logistics,likely_no_low_score,293538,LEMAN_Call-Off_2023_Primary_FFA_AA7_Cryosure containers,8880,LEMAN A/S,Logistics,0.0029269208017508,2,,F030 Invoice Date + 30 days,CPT Carriage paid,0.0
+Logistics,likely_no_low_score,550966,Geodis DSD_Call-off_no.2 Extension Extra Capacity 2025,280332,GEODIS CL ILE DE FRANCE,Logistics,0.0107710176567152,0,2.0,F060 Invoice Date + 60 days,DDP Delivered duty paid,10520000.0
+Logistics,likely_no_low_score,515275,DSV_LSPA_2025_PS PAC 3 Warehouse,11641,DSV SOLUTIONS A/S,Logistics,0.0120493953304274,0,5.0,F060 Invoice Date + 60 days,,183000000.0
+Logistics,likely_no_low_score,428977,DSV Solutions_Call-Off_2024_Primary Distribution_LSPA_APP1,11641,DSV SOLUTIONS A/S,Logistics,0.0120493953304274,1,4.0,F060 Invoice Date + 60 days,DDU Delivered duty unpaid,20000000.0
+Logistics,likely_no_low_score,256526,DSV Solutions A/S_CDA_2022,11641,DSV SOLUTIONS A/S,Logistics,0.0120493953304274,3,2.0,F060 Invoice Date + 60 days,DDU Delivered duty unpaid,0.0
+Logistics,likely_no_low_score,508089,DSV_Call-Off_2025_Amendment03_Additional services,11641,DSV SOLUTIONS A/S,Logistics,0.0120493953304274,0,3.0,F060 Invoice Date + 60 days,,2600000.0
+Logistics,likely_no_low_score,340383,DSV_Master_2023_LSPA_warehouse service,11641,DSV SOLUTIONS A/S,Logistics,0.0120493953304274,2,3.0,F060 Invoice Date + 60 days,,170000000.0
+Logistics,uncertain_near_0_5,547932,DHL Air Forwarding_CDA_2025_North America Primary Road Distribution,28819,DHL GLOBAL FORWARDING AIR EXPRESS INTERNATIONAL INC,Logistics,0.3618735111769003,0,1.0,F030 Invoice Date + 30 days,,0.0
+Logistics,uncertain_near_0_5,256511,Kuehne + Nagel A/S_CDA_2022,50022,KUEHNE + NAGEL A/S,Logistics,0.3618735111769003,3,2.0,F030 Invoice Date + 30 days,,0.0
+Logistics,uncertain_near_0_5,467944,Kuehne + Nagel_Call-Off_no. 1_RDC_Capacity & medicinal products_2024,272874,KUEHNE  NAGEL S PTE LTD,Logistics,0.2633052281229463,1,,F060 Invoice Date + 60 days,,178915.0
+Logistics,uncertain_near_0_5,580943,DHL_Call Off No. 2_Governing Agreement_2025,9625,DHL EXEL SUPPLY CHAIN (DENMARK) A/S,Logistics,0.2013392747520153,0,1.0,F030 Invoice Date + 30 days,,44600000.0
+Logistics,uncertain_near_0_5,547984,MD Logistics_CDA_2025_North America Primary Road Distribution,27777,MDLOGISTICS,Logistics,0.2013392747520153,0,1.0,F030 Invoice Date + 30 days,,0.0
+Logistics,uncertain_near_0_5,573766,UPS_CDA_2025_Global Confidentiality Agreement,495128,BV UNITED PARCEL SERVICE BELGIUM,Logistics,0.1836888599371924,0,5.0,F060 Invoice Date + 60 days,,0.0
+Logistics,uncertain_near_0_5,505649,DSV Air and Sea Holding_MSA_2025_Clinical Logistics,441168,DSV AIR & SEA HOLDING A/S,Logistics,0.1836888599371924,0,3.0,F060 Invoice Date + 60 days,,268000000.0
+Logistics,uncertain_near_0_5,570975,MOVIANTO INTERNATIONAL B.V. _Confidentiality Agreement_2025_Global CDA,495131,MOVIANTO DEUTSCHLAND GMBH,Logistics,0.1836888599371924,0,5.0,F060 Invoice Date + 60 days,,0.0
+Logistics,uncertain_near_0_5,194362,Neff AS_Master_2021_NNAS_Primary_LSA_DK,1698,NEFF A/S,Logistics,0.1836888599371924,4,2.0,F045 Invoice Date + 45 days,,0.0

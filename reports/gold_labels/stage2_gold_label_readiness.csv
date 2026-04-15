@@ -1,20 +1,6 @@
 department,gold_total,gold_yes,gold_no,gold_yes_rate,valid_k2,valid_k5,valid_k10,suggested_role
-"Alliance, Acquisitions & PPM CoE",24,12,12,0.5,True,True,True,source_task
-"Quality, Production Services & Supplies",24,12,12,0.5,True,True,True,source_task
-Bioprocessing & Raw Materials,24,12,12,0.5,True,True,True,source_task
-Bioprocessing and Excipients,24,12,12,0.5,True,True,True,source_task
-Devices & Needles,24,12,12,0.5,True,True,True,source_task
-Drug Product Outsourcing,24,12,12,0.5,True,True,True,source_task
-Drug Substance Outsourcing,24,12,12,0.5,True,True,True,source_task
-Raw Materials & Energy,24,12,12,0.5,True,True,True,source_task
-Logistics,24,12,12,0.5,True,True,True,target_candidate
-Packaging Material,24,12,12,0.5,True,True,True,source_task
-Purchasing Excellence External,20,8,12,0.4,True,True,False,source_task
-Strategic Sourcing US Hub,9,0,9,0.0,False,False,False,invalid_one_class
-Global Strategic Outsourcing & Devices,8,0,8,0.0,False,False,False,invalid_one_class
-HI Warehouse Expansion Program,8,0,8,0.0,False,False,False,invalid_one_class
+Logistics,13,6,7,0.46153846153846156,True,True,False,target_candidate
 Packaging material,8,6,2,0.75,False,False,False,invalid_too_few
 Global Strategic Outsourcing & Devices & Needles,5,3,2,0.6,False,False,False,invalid_too_few
+Bioprocessing and Excipients,4,2,2,0.5,False,False,False,invalid_too_few
 Aseptic Production,3,0,3,0.0,False,False,False,invalid_one_class
-"Strategy, Sourcing & Negotiation CoE",2,0,2,0.0,False,False,False,invalid_one_class
-"Distribution, GxP services & Energy",1,0,1,0.0,False,False,False,invalid_one_class

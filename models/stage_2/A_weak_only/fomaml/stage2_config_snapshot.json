@@ -2,7 +2,7 @@
   "seed": 42,
   "verbose": true,
   "data": {
-    "data_filename": "contract_with_features_labeled_stage2_test.csv",
+    "data_filename": "contract_with_features_gold_joined.csv",
     "target_col": "gold_y",
     "group_col": "contract_id",
     "department_col": "department",

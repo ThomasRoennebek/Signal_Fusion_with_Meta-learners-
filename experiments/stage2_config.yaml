@@ -35,7 +35,7 @@ verbose: true
 # Data
 # -----------------------------------------------------------------------------
 data:
-  data_filename: "contract_with_features_gold_joined.csv" # for testing: "contract_with_features_labeled_stage2_test.csv" # to put the file name of the merged contract-year + gold-label table
+  data_filename: "contract_with_features_gold_joined.csv"
   target_col: "gold_y"
   group_col: "contract_id"
   department_col: "department"
