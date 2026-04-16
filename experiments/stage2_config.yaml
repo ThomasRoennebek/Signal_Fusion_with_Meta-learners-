@@ -3,106 +3,167 @@
 #
 # Purpose:
 # This configuration defines the experimental setup for Stage 2,
-# which evaluates department-level adaptation using gold-labeled contracts.
+# which evaluates department-level adaptation (Logistics) using gold labels.
 #
-# Stage 2 implements a pretrain-then-adapt paradigm:
-# - A pretrained MLP from Stage 1 (trained on weak, gold or hybrid labels) is used
-#   as the initialization.
-# - Meta-learning methods (e.g., ANIL, FOMAML) are trained across departments
-#   using episodic support/query splits.
-# - The final evaluation focuses on adapting the model to a target department
-#   (typically Logistics) using a small number of gold labels.
-#
-# Key responsibilities controlled by this file:
-# - loading Stage 1 pretrained model and preprocessor
-# - defining the Stage 2 dataset and feature set
-# - specifying support/query episode structure
-# - selecting the adaptation method (fine-tuning, ANIL, FOMAML, etc.)
-# - configuring meta-training and evaluation settings
-# - controlling artifact saving for reproducibility
-#
-# This file mirrors the role of the Stage 1 configuration and ensures that
-# Stage 2 experiments are fully reproducible and comparable across methods.
+# Structure:
+# - base_config: Global defaults for all runs.
+# - experiment_grid: Parameters for combinatorial sweeps.
+# - presets: Named subsets of the grid for common experimental scenarios.
 # -----------------------------------------------------------------------------
 
+# ---------------------------------------------------------
+# Base Configuration (Defaults)
+# ---------------------------------------------------------
+base_config:
+  seed: 42
+  verbose: true
+  method: "finetune" # Default method for path resolution
+  
+  support_config:
+    n_support_pos: 2
+    n_support_neg: 2
 
+  data:
+    data_filename: "contract_with_features_labeled_with_gold.csv"
+    target_col: "gold_y"
+    group_col: "contract_id"
+    department_col: "department"
+    observation_year_col: "observation_year"
 
+  features:
+    source: "stage1_preprocessor"
 
-seed: 42
-verbose: true
+  stage1_init:
+    init_name: "A_weak_only" # Default init
+    model_filename: "mlp_pretrained.pt"
+    preprocessor_filename: "mlp_pretrained_preprocessor.joblib"
 
-# -----------------------------------------------------------------------------
-# Data
-# -----------------------------------------------------------------------------
-data:
-  data_filename: "contract_with_features_gold_joined.csv"
-  target_col: "gold_y"
-  group_col: "contract_id"
-  department_col: "department"
-  observation_year_col: "observation_year"
+  task_config:
+    target_department: "Logistics"
+    require_both_query_classes: false
+    min_query_contracts: 1
+    exclude_departments: []
 
-# -----------------------------------------------------------------------------
-# Feature set
-# -----------------------------------------------------------------------------
-features:
-  source: "stage1_preprocessor"
+  support_config:
+    n_support_pos: 2
+    n_support_neg: 2
 
-# -----------------------------------------------------------------------------
-# Stage 1 initialization
-# -----------------------------------------------------------------------------
-stage1_init:
-  init_name: "A_weak_only"   # A_weak_only | B_gold_only | C_hybrid | random
-  model_filename: "mlp_pretrained.pt"
-  preprocessor_filename: "mlp_pretrained_preprocessor.joblib"
+  meta_config:
+    meta_batch_size: 2
+    meta_iterations: 200
+    inner_lr: 0.01
+    outer_lr: 0.001
+    inner_steps: 3
+    target_inner_steps: 5
+    n_repeats: 20
 
-# -----------------------------------------------------------------------------
-# Stage 2 task setup
-# -----------------------------------------------------------------------------
-task_config:
-  target_department: "Logistics"
-  require_both_query_classes: false # for now because data is small
-  min_query_contracts: 1
-  exclude_departments: [] # empty initially
+  mlp_config:
+    hidden_dim_1: 256
+    hidden_dim_2: 128
+    dropout: 0.3
 
-support_config:
-  n_support_pos: 2
-  n_support_neg: 2
+  evaluation:
+    ranking_k: 10
+    calibration_method: null
 
-# -----------------------------------------------------------------------------
-# Stage 2 method selection
-# -----------------------------------------------------------------------------
-method: "finetune"   # finetune | anil | fomaml | maml | pooled_gold_mlp | pooled_gold_xgb             # anil as default?, make finetune the default first
+  output:
+    save_predictions: true
+    save_history: true
+    skip_if_exists: true
+    force_rerun: false
 
-# -----------------------------------------------------------------------------
-# Meta-learning hyperparameters
-# -----------------------------------------------------------------------------
-meta_config:
-  meta_batch_size: 2
-  meta_iterations: 200
-  inner_lr: 0.01
-  outer_lr: 0.001
-  inner_steps: 3
-  target_inner_steps: 5
-  n_repeats: 20
+# ---------------------------------------------------------
+# Experiment Grid (Sweep Parameters)
+# ---------------------------------------------------------
+experiment_grid:
+  methods:
+    - "finetune"
+    - "anil"
+    - "fomaml"
+    - "maml"
+  
+  support_grid:
+    - n_support_pos: 2
+      n_support_neg: 2
+    - n_support_pos: 5
+      n_support_neg: 5
+    - n_support_pos: 10
+      n_support_neg: 10
+  
+  inner_steps_grid:
+    - 1
+    - 3
+    - 5
+    - 10
 
-# -----------------------------------------------------------------------------
-# MLP architecture
-# -----------------------------------------------------------------------------
-mlp_config: # matching stage 1 architecture
-  hidden_dim_1: 256
-  hidden_dim_2: 128
-  dropout: 0.3
+  init_names:
+    - "A_weak_only"
+    - "C_hybrid"
+    - "random"
 
-# -----------------------------------------------------------------------------
-# Evaluation
-# -----------------------------------------------------------------------------
-evaluation:
-  ranking_k: 10
-  calibration_method: null
+# ---------------------------------------------------------
+# Presets (Named Sweeps)
+# ---------------------------------------------------------
+presets:
+  # The primary suite of experiments for the Master's Thesis
+  thesis_main:
+    methods: ["finetune", "anil", "fomaml", "maml"]
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+      - n_support_pos: 5
+        n_support_neg: 5
+      - n_support_pos: 10
+        n_support_neg: 10
+    inner_steps_grid: [3, 5]
+    init_names: ["A_weak_only", "C_hybrid"]
 
-# -----------------------------------------------------------------------------
-# Saving
-# -----------------------------------------------------------------------------
-output:
-  save_predictions: true
-  save_history: true
+  # A small subset to verify the pipeline logic
+  quick_debug:
+    methods: ["finetune", "anil"]
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+    inner_steps_grid: [3]
+    init_names: ["A_weak_only"]
+    meta_iterations: 5
+    n_repeats: 2
+
+  # Focused test for imbalanced support settings
+  imbalance_debug:
+    methods: ["finetune", "anil"]
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+      - n_support_pos: 3
+        n_support_neg: 1
+      - n_support_pos: 5
+        n_support_neg: 2
+      - n_support_pos: 10
+        n_support_neg: 5
+    inner_steps_grid: [5]
+    init_names: ["A_weak_only"]
+
+  # Fair 4-method comparison — all methods, identical settings, full evaluation.
+  # Produces exactly 4 experiments: one per method, same support/init/steps.
+  # Use this as the primary head-to-head benchmark for the thesis.
+  four_method_benchmark:
+    methods: ["finetune", "anil", "fomaml", "maml"]
+    support_grid:
+      - n_support_pos: 5
+        n_support_neg: 5
+    inner_steps_grid: [5]
+    init_names: ["A_weak_only"]
+
+  # Quick sanity-check version of the 4-method comparison.
+  # Runs in ~2 minutes with minimal iterations — use to verify the pipeline
+  # before committing to a full run with four_method_benchmark.
+  four_method_quick:
+    methods: ["finetune", "anil", "fomaml", "maml"]
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+    inner_steps_grid: [3]
+    init_names: ["A_weak_only"]
+    meta_iterations: 5
+    n_repeats: 3

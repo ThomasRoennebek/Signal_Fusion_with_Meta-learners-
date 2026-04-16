@@ -37,14 +37,19 @@ THESIS_PALETTE = {
 }
 
 DTU_PALETTE = {
-    "primary": "#990000",  # DTU Red
-    "secondary": "#2F3EE0", # DTU Blue (accent)
+    "primary": "#990000",      # Corporate red
+    "blue": "#2F3EEA",         # DTU blue
+    "navy": "#030F4F",         # DTU navy blue
+    "green": "#1FD082",        # Bright green
+    "yellow": "#F6D04D",       # Yellow
+    "orange": "#FC7634",       # Orange
+    "pink": "#F7BBB1",         # Pink
+    "red": "#E83F48",          # Secondary red
+    "dark_green": "#008835",   # Green
+    "purple": "#79238E",       # Purple
+    "grey": "#DADADA",         # Grey
     "black": "#000000",
-    "grey": "#707070",
-    "light_grey": "#E7E7E7",
-    "accent_red": "#E31837",
-    "accent_yellow": "#F6D04D",
-    "accent_green": "#00C1D4", # DTU Teal/Green
+    "white": "#FFFFFF",
 }
 
 METHOD_COLORS = {
@@ -62,6 +67,17 @@ METHOD_COLORS = {
     "elastic net": THESIS_PALETTE["sky_blue"],
     "mean_predictor": THESIS_PALETTE["grey"],
     "mean predictor": THESIS_PALETTE["grey"],
+}
+
+# Color mapping for data view labels used in SHAP view-level importance plots.
+VIEW_COLORS: dict = {
+    "financial": THESIS_PALETTE["blue"],
+    "procurement": THESIS_PALETTE["green"],
+    "supplier": THESIS_PALETTE["orange"],
+    "contract": THESIS_PALETTE["vermillion"],
+    "temporal": THESIS_PALETTE["sky_blue"],
+    "text": THESIS_PALETTE["purple"],
+    "meta": THESIS_PALETTE["grey"],
 }
 
 
@@ -97,18 +113,24 @@ def set_thesis_style(
     if palette.lower() == "dtu":
         color_cycle = [
             DTU_PALETTE["primary"],
-            DTU_PALETTE["secondary"],
-            DTU_PALETTE["accent_green"],
-            DTU_PALETTE["accent_red"],
-            DTU_PALETTE["accent_yellow"],
+            DTU_PALETTE["blue"],
+            DTU_PALETTE["green"],
+            DTU_PALETTE["orange"],
+            DTU_PALETTE["yellow"],
+            DTU_PALETTE["purple"],
+            DTU_PALETTE["navy"],
             DTU_PALETTE["grey"],
         ]
-        # Update METHOD_COLORS dynamically for DTU
         METHOD_COLORS.update({
-            "finetune": DTU_PALETTE["secondary"],
-            "anil": DTU_PALETTE["accent_green"],
-            "fomaml": DTU_PALETTE["accent_yellow"],
+            "finetune": DTU_PALETTE["blue"],
+            "fine_tune": DTU_PALETTE["blue"],
+            "fine-tune": DTU_PALETTE["blue"],
+            "anil": DTU_PALETTE["green"],
+            "fomaml": DTU_PALETTE["orange"],
             "maml": DTU_PALETTE["primary"],
+            "zero_shot": DTU_PALETTE["grey"],
+            "zero-shot": DTU_PALETTE["grey"],
+            "pretrained": DTU_PALETTE["navy"],
         })
     else:
         color_cycle = [
@@ -1211,26 +1233,61 @@ def plot_stage1_metric_comparison(
 def plot_stage2_metric_comparison(
     results_df: pd.DataFrame,
     metrics: Sequence[str] = ("gold_auroc", "gold_logloss", "gold_ece", "ndcg_at_10"),
-    method_col: str = "method",
+    group_col: str = "method",
+    method_col: str | None = None,
     title: str = "Stage 2 Adaptation Benchmark",
     figsize: tuple[int, int] = (11, 6),
 ):
     """
-    Plot Stage 2 method comparison across core metrics.
+    Plot Stage 2 group comparison across core metrics.
 
-    If the input contains repeated episodes, the bar height is the mean and the
-    error bar is the standard deviation computed by seaborn.
+    Parameters
+    ----------
+    results_df
+        Summary DataFrame with one row per experiment.
+    metrics
+        Metric column names to include.
+    group_col
+        Column to use as the grouping variable (hue). Default is "method".
+        Accepts any categorical column, e.g. "method", "init_name", "support_label".
+    method_col
+        Deprecated alias for group_col. If provided, takes precedence over group_col
+        for backward compatibility.
+    title
+        Plot title.
+    figsize
+        Figure size tuple (width, height).
     """
-    _require_columns(results_df, [method_col, *metrics])
-    long_df = results_df[[method_col, *metrics]].melt(id_vars=method_col, value_vars=list(metrics), var_name="metric", value_name="value")
+    # backward-compat alias
+    if method_col is not None:
+        group_col = method_col
+
+    available_metrics = [m for m in metrics if m in results_df.columns]
+    if not available_metrics:
+        raise ValueError(f"None of the requested metrics are present in results_df. Requested: {list(metrics)}")
+    _require_columns(results_df, [group_col])
+
+    long_df = results_df[[group_col, *available_metrics]].melt(
+        id_vars=group_col,
+        value_vars=available_metrics,
+        var_name="metric",
+        value_name="value",
+    )
 
     fig, ax = plt.subplots(figsize=figsize)
-    palette = method_palette(results_df[method_col].unique())
-    sns.barplot(data=long_df, x="metric", y="value", hue=method_col, palette=palette, errorbar="sd", ax=ax)
+    unique_groups = results_df[group_col].unique()
+    # Use method palette when grouping by method, otherwise fall back to tab palette.
+    if group_col == "method":
+        palette = method_palette(unique_groups)
+    else:
+        palette = dict(zip(unique_groups, sns.color_palette("tab10", n_colors=len(unique_groups))))
+
+    sns.barplot(data=long_df, x="metric", y="value", hue=group_col, palette=palette, errorbar="sd", ax=ax)
     ax.set_title(title)
     ax.set_xlabel("Metric")
     ax.set_ylabel("Mean value")
-    ax.legend(title="Method", frameon=False, bbox_to_anchor=(1.02, 1), loc="upper left")
+    legend_title = group_col.replace("_", " ").title()
+    ax.legend(title=legend_title, frameon=False, bbox_to_anchor=(1.02, 1), loc="upper left")
     despine_thesis(ax)
     plt.tight_layout()
     return fig, ax
@@ -1257,21 +1314,43 @@ def plot_inner_step_curve(
     results_df: pd.DataFrame,
     metric_col: str = "gold_auroc",
     step_col: str = "inner_steps",
-    method_col: str = "method",
+    method_col: str | None = "method",
     title: str | None = None,
     figsize: tuple[int, int] = (8, 5),
 ):
-    """Plot performance as a function of inner-loop adaptation steps."""
-    _require_columns(results_df, [metric_col, step_col, method_col])
+    """Plot performance as a function of inner-loop adaptation steps.
+
+    Parameters
+    ----------
+    results_df
+        Summary DataFrame.
+    metric_col
+        Metric column to plot on the y-axis.
+    step_col
+        Column containing inner-step counts (x-axis).
+    method_col
+        Optional column for grouping lines by method. If None or not present
+        in the DataFrame, a single line is drawn without grouping.
+    """
+    required = [metric_col, step_col]
+    use_hue = method_col is not None and method_col in results_df.columns
+    if use_hue:
+        required.append(method_col)
+    _require_columns(results_df, required)
 
     fig, ax = plt.subplots(figsize=figsize)
-    palette = method_palette(results_df[method_col].unique())
-    sns.lineplot(data=results_df, x=step_col, y=metric_col, hue=method_col, marker="o", errorbar="sd", palette=palette, ax=ax)
+    if use_hue:
+        palette = method_palette(results_df[method_col].unique())
+        sns.lineplot(data=results_df, x=step_col, y=metric_col, hue=method_col,
+                     marker="o", errorbar="sd", palette=palette, ax=ax)
+        ax.legend(title="Method", frameon=False)
+    else:
+        sns.lineplot(data=results_df, x=step_col, y=metric_col,
+                     marker="o", errorbar="sd", ax=ax)
     ax.set_title(title or f"Inner-Step Adaptation Curve ({metric_col})")
     ax.set_xlabel("Inner-loop gradient steps")
     ax.set_ylabel(metric_col)
     ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
-    ax.legend(title="Method", frameon=False)
     despine_thesis(ax)
     plt.tight_layout()
     return fig, ax
@@ -1280,16 +1359,33 @@ def plot_inner_step_curve(
 def plot_prediction_probability_distribution(
     predictions_df: pd.DataFrame,
     prob_col: str = "y_score",
-    method_col: str = "method",
+    method_col: str | None = "method",
     label_col: str | None = None,
-    title: str = "Prediction Probability Distribution by Method",
+    title: str = "Prediction Probability Distribution",
     figsize: tuple[int, int] = (8, 5),
 ):
-    """Plot predicted probability distributions to diagnose overconfidence."""
-    _require_columns(predictions_df, [prob_col, method_col])
+    """Plot predicted probability distributions to diagnose overconfidence.
+
+    Parameters
+    ----------
+    predictions_df
+        DataFrame with at least a predicted probability column.
+    prob_col
+        Column containing predicted probabilities.
+    method_col
+        Optional column for grouping by method. If None or not present in the
+        DataFrame, predictions are plotted as a single distribution.
+    label_col
+        Optional binary label column used to draw a base-rate reference line.
+    """
+    _require_columns(predictions_df, [prob_col])
+    use_hue = method_col is not None and method_col in predictions_df.columns
 
     fig, ax = plt.subplots(figsize=figsize)
-    sns.kdeplot(data=predictions_df, x=prob_col, hue=method_col, common_norm=False, fill=False, ax=ax)
+    if use_hue:
+        sns.kdeplot(data=predictions_df, x=prob_col, hue=method_col, common_norm=False, fill=False, ax=ax)
+    else:
+        sns.kdeplot(data=predictions_df, x=prob_col, common_norm=False, fill=False, ax=ax)
     if label_col is not None and label_col in predictions_df.columns:
         base_rate = predictions_df[label_col].mean()
         ax.axvline(base_rate, color=THESIS_PALETTE["grey"], linestyle="--", label=f"Base rate = {base_rate:.2f}")
@@ -1344,6 +1440,48 @@ def plot_view_level_shap_importance(
     ax.set_title(title)
     ax.set_xlabel("Mean absolute SHAP value")
     ax.set_ylabel("Data view")
+    despine_thesis(ax)
+    plt.tight_layout()
+    return fig, ax
+
+
+def plot_support_size_curve(
+    results_df: pd.DataFrame,
+    metric_col: str = "gold_auroc_mean",
+    support_pos_col: str = "n_support_pos",
+    support_neg_col: str = "n_support_neg",
+    method_col: str = "method",
+    title: str | None = None,
+    figsize: tuple[int, int] = (8, 5),
+):
+    """
+    Plot performance as a function of support set size.
+
+    Constructs a label 'k_pos/k_neg' from support columns and plots a
+    line per method.
+    """
+    _require_columns(results_df, [metric_col, support_pos_col, support_neg_col, method_col])
+    plot_df = results_df.copy()
+    plot_df["support_label"] = (
+        plot_df[support_pos_col].astype(str) + "/" + plot_df[support_neg_col].astype(str)
+    )
+
+    fig, ax = plt.subplots(figsize=figsize)
+    palette = method_palette(plot_df[method_col].unique())
+    sns.lineplot(
+        data=plot_df,
+        x="support_label",
+        y=metric_col,
+        hue=method_col,
+        marker="o",
+        errorbar="sd",
+        palette=palette,
+        ax=ax,
+    )
+    ax.set_title(title or f"Support-Size Sensitivity ({metric_col})")
+    ax.set_xlabel("Support size (pos/neg contracts)")
+    ax.set_ylabel(metric_col)
+    ax.legend(title="Method", frameon=False)
     despine_thesis(ax)
     plt.tight_layout()
     return fig, ax

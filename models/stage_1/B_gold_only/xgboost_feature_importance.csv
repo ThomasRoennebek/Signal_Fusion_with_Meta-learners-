@@ -1,38 +1,263 @@
 feature,importance
-num__missingindicator_contract_value_dkk,0.54593146
-num__start_year,0.26341167
-num__start_year_capped,0.19042975
-cat__payment_terms_F060 Invoice Date + 60 days,0.00022709528
-num__contract_owner_cost_centre,0.0
-num__missingindicator_Earnings_per_share_DKK,0.0
-num__missingindicator_news_avg_sentiment_score,0.0
-num__missingindicator_news_avg_relevance_score,0.0
-num__missingindicator_news_max_relevance_score,0.0
-num__missingindicator_news_negative_ratio,0.0
-num__missingindicator_avg_vol,0.0
-num__missingindicator_vol_stability_score,0.0
-num__missingindicator_vol_shock_ratio,0.0
-num__missingindicator_vol_trend_slope,0.0
-num__missingindicator_market_cap_volatility,0.0
-num__missingindicator_Price_trends_52 weeks_%,0.0
-num__missingindicator_price_trend_slope,0.0
-num__missingindicator_avg_closing_price,0.0
-num__missingindicator_price_volatility_score,0.0
-num__missingindicator_news_positive_count,0.0
-num__missingindicator_fin_implied_rating_ordinal,0.0
-num__missingindicator_market_log_vol_shock_ratio,0.0
-num__missingindicator_years_to_expiry_capped,0.0
-num__missingindicator_has_environmental_appendix,0.0
-cat__contract_status_published,0.0
-cat__term_type_perpetual,0.0
-cat__payment_terms_F030 Invoice Date + 30 days,0.0
-cat__payment_terms_F045 Invoice Date + 45 days,0.0
-num__missingindicator_news_neutral_count,0.0
-num__missingindicator_news_article_count,0.0
-num__missingindicator_news_negative_count,0.0
-cat__incoterms_DDP Delivered duty paid,0.0
+num__Customs,0.44527054
+num__missingindicator_contract_value_dkk,0.27999267
+num__market_data_available,0.06442922
+cat__contract_commodity_Shipper Boxes,0.021183629
+num__start_year,0.02012068
+cat__notes_Development-only injected positive label for HI Warehouse Expansion Program.,0.016834753
+cat__notes_Development-only injected positive label for Strategic Sourcing US Hub.,0.012202168
+cat__nn_contract_type_Supply Agreement,0.011188054
+num__contracts_per_supplier,0.010848814
+cat__label_source_DUMMY_FILLER,0.010774406
+cat__department_from_cost_center_Global Strategic Outsourcing & Devices,0.009522488
+cat__moodys_risk_rating_Do not source,0.008508284
+cat__incoterms_CFR Costs and freight,0.007699918
+cat__contract_commodity_Excipients,0.0076060127
+cat__contract_currency_code_DKK,0.0070873005
+cat__contract_type_Production,0.0060189688
+"cat__supplier_sector_Wood, Furniture & Paper Manufacturing",0.004989225
+num__start_year_capped,0.0043113725
+cat__Risk level_stock_closing_price_Take caution,0.0039585247
+cat__notes_Development-only injected negative label for Strategic Sourcing US Hub.,0.003696074
+cat__department_Packaging Material,0.0035098263
+num__fin_solvency_ratio_asset_based,0.0033638086
+cat__incoterms_CPT Carriage paid,0.0032916917
+num__contract_age_years,0.0032759553
+num__news_positive_count,0.0024669394
+cat__label_source_manual_hardcoded,0.0024014337
+cat__term_type_fixed,0.0019089482
+cat__notes_Development-only injected negative label for HI Warehouse Expansion Program.,0.0018750463
+num__open_ended_contract,0.0014688538
+num__news_article_count,0.001160415
+num__fin_Number_of_employees,0.0011311694
+cat__fin_implied_rating_Baa,0.0010706979
+cat__notes_Development-only injected positive label for Bioprocessing & Raw Materials.,0.0010510772
+cat__Risk level_Take caution,0.00097126974
+num__news_avg_sentiment_score,0.0009703236
+cat__fin_risk_level_Take caution,0.00093013793
+cat__contract_commodity_Industrial Commodities,0.0008334999
+num__contract_value,0.00081006787
+cat__contract_type_Facility Management & Engineering,0.0008040317
+"cat__team_Quality, Production Services & Supplies",0.0007841743
+num__contract_owner_cost_centre,0.00068740884
+num__expiry_year,0.000638015
+num__contract_value_dkk,0.00060561905
+num__fin_roa_net_income,0.0005805975
+"cat__notes_Development-only injected negative label for Quality, Production Services & Supplies.",0.00055115175
+cat__payment_terms_N000 Net cash,0.00052588456
+num__fin_Net_assets_turnover,0.00048254026
+num__fin_current_ratio,0.0003642887
+num__market_flag_stock_price_take_caution_or_worse,0.0003601729
+cat__nn_contract_type_Other,0.0003567566
+cat__contract_currency_code_USD,0.00028735003
+num__fin_Cash_ratio,0.00027561255
+cat__incoterms_DAP Del.at Place-excl.unloading,0.0002469804
+num__esg_row_missing_pct,0.0002240966
+cat__department_from_cost_center_Drug Substance Outsourcing,0.00021082861
+num__esg_env_weight,0.00020361645
+cat__payment_terms_F060 Invoice Date + 60 days,0.0001940353
+cat__Risk level_Do not source,0.00016965861
+num__years_to_expiry_capped,0.00015964659
+cat__nn_contract_type_Project Agreement,0.00015607434
+"cat__contract_type_Finance, Legal & Procurement",0.00014821041
+cat__expiry_pressure_bucket_within_1y,0.00014416968
+cat__contract_currency_code_GBP,0.00013929386
+num__missingindicator_esg_env_score,0.00013161222
+num__news_row_missing_pct,0.00012174713
+num__fin_long_term_gearing,0.00011507399
+num__fin_interest_coverage_ratio,9.321842e-05
+cat__unit_GSOD,8.773159e-05
+num__esg_industry_max,8.257339e-05
+cat__nn_contract_type_Outsourcing Agreement,7.132062e-05
+num__esg_esg_industry_adjusted,7.063691e-05
+"cat__department_Quality, Production Services & Supplies",6.902225e-05
+"cat__supplier_sector_Chemicals, Petroleum, Rubber & Plastic",6.685892e-05
+num__esg_gov_weight,6.2203086e-05
+cat__fin_Implied_rating - original_B1,5.556308e-05
+num__fin_roe_net_income,5.18609e-05
+num__fin_flag_short_term_liab_equity_high,4.7067246e-05
+cat__unit_SSIMS,4.6164583e-05
+num__fin_short_term_liabilities_equity_ratio,4.3824875e-05
+cat__contract_commodity_Prefilled Plastic Components,3.9357248e-05
+num__fin_gearing,3.7594375e-05
+cat__payment_terms_F030 Invoice Date + 30 days,3.7392016e-05
+num__fin_debt_asset_ratio,3.597867e-05
+cat__expiry_pressure_bucket_1_to_3y,3.489628e-05
+cat__moodys_risk_rating_Take caution,3.3940563e-05
+cat__nn_contract_type_Product Agreement,3.106741e-05
+num__news_max_relevance_score,3.1043277e-05
+cat__contract_currency_code_EUR,2.712196e-05
+cat__expiry_pressure_bucket_3_to_5y,2.6298128e-05
+"cat__fin_output_text_Use caution. Input from outdated and/or partial data, hence low quality credit rating & traffic light. Mitigation actions required. Request financial data from supplier as described in the risk process tab.",2.4665538e-05
+cat__incoterms_DDP Delivered duty paid,2.433238e-05
+num__observation_year,2.126452e-05
+num__missingindicator_news_negative_count,2.0656491e-05
+num__fin_Total_shareholders'_funds_and_liabilitiesth_DKK,2.035932e-05
+num__PPI_Value,2.0155925e-05
+cat__fin_moodys_company_name_Conrum A/S,1.7447697e-05
+num__fin_flag_risk_take_caution_or_worse,1.5778269e-05
+cat__contract_currency_code_CNY,1.4982802e-05
+cat__department_from_cost_center_Bioprocessing & Raw Materials,1.49267435e-05
+num__fin_ebit_margin,1.402228e-05
+cat__contract_commodity_Process Aids,1.3788178e-05
+num__news_neutral_count,1.2797995e-05
+cat__fin_Implied_rating - original_Baa2,1.0861086e-05
+cat__notes_Development-only injected negative label for Raw Materials & Energy.,9.859188e-06
+cat__fin_output_text_Approved for sourcing. No further actions required.,8.8240395e-06
+cat__fin_implied_rating_B,7.707164e-06
+num__news_negative_count,7.4889053e-06
+cat__department_Strategic Sourcing US Hub,6.972916e-06
+num__LPI_Score,6.9605944e-06
+num__esg_esg_overall,6.505835e-06
+cat__fin_Implied_rating - original_Baa3,6.163671e-06
+num__news_negative_ratio,5.9667577e-06
+cat__department_Drug Substance Outsourcing,5.9133904e-06
+num__fin_profit_margin,5.814434e-06
+num__fin_total_stress_flags,5.3037943e-06
+num__missingindicator_esg_esg_overall,4.585913e-06
+cat__department_Global Strategic Outsourcing & Devices,4.5302363e-06
+cat__department_Bioprocessing & Raw Materials,4.495295e-06
+num__news_avg_relevance_score,4.466131e-06
+num__fin_ebit_margin_missing_flag,3.8805274e-06
+num__esg_social_weight,3.8712783e-06
+num__fin_flag_long_term_gearing_high,3.39668e-06
+cat__contract_commodity_Outsourced Product Services,2.8625873e-06
+cat__fin_closing_date_2025-03-31,2.7994777e-06
+num__fin_Total_liabilities_Equity_ratio,2.6487512e-06
+cat__department_from_cost_center_Devices & Needles,2.6192704e-06
+cat__team_Aseptic Production,2.3991954e-06
+cat__team_Drug Substance Outsourcing API,2.3608134e-06
+num__missingindicator_esg_esg_industry_adjusted,2.3076677e-06
+num__International_Shipments,2.2468153e-06
+cat__nn_contract_type_Scope of Work,2.1572027e-06
+num__news_has_high_relevance_negative_news,2.059417e-06
+cat__incoterms_EXW Ex works,2.0538566e-06
+num__Timeliness,1.9245267e-06
+cat__payment_terms_F045 Invoice Date + 45 days,1.8397856e-06
+cat__nn_contract_type_Master Service Agreement,1.6392156e-06
+num__esg_social_score,1.5886801e-06
+"cat__fin_output_text_Sourcing exclusion recommended. Input from outdated and/or partial data, hence low quality credit rating & traffic light. Mitigation actions required. Request financial data from supplier as described in the risk process tab.",1.4339039e-06
+num__fin_implied_rating_missing_flag,1.3864411e-06
+cat__team_Raw Materials & Energy,1.3408477e-06
+cat__incoterms_FCA Free carrier,1.3149474e-06
+cat__notes_Development-only injected positive label for Drug Product Outsourcing.,1.3135866e-06
+cat__fin_closing_date_2023-12-31,1.3120838e-06
+num__missingindicator_news_article_count,1.2876463e-06
+cat__contract_commodity_Gels,1.2441636e-06
+cat__department_Drug Product Outsourcing,1.2387047e-06
+cat__contract_commodity_Electronics and Other Components,1.0934227e-06
+num__esg_env_score,1.0417881e-06
+cat__supplier_sector_Wholesale,9.853145e-07
+num__esg_gov_score,8.525342e-07
+num__missingindicator_fin_profit_margin,7.943101e-07
+num__fin_EBITDA_margin,7.6020655e-07
+num__fin_current_ratio_missing_flag,6.1043255e-07
+num__missingindicator_fin_EBITDA_margin,5.498011e-07
+"cat__notes_Development-only injected positive label for Quality, Production Services & Supplies.",5.437333e-07
+cat__fin_closing_date_2024-12-31,5.03669e-07
+cat__supplier_sector_Business Services,4.301425e-07
+cat__contract_commodity_Moulding Tools Unclassified,4.2696647e-07
+cat__nn_contract_type_Confidentiality Agreement,3.4064405e-07
+cat__fin_moodys_company_name_SPX Flow Technology Danmark A/S,3.1631583e-07
+num__missingindicator_contract_value,3.1614744e-07
+num__market_log_vol_shock_ratio,2.1858379e-07
+num__fin_implied_rating_ordinal,2.1347668e-07
+num__vol_stability_score,1.7597816e-07
+cat__fin_moodys_company_name_Stena Recycling A/S,0.0
+"cat__fin_moodys_company_name_Xi'An Global Printing Co.,Ltd.",0.0
+cat__fin_moodys_company_name_RKT Rodinger Kunststoff- Technik GmbH,0.0
+cat__fin_moodys_company_name_Quality Assistance,0.0
+cat__notes_Development-only injected negative label for Packaging Material.,0.0
+cat__fin_moodys_company_name_Pall Norden AB,0.0
+cat__fin_moodys_company_name_Novo Nordisk Production Belgium SA,0.0
+cat__fin_moodys_company_name_Stevanato Group Denmark A/S,0.0
+cat__fin_moodys_company_name_Nemera LA Verpilliere,0.0
+cat__fin_moodys_company_name_Suzano S.A.,0.0
+cat__Risk level_stock_closing_price_Do not source,0.0
+cat__fin_moodys_company_name_Genewiz UK Limited,0.0
+cat__fin_moodys_company_name_Fujifilm Diosynth Biotechnologies UK Limited,0.0
+cat__department_from_cost_center_Drug Product Outsourcing,0.0
+num__end_year,0.0
+num__avg_vol,0.0
+cat__department_from_cost_center_HI Warehouse Expansion Program,0.0
+"cat__department_Alliance, Acquisitions & PPM CoE",0.0
+cat__notes_Development-only injected positive label for Raw Materials & Energy.,0.0
+cat__department_Bioprocessing and Excipients,0.0
+cat__department_Devices & Needles,0.0
+cat__notes_Development-only injected positive label for Global Strategic Outsourcing & Devices.,0.0
+cat__department_HI Warehouse Expansion Program,0.0
+cat__notes_Development-only injected positive label for Drug Substance Outsourcing.,0.0
+cat__department_Raw Materials & Energy,0.0
+"cat__department_Strategy, Sourcing & Negotiation CoE",0.0
+cat__fin_moodys_company_name_Ashland Industries Europe GmbH,0.0
+cat__fin_moodys_company_name_Avenue Mould Solutions Limited,0.0
+num__fin_Number_of_months,0.0
+cat__fin_moodys_company_name_BWT Danmark A/S,0.0
+cat__fin_moodys_company_name_Zirq Medical A/S,0.0
+cat__fin_moodys_company_name_Biomerieux Denmark ApS,0.0
+cat__fin_moodys_company_name_CCL Label A/S,0.0
+"cat__notes_Development-only injected negative label for Strategy, Sourcing & Negotiation CoE.",0.0
+cat__fin_moodys_company_name_Flamma S.P.A.,0.0
+cat__fin_moodys_company_name_Flextronics International Gesellschaft m.b.H.,0.0
+"cat__notes_Development-only injected positive label for Alliance, Acquisitions & PPM CoE.",0.0
+cat__fin_closing_date_2023-09-30,0.0
+cat__fin_closing_date_2022-06-30,0.0
+cat__Risk level_Go ahead,0.0
+cat__fin_Implied_rating - original_A2,0.0
+cat__fin_Implied_rating - original_A3,0.0
+cat__fin_Implied_rating - original_Aa3,0.0
+cat__fin_Implied_rating - original_B2,0.0
+cat__fin_Implied_rating - original_B3,0.0
+cat__fin_Implied_rating - original_Baa1,0.0
+cat__Country_Denmark,0.0
+cat__company_country_clean_Denmark,0.0
+cat__fin_Implied_rating - original_Caa-C,0.0
+num__fin_financial_risk_score,0.0
+num__esg_industry_min,0.0
+cat__supplier_sector_Construction,0.0
+cat__fin_closing_date_2022-12-31,0.0
+"cat__supplier_sector_Industrial, Electric & Electronic Machinery",0.0
+cat__supplier_sector_Metals & Metal Products,0.0
+cat__supplier_sector_Printing & Publishing,0.0
+cat__supplier_sector_Waste Management & Treatment,0.0
+cat__moodys_risk_rating_Go ahead,0.0
+cat__Risk level_stock_closing_price_Go ahead,0.0
+cat__Shares outstanding_1.264.117.615,0.0
+cat__Shares outstanding_320.036.000,0.0
+cat__Shares outstanding_n.a.,0.0
+cat__Current_market_capitalisation_DKK_2.511.971,0.0
+cat__Current_market_capitalisation_DKK_85.602.561,0.0
+cat__Code_DNK,0.0
+cat__fin_output_text_Sourcing exclusion recommended. Mitigation actions required. Please follow risk mitigation actions as communicated by your Risk team. Reach out to your risk representative for further guidance.,0.0
+cat__label_date_2026-04-16,0.0
+cat__fin_financial_level_Low financial risk,0.0
+cat__fin_closing_date_2023-03-31,0.0
+cat__fin_closing_date_2023-06-30,0.0
+cat__notes_Development-only injected negative label for Global Strategic Outsourcing & Devices.,0.0
+cat__Current_market_capitalisation_DKK_n.a.,0.0
+cat__fin_closing_date_2024-03-31,0.0
+cat__notes_Development-only injected negative label for Drug Substance Outsourcing.,0.0
+cat__fin_closing_date_2024-06-30,0.0
+cat__notes_Development-only injected negative label for Drug Product Outsourcing.,0.0
+cat__fin_closing_date_2024-09-30,0.0
+cat__notes_Development-only injected negative label for Devices & Needles.,0.0
+cat__fin_closing_date_2025-08-31,0.0
+cat__fin_closing_date_2025-12-31,0.0
+cat__fin_created_at_utc_2026-03-12 15:07:22.230528+00:00,0.0
+cat__fin_Status_Active,0.0
+cat__fin_implied_rating_A,0.0
+cat__fin_implied_rating_Aa,0.0
+cat__notes_Development-only injected negative label for Bioprocessing and Excipients.,0.0
+cat__notes_Development-only injected negative label for Bioprocessing & Raw Materials.,0.0
+cat__fin_implied_rating_Caa,0.0
+cat__fin_risk_level_Do not source,0.0
+cat__fin_risk_level_Go ahead,0.0
+"cat__notes_Development-only injected negative label for Alliance, Acquisitions & PPM CoE.",0.0
+cat__fin_financial_level_High financial risk,0.0
+num__fin_flag_low_solvency,0.0
+cat__contract_commodity_Waste Management,0.0
+num__vol_shock_ratio,0.0
 num__missingindicator_fin_gearing,0.0
-num__missingindicator_fin_Cash_ratio,0.0
 num__missingindicator_fin_long_term_gearing,0.0
 num__missingindicator_fin_Total_liabilities_Equity_ratio,0.0
 num__missingindicator_fin_short_term_liabilities_equity_ratio,0.0
@@ -44,9 +269,7 @@ num__missingindicator_fin_roa_net_income,0.0
 num__missingindicator_fin_Net_assets_turnover,0.0
 num__missingindicator_fin_Number_of_employees,0.0
 num__missingindicator_fin_financial_risk_score,0.0
-num__missingindicator_esg_esg_overall,0.0
-num__missingindicator_esg_esg_industry_adjusted,0.0
-num__missingindicator_esg_env_score,0.0
+num__fin_flag_strong_liquidity,0.0
 num__missingindicator_esg_env_weight,0.0
 num__missingindicator_esg_social_score,0.0
 num__missingindicator_esg_social_weight,0.0
@@ -54,119 +277,24 @@ num__missingindicator_esg_gov_score,0.0
 num__missingindicator_esg_gov_weight,0.0
 num__missingindicator_esg_industry_min,0.0
 num__missingindicator_esg_industry_max,0.0
-cat__incoterms_DAP Del.at Place-excl.unloading,0.0
-cat__incoterms_FOB Free on board,0.0
-cat__incoterms_DDU Delivered duty unpaid,0.0
-cat__fin_Implied_rating - original_Baa1,0.0
-cat__fin_created_at_utc_2026-03-12 15:07:22.230528+00:00,0.0
-cat__fin_Status_Active,0.0
-cat__fin_implied_rating_B,0.0
-cat__fin_implied_rating_Baa,0.0
-cat__fin_risk_level_Do not source,0.0
-cat__fin_risk_level_Go ahead,0.0
-cat__fin_financial_level_High financial risk,0.0
-cat__fin_financial_level_Low financial risk,0.0
-cat__fin_output_text_Approved for sourcing. No further actions required.,0.0
-cat__fin_output_text_Sourcing exclusion recommended. Mitigation actions required. Please follow risk mitigation actions as communicated by your Risk team. Reach out to your risk representative for further guidance.,0.0
-cat__fin_Implied_rating - original_B1,0.0
-cat__Risk level_Do not source,0.0
-num__missingindicator_fin_ebit_margin,0.0
-cat__Risk level_Go ahead,0.0
-"cat__supplier_sector_Chemicals, Petroleum, Rubber & Plastic",0.0
-cat__supplier_sector_Metals & Metal Products,0.0
-cat__moodys_risk_rating_Do not source,0.0
-cat__moodys_risk_rating_Go ahead,0.0
-cat__Shares outstanding_n.a.,0.0
-cat__Current_market_capitalisation_DKK_n.a.,0.0
-cat__Risk level_stock_closing_price_Do not source,0.0
-cat__Risk level_stock_closing_price_Go ahead,0.0
-cat__company_country_clean_Denmark,0.0
-cat__Country_Denmark,0.0
-cat__fin_closing_date_2025-03-31,0.0
-cat__fin_closing_date_2024-12-31,0.0
-cat__fin_closing_date_2024-03-31,0.0
-cat__fin_closing_date_2023-12-31,0.0
-cat__contract_currency_code_EUR,0.0
-cat__contract_currency_code_JPY,0.0
-cat__contract_currency_code_SEK,0.0
-cat__contract_type_Production,0.0
-cat__nn_contract_type_Other,0.0
-cat__contract_commodity_Electronics and Other Components,0.0
-cat__contract_commodity_Metal,0.0
-cat__contract_commodity_Needles,0.0
-cat__contract_commodity_Plastic Raw Materials,0.0
-cat__contract_commodity_Shipper Boxes,0.0
-cat__team_Devices & Needles,0.0
-cat__unit_GSOD,0.0
-cat__unit_SSIMS,0.0
-cat__company_country_DENMARK,0.0
-cat__expiry_pressure_bucket_5y_plus,0.0
-cat__department_from_cost_center_Bioprocessing & Raw Materials,0.0
-cat__department_from_cost_center_Devices & Needles,0.0
-cat__department_Devices & Needles,0.0
-cat__department_Packaging Material,0.0
-cat__fin_moodys_company_name_Flextronics International Gesellschaft m.b.H.,0.0
-cat__fin_moodys_company_name_Nemera LA Verpilliere,0.0
-cat__fin_closing_date_2022-12-31,0.0
-cat__fin_closing_date_2023-03-31,0.0
+num__missingindicator_news_positive_count,0.0
+num__missingindicator_news_neutral_count,0.0
+num__missingindicator_news_avg_sentiment_score,0.0
+num__missingindicator_news_avg_relevance_score,0.0
+num__missingindicator_news_max_relevance_score,0.0
+num__missingindicator_news_negative_ratio,0.0
+num__missingindicator_avg_vol,0.0
+num__missingindicator_vol_stability_score,0.0
+num__missingindicator_vol_shock_ratio,0.0
+num__missingindicator_vol_trend_slope,0.0
+num__missingindicator_fin_Cash_ratio,0.0
 num__missingindicator_fin_current_ratio,0.0
-num__missingindicator_fin_profit_margin,0.0
-num__missingindicator_fin_EBITDA_margin,0.0
-num__fin_financial_risk_score,0.0
-num__esg_esg_industry_adjusted,0.0
-num__esg_env_score,0.0
-num__esg_env_weight,0.0
-num__esg_social_score,0.0
-num__esg_social_weight,0.0
-num__esg_gov_score,0.0
-num__esg_gov_weight,0.0
-num__esg_industry_min,0.0
-num__esg_industry_max,0.0
-num__news_article_count,0.0
-num__news_negative_count,0.0
-num__news_positive_count,0.0
-num__news_neutral_count,0.0
-num__news_avg_sentiment_score,0.0
-num__news_avg_relevance_score,0.0
-num__news_max_relevance_score,0.0
-num__news_negative_ratio,0.0
-num__news_has_high_relevance_negative_news,0.0
-num__LPI_Score,0.0
-num__Customs,0.0
-num__Infrastructure,0.0
-num__International_Shipments,0.0
-num__Tracking_Tracing,0.0
-num__esg_esg_overall,0.0
-num__fin_Number_of_employees,0.0
-num__PPI_Value,0.0
-num__fin_Net_assets_turnover,0.0
-num__contract_value,0.0
-num__contract_value_dkk,0.0
-num__expiry_year,0.0
-num__open_ended_contract,0.0
-num__end_year,0.0
-num__observation_year,0.0
-num__contract_age_years,0.0
-num__fin_Number_of_months,0.0
-num__fin_Total_shareholders'_funds_and_liabilitiesth_DKK,0.0
-num__fin_profit_margin,0.0
-num__fin_EBITDA_margin,0.0
-num__fin_ebit_margin,0.0
-num__fin_current_ratio,0.0
-num__fin_gearing,0.0
-num__fin_Cash_ratio,0.0
-num__fin_long_term_gearing,0.0
-num__fin_Total_liabilities_Equity_ratio,0.0
-num__fin_short_term_liabilities_equity_ratio,0.0
-num__fin_interest_coverage_ratio,0.0
-num__fin_solvency_ratio_asset_based,0.0
-num__fin_debt_asset_ratio,0.0
-num__fin_roe_net_income,0.0
-num__fin_roa_net_income,0.0
-num__Timeliness,0.0
-num__fin_implied_rating_missing_flag,0.0
-num__terminated,0.0
-num__fin_total_stress_flags,0.0
+num__missingindicator_Price_trends_52 weeks_%,0.0
+num__missingindicator_fin_ebit_margin,0.0
+num__fin_flag_negative_ebit_margin,0.0
+num__fin_flag_negative_roe,0.0
+num__fin_flag_negative_roa,0.0
+num__fin_flag_multiple_financial_stress_signals,0.0
 num__fin_flag_severe_financial_stress,0.0
 num__esg_below_industry_min,0.0
 num__supplier_is_publicly_listed,0.0
@@ -177,44 +305,85 @@ num__market_flag_negative_price_trend,0.0
 num__market_flag_negative_52w_price_trend,0.0
 num__market_flag_high_beta,0.0
 num__market_flag_negative_eps,0.0
-num__market_flag_stock_price_take_caution_or_worse,0.0
+num__fin_flag_interest_coverage_weak,0.0
 num__lpi_relative_risk,0.0
 num__is_old_and_near_expiry,0.0
-num__esg_row_missing_pct,0.0
-num__news_row_missing_pct,0.0
+num__fin_flag_interest_coverage_stress,0.0
+num__fin_flag_long_term_liab_equity_high,0.0
 num__lpi_below_supplier_median,0.0
-num__contracts_per_supplier,0.0
+num__fin_flag_debt_asset_high,0.0
+num__fin_flag_short_term_gearing_high,0.0
 num__financial_data_available,0.0
 num__esg_data_available,0.0
 num__news_data_available,0.0
-num__market_data_available,0.0
+num__has_environmental_appendix,0.0
+num__fin_flag_gearing_high,0.0
 num__missingindicator_fin_Number_of_months,0.0
 num__missingindicator_fin_Total_shareholders'_funds_and_liabilitiesth_DKK,0.0
-num__fin_flag_multiple_financial_stress_signals,0.0
-num__fin_flag_negative_roa,0.0
-num__fin_financial_level_missing_flag,0.0
-num__fin_flag_negative_roe,0.0
-num__fin_current_ratio_missing_flag,0.0
-num__fin_interest_coverage_ratio_missing_flag,0.0
-num__fin_ebit_margin_missing_flag,0.0
-num__fin_implied_rating_ordinal,0.0
-num__fin_flag_moderate_or_worse_rating,0.0
-num__fin_flag_risk_take_caution_or_worse,0.0
-num__fin_flag_risk_do_not_source,0.0
-num__fin_flag_financial_risk_score_high,0.0
-num__fin_flag_financial_risk_score_very_high,0.0
-num__fin_flag_liquidity_stress,0.0
-num__fin_flag_severe_liquidity_stress,0.0
-num__fin_flag_strong_liquidity,0.0
-num__fin_flag_gearing_high,0.0
-num__fin_flag_long_term_gearing_high,0.0
-num__fin_flag_short_term_gearing_high,0.0
-num__fin_flag_debt_asset_high,0.0
-num__fin_flag_long_term_liab_equity_high,0.0
-num__fin_flag_short_term_liab_equity_high,0.0
-num__fin_flag_interest_coverage_stress,0.0
-num__fin_flag_interest_coverage_weak,0.0
-num__fin_flag_low_solvency,0.0
+num__missingindicator_market_cap_volatility,0.0
+num__missingindicator_Earnings_per_share_DKK,0.0
+cat__expiry_pressure_bucket_5y_plus,0.0
+cat__nn_contract_type_Work Order,0.0
+cat__contract_commodity_Biologics - E.Coli,0.0
+cat__contract_commodity_Cartons,0.0
+cat__contract_commodity_Connectivity,0.0
+cat__contract_commodity_FM Consulting,0.0
+cat__contract_commodity_Human Resources Training,0.0
+num__price_trend_slope,0.0
+cat__contract_commodity_Internal Consultancy Services,0.0
+cat__contract_commodity_Metal,0.0
+cat__contract_commodity_Other Drug Substance Manufacturing Services,0.0
+cat__contract_commodity_Outsourced GMP Laboratory Analysis,0.0
+num__price_volatility_score,0.0
+cat__contract_commodity_SaaS (Software as a Service),0.0
+num__avg_closing_price,0.0
+cat__contract_commodity_Side Chains Unclassified,0.0
+cat__contract_commodity_Support Proteins and BIO APIs Unclassified,0.0
+cat__contract_commodity_Temporary Buildings Rental,0.0
+cat__contract_commodity_UV,0.0
 num__fin_flag_very_low_solvency,0.0
-num__fin_flag_negative_ebit_margin,0.0
-cat__Code_DNK,0.0
+cat__contract_commodity_Workshop Machinery,0.0
+cat__team_BF Integration,0.0
+cat__team_Bioprocessing,0.0
+cat__team_Devices & Needles,0.0
+cat__team_Negotiation & Capability Building,0.0
+num__Earnings_per_share_DKK,0.0
+"cat__team_Strategy, Sourcing & Negotiation CoE",0.0
+num__Price_trends_52 weeks_%,0.0
+num__market_cap_volatility,0.0
+cat__company_country_DENMARK,0.0
+num__vol_trend_slope,0.0
+cat__contract_commodity_Aseptic Filling,0.0
+num__Infrastructure,0.0
+num__missingindicator_avg_closing_price,0.0
+cat__nn_contract_type_Service Agreement,0.0
+num__missingindicator_price_volatility_score,0.0
+num__missingindicator_price_trend_slope,0.0
+num__missingindicator_fin_implied_rating_ordinal,0.0
+num__missingindicator_market_log_vol_shock_ratio,0.0
+num__missingindicator_years_to_expiry_capped,0.0
+cat__contract_status_published,0.0
+cat__term_type_auto_renew,0.0
+num__fin_flag_severe_liquidity_stress,0.0
+cat__term_type_perpetual,0.0
+cat__payment_terms_0001 Payable immediately Due net,0.0
+num__fin_flag_liquidity_stress,0.0
+num__fin_flag_financial_risk_score_very_high,0.0
+cat__payment_terms_L030 Current Month + 30 days,0.0
+cat__payment_terms_L045 Current Month + 45 days,0.0
+num__fin_flag_financial_risk_score_high,0.0
+num__fin_flag_risk_do_not_source,0.0
+cat__incoterms_CIP Carriage and insurance paid,0.0
+num__fin_flag_moderate_or_worse_rating,0.0
+cat__incoterms_DDU Delivered duty unpaid,0.0
+cat__contract_currency_code_BRL,0.0
+cat__contract_currency_code_CHF,0.0
+num__terminated,0.0
+num__fin_interest_coverage_ratio_missing_flag,0.0
+num__fin_financial_level_missing_flag,0.0
+cat__contract_type_IT,0.0
+cat__nn_contract_type_Basic Terms Agreement,0.0
+cat__nn_contract_type_Lease Agreement,0.0
+cat__nn_contract_type_Order form,0.0
+num__Tracking_Tracing,0.0
+"cat__notes_Development-only injected positive label for Strategy, Sourcing & Negotiation CoE.",0.0

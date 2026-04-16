@@ -9,7 +9,7 @@ test_size: 0.30
 verbose: true
 
 # Data 
-data_filename: "contract_with_features_labeled.csv"
+data_filename: "contract_with_features_labeled_with_gold.csv"
 weak_target_col: "renegotiation_prob"
 gold_col: "gold_y"
 group_col: "contract_id"

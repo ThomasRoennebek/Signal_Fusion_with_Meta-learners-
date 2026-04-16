@@ -1,0 +1,9 @@
+n_support_pos,n_support_neg,method,gold_auroc_mean_mean,gold_auroc_mean_std,gold_logloss_mean_mean,gold_logloss_mean_std,ndcg_at_10_mean_mean,ndcg_at_10_mean_std,gold_ece_mean_mean,gold_ece_mean_std,precision_at_10_mean_mean,precision_at_10_mean_std
+2,2,anil,0.5827,,1.9245,,0.8984,,0.4181,,0.7277,
+2,2,finetune,0.5,,5.2049,,0.8495,,0.2826,,0.7377,
+2,2,fomaml,0.5638,,4.2263,,0.8969,,0.5455,,0.7377,
+2,2,maml,0.5357,,5.1728,,0.8669,,0.4711,,0.7527,
+5,5,anil,,,,,,,,,,
+5,5,finetune,,,,,,,,,,
+5,5,fomaml,,,,,,,,,,
+5,5,maml,,,,,,,,,,

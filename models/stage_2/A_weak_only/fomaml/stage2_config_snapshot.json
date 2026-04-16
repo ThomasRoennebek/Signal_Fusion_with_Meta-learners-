@@ -1,8 +1,13 @@
 {
   "seed": 42,
   "verbose": true,
+  "method": "fomaml",
+  "support_config": {
+    "n_support_pos": 2,
+    "n_support_neg": 2
+  },
   "data": {
-    "data_filename": "contract_with_features_gold_joined.csv",
+    "data_filename": "contract_with_features_labeled_with_gold.csv",
     "target_col": "gold_y",
     "group_col": "contract_id",
     "department_col": "department",
@@ -22,11 +27,6 @@
     "min_query_contracts": 1,
     "exclude_departments": []
   },
-  "support_config": {
-    "n_support_pos": 2,
-    "n_support_neg": 2
-  },
-  "method": "fomaml",
   "meta_config": {
     "meta_batch_size": 1,
     "meta_iterations": 100,
@@ -47,6 +47,8 @@
   },
   "output": {
     "save_predictions": true,
-    "save_history": true
+    "save_history": true,
+    "skip_if_exists": true,
+    "force_rerun": false
   }
 }
