@@ -71,7 +71,7 @@ def adapt_maml_on_episode(
         grads = torch.autograd.grad(loss, params.values(), create_graph=create_graph, allow_unused=True)
 
         params = {
-            name: (param - inner_lr * grad) if grad is not None else param
+            name: (param - inner_lr * grad.clamp(-1.0, 1.0)) if grad is not None else param
             for (name, param), grad in zip(params.items(), grads)
         }
 
@@ -228,6 +228,12 @@ def evaluate_maml_on_target_episodes(
             buffers = dict(model.named_buffers())
             logits = torch.func.functional_call(model, (adapted_params, buffers), X_query)
             probs = torch.sigmoid(logits).cpu().numpy().ravel()
+
+        # Guard: replace any NaN/Inf with 0.5 (uninformative) so metric
+        # computation never crashes — this only activates if clamping above
+        # still fails to prevent a degenerate adapted model.
+        if not np.all(np.isfinite(probs)):
+            probs = np.where(np.isfinite(probs), probs, 0.5)
 
         metrics = evaluate_on_gold_binary(y_query_np, probs, model_name="MAML")
         metrics["episode_idx"] = ep_idx
