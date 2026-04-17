@@ -6,7 +6,7 @@ Responsibilities:
 - resolve experiment grids and experiment identifiers
 - load the Stage 2 dataset and Stage 1 artifacts
 - build contract-aware department tasks
-- dispatch Stage 2 methods (fine-tune / ANIL / FOMAML / optional MAML)
+- dispatch Stage 2 methods (zero-shot / fine-tune / ANIL / FOMAML / MAML)
 - save Stage 2 artifacts and summaries
 
 This module is the shared Stage 2 backend for both CLI execution and
@@ -39,6 +39,7 @@ from master_thesis.mlp import TabularMLP, set_seed
 from master_thesis.anil import meta_train_anil, evaluate_anil_on_target_episodes
 from master_thesis.FOMAML import meta_train_fomaml, evaluate_fomaml_on_target_episodes
 from master_thesis.maml import meta_train_maml, evaluate_maml_on_target_episodes
+from master_thesis.meta_common import evaluate_zero_shot_on_target_episodes
 
 
 @dataclass
@@ -555,8 +556,70 @@ def run_maml_method(config: Dict[str, Any], prepared: Dict[str, Any]) -> Dict[st
     )
 
 
+def run_zero_shot_method(config: Dict[str, Any], prepared: Dict[str, Any]) -> Dict[str, Any]:
+    """Evaluate the Stage 1 model directly on target episodes (no adaptation).
+
+    This is the pure no-adapt floor: the Stage 1 MLP is loaded with its
+    pretrained weights and queried on each target episode's query set. It is
+    the correct reference point for every adaptive method (finetune, ANIL,
+    FOMAML, MAML) because it isolates the contribution of Stage 2 adaptation
+    from the underlying pretrained representation.
+    """
+    paths = prepared["paths"]
+    target_episodes = prepared["target_episodes"]
+    feature_cols = prepared["feature_cols"]
+    target_col = config["data"]["target_col"]
+
+    preprocessor = load_stage1_preprocessor(paths.stage1_preprocessor_path)
+    if preprocessor is None:
+        raise ValueError("Zero-shot evaluation requires a Stage 1 preprocessor.")
+
+    if len(target_episodes) == 0:
+        return {
+            "method": "zero_shot",
+            "status": "no_target_episodes_available",
+            "target_department": prepared["target_department"],
+            "raw_metrics": None,
+            "predictions": None,
+            "history": None,
+        }
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    dummy_processed = preprocessor.transform(target_episodes[0]["support_df"][feature_cols].iloc[:2])
+    if hasattr(dummy_processed, "toarray"):
+        dummy_processed = dummy_processed.toarray()
+    base_model = build_stage2_model_from_config(dummy_processed.shape[1], config, device)
+    base_model = load_stage1_model_weights(base_model, paths.stage1_model_path, device)
+
+    eval_result = evaluate_zero_shot_on_target_episodes(
+        model=base_model,
+        preprocessor=preprocessor,
+        target_episodes=target_episodes,
+        feature_cols=feature_cols,
+        target_col=target_col,
+        device=device,
+        method_name="zero_shot",
+        contract_id_col=config["data"].get("group_col", "contract_id"),
+        department_col=config["data"].get("department_col", "department"),
+    )
+
+    return {
+        "method": "zero_shot",
+        "status": eval_result.get("status", "success"),
+        "target_department": prepared["target_department"],
+        "n_target_episodes": eval_result.get("n_target_episodes", 0),
+        "raw_metrics": eval_result.get("raw_metrics"),
+        "predictions": eval_result.get("predictions"),
+        "prediction_stats": eval_result.get("prediction_stats"),
+        "history": None,
+    }
+
+
 def run_stage2_method(config: Dict[str, Any], prepared: Dict[str, Any]) -> Dict[str, Any]:
     method = config["method"].lower()
+    if method == "zero_shot":
+        return run_zero_shot_method(config, prepared)
     if method == "finetune":
         return run_finetune_baseline(config, prepared)
     if method == "anil":
@@ -599,6 +662,24 @@ def summarize_stage2_result(
 
     predictions = result.get("predictions")
     summary["n_predictions"] = int(len(predictions)) if isinstance(predictions, pd.DataFrame) else 0
+
+    # Post-hoc collapse diagnostics (method-agnostic; label-free).
+    pred_stats = result.get("prediction_stats")
+    if not isinstance(pred_stats, pd.DataFrame) and isinstance(predictions, pd.DataFrame) and not predictions.empty:
+        try:
+            from master_thesis.meta_common import prediction_stats_frame_from_predictions
+            pred_stats = prediction_stats_frame_from_predictions(predictions)
+        except Exception:
+            pred_stats = None
+
+    if isinstance(pred_stats, pd.DataFrame) and not pred_stats.empty:
+        summary["n_episodes_diagnosed"] = int(len(pred_stats))
+        if "collapsed" in pred_stats.columns:
+            summary["collapse_rate"] = float(pred_stats["collapsed"].mean())
+        for col in ("pred_mean", "pred_std", "frac_near_zero", "frac_near_one"):
+            if col in pred_stats.columns:
+                summary[f"{col}_mean"] = float(pred_stats[col].mean())
+
     return summary
 
 
@@ -642,6 +723,20 @@ def save_stage2_result(
         result["predictions"].to_csv(output_dir / "predictions.csv", index=False)
     if isinstance(result.get("history"), pd.DataFrame):
         result["history"].to_csv(output_dir / "history.csv", index=False)
+
+    # Post-hoc prediction-stats / collapse diagnostic (method-agnostic).
+    # Computed from `predictions` if not already supplied by the method.
+    predictions_df = result.get("predictions")
+    pred_stats = result.get("prediction_stats")
+    if not isinstance(pred_stats, pd.DataFrame):
+        if isinstance(predictions_df, pd.DataFrame) and not predictions_df.empty:
+            try:
+                from master_thesis.meta_common import prediction_stats_frame_from_predictions
+                pred_stats = prediction_stats_frame_from_predictions(predictions_df)
+            except Exception:
+                pred_stats = None
+    if isinstance(pred_stats, pd.DataFrame) and not pred_stats.empty:
+        pred_stats.to_csv(output_dir / "prediction_stats.csv", index=False)
 
     summary = summarize_stage2_result(result, config, experiment_id)
     with open(output_dir / "stage2_result_summary.json", "w", encoding="utf-8") as f:

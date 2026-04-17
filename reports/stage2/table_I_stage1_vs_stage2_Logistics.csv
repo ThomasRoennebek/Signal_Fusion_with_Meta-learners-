@@ -1,9 +1,16 @@
 stage,method,init_name,n_support_pos,n_support_neg,inner_steps,status,gold_auroc_mean,gold_logloss_mean,ndcg_at_10_mean
-Stage 2,anil,A_weak_only,2,2,5,success,0.5827326839826841,1.9244704163144628,0.8983690963338441
-Stage 2,anil,A_weak_only,5,5,5,success,,,
+Stage 2,anil,A_weak_only,2,2,1,success,0.6373755411255411,2.611008143274448,0.8975151512541089
+Stage 2,anil,A_weak_only,2,2,3,success,0.6357088744588744,1.2654569223227838,0.8942175907316002
+Stage 2,anil,A_weak_only,2,2,5,success,0.665232683982684,1.3533926277913682,0.905297347921942
+Stage 2,finetune,A_weak_only,2,2,1,success,0.5,5.20489533576006,0.849515108333151
+Stage 2,finetune,A_weak_only,2,2,3,success,0.5,5.20489533576006,0.849515108333151
 Stage 2,finetune,A_weak_only,2,2,5,success,0.5,5.20489533576006,0.849515108333151
-Stage 2,finetune,A_weak_only,5,5,5,no_target_episodes_available,,,
-Stage 2,fomaml,A_weak_only,2,2,5,success,0.5638149350649351,4.226299691534431,0.8968935931207858
-Stage 2,fomaml,A_weak_only,5,5,5,success,,,
-Stage 2,maml,A_weak_only,2,2,5,success,0.5357142857142858,5.172765469404296,0.8669410930159687
-Stage 2,maml,A_weak_only,5,5,5,success,,,
+Stage 2,fomaml,A_weak_only,2,2,1,failed,,,
+Stage 2,fomaml,A_weak_only,2,2,3,failed,,,
+Stage 2,fomaml,A_weak_only,2,2,5,failed,,,
+Stage 2,maml,A_weak_only,2,2,1,failed,,,
+Stage 2,maml,A_weak_only,2,2,3,failed,,,
+Stage 2,maml,A_weak_only,2,2,5,failed,,,
+Stage 2,zero_shot,A_weak_only,2,2,1,success,0.6588041125541124,3.0240711256867603,0.9063928805956084
+Stage 2,zero_shot,A_weak_only,2,2,3,success,0.6588041125541124,3.0240711256867603,0.9063928805956084
+Stage 2,zero_shot,A_weak_only,2,2,5,success,0.6588041125541124,3.0240711256867603,0.9063928805956084

@@ -22,13 +22,13 @@ task_config:
   min_query_contracts: 1
   exclude_departments: []
 meta_config:
-  meta_batch_size: 2
-  meta_iterations: 5
+  meta_batch_size: 4
+  meta_iterations: 200
   inner_lr: 0.01
   outer_lr: 0.001
   inner_steps: 3
   target_inner_steps: 5
-  n_repeats: 2
+  n_repeats: 20
 mlp_config:
   hidden_dim_1: 256
   hidden_dim_2: 128

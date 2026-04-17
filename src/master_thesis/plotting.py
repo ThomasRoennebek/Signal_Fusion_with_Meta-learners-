@@ -1485,3 +1485,388 @@ def plot_support_size_curve(
     despine_thesis(ax)
     plt.tight_layout()
     return fig, ax
+
+
+# -----------------------------------------------------------------------------
+# Stage 2 diagnostics — training dynamics, collapse, embeddings, SHAP
+# -----------------------------------------------------------------------------
+
+def plot_meta_training_curve(
+    history_df: pd.DataFrame,
+    iter_col: str = "iteration",
+    loss_col: str = "meta_loss",
+    method_col: str | None = "method",
+    smooth_window: int = 5,
+    title: str = "Meta-Training Loss",
+    figsize: tuple[int, int] = (9, 4.5),
+):
+    """
+    Plot outer-loop meta-loss across iterations with optional rolling smoothing.
+
+    Accepts either a single-run history (no method column) or a concatenated
+    history across methods (with a ``method`` column).
+    """
+    _require_columns(history_df, [iter_col, loss_col])
+    plot_df = history_df.copy()
+
+    if smooth_window and smooth_window > 1:
+        group_keys = [method_col] if (method_col and method_col in plot_df.columns) else None
+        if group_keys:
+            plot_df["_smoothed"] = (
+                plot_df.groupby(group_keys)[loss_col]
+                .transform(lambda s: s.rolling(smooth_window, min_periods=1).mean())
+            )
+        else:
+            plot_df["_smoothed"] = plot_df[loss_col].rolling(smooth_window, min_periods=1).mean()
+        y_col = "_smoothed"
+        ylabel = f"Meta-loss (rolling mean, window={smooth_window})"
+    else:
+        y_col = loss_col
+        ylabel = "Meta-loss"
+
+    fig, ax = plt.subplots(figsize=figsize)
+    if method_col and method_col in plot_df.columns:
+        palette = method_palette(plot_df[method_col].unique())
+        sns.lineplot(
+            data=plot_df, x=iter_col, y=y_col, hue=method_col, ax=ax, palette=palette, linewidth=1.8
+        )
+        ax.legend(title="Method", frameon=False)
+    else:
+        ax.plot(plot_df[iter_col], plot_df[y_col], color=THESIS_PALETTE["blue"], linewidth=1.8)
+
+    ax.set_title(title)
+    ax.set_xlabel("Outer iteration")
+    ax.set_ylabel(ylabel)
+    despine_thesis(ax)
+    plt.tight_layout()
+    return fig, ax
+
+
+def plot_collapse_rate(
+    metrics_df: pd.DataFrame,
+    method_col: str = "method",
+    prob_mean_col: str = "pred_mean",
+    prob_std_col: str = "pred_std",
+    collapse_std_threshold: float = 0.01,
+    title: str = "Episode Collapse Rate by Method",
+    figsize: tuple[int, int] = (8, 5),
+):
+    """
+    Bar chart of the fraction of episodes where predictions collapse to a
+    near-constant value (``pred_std < collapse_std_threshold``).
+
+    Expects a long-form episode-level metrics frame with a ``method`` column and
+    per-episode prediction statistics. If ``pred_std`` is missing, falls back to
+    flagging episodes where ``pred_mean`` is extreme (< 0.01 or > 0.99).
+    """
+    plot_df = metrics_df.copy()
+
+    if prob_std_col in plot_df.columns:
+        plot_df["_collapsed"] = (plot_df[prob_std_col] < collapse_std_threshold).astype(int)
+    elif prob_mean_col in plot_df.columns:
+        plot_df["_collapsed"] = (
+            (plot_df[prob_mean_col] < 0.01) | (plot_df[prob_mean_col] > 0.99)
+        ).astype(int)
+    else:
+        raise ValueError(
+            f"Neither '{prob_std_col}' nor '{prob_mean_col}' present in metrics_df."
+        )
+
+    if method_col not in plot_df.columns:
+        raise ValueError(f"Column '{method_col}' not in metrics_df.")
+
+    agg = (
+        plot_df.groupby(method_col)
+        .agg(collapse_rate=("_collapsed", "mean"), n_episodes=("_collapsed", "count"))
+        .reset_index()
+        .sort_values("collapse_rate", ascending=True)
+    )
+
+    fig, ax = plt.subplots(figsize=figsize)
+    palette = method_palette(agg[method_col].unique())
+    colors = [palette.get(_normalise_method_name(m), THESIS_PALETTE["grey"]) for m in agg[method_col]]
+    ax.barh(agg[method_col], agg["collapse_rate"], color=colors)
+    for i, (rate, n) in enumerate(zip(agg["collapse_rate"], agg["n_episodes"])):
+        ax.text(rate + 0.01, i, f"{rate:.0%} (n={n})", va="center", fontsize=9)
+    ax.set_xlim(0, max(1.0, float(agg["collapse_rate"].max() + 0.1)))
+    ax.set_title(title)
+    ax.set_xlabel("Fraction of collapsed episodes")
+    ax.set_ylabel("Method")
+    despine_thesis(ax)
+    plt.tight_layout()
+    return fig, ax
+
+
+def plot_episode_prediction_stats(
+    predictions_df: pd.DataFrame,
+    method_col: str = "method",
+    episode_col: str = "episode_idx",
+    prob_col: str = "y_prob",
+    title: str = "Per-Episode Prediction Spread",
+    figsize: tuple[int, int] = (10, 5),
+):
+    """
+    Boxplot of predicted probabilities per episode grouped by method.
+
+    Useful to diagnose episodes where predictions collapse to a constant.
+    """
+    _require_columns(predictions_df, [method_col, episode_col, prob_col])
+
+    fig, ax = plt.subplots(figsize=figsize)
+    palette = method_palette(predictions_df[method_col].unique())
+    sns.boxplot(
+        data=predictions_df,
+        x=episode_col,
+        y=prob_col,
+        hue=method_col,
+        ax=ax,
+        palette=palette,
+        fliersize=2,
+    )
+    ax.set_title(title)
+    ax.set_xlabel("Episode index")
+    ax.set_ylabel("Predicted probability")
+    ax.legend(title="Method", frameon=False, bbox_to_anchor=(1.02, 1), loc="upper left")
+    despine_thesis(ax)
+    plt.tight_layout()
+    return fig, ax
+
+
+def _scatter_2d_by_group(
+    coords: np.ndarray,
+    groups,
+    ax,
+    palette: dict | None = None,
+    alpha: float = 0.75,
+    s: float = 32.0,
+    legend_title: str | None = None,
+):
+    groups = pd.Series(groups).astype(str).reset_index(drop=True)
+    unique_groups = list(dict.fromkeys(groups.tolist()))
+    if palette is None:
+        base_colors = [
+            THESIS_PALETTE["blue"],
+            THESIS_PALETTE["vermillion"],
+            THESIS_PALETTE["green"],
+            THESIS_PALETTE["orange"],
+            THESIS_PALETTE["purple"],
+            THESIS_PALETTE["sky_blue"],
+            THESIS_PALETTE["yellow"],
+            THESIS_PALETTE["grey"],
+        ]
+        palette = {g: base_colors[i % len(base_colors)] for i, g in enumerate(unique_groups)}
+    for g in unique_groups:
+        mask = (groups == g).to_numpy()
+        ax.scatter(
+            coords[mask, 0],
+            coords[mask, 1],
+            color=palette.get(g, THESIS_PALETTE["grey"]),
+            label=str(g),
+            alpha=alpha,
+            s=s,
+            edgecolor="white",
+            linewidths=0.4,
+        )
+    if legend_title:
+        ax.legend(title=legend_title, frameon=False, bbox_to_anchor=(1.02, 1), loc="upper left")
+
+
+def plot_department_embedding_projection(
+    coords: np.ndarray,
+    departments: Sequence[str],
+    projection_method: str = "pca",
+    title: str | None = None,
+    figsize: tuple[int, int] = (8, 6),
+):
+    """
+    Scatter of 2D embeddings coloured by department.
+
+    ``coords`` must be an (n, 2) array from ``explainability.compute_2d_projection``.
+    """
+    if coords.ndim != 2 or coords.shape[1] != 2:
+        raise ValueError(f"coords must be (n, 2), got {coords.shape}")
+    fig, ax = plt.subplots(figsize=figsize)
+    _scatter_2d_by_group(coords, departments, ax, legend_title="Department")
+    ax.set_title(title or f"Stage 1 Embedding Projection ({projection_method.upper()})")
+    ax.set_xlabel("Component 1")
+    ax.set_ylabel("Component 2")
+    despine_thesis(ax)
+    plt.tight_layout()
+    return fig, ax
+
+
+def plot_gold_label_embedding_projection(
+    coords: np.ndarray,
+    labels: Sequence[int],
+    projection_method: str = "pca",
+    title: str | None = None,
+    figsize: tuple[int, int] = (7, 6),
+):
+    """
+    Scatter of 2D embeddings coloured by gold label (0/1).
+    """
+    if coords.ndim != 2 or coords.shape[1] != 2:
+        raise ValueError(f"coords must be (n, 2), got {coords.shape}")
+    palette = {
+        "0": THESIS_PALETTE["blue"],
+        "1": THESIS_PALETTE["vermillion"],
+        "nan": THESIS_PALETTE["light_grey"],
+    }
+    fig, ax = plt.subplots(figsize=figsize)
+    _scatter_2d_by_group(coords, labels, ax, palette=palette, legend_title="gold_y")
+    ax.set_title(title or f"Gold-Label Separability ({projection_method.upper()})")
+    ax.set_xlabel("Component 1")
+    ax.set_ylabel("Component 2")
+    despine_thesis(ax)
+    plt.tight_layout()
+    return fig, ax
+
+
+def plot_pre_post_adaptation_projection(
+    coords_pre: np.ndarray,
+    coords_post: np.ndarray,
+    groups: Sequence,
+    group_title: str = "gold_y",
+    projection_method: str = "pca",
+    title: str = "Representation Shift Before/After Adaptation",
+    figsize: tuple[int, int] = (12, 5),
+):
+    """
+    Two-panel scatter of 2D embeddings before and after adaptation.
+
+    Both panels are coloured by the same ``groups`` (usually gold labels or
+    department). Fit one projection on the stacked pre+post embeddings upstream
+    and split here so the two panels share a comparable coordinate space.
+    """
+    if coords_pre.shape != coords_post.shape:
+        raise ValueError(
+            f"Shape mismatch: pre={coords_pre.shape}, post={coords_post.shape}"
+        )
+
+    fig, axes = plt.subplots(1, 2, figsize=figsize, sharex=True, sharey=True)
+    _scatter_2d_by_group(coords_pre, groups, axes[0], legend_title=None)
+    _scatter_2d_by_group(coords_post, groups, axes[1], legend_title=group_title)
+    axes[0].set_title("Pre-adaptation")
+    axes[1].set_title("Post-adaptation")
+    for ax in axes:
+        ax.set_xlabel("Component 1")
+        despine_thesis(ax)
+    axes[0].set_ylabel("Component 2")
+    fig.suptitle(f"{title} ({projection_method.upper()})", y=1.02)
+    plt.tight_layout()
+    return fig, axes
+
+
+def plot_embedding_shift_magnitude(
+    shifts: np.ndarray,
+    labels: Sequence | None = None,
+    title: str = "Embedding Shift Magnitude After Adaptation",
+    figsize: tuple[int, int] = (8, 5),
+    bins: int = 30,
+):
+    """
+    Histogram (optionally split by label) of Euclidean embedding shifts.
+    """
+    shifts = np.asarray(shifts).ravel()
+    fig, ax = plt.subplots(figsize=figsize)
+
+    if labels is None:
+        ax.hist(shifts, bins=bins, color=THESIS_PALETTE["blue"], alpha=0.85, edgecolor="white")
+        ax.set_ylabel("Number of samples")
+    else:
+        labels_s = pd.Series(labels).astype(str)
+        palette = method_palette(labels_s.unique())
+        for g in labels_s.unique():
+            ax.hist(
+                shifts[labels_s.values == g],
+                bins=bins,
+                alpha=0.55,
+                label=str(g),
+                color=palette.get(g, THESIS_PALETTE["grey"]),
+                edgecolor="white",
+            )
+        ax.legend(title="Group", frameon=False)
+        ax.set_ylabel("Number of samples")
+
+    ax.set_xlabel("Euclidean distance between pre and post embeddings")
+    ax.set_title(title)
+    despine_thesis(ax)
+    plt.tight_layout()
+    return fig, ax
+
+
+def plot_shap_summary_bar(
+    feature_ranking_df: pd.DataFrame,
+    feature_col: str = "feature",
+    importance_col: str = "mean_abs_shap",
+    top_n: int = 20,
+    title: str = "Global SHAP Importance",
+    figsize: tuple[int, int] = (8, 7),
+):
+    """
+    Horizontal bar chart of mean |SHAP| per feature (global importance).
+
+    Designed to consume the output of ``ShapResult.mean_abs()`` or
+    ``explainability.shap_feature_ranking``.
+    """
+    _require_columns(feature_ranking_df, [feature_col, importance_col])
+    plot_df = feature_ranking_df.copy().head(top_n).sort_values(importance_col, ascending=True)
+
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.barh(plot_df[feature_col], plot_df[importance_col], color=THESIS_PALETTE["blue"])
+    ax.set_title(title)
+    ax.set_xlabel("Mean absolute SHAP value")
+    ax.set_ylabel("Feature")
+    despine_thesis(ax)
+    plt.tight_layout()
+    return fig, ax
+
+
+def plot_shap_local_bar(
+    shap_values_row: np.ndarray,
+    feature_names: Sequence[str],
+    feature_values: Sequence | None = None,
+    top_n: int = 15,
+    title: str = "Local SHAP Attribution",
+    figsize: tuple[int, int] = (9, 6),
+):
+    """
+    Single-sample SHAP explanation as a signed horizontal bar chart.
+
+    Parameters
+    ----------
+    shap_values_row:
+        (n_features,) SHAP values for one sample.
+    feature_names:
+        Ordered feature names, same length as ``shap_values_row``.
+    feature_values:
+        Optional original feature values to annotate on the y-axis.
+    """
+    shap_values_row = np.asarray(shap_values_row).ravel()
+    if len(shap_values_row) != len(feature_names):
+        raise ValueError(
+            f"Length mismatch: shap_values_row={len(shap_values_row)}, "
+            f"feature_names={len(feature_names)}"
+        )
+
+    df = pd.DataFrame({"feature": list(feature_names), "shap": shap_values_row})
+    if feature_values is not None and len(feature_values) == len(feature_names):
+        df["value"] = list(feature_values)
+        df["label"] = df["feature"] + " = " + df["value"].astype(str)
+    else:
+        df["label"] = df["feature"]
+    df["abs_shap"] = df["shap"].abs()
+    df = df.sort_values("abs_shap", ascending=False).head(top_n).sort_values("shap", ascending=True)
+
+    fig, ax = plt.subplots(figsize=figsize)
+    colors = [
+        THESIS_PALETTE["green"] if v >= 0 else THESIS_PALETTE["vermillion"] for v in df["shap"]
+    ]
+    ax.barh(df["label"], df["shap"], color=colors)
+    ax.axvline(0, color=THESIS_PALETTE["black"], linewidth=0.8)
+    ax.set_title(title)
+    ax.set_xlabel("SHAP contribution (logit space)")
+    ax.set_ylabel("Feature")
+    despine_thesis(ax)
+    plt.tight_layout()
+    return fig, ax
