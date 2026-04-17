@@ -149,10 +149,9 @@ def meta_train_fomaml(
                 inner_steps=inner_steps,
             )
 
-            with torch.no_grad():
-                buffers = dict(model.named_buffers())
-                logits_query = torch.func.functional_call(model, (adapted_params, buffers), X_query)
-                query_loss = criterion(logits_query, y_query)
+            buffers = dict(model.named_buffers())
+            logits_query = torch.func.functional_call(model, (adapted_params, buffers), X_query)
+            query_loss = criterion(logits_query, y_query)
 
             if torch.isnan(query_loss):
                 total_skipped += 1

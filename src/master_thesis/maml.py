@@ -58,6 +58,7 @@ def adapt_maml_on_episode(
     y_support: torch.Tensor,
     inner_lr: float = 0.01,
     inner_steps: int = 3,
+    create_graph: bool = True,
 ) -> Dict[str, torch.Tensor]:
     model.eval()
     params = dict(model.named_parameters())
@@ -67,7 +68,7 @@ def adapt_maml_on_episode(
     for _ in range(inner_steps):
         logits = torch.func.functional_call(model, (params, buffers), X_support)
         loss = criterion(logits, y_support)
-        grads = torch.autograd.grad(loss, params.values(), create_graph=True, allow_unused=True)
+        grads = torch.autograd.grad(loss, params.values(), create_graph=create_graph, allow_unused=True)
 
         params = {
             name: (param - inner_lr * grad) if grad is not None else param
@@ -220,6 +221,7 @@ def evaluate_maml_on_target_episodes(
             y_support=y_supp,
             inner_lr=inner_lr,
             inner_steps=target_inner_steps,
+            create_graph=False,
         )
 
         with torch.no_grad():

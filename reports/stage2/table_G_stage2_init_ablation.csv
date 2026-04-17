@@ -1,6 +1,6 @@
 init_name,method,gold_auroc_mean_mean,gold_auroc_mean_std,gold_logloss_mean_mean,gold_logloss_mean_std,ndcg_at_10_mean_mean,ndcg_at_10_mean_std,gold_ece_mean_mean,gold_ece_mean_std,precision_at_10_mean_mean,precision_at_10_mean_std
-A_weak_only,anil,0.6461,0.0166,1.7433,0.7528,0.899,0.0057,0.4384,0.1512,0.7311,0.0058
-A_weak_only,finetune,0.5,0.0,5.2049,0.0,0.8495,0.0,0.2826,0.0,0.7377,0.0
+A_weak_only,anil,0.523,0.1063,1.8388,0.7392,0.7028,0.0782,0.407,0.1205,0.6967,0.0791
+A_weak_only,finetune,0.4812,0.0,8.7533,0.0,0.6608,0.0,0.5146,0.0,0.635,0.0
 A_weak_only,fomaml,,,,,,,,,,
-A_weak_only,maml,,,,,,,,,,
-A_weak_only,zero_shot,0.6588,0.0,3.0241,0.0,0.9064,0.0,0.6999,0.0,0.7277,0.0
+A_weak_only,maml,0.5079,,1.1009,,0.6914,,0.3745,,0.695,
+A_weak_only,zero_shot,0.6443,0.0,1.9166,0.0,0.7924,0.0,0.4973,0.0,0.79,0.0

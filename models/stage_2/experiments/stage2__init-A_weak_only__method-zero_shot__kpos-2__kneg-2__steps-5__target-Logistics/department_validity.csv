@@ -1,15 +1,15 @@
 department,n_total_rows,n_pos_rows,n_neg_rows,n_total_contracts,n_pos_contracts,n_neg_contracts,pos_rate_rows,pos_rate_contracts,remaining_contracts_after_support,enough_pos_for_support,enough_neg_for_support,enough_total_for_query,valid_department,validity_reason
-Packaging Material,84,54,30,11,6,5,0.6428571428571429,0.5454545454545454,7,True,True,True,True,valid
-Devices & Needles,75,55,20,11,5,6,0.7333333333333333,0.45454545454545453,7,True,True,True,True,valid
-"Quality, Production Services & Supplies",69,55,14,8,5,3,0.7971014492753623,0.625,4,True,True,True,True,valid
-Logistics,22,13,9,8,5,3,0.5909090909090909,0.625,4,True,True,True,True,valid
-"Alliance, Acquisitions & PPM CoE",45,22,23,7,2,5,0.4888888888888889,0.2857142857142857,3,True,True,True,True,valid
-Drug Substance Outsourcing,35,22,13,7,2,5,0.6285714285714286,0.2857142857142857,3,True,True,True,True,valid
-HI Warehouse Expansion Program,18,10,8,7,4,3,0.5555555555555556,0.5714285714285714,3,True,True,True,True,valid
-Strategic Sourcing US Hub,13,5,8,7,3,4,0.38461538461538464,0.42857142857142855,3,True,True,True,True,valid
-Bioprocessing & Raw Materials,56,44,12,6,4,2,0.7857142857142857,0.6666666666666666,2,True,True,True,True,valid
-Raw Materials & Energy,51,33,18,6,3,3,0.6470588235294118,0.5,2,True,True,True,True,valid
-Drug Product Outsourcing,24,11,13,6,1,5,0.4583333333333333,0.16666666666666666,2,False,True,True,False,insufficient_positive_contracts_for_support
-Bioprocessing and Excipients,30,23,7,5,3,2,0.7666666666666667,0.6,1,True,True,True,True,valid
-Global Strategic Outsourcing & Devices,9,5,4,3,1,2,0.5555555555555556,0.3333333333333333,-1,False,True,False,False,insufficient_positive_contracts_for_support|insufficient_query_contracts
+Devices & Needles,80,55,25,14,8,6,0.6875,0.5714285714285714,10,True,True,True,True,valid
+Logistics,60,38,22,14,9,5,0.6333333333333333,0.6428571428571429,10,True,True,True,True,valid
+Packaging Material,91,54,37,11,6,5,0.5934065934065934,0.5454545454545454,7,True,True,True,True,valid
+"Alliance, Acquisitions & PPM CoE",87,48,39,10,5,5,0.5517241379310345,0.5,6,True,True,True,True,valid
+Bioprocessing & Raw Materials,85,43,42,10,5,5,0.5058823529411764,0.5,6,True,True,True,True,valid
+Raw Materials & Energy,84,42,42,10,5,5,0.5,0.5,6,True,True,True,True,valid
+"Quality, Production Services & Supplies",60,25,35,10,5,5,0.4166666666666667,0.5,6,True,True,True,True,valid
+Drug Substance Outsourcing,47,19,28,10,5,5,0.40425531914893614,0.5,6,True,True,True,True,valid
+Drug Product Outsourcing,25,11,14,10,5,5,0.44,0.5,6,True,True,True,True,valid
+Strategic Sourcing US Hub,14,9,5,8,4,4,0.6428571428571429,0.5,4,True,True,True,True,valid
+Bioprocessing and Excipients,34,22,12,7,4,3,0.6470588235294118,0.5714285714285714,3,True,True,True,True,valid
+HI Warehouse Expansion Program,16,11,5,6,4,2,0.6875,0.6666666666666666,2,True,True,True,True,valid
+Global Strategic Outsourcing & Devices,15,9,6,4,2,2,0.6,0.5,0,True,True,False,False,insufficient_query_contracts
 "Strategy, Sourcing & Negotiation CoE",2,1,1,2,1,1,0.5,0.5,-2,False,False,False,False,insufficient_positive_contracts_for_support|insufficient_negative_contracts_for_support|insufficient_query_contracts
