@@ -664,6 +664,8 @@ def summarize_stage2_result(
         "n_support_pos": config.get("support_config", {}).get("n_support_pos"),
         "n_support_neg": config.get("support_config", {}).get("n_support_neg"),
         "inner_steps": config.get("meta_config", {}).get("inner_steps"),
+        "inner_lr": config.get("meta_config", {}).get("inner_lr"),
+        "meta_batch_size": config.get("meta_config", {}).get("meta_batch_size"),
         "status": result.get("status"),
     }
 

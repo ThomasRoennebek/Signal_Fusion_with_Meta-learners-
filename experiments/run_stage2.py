@@ -76,6 +76,8 @@ def _collect_summary_row(
     summary["n_support_pos"] = resolved_config.get("support_config", {}).get("n_support_pos")
     summary["n_support_neg"] = resolved_config.get("support_config", {}).get("n_support_neg")
     summary["inner_steps"] = resolved_config.get("meta_config", {}).get("inner_steps")
+    summary["inner_lr"] = resolved_config.get("meta_config", {}).get("inner_lr")
+    summary["meta_batch_size"] = resolved_config.get("meta_config", {}).get("meta_batch_size")
     summary["was_skipped"] = bool(was_skipped)
     return summary
 

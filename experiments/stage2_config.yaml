@@ -285,3 +285,41 @@ presets:
     init_names: ["A_weak_only"]
     meta_batch_size: 4
     n_repeats: 20
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # OPTIMIZATION CYCLE 1 — Focused FOMAML / MAML LR sweep
+  #
+  # Evaluates all five methods on the Logistics k=2/2 benchmark with the
+  # following structure:
+  #   - zero_shot and finetune: lr-agnostic reference methods (no LR suffix
+  #     appended to experiment IDs). Run once per step count.
+  #   - anil, fomaml, maml: explicit LR sweep over {0.001, 0.005, 0.01}.
+  #     Each (method, steps, lr) combination receives a unique ID via __lr-{lr}.
+  #
+  # Total: 6 reference + 27 adaptive = 33 experiments.
+  # meta_batch_size=4 stabilises outer gradients throughout.
+  # Run with --force-rerun for clean, fully comparable artifacts.
+  #
+  # This preset supersedes the legacy lr=0.01-only runs that showed full
+  # collapse for FOMAML and instability for MAML.
+  # ──────────────────────────────────────────────────────────────────────────
+  optimization_cycle_ref:
+    methods: ["zero_shot", "finetune"]
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+    inner_steps_grid: [1, 3, 5]
+    init_names: ["A_weak_only"]
+    meta_batch_size: 4
+    n_repeats: 20
+
+  optimization_cycle_adaptive:
+    methods: ["anil", "fomaml", "maml"]
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+    inner_steps_grid: [1, 3, 5]
+    inner_lr_grid: [0.001, 0.005, 0.01]
+    init_names: ["A_weak_only"]
+    meta_batch_size: 4
+    n_repeats: 20

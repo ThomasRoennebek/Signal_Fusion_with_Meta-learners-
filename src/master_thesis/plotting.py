@@ -2220,3 +2220,264 @@ def plot_collapse_rate_heatmap(
         fig.savefig(save_path, dpi=300, bbox_inches="tight")
 
     return fig, ax
+
+
+def normalize_summary_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Add short-form column aliases to a Stage 2 experiment summary DataFrame.
+
+    The raw CSV uses ``gold_`` prefixed names for evaluation metrics
+    (e.g. ``gold_auroc_mean``).  This function adds unprefixed aliases
+    (e.g. ``auroc_mean``) so that downstream plotting functions — which
+    expect the shorter names — work without modification.
+
+    The function is idempotent: if the alias already exists it is not
+    overwritten.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Raw experiment summary as loaded from ``experiment_summary.csv``.
+
+    Returns
+    -------
+    pd.DataFrame
+        The same DataFrame with additional alias columns (in-place copy).
+    """
+    df = df.copy()
+    aliases = {
+        "gold_auroc_mean":    "auroc_mean",
+        "gold_auroc_std":     "auroc_std",
+        "gold_logloss_mean":  "log_loss_mean",
+        "gold_logloss_std":   "log_loss_std",
+        "gold_ece_mean":      "ece_mean",
+        "gold_ece_std":       "ece_std",
+        "gold_ap_mean":       "ap_mean",
+        "gold_ap_std":        "ap_std",
+        "gold_brier_mean":    "brier_mean",
+        "gold_brier_std":     "brier_std",
+        "gold_f1_mean":       "f1_mean",
+        "gold_f1_std":        "f1_std",
+        "pred_mean_mean":     "pred_mean",
+        "pred_std_mean":      "pred_std",
+    }
+    for src, dst in aliases.items():
+        if src in df.columns and dst not in df.columns:
+            df[dst] = df[src]
+    return df
+
+
+def plot_pred_std_comparison(
+    summary_df: pd.DataFrame,
+    method_order: Sequence[str] | None = None,
+    pred_std_col: str = "pred_std",
+    collapse_rate_col: str = "collapse_rate",
+    figsize: tuple[int, int] = (11, 4),
+    title: str = "Prediction Spread vs. Collapse Rate by Method",
+    save_path: str | None = None,
+) -> tuple:
+    """
+    Two-panel comparison of prediction spread and collapse rate per method.
+
+    Left panel: bar chart of mean ``pred_std`` (higher = more spread,
+    lower = collapsed predictions).
+    Right panel: bar chart of ``collapse_rate`` (fraction of episodes where
+    all query predictions converge to a near-constant value).
+
+    Both panels use DTU-palette method colours. The best row per method
+    (highest AUROC) is selected when multiple rows exist.
+
+    Parameters
+    ----------
+    summary_df : pd.DataFrame
+        Summary DataFrame with ``method``, ``pred_std``, ``collapse_rate``,
+        and optionally ``auroc_mean``.
+    method_order : list[str], optional
+        Ordered method names for the x-axis.
+    pred_std_col : str
+        Column name for mean prediction standard deviation.
+    collapse_rate_col : str
+        Column name for per-experiment collapse rate.
+    save_path : str, optional
+        If provided, save figure at 300 dpi.
+
+    Returns
+    -------
+    fig, axes : tuple
+    """
+    df = summary_df.copy()
+
+    if method_order is None:
+        canonical = ["zero_shot", "finetune", "anil", "fomaml", "maml"]
+        present = set(df["method"].tolist()) if "method" in df.columns else set()
+        method_order = [m for m in canonical if m in present] + [
+            m for m in present if m not in canonical
+        ]
+
+    # Best row per method
+    auroc_col = "auroc_mean" if "auroc_mean" in df.columns else "gold_auroc_mean"
+    if "method" in df.columns and auroc_col in df.columns:
+        best_idx = df.groupby("method")[auroc_col].idxmax()
+        df = df.loc[best_idx]
+
+    palette = method_palette(method_order)
+    colors = [palette.get(m, THESIS_PALETTE["grey"]) for m in method_order]
+    x = np.arange(len(method_order))
+
+    fig, axes = plt.subplots(1, 2, figsize=figsize)
+
+    # Left: pred_std
+    ax = axes[0]
+    if pred_std_col in df.columns and "method" in df.columns:
+        vals = [
+            float(df[df["method"] == m][pred_std_col].iloc[0])
+            if m in df["method"].values else 0.0
+            for m in method_order
+        ]
+        bars = ax.bar(x, vals, color=colors, edgecolor="white", linewidth=0.8, alpha=0.88)
+        ax.axhline(0.01, color=THESIS_PALETTE["vermillion"], linestyle="--",
+                   linewidth=1.2, label="Collapse threshold (0.01)")
+        ax.set_xticks(x)
+        ax.set_xticklabels(
+            [m.replace("_", " ").title() for m in method_order],
+            rotation=20, ha="right", fontsize=9,
+        )
+        ax.set_ylabel("Mean Prediction Std. Dev.", fontsize=9)
+        ax.set_title("Prediction Spread", fontsize=11, fontweight="bold")
+        ax.legend(fontsize=8, frameon=False)
+        despine_thesis(ax)
+    else:
+        ax.text(0.5, 0.5, f"Column '{pred_std_col}' not found",
+                ha="center", va="center", transform=ax.transAxes)
+
+    # Right: collapse_rate
+    ax = axes[1]
+    if collapse_rate_col in df.columns and "method" in df.columns:
+        cr_vals = [
+            float(df[df["method"] == m][collapse_rate_col].iloc[0])
+            if m in df["method"].values else np.nan
+            for m in method_order
+        ]
+        ax.bar(x, cr_vals, color=colors, edgecolor="white", linewidth=0.8, alpha=0.88)
+        ax.set_xticks(x)
+        ax.set_xticklabels(
+            [m.replace("_", " ").title() for m in method_order],
+            rotation=20, ha="right", fontsize=9,
+        )
+        ax.set_ylabel("Collapse Rate", fontsize=9)
+        ax.set_ylim(0.0, 1.05)
+        ax.set_title("Collapse Rate per Method", fontsize=11, fontweight="bold")
+        despine_thesis(ax)
+    else:
+        ax.text(0.5, 0.5, f"Column '{collapse_rate_col}' not found",
+                ha="center", va="center", transform=ax.transAxes)
+
+    fig.suptitle(title, fontsize=12, fontweight="bold", y=1.02)
+    plt.tight_layout()
+
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+
+    return fig, axes
+
+
+def plot_ece_auroc_scatter(
+    summary_df: pd.DataFrame,
+    auroc_col: str = "auroc_mean",
+    ece_col: str = "ece_mean",
+    method_col: str = "method",
+    inner_steps_col: str = "inner_steps",
+    inner_lr_col: str = "inner_lr",
+    method_order: Sequence[str] | None = None,
+    figsize: tuple[int, int] = (7, 5),
+    title: str = "Calibration vs. Discrimination Tradeoff",
+    save_path: str | None = None,
+) -> tuple:
+    """
+    Scatter plot of AUROC (x) vs. ECE (y) per experiment configuration.
+
+    Each point represents one (method, steps, lr) combination.  Colour
+    encodes method; shape optionally encodes inner_steps.  A good operating
+    point sits in the top-right quadrant (high AUROC, low ECE).
+
+    Parameters
+    ----------
+    summary_df : pd.DataFrame
+        Summary DataFrame with method, AUROC, and ECE columns.
+    auroc_col, ece_col : str
+        Column names for AUROC and ECE (after normalization).
+    figsize : tuple
+        Figure dimensions in inches.
+    save_path : str, optional
+        If provided, save at 300 dpi.
+
+    Returns
+    -------
+    fig, ax : tuple
+    """
+    df = summary_df.copy()
+    df = df.dropna(subset=[auroc_col, ece_col]) if auroc_col in df.columns and ece_col in df.columns else df
+
+    if method_order is None:
+        canonical = ["zero_shot", "finetune", "anil", "fomaml", "maml"]
+        present = set(df[method_col].tolist()) if method_col in df.columns else set()
+        method_order = [m for m in canonical if m in present] + [
+            m for m in present if m not in canonical
+        ]
+
+    palette = method_palette(method_order)
+    markers = {1: "o", 3: "s", 5: "^", 0: "D"}
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    for method in method_order:
+        mdf = df[df[method_col] == method] if method_col in df.columns else df
+        if mdf.empty:
+            continue
+        color = palette.get(method, THESIS_PALETTE["grey"])
+
+        for _, row in mdf.iterrows():
+            x_val = row.get(auroc_col, np.nan)
+            y_val = row.get(ece_col, np.nan)
+            if np.isnan(x_val) or np.isnan(y_val):
+                continue
+            steps = int(row.get(inner_steps_col, 0)) if inner_steps_col in row.index else 0
+            marker = markers.get(steps, "o")
+            ax.scatter(x_val, y_val, color=color, marker=marker, s=60, alpha=0.85, zorder=3)
+
+    # Legend for methods
+    from matplotlib.lines import Line2D
+    legend_elements = [
+        Line2D([0], [0], marker="o", color="w", markerfacecolor=palette.get(m, THESIS_PALETTE["grey"]),
+               markersize=8, label=m.replace("_", " ").title())
+        for m in method_order
+    ]
+    # Add step-size markers
+    for steps, marker in sorted(markers.items()):
+        if steps > 0:
+            legend_elements.append(
+                Line2D([0], [0], marker=marker, color="grey", markersize=7,
+                       label=f"steps={steps}", linestyle="none")
+            )
+    ax.legend(handles=legend_elements, fontsize=8, frameon=False,
+              bbox_to_anchor=(1.02, 1), loc="upper left")
+
+    ax.set_xlabel("AUROC (higher is better)", fontsize=10)
+    ax.set_ylabel("ECE (lower is better)", fontsize=10)
+    ax.set_title(title, fontsize=11, fontweight="bold")
+
+    # Annotate quadrant
+    xlim = ax.get_xlim()
+    ylim = ax.get_ylim()
+    ax.text(xlim[1] * 0.97, ylim[0] + 0.01, "Better discrimination",
+            ha="right", va="bottom", fontsize=7, color=THESIS_PALETTE["grey"])
+    ax.text(xlim[0] + 0.005, ylim[0] + 0.01, "Better calibration",
+            ha="left", va="bottom", fontsize=7, color=THESIS_PALETTE["grey"])
+
+    despine_thesis(ax)
+    plt.tight_layout()
+
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+
+    return fig, ax
