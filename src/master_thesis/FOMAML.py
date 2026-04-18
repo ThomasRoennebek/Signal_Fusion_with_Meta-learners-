@@ -49,6 +49,22 @@ def _prepare_tensors(
     return X_supp_t, y_supp_t, X_query_t, y_query_t, y_query_np
 
 
+def _safe_buffers(model: nn.Module, min_var: float = 1e-3) -> Dict[str, torch.Tensor]:
+    """Return model buffers with BatchNorm running_var clamped to a safe minimum.
+
+    BatchNorm computes (x - mean) / sqrt(var + eps).  When running_var is
+    near-zero (common for sparse or near-constant features after Stage 1
+    pre-training), the denominator collapses to ~0.003, amplifying inputs by
+    300x and producing Inf logits / exploding gradients.  Clamping var >= 1e-3
+    keeps the amplification factor below ~32x, which is within the range that
+    gradient clipping can handle cleanly.
+    """
+    return {
+        name: buf.clamp(min=min_var) if "running_var" in name else buf
+        for name, buf in model.named_buffers()
+    }
+
+
 def adapt_fomaml_on_episode(
     model: nn.Module,
     X_support: torch.Tensor,
@@ -58,7 +74,9 @@ def adapt_fomaml_on_episode(
 ) -> Dict[str, torch.Tensor]:
     model.eval()
     params = dict(model.named_parameters())
-    buffers = dict(model.named_buffers())
+    # Clamp near-zero running_var to prevent BatchNorm from amplifying sparse
+    # features into Inf territory during few-shot adaptation.
+    buffers = _safe_buffers(model)
     criterion = nn.BCEWithLogitsLoss()
 
     for _ in range(inner_steps):
@@ -67,7 +85,7 @@ def adapt_fomaml_on_episode(
         grads = torch.autograd.grad(loss, params.values(), create_graph=False, allow_unused=True)
 
         params = {
-            name: (param - inner_lr * grad.clamp(-1.0, 1.0)) if grad is not None else param
+            name: (param - inner_lr * torch.nan_to_num(grad, nan=0.0, posinf=1.0, neginf=-1.0).clamp(-1.0, 1.0)) if grad is not None else param
             for (name, param), grad in zip(params.items(), grads)
         }
 
@@ -109,15 +127,23 @@ def meta_train_fomaml(
         outer_optimizer.zero_grad()
         valid_query_losses = []
 
-        batch_depts = rng.choices(meta_train_departments, k=meta_batch_size)
+        # Sample departments without replacement when the pool is large enough,
+        # so the same department cannot appear twice in one meta-batch.
+        if meta_batch_size <= len(meta_train_departments):
+            batch_depts = rng.sample(meta_train_departments, k=meta_batch_size)
+        else:
+            batch_depts = rng.choices(meta_train_departments, k=meta_batch_size)
 
-        for dept in batch_depts:
+        for dept_idx, dept in enumerate(batch_depts):
             dept_df = train_df[train_df[department_col] == dept]
             if len(dept_df) < (n_support_pos + n_support_neg + 2):
                 total_skipped += 1
                 continue
 
             try:
+                # Use a unique seed per (iteration, department slot) so that
+                # different departments in the same meta-batch draw independent
+                # support/query splits rather than correlated ones.
                 episode = sample_support_query_split(
                     dept_df=dept_df,
                     feature_cols=feature_cols,
@@ -126,7 +152,7 @@ def meta_train_fomaml(
                     contract_id_col=contract_id_col,
                     n_support_pos=n_support_pos,
                     n_support_neg=n_support_neg,
-                    random_state=random_state + iteration,
+                    random_state=random_state + iteration * 997 + dept_idx,
                 )
             except ValueError:
                 total_skipped += 1
@@ -149,7 +175,9 @@ def meta_train_fomaml(
                 inner_steps=inner_steps,
             )
 
-            buffers = dict(model.named_buffers())
+            # Use clamped buffers here too so the outer query forward pass
+            # sees the same stable normalization as the inner loop did.
+            buffers = _safe_buffers(model)
             logits_query = torch.func.functional_call(model, (adapted_params, buffers), X_query)
             query_loss = criterion(logits_query, y_query)
 
@@ -220,17 +248,28 @@ def evaluate_fomaml_on_target_episodes(
         )
 
         with torch.no_grad():
-            buffers = dict(model.named_buffers())
+            buffers = _safe_buffers(model)
             logits = torch.func.functional_call(model, (adapted_params, buffers), X_query)
             probs = torch.sigmoid(logits).cpu().numpy().ravel()
 
-        # Guard: replace any NaN/Inf with 0.5 (uninformative) so metric
-        # computation never crashes — this only activates if clamping above
-        # still fails to prevent a degenerate adapted model.
+        # Guard 1: replace any NaN/Inf probs with 0.5 (uninformative).
+        # nan_to_num in the adapt loop prevents this in practice, but kept
+        # as a belt-and-suspenders safety net.
         if not np.all(np.isfinite(probs)):
             probs = np.where(np.isfinite(probs), probs, 0.5)
 
-        metrics = evaluate_on_gold_binary(y_query_np, probs, model_name="FOMAML")
+        # Guard 2: filter rows where the gold label itself is NaN/missing.
+        # The query_df may contain unlabelled contracts (gold_y = NaN) that
+        # are not valid evaluation targets — passing NaN y_true to sklearn
+        # raises "Input contains NaN".
+        valid_mask = np.isfinite(y_query_np)
+        y_query_eval = y_query_np[valid_mask].astype(int)
+        probs_eval = probs[valid_mask]
+
+        if len(y_query_eval) == 0:
+            continue  # no labelled contracts in this episode's query set
+
+        metrics = evaluate_on_gold_binary(y_query_eval, probs_eval, model_name="FOMAML")
         metrics["episode_idx"] = ep_idx
         metric_rows.append(metrics)
 
