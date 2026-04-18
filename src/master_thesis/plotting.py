@@ -1870,3 +1870,353 @@ def plot_shap_local_bar(
     despine_thesis(ax)
     plt.tight_layout()
     return fig, ax
+
+
+# =============================================================================
+# Stage 2 — Thesis benchmark plotting functions
+# =============================================================================
+
+def plot_method_comparison_bars(
+    summary_df: pd.DataFrame,
+    metrics: Sequence[str] | None = None,
+    metric_labels: dict[str, str] | None = None,
+    method_order: Sequence[str] | None = None,
+    zero_shot_ref_row: pd.Series | None = None,
+    figsize: tuple[int, int] = (14, 9),
+    title: str = "Method Comparison — Stage 2 Benchmark",
+    save_path: str | None = None,
+) -> tuple:
+    """
+    Four-panel grouped bar chart comparing methods across key metrics.
+
+    Each panel shows one metric (AUROC, NDCG@10, Log-Loss, ECE) with one
+    bar per method.  Error bars represent ±1 std across evaluation episodes.
+    A dashed horizontal line marks the zero-shot reference where applicable.
+
+    Parameters
+    ----------
+    summary_df:
+        DataFrame with columns ``method``, ``inner_steps``, and metric columns
+        ending in ``_mean`` / ``_std`` (e.g. ``auroc_mean``, ``auroc_std``).
+        When multiple rows exist per method, the best row by ``auroc_mean`` is
+        used automatically.
+    metrics:
+        Metric base names to plot.  Defaults to
+        ``["auroc", "ndcg_at_10", "log_loss", "ece"]``.
+    metric_labels:
+        Human-readable axis labels keyed by metric base name.
+    method_order:
+        Ordered list of method names for the x-axis.
+    zero_shot_ref_row:
+        Optional single-row Series with zero-shot reference values (same
+        ``_mean`` column scheme); adds a dashed reference line to each panel.
+    save_path:
+        If provided, save figure to this path at 300 dpi.
+
+    Returns
+    -------
+    fig, axes : tuple
+    """
+    if metrics is None:
+        metrics = ["auroc", "ndcg_at_10", "log_loss", "ece"]
+    if metric_labels is None:
+        metric_labels = {
+            "auroc": "AUROC",
+            "ndcg_at_10": "NDCG@10",
+            "log_loss": "Log-Loss",
+            "ece": "ECE",
+        }
+
+    df = summary_df.copy()
+
+    # Pick best row per method (highest auroc_mean)
+    auroc_col = "auroc_mean" if "auroc_mean" in df.columns else "auroc"
+    if "method" in df.columns:
+        best_idx = df.groupby("method")[auroc_col].idxmax()
+        df = df.loc[best_idx].reset_index(drop=True)
+
+    if method_order is None:
+        # Maintain canonical order; filter to present methods
+        canonical = ["zero_shot", "finetune", "anil", "fomaml", "maml"]
+        present = set(df["method"].tolist()) if "method" in df.columns else set()
+        method_order = [m for m in canonical if m in present] + [
+            m for m in present if m not in canonical
+        ]
+
+    palette = method_palette()
+    n_methods = len(method_order)
+    x = np.arange(n_methods)
+    bar_colors = [palette.get(m, THESIS_PALETTE["grey"]) for m in method_order]
+
+    n_metrics = len(metrics)
+    ncols = 2
+    nrows = (n_metrics + 1) // ncols
+    fig, axes = plt.subplots(nrows, ncols, figsize=figsize)
+    axes_flat = np.array(axes).ravel()
+
+    for idx, metric in enumerate(metrics):
+        ax = axes_flat[idx]
+        mean_col = f"{metric}_mean" if f"{metric}_mean" in df.columns else metric
+        std_col = f"{metric}_std" if f"{metric}_std" in df.columns else None
+
+        means, stds = [], []
+        for m in method_order:
+            row = df[df["method"] == m] if "method" in df.columns else pd.DataFrame()
+            if len(row) == 0:
+                means.append(np.nan)
+                stds.append(0.0)
+            else:
+                means.append(float(row[mean_col].iloc[0]) if mean_col in row.columns else np.nan)
+                stds.append(float(row[std_col].iloc[0]) if std_col and std_col in row.columns else 0.0)
+
+        means_arr = np.array(means)
+        stds_arr = np.array(stds)
+
+        bars = ax.bar(
+            x, means_arr, color=bar_colors, edgecolor="white",
+            linewidth=0.8, alpha=0.88,
+            yerr=stds_arr, capsize=4, error_kw={"linewidth": 1.2, "ecolor": THESIS_PALETTE["black"]},
+        )
+
+        # Zero-shot reference line
+        if zero_shot_ref_row is not None:
+            ref_col = f"{metric}_mean" if f"{metric}_mean" in zero_shot_ref_row.index else metric
+            if ref_col in zero_shot_ref_row.index:
+                ref_val = float(zero_shot_ref_row[ref_col])
+                ax.axhline(ref_val, color=THESIS_PALETTE["grey"], linestyle="--",
+                           linewidth=1.4, alpha=0.8, zorder=0, label="Zero-shot ref.")
+
+        ax.set_title(metric_labels.get(metric, metric), fontsize=11, fontweight="bold")
+        ax.set_xticks(x)
+        ax.set_xticklabels(
+            [m.replace("_", " ").title() for m in method_order],
+            rotation=20, ha="right", fontsize=9,
+        )
+        ax.set_ylabel(metric_labels.get(metric, metric), fontsize=9)
+        despine_thesis(ax)
+
+    # Hide any spare axes
+    for ax in axes_flat[n_metrics:]:
+        ax.set_visible(False)
+
+    fig.suptitle(title, fontsize=13, fontweight="bold", y=1.01)
+    plt.tight_layout()
+
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+
+    return fig, axes
+
+
+def plot_lr_sweep_comparison(
+    summary_df: pd.DataFrame,
+    methods: Sequence[str] | None = None,
+    metric: str = "auroc",
+    metric_label: str | None = None,
+    inner_lr_col: str = "inner_lr",
+    inner_steps_col: str = "inner_steps",
+    steps_to_show: Sequence[int] | None = None,
+    zero_shot_ref: float | None = None,
+    figsize: tuple[int, int] = (12, 4),
+    title: str | None = None,
+    save_path: str | None = None,
+) -> tuple:
+    """
+    Line plots of metric vs. inner_lr, facetted by method and coloured by
+    inner_steps.
+
+    Intended to visualise the LR-sweep results (FOMAML, MAML, ANIL) and show
+    how the optimal inner learning rate changes with gradient-step count.
+
+    Parameters
+    ----------
+    summary_df:
+        DataFrame containing ``method``, ``inner_lr``, ``inner_steps``, and
+        metric columns (``{metric}_mean`` / ``{metric}_std`` or plain
+        ``{metric}``).
+    methods:
+        Which methods to plot.  Defaults to ``["anil", "fomaml", "maml"]``.
+    metric:
+        Base metric name (e.g. ``"auroc"``).
+    zero_shot_ref:
+        Optional scalar — draws a dashed horizontal reference line on each
+        panel (e.g. zero-shot AUROC=0.634).
+    steps_to_show:
+        Inner-step counts to include.  Defaults to all unique values.
+
+    Returns
+    -------
+    fig, axes : tuple
+    """
+    if methods is None:
+        methods = ["anil", "fomaml", "maml"]
+    if metric_label is None:
+        metric_label = metric.upper().replace("_", " ").replace("AT", "@")
+    if title is None:
+        title = f"{metric_label} vs. Inner LR — LR Sweep Benchmark"
+
+    mean_col = f"{metric}_mean" if f"{metric}_mean" in summary_df.columns else metric
+    std_col = f"{metric}_std" if f"{metric}_std" in summary_df.columns else None
+
+    df = summary_df.copy()
+
+    # Normalise inner_lr to float
+    if inner_lr_col in df.columns:
+        df[inner_lr_col] = df[inner_lr_col].astype(float)
+
+    if steps_to_show is None and inner_steps_col in df.columns:
+        steps_to_show = sorted(df[inner_steps_col].dropna().unique().tolist())
+    elif steps_to_show is None:
+        steps_to_show = []
+
+    step_colors = {
+        s: c for s, c in zip(
+            steps_to_show,
+            [THESIS_PALETTE["blue"], THESIS_PALETTE["orange"], THESIS_PALETTE["vermillion"],
+             THESIS_PALETTE["green"], THESIS_PALETTE["purple"]],
+        )
+    }
+
+    methods_present = [m for m in methods if "method" not in df.columns or m in df["method"].values]
+    n = len(methods_present)
+    fig, axes = plt.subplots(1, n, figsize=figsize, sharey=True)
+    if n == 1:
+        axes = [axes]
+
+    for ax, method in zip(axes, methods_present):
+        mdf = df[df["method"] == method].copy() if "method" in df.columns else df.copy()
+
+        for steps in steps_to_show:
+            sdf = mdf[mdf[inner_steps_col] == steps].copy() if inner_steps_col in mdf.columns else mdf.copy()
+            if sdf.empty:
+                continue
+            sdf = sdf.sort_values(inner_lr_col)
+            lr_vals = sdf[inner_lr_col].values
+            mean_vals = sdf[mean_col].values
+            std_vals = sdf[std_col].values if std_col and std_col in sdf.columns else np.zeros_like(mean_vals)
+
+            color = step_colors.get(steps, THESIS_PALETTE["grey"])
+            ax.plot(lr_vals, mean_vals, marker="o", color=color, linewidth=2,
+                    markersize=6, label=f"steps={steps}")
+            ax.fill_between(lr_vals, mean_vals - std_vals, mean_vals + std_vals,
+                            alpha=0.15, color=color)
+
+        if zero_shot_ref is not None:
+            ax.axhline(zero_shot_ref, color=THESIS_PALETTE["grey"], linestyle="--",
+                       linewidth=1.4, alpha=0.8, label="Zero-shot ref.")
+
+        ax.set_xscale("log")
+        ax.set_xlabel("Inner LR", fontsize=10)
+        ax.set_title(method.upper(), fontsize=11, fontweight="bold")
+        ax.legend(fontsize=8, frameon=False)
+        despine_thesis(ax)
+
+    axes[0].set_ylabel(metric_label, fontsize=10)
+    fig.suptitle(title, fontsize=12, fontweight="bold", y=1.02)
+    plt.tight_layout()
+
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+
+    return fig, axes
+
+
+def plot_collapse_rate_heatmap(
+    summary_df: pd.DataFrame,
+    method: str = "fomaml",
+    collapse_col: str = "collapse_rate",
+    inner_lr_col: str = "inner_lr",
+    inner_steps_col: str = "inner_steps",
+    figsize: tuple[int, int] = (6, 4),
+    title: str | None = None,
+    save_path: str | None = None,
+    vmin: float = 0.0,
+    vmax: float = 1.0,
+) -> tuple:
+    """
+    Heatmap of prediction-collapse rate across inner_steps × inner_lr for one
+    method.
+
+    Collapse rate = fraction of evaluation episodes where all query
+    predictions are nearly constant (pred_std < 0.01).  A value of 1.0 means
+    the method collapsed in every episode; 0.0 means it never did.
+
+    Parameters
+    ----------
+    summary_df:
+        DataFrame with ``method``, ``inner_lr``, ``inner_steps``, and
+        ``collapse_rate`` columns.
+    method:
+        The method to visualise (e.g. ``"fomaml"``).
+    figsize:
+        Figure size in inches.
+    vmin / vmax:
+        Colour scale limits (default 0–1).
+
+    Returns
+    -------
+    fig, ax : tuple
+    """
+    if title is None:
+        title = f"Collapse Rate — {method.upper()} (steps × inner_lr)"
+
+    df = summary_df.copy()
+    if "method" in df.columns:
+        df = df[df["method"] == method].copy()
+
+    if df.empty:
+        fig, ax = plt.subplots(figsize=figsize)
+        ax.text(0.5, 0.5, f"No data for method='{method}'",
+                ha="center", va="center", transform=ax.transAxes)
+        ax.set_title(title)
+        return fig, ax
+
+    if inner_lr_col in df.columns:
+        df[inner_lr_col] = df[inner_lr_col].astype(float)
+
+    # Build pivot: rows = inner_steps, cols = inner_lr
+    try:
+        pivot = df.pivot_table(
+            index=inner_steps_col, columns=inner_lr_col, values=collapse_col, aggfunc="mean"
+        )
+        pivot = pivot.sort_index().sort_index(axis=1)
+    except Exception:
+        fig, ax = plt.subplots(figsize=figsize)
+        ax.text(0.5, 0.5, "Could not pivot collapse-rate data.",
+                ha="center", va="center", transform=ax.transAxes)
+        ax.set_title(title)
+        return fig, ax
+
+    fig, ax = plt.subplots(figsize=figsize)
+    im = ax.imshow(
+        pivot.values, aspect="auto", interpolation="nearest",
+        vmin=vmin, vmax=vmax,
+        cmap="RdYlGn_r",
+    )
+
+    ax.set_xticks(range(len(pivot.columns)))
+    ax.set_xticklabels([f"{lr:.4g}" for lr in pivot.columns], rotation=30, ha="right")
+    ax.set_yticks(range(len(pivot.index)))
+    ax.set_yticklabels([str(s) for s in pivot.index])
+    ax.set_xlabel("Inner LR", fontsize=10)
+    ax.set_ylabel("Inner Steps", fontsize=10)
+    ax.set_title(title, fontsize=11, fontweight="bold")
+
+    # Annotate cells
+    for ri in range(len(pivot.index)):
+        for ci in range(len(pivot.columns)):
+            val = pivot.values[ri, ci]
+            if not np.isnan(val):
+                ax.text(ci, ri, f"{val:.2f}", ha="center", va="center",
+                        fontsize=9, color="black" if val < 0.7 else "white")
+
+    cbar = fig.colorbar(im, ax=ax, fraction=0.04, pad=0.04)
+    cbar.set_label("Collapse Rate", fontsize=9)
+
+    despine_thesis(ax)
+    plt.tight_layout()
+
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+
+    return fig, ax

@@ -251,3 +251,37 @@ presets:
     init_names: ["A_weak_only"]
     meta_batch_size: 4
     n_repeats: 20
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # THESIS MAIN BENCHMARK — Part 1: Reference methods (no LR sweep)
+  # zero_shot and finetune are LR-agnostic; meta_batch_size=4 for consistency.
+  # These use the standard experiment IDs (no __lr-{lr} suffix).
+  # Run with --force-rerun to guarantee clean, comparable artifacts.
+  # ──────────────────────────────────────────────────────────────────────────
+  thesis_ref_methods:
+    methods: ["zero_shot", "finetune"]
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+    inner_steps_grid: [1, 3, 5]
+    init_names: ["A_weak_only"]
+    meta_batch_size: 4
+    n_repeats: 20
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # THESIS MAIN BENCHMARK — Part 2: Adaptive methods with LR sweep
+  # ANIL, FOMAML, MAML × steps {1,3,5} × lr {0.001,0.005,0.01} = 27 runs.
+  # Each combination gets a unique ID (e.g. __lr-0.001) so no overwrites.
+  # meta_batch_size=4 stabilises outer gradients vs. the legacy meta_batch=2.
+  # Run with --force-rerun to guarantee clean, comparable artifacts.
+  # ──────────────────────────────────────────────────────────────────────────
+  thesis_adaptive_lr_sweep:
+    methods: ["anil", "fomaml", "maml"]
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+    inner_steps_grid: [1, 3, 5]
+    inner_lr_grid: [0.001, 0.005, 0.01]
+    init_names: ["A_weak_only"]
+    meta_batch_size: 4
+    n_repeats: 20
