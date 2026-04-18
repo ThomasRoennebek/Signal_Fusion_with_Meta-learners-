@@ -78,9 +78,10 @@ def generate_experiment_id(
     n_support_neg: int,
     inner_steps: int,
     target_department: str,
+    inner_lr: Optional[float] = None,
 ) -> str:
     safe_target = str(target_department).replace(" ", "-").replace("/", "-")
-    return (
+    id_str = (
         f"stage2__init-{init_name}"
         f"__method-{method}"
         f"__kpos-{n_support_pos}"
@@ -88,6 +89,11 @@ def generate_experiment_id(
         f"__steps-{inner_steps}"
         f"__target-{safe_target}"
     )
+    if inner_lr is not None:
+        # Format as e.g. __lr-0.001 — strip trailing zeros for readability.
+        lr_str = f"{inner_lr:.6f}".rstrip("0").rstrip(".")
+        id_str += f"__lr-{lr_str}"
+    return id_str
 
 
 def resolve_experiment_grid(
@@ -129,18 +135,29 @@ def resolve_experiment_grid(
         "target_departments", [base_config["task_config"]["target_department"]]
     )
 
+    # inner_lr_grid: when present, lr is swept AND included in the experiment ID
+    # so different lr values produce distinct experiment directories.
+    inner_lr_grid_raw = experiment_grid.get("inner_lr_grid", None)
+    sweep_lr = inner_lr_grid_raw is not None
+    inner_lr_grid = (
+        [float(lr) for lr in inner_lr_grid_raw]
+        if sweep_lr
+        else [float(base_config["meta_config"]["inner_lr"])]
+    )
+
     preset_meta_overrides = {}
     for key in ["meta_iterations", "n_repeats", "inner_lr", "outer_lr", "meta_batch_size", "target_inner_steps"]:
         if key in experiment_grid:
             preset_meta_overrides[key] = experiment_grid[key]
 
     experiment_list: List[Tuple[str, Dict[str, Any]]] = []
-    for method, support_cfg, inner_steps, init_name, target_department in product(
+    for method, support_cfg, inner_steps, init_name, target_department, inner_lr in product(
         methods,
         support_grid,
         inner_steps_grid,
         init_names,
         target_departments,
+        inner_lr_grid,
     ):
         resolved = copy.deepcopy(base_config)
         resolved["method"] = method
@@ -150,6 +167,8 @@ def resolve_experiment_grid(
         resolved["stage1_init"]["init_name"] = init_name
         resolved["task_config"]["target_department"] = target_department
         resolved["meta_config"].update(copy.deepcopy(preset_meta_overrides))
+        # Always apply the per-experiment inner_lr (overrides any preset_meta_overrides value)
+        resolved["meta_config"]["inner_lr"] = inner_lr
 
         exp_id = generate_experiment_id(
             init_name=init_name,
@@ -158,6 +177,7 @@ def resolve_experiment_grid(
             n_support_neg=resolved["support_config"]["n_support_neg"],
             inner_steps=resolved["meta_config"]["inner_steps"],
             target_department=target_department,
+            inner_lr=inner_lr if sweep_lr else None,
         )
         experiment_list.append((exp_id, resolved))
 
