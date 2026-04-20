@@ -412,13 +412,9 @@ presets:
   # ──────────────────────────────────────────────────────────────────────────
   # GROUP E — Richer department check (non-Logistics targets)
   #
-  # zero_shot / anil / fomaml / maml × {Devices & Needles, Packaging Material}
-  # × k=2/2 × steps=3 × lr=0.005 = 8 experiments (all new).
-  # Both departments have enough gold contracts for k=2/2:
-  #   Devices & Needles:  8 pos, 6 neg gold contracts (max_k=6)
-  #   Packaging Material: 6 pos, 5 neg gold contracts (max_k=5)
-  # Meta-training pool for each target = all other valid departments
-  # (11-12 departments, richer pool than the Logistics baseline).
+  # Original preset kept for reference (uses lr=0.005 for all methods).
+  # Superseded by the three focused presets below which use Group-B-stabilized
+  # settings for FOMAML and MAML.
   # ──────────────────────────────────────────────────────────────────────────
   richer_department_check:
     methods: ["zero_shot", "anil", "fomaml", "maml"]
@@ -427,6 +423,65 @@ presets:
         n_support_neg: 2
     inner_steps_grid: [3]
     inner_lr_grid: [0.005]
+    target_departments: ["Devices & Needles", "Packaging Material"]
+    init_names: ["A_weak_only"]
+    meta_batch_size: 4
+    n_repeats: 20
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # GROUP E (v2) — Stabilized department check using Group B best settings
+  #
+  # Split into three presets so each method uses its own optimal settings
+  # from the Group B LR sweep without wasting runs on a cartesian product.
+  #
+  # Reference methods (zero_shot, anil):
+  #   zero_shot / anil × 2 departments × k=2/2 × steps=3 = 4 experiments.
+  #   No inner_lr_grid → IDs carry no __lr suffix → lr uses base default (0.01).
+  #   zero_shot ignores inner_lr/steps entirely; anil uses standard steps=3.
+  #
+  # FOMAML (Group B best stable: steps=5, lr=0.001, collapse_rate=0.05):
+  #   fomaml × 2 departments × k=2/2 × steps=5 × lr=0.001 = 2 experiments.
+  #   Uses inner_lr_grid so IDs carry __lr-0.001 suffix.
+  #
+  # MAML (Group B best stable: steps=3, lr=0.001, collapse_rate=0.20):
+  #   maml × 2 departments × k=2/2 × steps=3 × lr=0.001 = 2 experiments.
+  #   Uses inner_lr_grid so IDs carry __lr-0.001 suffix.
+  #
+  # Total: 8 experiments. All departments are non-Logistics → classified Group E.
+  # Both departments support k=2/2:
+  #   Devices & Needles:  8 pos, 6 neg gold contracts (max_k=6)
+  #   Packaging Material: 6 pos, 5 neg gold contracts (max_k=5)
+  # ──────────────────────────────────────────────────────────────────────────
+  richer_dept_ref:
+    methods: ["zero_shot", "anil"]
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+    inner_steps_grid: [3]
+    target_departments: ["Devices & Needles", "Packaging Material"]
+    init_names: ["A_weak_only"]
+    meta_batch_size: 4
+    n_repeats: 20
+
+  richer_dept_fomaml_stable:
+    methods: ["fomaml"]
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+    inner_steps_grid: [5]
+    inner_lr_grid: [0.001]
+    target_departments: ["Devices & Needles", "Packaging Material"]
+    init_names: ["A_weak_only"]
+    meta_batch_size: 4
+    n_repeats: 20
+
+  richer_dept_maml_stable:
+    methods: ["maml"]
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+    inner_steps_grid: [3]
+    inner_lr_grid: [0.001]
     target_departments: ["Devices & Needles", "Packaging Material"]
     init_names: ["A_weak_only"]
     meta_batch_size: 4

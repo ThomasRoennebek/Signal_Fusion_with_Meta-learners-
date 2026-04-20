@@ -97,9 +97,17 @@ for group in $GROUPS_TO_RUN; do
                 "~1-2 h"
             ;;
         E)
-            run_group E richer_department_check \
-                "zero_shot/ANIL/FOMAML/MAML x {Devices & Needles, Packaging Material} x k=2/2 x steps=3 x lr=0.005 — 8 experiments" \
-                "~45-90 min"
+            # Three focused presets give each method its Group-B-stabilized settings:
+            # FOMAML: steps=5, lr=0.001 | MAML: steps=3, lr=0.001 | zero_shot/anil: steps=3 std
+            run_group E richer_dept_ref \
+                "zero_shot/ANIL x {Devices & Needles, Packaging Material} x k=2/2 x steps=3 — 4 experiments" \
+                "~5-10 min"
+            run_group E richer_dept_fomaml_stable \
+                "FOMAML x {Devices & Needles, Packaging Material} x k=2/2 x steps=5 x lr=0.001 — 2 experiments" \
+                "~10-20 min"
+            run_group E richer_dept_maml_stable \
+                "MAML x {Devices & Needles, Packaging Material} x k=2/2 x steps=3 x lr=0.001 — 2 experiments" \
+                "~10-20 min"
             ;;
         *)
             echo "Unknown group: $group (expected A-E)"

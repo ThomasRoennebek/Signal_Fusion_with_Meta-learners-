@@ -2734,6 +2734,231 @@ def plot_department_comparison(
     return fig, axes
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Group E helpers — added for Group E richer-department analysis
+# ─────────────────────────────────────────────────────────────────────────────
+
+def plot_collapse_by_department(
+    df: pd.DataFrame,
+    method_col: str = "method",
+    dept_col: str = "target_department",
+    collapse_col: str = "collapse_rate",
+    threshold: float = 0.20,
+    title: str = "Collapse Rate by Department and Method",
+    figsize: tuple = (10, 4),
+    save_path: str | None = None,
+) -> tuple:
+    """
+    Grouped bar chart of collapse_rate across departments, one bar per method.
+
+    Bars above *threshold* are filled red (unstable); bars at or below are
+    filled green so stability is visible at a glance.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Must contain ``method_col``, ``dept_col``, and ``collapse_col``.
+    threshold : float
+        Stability boundary; a dashed orange line marks this level.
+    save_path : path-like, optional
+        Save figure at 300 dpi when provided.
+
+    Returns
+    -------
+    fig, ax : tuple
+    """
+    if df.empty or collapse_col not in df.columns:
+        fig, ax = plt.subplots(figsize=figsize)
+        ax.set_title(f"{title}\n(no data)")
+        return fig, ax
+
+    depts   = sorted(df[dept_col].unique()) if dept_col in df.columns else []
+    methods = sorted(df[method_col].unique()) if method_col in df.columns else []
+    if not depts or not methods:
+        fig, ax = plt.subplots(figsize=figsize)
+        ax.set_title(f"{title}\n(missing columns)")
+        return fig, ax
+
+    x     = np.arange(len(depts))
+    width = 0.8 / max(len(methods), 1)
+    fig, ax = plt.subplots(figsize=figsize)
+
+    _stable_color   = THESIS_PALETTE.get("green",      "#009E73")
+    _unstable_color = THESIS_PALETTE.get("vermillion", "#D55E00")
+
+    for mi, method in enumerate(methods):
+        vals = [
+            df[(df[method_col] == method) & (df[dept_col] == d)][collapse_col].mean()
+            for d in depts
+        ]
+        offset = (mi - (len(methods) - 1) / 2) * width
+        colors_bar = [_unstable_color if v > threshold else _stable_color for v in vals]
+        bars = ax.bar(x + offset, vals, width, label=method,
+                      alpha=0.85, color=colors_bar)
+        for bar, val in zip(bars, vals):
+            if not np.isnan(val):
+                ax.text(
+                    bar.get_x() + bar.get_width() / 2,
+                    bar.get_height() + 0.01,
+                    f"{val:.2f}",
+                    ha="center", va="bottom", fontsize=7,
+                )
+
+    ax.axhline(threshold, color=THESIS_PALETTE.get("orange", "#E69F00"),
+               linestyle="--", linewidth=1.4, alpha=0.9,
+               label=f"stability threshold ({threshold})")
+    ax.set_xticks(x)
+    ax.set_xticklabels(depts, rotation=20, ha="right")
+    ax.set_ylabel("Collapse Rate")
+    ax.set_ylim(0, 1.05)
+    ax.legend(fontsize=8, frameon=False)
+    ax.set_title(title, fontsize=11, fontweight="bold")
+    despine_thesis(ax)
+    try:
+        plt.tight_layout()
+    except ValueError:
+        pass
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    return fig, ax
+
+
+def plot_grp_a_b_e_comparison(
+    grp_a_df: pd.DataFrame,
+    grp_b_df: pd.DataFrame,
+    grp_e_df: pd.DataFrame,
+    auroc_col: str = "auroc_mean",
+    ndcg_col: str = "ndcg_at_10_mean",
+    collapse_col: str = "collapse_rate",
+    fomaml_b_steps: int = 5,
+    fomaml_b_lr: float = 0.001,
+    maml_b_steps: int = 3,
+    maml_b_lr: float = 0.001,
+    title: str = "Groups A / B / E — Cross-Group Snapshot",
+    figsize: tuple = (14, 5),
+    save_path: str | None = None,
+) -> tuple:
+    """
+    Three-panel bar chart comparing Group A (Logistics baseline), Group B
+    (stabilized FOMAML/MAML on Logistics), and Group E (richer departments).
+
+    Panels: AUROC | NDCG@10 | Collapse Rate.
+
+    For Group A the best-AUROC row per method is used.
+    For Group B only the two target rows (fomaml at *fomaml_b_steps* /
+    *fomaml_b_lr* and maml at *maml_b_steps* / *maml_b_lr*) are included;
+    zero_shot / finetune / anil are taken from Group A.
+    For Group E the best-AUROC row per method (across departments) is shown.
+
+    Returns
+    -------
+    fig, axes : tuple
+    """
+    methods_order = ["zero_shot", "finetune", "anil", "fomaml", "maml"]
+
+    def _best_per_method(df, label):
+        if df.empty or auroc_col not in df.columns:
+            return pd.DataFrame()
+        best = (df.sort_values(auroc_col, ascending=False)
+                  .groupby("method").first().reset_index())
+        best["_group"] = label
+        return best
+
+    snap_a = _best_per_method(grp_a_df, "A: Logistics baseline")
+
+    # Group B: the two stabilized adaptive rows + ref methods from Group A
+    snap_b_rows = []
+    if not grp_b_df.empty:
+        for meth, s, lr in [("fomaml", fomaml_b_steps, fomaml_b_lr),
+                             ("maml",   maml_b_steps,  maml_b_lr)]:
+            mask = (
+                (grp_b_df.get("method",      pd.Series(dtype=str)) == meth) &
+                (grp_b_df.get("inner_steps", pd.Series(dtype=int)) == s)    &
+                (grp_b_df.get("inner_lr",    pd.Series(dtype=float))
+                 .between(lr * 0.9, lr * 1.1))
+            )
+            sub = grp_b_df[mask]
+            if not sub.empty:
+                row = sub.iloc[[0]].copy()
+                row["_group"] = "B: Logistics stabilized"
+                snap_b_rows.append(row)
+    for meth in ["zero_shot", "finetune", "anil"]:
+        sub_a = snap_a[snap_a["method"] == meth] if not snap_a.empty else pd.DataFrame()
+        if not sub_a.empty:
+            row = sub_a.iloc[[0]].copy()
+            row["_group"] = "B: Logistics stabilized"
+            snap_b_rows.append(row)
+    snap_b = pd.concat(snap_b_rows, ignore_index=True) if snap_b_rows else pd.DataFrame()
+
+    snap_e = _best_per_method(grp_e_df, "E: Richer departments")
+
+    all_snaps = pd.concat([snap_a, snap_b, snap_e], ignore_index=True)
+    if all_snaps.empty:
+        fig, ax = plt.subplots(figsize=figsize)
+        ax.set_title(f"{title}\n(no data yet)")
+        return fig, ax
+
+    groups_present  = list(dict.fromkeys(all_snaps["_group"].tolist()))
+    methods_present = [m for m in methods_order if m in all_snaps["method"].values]
+
+    x     = np.arange(len(methods_present))
+    width = 0.8 / max(len(groups_present), 1)
+    group_colors = [
+        THESIS_PALETTE.get("blue",   "#0072B2"),
+        THESIS_PALETTE.get("orange", "#E69F00"),
+        THESIS_PALETTE.get("green",  "#009E73"),
+    ]
+
+    panels = [(c, lbl) for c, lbl in [
+        (auroc_col,   "AUROC"),
+        (ndcg_col,    "NDCG@10"),
+        (collapse_col, "Collapse Rate"),
+    ] if c in all_snaps.columns]
+
+    n_panels = max(len(panels), 1)
+    fig, axes = plt.subplots(1, n_panels, figsize=figsize, constrained_layout=True)
+    if n_panels == 1:
+        axes = [axes]
+
+    for pi, (col, lbl) in enumerate(panels):
+        ax = axes[pi]
+        for gi, grp_label in enumerate(groups_present):
+            sub = all_snaps[all_snaps["_group"] == grp_label]
+            vals = [
+                sub[sub["method"] == m][col].mean()
+                if m in sub["method"].values else np.nan
+                for m in methods_present
+            ]
+            offset = (gi - (len(groups_present) - 1) / 2) * width
+            color  = group_colors[gi % len(group_colors)]
+            ax.bar(x + offset, vals, width, label=grp_label, alpha=0.85, color=color)
+
+        ax.set_xticks(x)
+        ax.set_xticklabels(
+            [m.replace("_", " ").title() for m in methods_present],
+            rotation=20, ha="right", fontsize=9,
+        )
+        ax.set_ylabel(lbl, fontsize=9)
+        ax.set_title(lbl, fontsize=11, fontweight="bold")
+        if col == collapse_col:
+            ax.set_ylim(0, 1.05)
+            ax.axhline(0.20, color=THESIS_PALETTE.get("grey", "#999999"),
+                       linestyle="--", linewidth=1.2, alpha=0.7)
+        else:
+            ax.set_ylim(0, 1)
+        despine_thesis(ax)
+
+    axes[0].legend(title="group", fontsize=7, frameon=False)
+    fig.suptitle(title, fontsize=12, fontweight="bold", y=1.01)
+    try:
+        plt.tight_layout()
+    except ValueError:
+        pass
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    return fig, axes
+
+
 def plot_lr_sweep_heatmaps(
     df,
     metrics=None,
