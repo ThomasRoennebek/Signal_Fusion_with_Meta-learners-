@@ -1943,7 +1943,7 @@ def plot_method_comparison_bars(
             m for m in present if m not in canonical
         ]
 
-    palette = method_palette()
+    palette = method_palette(method_order)
     n_methods = len(method_order)
     x = np.arange(n_methods)
     bar_colors = [palette.get(m, THESIS_PALETTE["grey"]) for m in method_order]
@@ -2091,6 +2091,10 @@ def plot_lr_sweep_comparison(
             if sdf.empty:
                 continue
             sdf = sdf.sort_values(inner_lr_col)
+            # Drop rows where inner_lr is NaN or non-positive (safe for log scale)
+            sdf = sdf[sdf[inner_lr_col].notna() & (sdf[inner_lr_col] > 0)]
+            if sdf.empty:
+                continue
             lr_vals = sdf[inner_lr_col].values
             mean_vals = sdf[mean_col].values
             std_vals = sdf[std_col].values if std_col and std_col in sdf.columns else np.zeros_like(mean_vals)
@@ -2105,7 +2109,12 @@ def plot_lr_sweep_comparison(
             ax.axhline(zero_shot_ref, color=THESIS_PALETTE["grey"], linestyle="--",
                        linewidth=1.4, alpha=0.8, label="Zero-shot ref.")
 
-        ax.set_xscale("log")
+        # Only use log scale when the axis has data with positive x-values
+        if ax.lines and any(
+            line.get_xdata() is not None and len(line.get_xdata()) > 0
+            for line in ax.lines
+        ):
+            ax.set_xscale("log")
         ax.set_xlabel("Inner LR", fontsize=10)
         ax.set_title(method.upper(), fontsize=11, fontweight="bold")
         ax.legend(fontsize=8, frameon=False)
@@ -2113,7 +2122,10 @@ def plot_lr_sweep_comparison(
 
     axes[0].set_ylabel(metric_label, fontsize=10)
     fig.suptitle(title, fontsize=12, fontweight="bold", y=1.02)
-    plt.tight_layout()
+    try:
+        plt.tight_layout()
+    except ValueError:
+        pass  # tight_layout can fail on empty log-scale axes; layout is still usable
 
     if save_path:
         fig.savefig(save_path, dpi=300, bbox_inches="tight")
@@ -2481,3 +2493,357 @@ def plot_ece_auroc_scatter(
         fig.savefig(save_path, dpi=300, bbox_inches="tight")
 
     return fig, ax
+
+
+# -----------------------------------------------------------------------------
+# Experiment-group plotting utilities (Groups A-E)
+# Added to support the structured evaluation battery defined in stage2_config.yaml.
+# -----------------------------------------------------------------------------
+
+def plot_kshot_sensitivity(
+    df,
+    auroc_col="auroc_mean",
+    ndcg_col="ndcg_at_10_mean",
+    k_col="n_support_pos",
+    method_col="method",
+    title="K-Shot Sensitivity (Logistics)",
+    save_path=None,
+    palette=None,
+):
+    """Plot AUROC and NDCG@10 as a function of support-set size k.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        One row per experiment; must contain k_col, method_col,
+        and at least one of auroc_col / ndcg_col.
+    auroc_col, ndcg_col : str
+        Metric column names (accept both normalized and gold-prefixed).
+    k_col : str
+        Column containing the integer number of positive support examples.
+    title : str
+        Figure title.
+    save_path : path-like, optional
+        If given, save the figure at 300 dpi.
+    palette : dict, optional
+        Method -> hex-color mapping. Defaults to THESIS_PALETTE.
+
+    Returns
+    -------
+    (fig, axes)
+    """
+    if df.empty:
+        return None, None
+
+    _palette = palette or THESIS_PALETTE
+    method_order = df[method_col].unique().tolist() if method_col in df.columns else []
+
+    fig, axes = plt.subplots(1, 2, figsize=(11, 4), constrained_layout=True)
+    colors = list(_palette.values())
+
+    for ax_idx, (col, ylabel) in enumerate([
+        (auroc_col, "AUROC (mean)"),
+        (ndcg_col, "NDCG@10 (mean)"),
+    ]):
+        if col not in df.columns:
+            continue
+        ax = axes[ax_idx]
+        for mi, method in enumerate(method_order):
+            sub = (
+                df[df[method_col] == method]
+                .groupby(k_col)[col].mean()
+                .reset_index()
+                .sort_values(k_col)
+            )
+            if sub.empty:
+                continue
+            color = _palette.get(method, colors[mi % len(colors)])
+            ax.plot(sub[k_col], sub[col], marker="o", label=method, color=color)
+        ax.set_xlabel("k (support examples per class)")
+        ax.set_ylabel(ylabel)
+        ax.set_title(ylabel)
+        ax.legend(fontsize=8)
+        ax.set_ylim(0, 1)
+        despine_thesis(ax)
+
+    fig.suptitle(title, fontsize=12, fontweight="bold")
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    return fig, axes
+
+
+def plot_init_ablation_bars(
+    df,
+    auroc_col="auroc_mean",
+    ndcg_col="ndcg_at_10_mean",
+    ece_col="ece_mean",
+    method_col="method",
+    init_col="init_name",
+    title="Initialization Ablation",
+    save_path=None,
+):
+    """Grouped bar chart comparing A_weak_only vs C_hybrid per method.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Rows from the initialization ablation group (Group C).
+    auroc_col, ndcg_col, ece_col : str
+        Metric column names.
+    method_col, init_col : str
+        Column names for method and initialization respectively.
+    title : str
+        Figure title.
+    save_path : path-like, optional
+        If given, save the figure at 300 dpi.
+
+    Returns
+    -------
+    (fig, axes)
+    """
+    if df.empty or method_col not in df.columns or init_col not in df.columns:
+        return None, None
+
+    methods = sorted(df[method_col].unique())
+    inits = sorted(df[init_col].unique())
+    x = np.arange(len(methods))
+    width = 0.8 / max(len(inits), 1)
+
+    _avail_metrics = [(c, lbl) for c, lbl in [
+        (auroc_col, "AUROC"), (ndcg_col, "NDCG@10"), (ece_col, "ECE"),
+    ] if c in df.columns]
+    n_panels = len(_avail_metrics)
+    if n_panels == 0:
+        return None, None
+
+    fig, axes = plt.subplots(1, n_panels, figsize=(5 * n_panels, 4), constrained_layout=True)
+    if n_panels == 1:
+        axes = [axes]
+
+    init_colors = {
+        "A_weak_only": THESIS_PALETTE.get("blue", "#0072B2"),
+        "C_hybrid":    THESIS_PALETTE.get("green", "#009E73"),
+    }
+    default_colors = list(THESIS_PALETTE.values())
+
+    for panel, (col, lbl) in enumerate(_avail_metrics):
+        ax = axes[panel]
+        for ii, init_name in enumerate(inits):
+            vals = [
+                df[(df[method_col] == m) & (df[init_col] == init_name)][col].mean()
+                for m in methods
+            ]
+            offset = (ii - (len(inits) - 1) / 2) * width
+            color = init_colors.get(init_name, default_colors[ii % len(default_colors)])
+            ax.bar(x + offset, vals, width, label=init_name, alpha=0.85, color=color)
+        ax.set_xticks(x)
+        ax.set_xticklabels(methods, rotation=20, ha="right")
+        ax.set_ylabel(lbl)
+        ax.set_title(lbl)
+        if lbl != "ECE":
+            ax.set_ylim(0, 1)
+        ax.legend(title="init", fontsize=7)
+        despine_thesis(ax)
+
+    fig.suptitle(title, fontsize=12, fontweight="bold")
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    return fig, axes
+
+
+def plot_department_comparison(
+    df,
+    auroc_col="auroc_mean",
+    ndcg_col="ndcg_at_10_mean",
+    ece_col="ece_mean",
+    method_col="method",
+    dept_col="target_department",
+    title="Department Comparison",
+    save_path=None,
+    palette=None,
+):
+    """Grouped bar chart comparing performance across target departments.
+
+    Useful for Group E (richer department check) where multiple target
+    departments are evaluated side-by-side against the Logistics reference.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Rows with different target_department values.
+    auroc_col, ndcg_col, ece_col : str
+        Metric column names.
+    method_col, dept_col : str
+        Column names for method and department respectively.
+    title : str
+        Figure title.
+    save_path : path-like, optional
+        If given, save the figure at 300 dpi.
+    palette : dict, optional
+        Method -> hex-color mapping. Defaults to THESIS_PALETTE.
+
+    Returns
+    -------
+    (fig, axes)
+    """
+    if df.empty or dept_col not in df.columns or method_col not in df.columns:
+        return None, None
+
+    _palette = palette or THESIS_PALETTE
+    depts   = sorted(df[dept_col].unique())
+    methods = sorted(df[method_col].unique())
+    n_depts = len(depts)
+    x = np.arange(n_depts)
+    width = 0.8 / max(len(methods), 1)
+
+    _avail = [(c, lbl) for c, lbl in [
+        (auroc_col, "AUROC"), (ndcg_col, "NDCG@10"),
+    ] if c in df.columns]
+    n_panels = len(_avail)
+    if n_panels == 0:
+        return None, None
+
+    colors = list(_palette.values())
+    fig, axes = plt.subplots(1, n_panels, figsize=(max(8, n_depts * 2) * n_panels, 4),
+                              constrained_layout=True)
+    if n_panels == 1:
+        axes = [axes]
+
+    for panel, (col, lbl) in enumerate(_avail):
+        ax = axes[panel]
+        for mi, method in enumerate(methods):
+            vals = [
+                df[(df[method_col] == method) & (df[dept_col] == d)][col].mean()
+                for d in depts
+            ]
+            offset = (mi - (len(methods) - 1) / 2) * width
+            color = _palette.get(method, colors[mi % len(colors)])
+            ax.bar(x + offset, vals, width, label=method, alpha=0.85, color=color)
+        ax.set_xticks(x)
+        ax.set_xticklabels(depts, rotation=25, ha="right")
+        ax.set_ylabel(lbl)
+        ax.set_title(lbl)
+        if lbl != "ECE":
+            ax.set_ylim(0, 1)
+        ax.legend(title="method", fontsize=7)
+        despine_thesis(ax)
+
+    fig.suptitle(title, fontsize=12, fontweight="bold")
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    return fig, axes
+
+
+def plot_lr_sweep_heatmaps(
+    df,
+    metrics=None,
+    method_col="method",
+    steps_col="inner_steps",
+    lr_col="inner_lr",
+    title="LR Sweep",
+    save_path=None,
+    figsize_per_panel=(5.0, 3.5),
+):
+    """Heatmap grid: one column per method, rows = (collapse_rate, AUROC, NDCG@10).
+
+    Extends plot_collapse_rate_heatmap to show multiple metrics at once,
+    designed for Group B (maml_fomaml_lr_sweep) analysis.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Subset of the registry for the LR sweep group.
+    metrics : list of (col_name, display_name) tuples
+        Metrics to render as heatmap rows. Defaults to collapse_rate, AUROC, NDCG@10.
+    method_col, steps_col, lr_col : str
+        Column names.
+    title : str
+        Figure suptitle.
+    save_path : path-like, optional
+        If given, save the figure at 300 dpi.
+    figsize_per_panel : (float, float)
+        Width x height per (metric, method) panel.
+
+    Returns
+    -------
+    (fig, axes)
+    """
+    if df.empty:
+        return None, None
+
+    if metrics is None:
+        metrics = [
+            ("collapse_rate",    "Collapse Rate"),
+            ("auroc_mean",       "AUROC"),
+            ("ndcg_at_10_mean",  "NDCG@10"),
+        ]
+    _avail_metrics = []
+    for col, lbl in metrics:
+        if col in df.columns:
+            _avail_metrics.append((col, lbl))
+        elif "gold_" + col in df.columns:
+            _avail_metrics.append(("gold_" + col, lbl))
+
+    if not _avail_metrics or steps_col not in df.columns or lr_col not in df.columns:
+        return None, None
+
+    methods = sorted(df[method_col].unique()) if method_col in df.columns else [None]
+    n_methods = len(methods)
+    n_rows = len(_avail_metrics)
+
+    fw, fh = figsize_per_panel
+    fig, axes = plt.subplots(
+        n_rows, n_methods,
+        figsize=(fw * n_methods, fh * n_rows),
+        constrained_layout=True,
+        squeeze=False,
+    )
+
+    cmaps = ["Reds", "Blues_r", "Blues_r"]
+    vmins = [0.0, 0.4, 0.0]
+    vmaxs = [1.0, 0.9, 1.0]
+
+    for ri, (col, lbl) in enumerate(_avail_metrics):
+        cmap = cmaps[ri] if ri < len(cmaps) else "viridis"
+        vmin = vmins[ri] if ri < len(vmins) else None
+        vmax = vmaxs[ri] if ri < len(vmaxs) else None
+
+        for mi, method in enumerate(methods):
+            sub = df[df[method_col] == method].copy() if method_col in df.columns else df.copy()
+            ax = axes[ri, mi]
+
+            try:
+                pivot = sub.pivot_table(
+                    index=steps_col, columns=lr_col,
+                    values=col, aggfunc="mean"
+                )
+            except Exception as exc:
+                ax.set_title(f"{method} | {lbl}\n(pivot failed: {exc})")
+                continue
+
+            im = ax.imshow(
+                pivot.values, cmap=cmap,
+                vmin=vmin, vmax=vmax, aspect="auto"
+            )
+            ax.set_xticks(range(len(pivot.columns)))
+            ax.set_xticklabels([f"{v:.4g}" for v in pivot.columns],
+                               rotation=45, ha="right", fontsize=7)
+            ax.set_yticks(range(len(pivot.index)))
+            ax.set_yticklabels(pivot.index, fontsize=8)
+            ax.set_xlabel("inner_lr", fontsize=8)
+            ax.set_ylabel("inner_steps", fontsize=8)
+            ax.set_title(f"{method} -- {lbl}", fontsize=9)
+
+            for rr in range(len(pivot.index)):
+                for cc in range(len(pivot.columns)):
+                    v = pivot.values[rr, cc]
+                    if not np.isnan(v):
+                        ax.text(cc, rr, f"{v:.2f}", ha="center", va="center",
+                                fontsize=7,
+                                color="white" if (v > (vmax or 1) * 0.65) else "black")
+            plt.colorbar(im, ax=ax)
+
+    fig.suptitle(title, fontsize=12, fontweight="bold")
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    return fig, axes

@@ -166,18 +166,34 @@ def run_experiments(
                 print(f"  Error: {exc}")
 
     summary_df = pd.DataFrame(summary_rows)
+
+    # Merge with existing registry so prior experiment groups are preserved.
+    # Rows whose experiment_id appears in the new batch are replaced; all
+    # other existing rows are kept unchanged.
+    summary_path = experiment_root / "experiment_summary.csv"
+    if summary_path.exists():
+        try:
+            existing_df = pd.read_csv(summary_path)
+            new_ids = set(summary_df["experiment_id"].tolist()) if (
+                not summary_df.empty and "experiment_id" in summary_df.columns
+            ) else set()
+            existing_kept = existing_df[~existing_df["experiment_id"].isin(new_ids)]
+            summary_df = pd.concat([existing_kept, summary_df], ignore_index=True)
+        except Exception:
+            pass  # If loading fails, just write the new rows
+
     if not summary_df.empty:
         sort_cols = [c for c in ["method", "init_name", "n_support_pos", "n_support_neg", "inner_steps", "target_department"] if c in summary_df.columns]
         if sort_cols:
             summary_df = summary_df.sort_values(sort_cols).reset_index(drop=True)
 
-    summary_path = experiment_root / "experiment_summary.csv"
     summary_df.to_csv(summary_path, index=False)
 
     if verbose:
         print("")
         print("Saved master experiment summary to:")
         print(summary_path)
+        print(f"Total rows in registry: {len(summary_df)}")
 
     return summary_df
 
