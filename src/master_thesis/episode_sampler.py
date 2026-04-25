@@ -539,6 +539,188 @@ def sample_support_query_split(
     )
 
 
+def sample_episode_with_synthetic_support(
+    dept_df: pd.DataFrame,
+    feature_cols: Sequence[str],
+    department_name: Optional[str] = None,
+    target_col: str = "gold_y",
+    department_col: str = "department",
+    contract_id_col: str = "contract_id",
+    n_support_pos: int = 2,
+    n_support_neg: int = 2,
+    query_strategy: str = "remainder",
+    # ---------- synthetic augmentation parameters ----------
+    augmentation_method: str = "none",
+    synthetic_proportion: Optional[float] = None,
+    target_per_class: Optional[int] = None,
+    categorical_cols: Optional[Sequence[str]] = None,
+    k_neighbors: int = 5,
+    augmentation_seed_offset: int = 10_007,
+    # -------------------------------------------------------
+    random_state: Optional[int] = None,
+) -> Dict[str, Any]:
+    """
+    Sample a contract-aware episode and (optionally) augment its support
+    set with synthetic rows generated only from the real support.
+
+    Pipeline guarantees:
+        1. Support and query are split at the CONTRACT level — same
+           `contract_id` never appears on both sides.
+        2. The synthetic generator is fit ONLY on the real support of
+           the current episode. It never sees the query, never sees
+           other departments, never sees any out-of-episode data.
+        3. Synthetic rows always have `is_synthetic=True` and a
+           `SYNTH_`-prefixed contract_id.
+        4. A hard assertion checks that no synthetic contract_id leaks
+           into the query before returning.
+
+    Parameters
+    ----------
+    dept_df, feature_cols, department_name, target_col, department_col,
+    contract_id_col, n_support_pos, n_support_neg, query_strategy:
+        Forwarded to `sample_support_query_split`.
+    augmentation_method:
+        One of "none", "gaussian_noise", "mixup", "smote_nc".
+        "none" returns the real-only episode (passthrough).
+    synthetic_proportion, target_per_class, categorical_cols, k_neighbors:
+        Forwarded to `augment_support`. Provide either `synthetic_proportion`
+        OR `target_per_class` when `augmentation_method != "none"`.
+    augmentation_seed_offset:
+        Added to `random_state` before passing to `augment_support`, so that
+        for a given `random_state`, the support/query split and the synthetic
+        generation are reproducibly tied but use distinct RNG streams.
+    random_state:
+        Seed for the support/query sampler.
+
+    Returns
+    -------
+    Dict[str, Any]
+        Same shape as `sample_support_query_split` output, with two
+        additional entries:
+            - is_synthetic_mask : np.ndarray[bool] aligned with X_support
+                                   (True for synthetic rows, False for real)
+            - augmentation_info : dict with bookkeeping
+                                   (method, n_real_support_rows, n_synthetic_support_rows,
+                                    n_real_support_contracts, fallback_used)
+
+    Raises
+    ------
+    ValueError
+        If augmentation parameters are inconsistent.
+    AssertionError
+        If a synthetic contract_id ever appears in the query (leakage).
+    """
+    # Lazy import to avoid a circular dep if synthetic_augment ever imports from here.
+    from .synthetic_augment import augment_support
+
+    # 1. Real-only support/query split (existing behavior).
+    episode = sample_support_query_split(
+        dept_df=dept_df,
+        feature_cols=feature_cols,
+        department_name=department_name,
+        target_col=target_col,
+        department_col=department_col,
+        contract_id_col=contract_id_col,
+        n_support_pos=n_support_pos,
+        n_support_neg=n_support_neg,
+        query_strategy=query_strategy,
+        random_state=random_state,
+    )
+
+    real_support_df = episode["support_df"]
+    query_df = episode["query_df"]
+    n_real_support_rows = len(real_support_df)
+    n_real_support_contracts = (
+        real_support_df[contract_id_col].nunique()
+        if contract_id_col in real_support_df.columns else 0
+    )
+
+    # 2. Passthrough when no augmentation is requested.
+    if augmentation_method == "none" or (
+        synthetic_proportion is None and target_per_class is None
+    ):
+        is_synthetic_mask = np.zeros(n_real_support_rows, dtype=bool)
+        episode["is_synthetic_mask"] = is_synthetic_mask
+        episode["augmentation_info"] = {
+            "method": "none",
+            "n_real_support_rows": n_real_support_rows,
+            "n_synthetic_support_rows": 0,
+            "n_real_support_contracts": int(n_real_support_contracts),
+            "fallback_used": False,
+        }
+        return episode
+
+    # 3. Augment the support side. Generator sees only real_support_df.
+    aug_seed = (
+        None if random_state is None else int(random_state) + int(augmentation_seed_offset)
+    )
+    augmented_support_df = augment_support(
+        support_df=real_support_df,
+        feature_cols=feature_cols,
+        target_col=target_col,
+        method=augmentation_method,
+        synthetic_proportion=synthetic_proportion,
+        target_per_class=target_per_class,
+        categorical_cols=categorical_cols,
+        contract_id_col=contract_id_col,
+        department_col=department_col,
+        k_neighbors=k_neighbors,
+        random_state=aug_seed,
+    )
+
+    # 4. Leakage assertion: no synthetic contract_id may appear in the query.
+    if contract_id_col in query_df.columns and "is_synthetic" in augmented_support_df.columns:
+        synth_ids = set(
+            augmented_support_df.loc[
+                augmented_support_df["is_synthetic"], contract_id_col
+            ].astype(str).tolist()
+        )
+        query_ids = set(query_df[contract_id_col].astype(str).tolist())
+        leaked = synth_ids & query_ids
+        assert not leaked, (
+            f"Synthetic contract_id leakage into query set: {leaked}. "
+            "This is a critical bug — synthetic rows must never be visible "
+            "in the query side of an episode."
+        )
+
+    # 5. Re-extract X / y / ids for the augmented support.
+    X_support_aug, y_support_aug = _extract_xy(
+        augmented_support_df, feature_cols, target_col,
+    )
+
+    if "is_synthetic" in augmented_support_df.columns:
+        is_synthetic_mask = augmented_support_df["is_synthetic"].to_numpy(dtype=bool)
+    else:
+        is_synthetic_mask = np.zeros(len(augmented_support_df), dtype=bool)
+
+    fallback_used = bool(
+        augmented_support_df.get(
+            "augmentation_fallback", pd.Series([False] * len(augmented_support_df))
+        ).any()
+    )
+
+    n_synth = int(is_synthetic_mask.sum())
+
+    # 6. Patch the episode dict — preserve query side untouched.
+    episode["support_df"] = augmented_support_df.copy()
+    episode["support_ids"] = (
+        augmented_support_df[contract_id_col].tolist()
+        if contract_id_col in augmented_support_df.columns else []
+    )
+    episode["X_support"] = X_support_aug
+    episode["y_support"] = y_support_aug
+    episode["is_synthetic_mask"] = is_synthetic_mask
+    episode["augmentation_info"] = {
+        "method": augmentation_method,
+        "n_real_support_rows": n_real_support_rows,
+        "n_synthetic_support_rows": n_synth,
+        "n_real_support_contracts": int(n_real_support_contracts),
+        "fallback_used": fallback_used,
+    }
+
+    return episode
+
+
 def sample_meta_batch(
     task_df: pd.DataFrame,
     feature_cols: Sequence[str],

@@ -33,6 +33,7 @@ from master_thesis.episode_sampler import (
     filter_valid_departments,
     make_logistics_meta_test_split,
     summarize_department_tasks,
+    sample_episode_with_synthetic_support,
 )
 from master_thesis.mlp import TabularMLP, set_seed
 
@@ -40,6 +41,67 @@ from master_thesis.anil import meta_train_anil, evaluate_anil_on_target_episodes
 from master_thesis.FOMAML import meta_train_fomaml, evaluate_fomaml_on_target_episodes
 from master_thesis.maml import meta_train_maml, evaluate_maml_on_target_episodes
 from master_thesis.meta_common import evaluate_zero_shot_on_target_episodes
+
+
+# ---------------------------------------------------------------------------
+# Synthetic augmentation: defaults and per-episode result-row schema
+# ---------------------------------------------------------------------------
+# Default augmentation configuration when the user/preset does not provide
+# anything explicit.  The "no-op" baseline preserves the historical behavior
+# (no synthetic rows ever added).  All values are validated downstream by
+# `sample_episode_with_synthetic_support` and `augment_support`.
+DEFAULT_SYNTHETIC_CONFIG: Dict[str, Any] = {
+    "augmentation_method": "none",   # one of: "none", "smote_nc"
+    "synthetic_proportion": 0.0,     # in [0, 1]; 0.0 ⇒ no synthetic rows
+    "target_per_class": None,        # optional override that pins each class
+    "k_neighbors": 5,                # SMOTE-NC neighborhood size
+    "categorical_cols": None,        # resolved at episode-time when None
+    "augmentation_seed_offset": 10_007,
+}
+
+VALID_AUGMENTATION_METHODS: Tuple[str, ...] = ("none", "smote_nc")
+
+# Per-episode results-row schema for the synthetic-augmentation experiment.
+# This is the canonical column ordering for the long-form results CSV that
+# notebook 16.0 writes (one row per (department, real_k, syn_prop, gen_method,
+# init, method, seed, episode_idx)).  Centralizing it here keeps the runner
+# notebook, downstream plot code, and any schema validators in lock-step.
+EPISODIC_RESULT_ROW_SCHEMA: Tuple[str, ...] = (
+    # Identity / grid coordinates
+    "experiment_id",
+    "department",
+    "init_name",
+    "method",
+    "real_k",                # n_support_pos == n_support_neg in the symmetric grid
+    "n_support_pos",
+    "n_support_neg",
+    "syn_prop",              # synthetic_proportion that was requested
+    "gen_method",            # augmentation_method actually used
+    "target_per_class",
+    "seed",
+    "episode_idx",
+    # Episode-level support/query sizes (post-augmentation)
+    "n_real_support_rows",
+    "n_real_support_contracts",
+    "n_synthetic_support_rows",
+    "n_query_rows",
+    # Predictive performance on the (real-only) query set
+    "auroc",
+    "ap",
+    "ndcg_at_10",
+    "ece",
+    "pred_mean",
+    "pred_std",
+    "collapsed",
+    # Generation-side diagnostics
+    "gen_fallback_used",
+    "dist_to_nearest_real_mean",
+    "dist_to_nearest_real_p95",
+    "ks_max",
+    "ks_median",
+    "cat_mode_preservation_mean",
+    "cat_mode_preservation_min",
+)
 
 
 @dataclass
@@ -79,7 +141,17 @@ def generate_experiment_id(
     inner_steps: int,
     target_department: str,
     inner_lr: Optional[float] = None,
+    synthetic_proportion: Optional[float] = None,
+    augmentation_method: Optional[str] = None,
 ) -> str:
+    """Build a deterministic experiment ID.
+
+    The synthetic-augmentation suffixes (``__synprop-…``, ``__gen-…``) are
+    appended only when explicitly provided.  This keeps legacy experiment
+    directories (which were generated before synthetic augmentation existed)
+    byte-identical, while letting new experiments carve out their own
+    directories per ``(syn_prop, gen_method)`` combination.
+    """
     safe_target = str(target_department).replace(" ", "-").replace("/", "-")
     id_str = (
         f"stage2__init-{init_name}"
@@ -93,7 +165,94 @@ def generate_experiment_id(
         # Format as e.g. __lr-0.001 — strip trailing zeros for readability.
         lr_str = f"{inner_lr:.6f}".rstrip("0").rstrip(".")
         id_str += f"__lr-{lr_str}"
+    if synthetic_proportion is not None:
+        # Format as e.g. __synprop-0.5 — strip trailing zeros.
+        sp = f"{float(synthetic_proportion):.4f}".rstrip("0").rstrip(".")
+        if sp == "" or sp == "-":
+            sp = "0"
+        id_str += f"__synprop-{sp}"
+    if augmentation_method is not None:
+        safe_gen = str(augmentation_method).replace(" ", "-").replace("/", "-")
+        id_str += f"__gen-{safe_gen}"
     return id_str
+
+
+def _resolve_synthetic_axes(
+    experiment_grid: Dict[str, Any],
+    base_config: Dict[str, Any],
+) -> Tuple[List[float], List[str], bool]:
+    """Pull the synthetic-augmentation axes out of an experiment_grid.
+
+    Returns ``(synthetic_proportion_grid, augmentation_method_grid, sweep)``,
+    where ``sweep`` is True iff the user actually requested a sweep (and
+    therefore the ID should encode the synthetic axes).  When neither axis is
+    declared in the grid we return single-element lists drawn from
+    ``base_config["synthetic_config"]`` (or the global defaults), and
+    ``sweep=False`` so legacy IDs stay unchanged.
+    """
+    synprop_raw = experiment_grid.get("synthetic_proportion_grid", None)
+    method_raw = experiment_grid.get("augmentation_method_grid", None)
+    sweep = (synprop_raw is not None) or (method_raw is not None)
+
+    base_syn = (base_config.get("synthetic_config") or {}) if isinstance(
+        base_config.get("synthetic_config"), dict
+    ) else {}
+
+    if synprop_raw is None:
+        synprop_grid = [float(base_syn.get(
+            "synthetic_proportion", DEFAULT_SYNTHETIC_CONFIG["synthetic_proportion"]
+        ))]
+    else:
+        synprop_grid = [float(p) for p in synprop_raw]
+
+    if method_raw is None:
+        method_grid = [str(base_syn.get(
+            "augmentation_method", DEFAULT_SYNTHETIC_CONFIG["augmentation_method"]
+        ))]
+    else:
+        method_grid = [str(m) for m in method_raw]
+
+    for m in method_grid:
+        if m not in VALID_AUGMENTATION_METHODS:
+            raise ValueError(
+                f"Unknown augmentation_method '{m}'. "
+                f"Valid options: {VALID_AUGMENTATION_METHODS}"
+            )
+    for p in synprop_grid:
+        if not (0.0 <= p <= 1.0):
+            raise ValueError(
+                f"synthetic_proportion must lie in [0, 1]; got {p}"
+            )
+
+    return synprop_grid, method_grid, sweep
+
+
+def _build_synthetic_block(
+    base_config: Dict[str, Any],
+    experiment_grid: Dict[str, Any],
+    synthetic_proportion: float,
+    augmentation_method: str,
+) -> Dict[str, Any]:
+    """Build the per-experiment ``synthetic_config`` block.
+
+    Order of precedence (low → high):
+      1. ``DEFAULT_SYNTHETIC_CONFIG`` module constant
+      2. ``base_config["synthetic_config"]`` if present
+      3. ``experiment_grid["synthetic_config"]`` if present (preset-level)
+      4. The two per-cell axes (synthetic_proportion, augmentation_method)
+    """
+    block = copy.deepcopy(DEFAULT_SYNTHETIC_CONFIG)
+    if isinstance(base_config.get("synthetic_config"), dict):
+        block.update(copy.deepcopy(base_config["synthetic_config"]))
+    if isinstance(experiment_grid.get("synthetic_config"), dict):
+        block.update(copy.deepcopy(experiment_grid["synthetic_config"]))
+    block["synthetic_proportion"] = float(synthetic_proportion)
+    block["augmentation_method"] = str(augmentation_method)
+    # When the augmentation is disabled we must not leak a positive proportion
+    # into downstream code that might branch on either signal.  Pin both.
+    if block["augmentation_method"] == "none":
+        block["synthetic_proportion"] = 0.0
+    return block
 
 
 def resolve_experiment_grid(
@@ -105,6 +264,26 @@ def resolve_experiment_grid(
 
     if "base_config" not in full_config:
         resolved = normalize_stage2_config(full_config)
+        # Even in the single-experiment case, materialize a synthetic_config
+        # block so downstream code can rely on it being present.
+        existing_syn = resolved.get("synthetic_config") or {}
+        syn_block = _build_synthetic_block(
+            base_config=resolved,
+            experiment_grid={},
+            synthetic_proportion=float(
+                existing_syn.get(
+                    "synthetic_proportion",
+                    DEFAULT_SYNTHETIC_CONFIG["synthetic_proportion"],
+                )
+            ),
+            augmentation_method=str(
+                existing_syn.get(
+                    "augmentation_method",
+                    DEFAULT_SYNTHETIC_CONFIG["augmentation_method"],
+                )
+            ),
+        )
+        resolved["synthetic_config"] = syn_block
         exp_id = generate_experiment_id(
             init_name=resolved["stage1_init"]["init_name"],
             method=resolved["method"],
@@ -145,20 +324,66 @@ def resolve_experiment_grid(
         else [float(base_config["meta_config"]["inner_lr"])]
     )
 
+    # Synthetic-augmentation axes.  When the user declares either grid we
+    # treat it as a sweep and embed both fields in the experiment ID; when
+    # neither is declared we keep IDs byte-identical to the legacy behavior.
+    synprop_grid, gen_method_grid, sweep_synth = _resolve_synthetic_axes(
+        experiment_grid, base_config
+    )
+
     preset_meta_overrides = {}
     for key in ["meta_iterations", "n_repeats", "inner_lr", "outer_lr", "meta_batch_size", "target_inner_steps"]:
         if key in experiment_grid:
             preset_meta_overrides[key] = experiment_grid[key]
 
     experiment_list: List[Tuple[str, Dict[str, Any]]] = []
-    for method, support_cfg, inner_steps, init_name, target_department, inner_lr in product(
+    seen_cells: set = set()
+    for (
+        method,
+        support_cfg,
+        inner_steps,
+        init_name,
+        target_department,
+        inner_lr,
+        synthetic_proportion,
+        augmentation_method,
+    ) in product(
         methods,
         support_grid,
         inner_steps_grid,
         init_names,
         target_departments,
         inner_lr_grid,
+        synprop_grid,
+        gen_method_grid,
     ):
+        # Deduplication rule: when augmentation is disabled, the sweep over
+        # synthetic_proportion is meaningless — every (syn_prop, "none") cell
+        # collapses to the same run.  Canonicalize syn_prop to 0.0 in that
+        # case and skip duplicates.  Symmetrically, when syn_prop=0.0 the
+        # method is meaningless; canonicalize to "none".
+        canonical_method = augmentation_method
+        canonical_synprop = float(synthetic_proportion)
+        if canonical_method == "none":
+            canonical_synprop = 0.0
+        elif canonical_synprop == 0.0:
+            canonical_method = "none"
+
+        cell_key = (
+            method,
+            int(support_cfg["n_support_pos"]),
+            int(support_cfg["n_support_neg"]),
+            int(inner_steps),
+            init_name,
+            target_department,
+            float(inner_lr),
+            canonical_synprop,
+            canonical_method,
+        )
+        if cell_key in seen_cells:
+            continue
+        seen_cells.add(cell_key)
+
         resolved = copy.deepcopy(base_config)
         resolved["method"] = method
         resolved["support_config"]["n_support_pos"] = int(support_cfg["n_support_pos"])
@@ -170,6 +395,14 @@ def resolve_experiment_grid(
         # Always apply the per-experiment inner_lr (overrides any preset_meta_overrides value)
         resolved["meta_config"]["inner_lr"] = inner_lr
 
+        # Attach the resolved synthetic_config block.
+        resolved["synthetic_config"] = _build_synthetic_block(
+            base_config=base_config,
+            experiment_grid=experiment_grid,
+            synthetic_proportion=canonical_synprop,
+            augmentation_method=canonical_method,
+        )
+
         exp_id = generate_experiment_id(
             init_name=init_name,
             method=method,
@@ -178,6 +411,8 @@ def resolve_experiment_grid(
             inner_steps=resolved["meta_config"]["inner_steps"],
             target_department=target_department,
             inner_lr=inner_lr if sweep_lr else None,
+            synthetic_proportion=canonical_synprop if sweep_synth else None,
+            augmentation_method=canonical_method if sweep_synth else None,
         )
         experiment_list.append((exp_id, resolved))
 
@@ -193,6 +428,7 @@ def build_experiment_preview_df(
 ) -> pd.DataFrame:
     rows: List[Dict[str, Any]] = []
     for experiment_id, config in experiment_list:
+        syn_cfg = config.get("synthetic_config") or {}
         rows.append(
             {
                 "experiment_id": experiment_id,
@@ -203,6 +439,12 @@ def build_experiment_preview_df(
                 "init_name": config["stage1_init"]["init_name"],
                 "target_department": config["task_config"]["target_department"],
                 "data_filename": config["data"]["data_filename"],
+                "synthetic_proportion": syn_cfg.get("synthetic_proportion", 0.0),
+                "augmentation_method": syn_cfg.get("augmentation_method", "none"),
+                "target_per_class": syn_cfg.get("target_per_class"),
+                "k_neighbors": syn_cfg.get(
+                    "k_neighbors", DEFAULT_SYNTHETIC_CONFIG["k_neighbors"]
+                ),
             }
         )
     return pd.DataFrame(rows)
@@ -670,6 +912,7 @@ def summarize_stage2_result(
     config: Dict[str, Any],
     experiment_id: Optional[str] = None,
 ) -> Dict[str, Any]:
+    syn_cfg = config.get("synthetic_config") or {}
     summary = {
         "experiment_id": experiment_id,
         "method": config.get("method"),
@@ -680,6 +923,12 @@ def summarize_stage2_result(
         "inner_steps": config.get("meta_config", {}).get("inner_steps"),
         "inner_lr": config.get("meta_config", {}).get("inner_lr"),
         "meta_batch_size": config.get("meta_config", {}).get("meta_batch_size"),
+        "synthetic_proportion": syn_cfg.get("synthetic_proportion", 0.0),
+        "augmentation_method": syn_cfg.get("augmentation_method", "none"),
+        "target_per_class": syn_cfg.get("target_per_class"),
+        "k_neighbors": syn_cfg.get(
+            "k_neighbors", DEFAULT_SYNTHETIC_CONFIG["k_neighbors"]
+        ),
         "status": result.get("status"),
     }
 

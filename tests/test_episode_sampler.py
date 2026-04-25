@@ -9,6 +9,8 @@ Validates:
 - Repeated episodes from make_logistics_meta_test_split
 - Department task table construction
 - Department validity filtering
+- sample_episode_with_synthetic_support: passthrough, augmentation,
+  query non-contamination, mask alignment, reproducibility
 """
 
 from __future__ import annotations
@@ -21,6 +23,7 @@ from master_thesis.episode_sampler import (
     build_department_task_table,
     filter_valid_departments,
     make_logistics_meta_test_split,
+    sample_episode_with_synthetic_support,
     sample_meta_batch,
     sample_support_query_split,
     summarize_department_tasks,
@@ -303,3 +306,137 @@ class TestSampleMetaBatch:
             s_ids = set(ep["support_df"]["contract_id"].tolist())
             q_ids = set(ep["query_df"]["contract_id"].tolist())
             assert s_ids.isdisjoint(q_ids)
+
+
+# ---------------------------------------------------------------------------
+# sample_episode_with_synthetic_support
+# ---------------------------------------------------------------------------
+
+def _dept_df_with_cat(rows_per_contract: int = 3) -> pd.DataFrame:
+    """Department fixture with one numeric and one categorical feature."""
+    rng = np.random.default_rng(0)
+    rows = []
+    for cid_idx in range(8):
+        label = 1 if cid_idx < 4 else 0
+        cid = f"C{cid_idx:04d}"
+        for _ in range(rows_per_contract):
+            rows.append({
+                "contract_id": cid,
+                "department": "Logistics",
+                "gold_y": label,
+                "feat_num": float(rng.standard_normal()),
+                "feat_cat": "x" if label == 1 else "y",
+            })
+    return pd.DataFrame(rows)
+
+
+SYNTH_FEAT_COLS = ["feat_num", "feat_cat"]
+
+
+class TestSampleEpisodeWithSyntheticSupport:
+    """Episodic-augmentation wrapper invariants (Option B + leakage protection)."""
+
+    def test_passthrough_when_method_none(self):
+        df = _dept_df_with_cat()
+        ep_real = sample_support_query_split(
+            dept_df=df, feature_cols=SYNTH_FEAT_COLS,
+            n_support_pos=2, n_support_neg=2, random_state=42,
+        )
+        ep_aug = sample_episode_with_synthetic_support(
+            dept_df=df, feature_cols=SYNTH_FEAT_COLS,
+            n_support_pos=2, n_support_neg=2, random_state=42,
+            augmentation_method="none",
+        )
+        assert len(ep_aug["support_df"]) == len(ep_real["support_df"])
+        assert ep_aug["augmentation_info"]["method"] == "none"
+        assert ep_aug["augmentation_info"]["n_synthetic_support_rows"] == 0
+        assert ep_aug["is_synthetic_mask"].sum() == 0
+
+    def test_augmentation_grows_support(self):
+        df = _dept_df_with_cat()
+        ep = sample_episode_with_synthetic_support(
+            dept_df=df, feature_cols=SYNTH_FEAT_COLS,
+            n_support_pos=2, n_support_neg=2, random_state=42,
+            augmentation_method="smote_nc", synthetic_proportion=0.5,
+            categorical_cols=["feat_cat"],
+        )
+        info = ep["augmentation_info"]
+        assert info["n_synthetic_support_rows"] > 0
+        assert ep["X_support"].shape[0] == \
+            info["n_real_support_rows"] + info["n_synthetic_support_rows"]
+        assert ep["y_support"].shape[0] == ep["X_support"].shape[0]
+
+    def test_is_synthetic_mask_aligned_with_support(self):
+        df = _dept_df_with_cat()
+        ep = sample_episode_with_synthetic_support(
+            dept_df=df, feature_cols=SYNTH_FEAT_COLS,
+            n_support_pos=2, n_support_neg=2, random_state=42,
+            augmentation_method="smote_nc", synthetic_proportion=0.5,
+            categorical_cols=["feat_cat"],
+        )
+        mask = ep["is_synthetic_mask"]
+        sup_df = ep["support_df"]
+        assert mask.shape[0] == len(sup_df)
+        n_real = ep["augmentation_info"]["n_real_support_rows"]
+        # augment_support emits real rows first, synthetic appended after.
+        assert (~mask[:n_real]).all()
+        assert mask[n_real:].all()
+        assert (mask == sup_df["is_synthetic"].to_numpy(dtype=bool)).all()
+
+    def test_no_synthetic_id_in_query(self):
+        """Hard invariant: the leakage assertion holds across many seeds."""
+        df = _dept_df_with_cat()
+        for seed in range(10):
+            ep = sample_episode_with_synthetic_support(
+                dept_df=df, feature_cols=SYNTH_FEAT_COLS,
+                n_support_pos=2, n_support_neg=2, random_state=seed,
+                augmentation_method="smote_nc", synthetic_proportion=0.5,
+                categorical_cols=["feat_cat"],
+            )
+            query_ids = set(ep["query_df"]["contract_id"].astype(str).tolist())
+            assert not any(qid.startswith("SYNTH_") for qid in query_ids)
+
+    def test_query_unchanged_by_augmentation(self):
+        df = _dept_df_with_cat()
+        ep_real = sample_support_query_split(
+            dept_df=df, feature_cols=SYNTH_FEAT_COLS,
+            n_support_pos=2, n_support_neg=2, random_state=42,
+        )
+        ep_aug = sample_episode_with_synthetic_support(
+            dept_df=df, feature_cols=SYNTH_FEAT_COLS,
+            n_support_pos=2, n_support_neg=2, random_state=42,
+            augmentation_method="smote_nc", synthetic_proportion=0.5,
+            categorical_cols=["feat_cat"],
+        )
+        assert sorted(ep_real["query_ids"]) == sorted(ep_aug["query_ids"])
+        assert ep_real["X_query"].shape == ep_aug["X_query"].shape
+        assert (ep_real["query_df"]["contract_id"].tolist()
+                == ep_aug["query_df"]["contract_id"].tolist())
+
+    def test_target_per_class_path(self):
+        # 2 contracts × 2 rows = 4 real rows per class → target=5 needs 1 synthetic
+        df = _dept_df_with_cat(rows_per_contract=2)
+        ep = sample_episode_with_synthetic_support(
+            dept_df=df, feature_cols=SYNTH_FEAT_COLS,
+            n_support_pos=2, n_support_neg=2, random_state=42,
+            augmentation_method="smote_nc", target_per_class=5,
+            categorical_cols=["feat_cat"],
+        )
+        sup = ep["support_df"]
+        assert (sup["gold_y"] == 1).sum() == 5
+        assert (sup["gold_y"] == 0).sum() == 5
+        assert ((sup["gold_y"] == 1) & sup["is_synthetic"]).sum() == 1
+        assert ((sup["gold_y"] == 0) & sup["is_synthetic"]).sum() == 1
+
+    def test_seed_reproducible(self):
+        df = _dept_df_with_cat()
+        kwargs = dict(
+            dept_df=df, feature_cols=SYNTH_FEAT_COLS,
+            n_support_pos=2, n_support_neg=2, random_state=123,
+            augmentation_method="smote_nc", synthetic_proportion=0.5,
+            categorical_cols=["feat_cat"],
+        )
+        ep1 = sample_episode_with_synthetic_support(**kwargs)
+        ep2 = sample_episode_with_synthetic_support(**kwargs)
+        np.testing.assert_array_equal(ep1["y_support"], ep2["y_support"])
+        np.testing.assert_array_equal(ep1["is_synthetic_mask"], ep2["is_synthetic_mask"])

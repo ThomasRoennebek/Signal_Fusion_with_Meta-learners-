@@ -204,6 +204,17 @@ def meta_train_maml(
         if valid_query_losses:
             outer_loss = torch.stack(valid_query_losses).mean()
             outer_loss.backward()
+
+            # --- GRADIENT SENSOR ---
+            if iteration == 0:
+                print("\n=== REALITY CHECK: MAML GRADIENTS ON REAL DATA ===")
+                for name, param in model.named_parameters():
+                    grad_sum = float(torch.sum(torch.abs(param.grad))) if param.grad is not None else 0.0
+                    status = "✅ PASS" if grad_sum > 0 else "❌ ZERO/VANISHED"
+                    print(f"{name.ljust(20)} | Real Grad: {grad_sum:.6f} | {status}")
+                print("==================================================\n")
+            # ----------------------------------
+
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             outer_optimizer.step()
 
@@ -237,6 +248,7 @@ def meta_train_maml(
         "diagnostics": diagnostics,
         "model": model,
     }
+
 
 
 def evaluate_maml_on_target_episodes(
