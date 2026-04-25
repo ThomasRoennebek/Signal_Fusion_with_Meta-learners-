@@ -8,12 +8,17 @@ seed: 42
 test_size: 0.30
 verbose: true
 
-# Data 
+# Data
 data_filename: "contract_with_features_labeled_with_gold.csv"
 weak_target_col: "renegotiation_prob"
 gold_col: "gold_y"
 group_col: "contract_id"
 department_col: "department"
+
+# Target department whose gold labels are excluded from Stage 1 B/C/D
+# and reserved for Stage 2 adaptation.  Condition A (weak-only) is global
+# and unaffected by this setting.
+target_department: "Logistics"
 
 # Hybrid weights
 hybrid_weak_weight: 1.0
@@ -56,5 +61,5 @@ mlp_config:
   train_batch_size: 128
   val_batch_size: 256
   hidden_dim_1: 256
-  hidden_dim_2: 64
+  hidden_dim_2: 128  # Corrected: actual saved artifacts use 128, not 64
   dropout: 0.3

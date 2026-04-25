@@ -78,6 +78,10 @@ def adapt_anil_on_episode(
     for _ in range(inner_steps):
         logits = F.linear(support_features, head_weight, head_bias)
         loss = criterion(logits, y_support)
+        # Skip gradient update if the support loss is non-finite to prevent
+        # Inf/NaN from propagating through the head parameters.
+        if not torch.isfinite(loss):
+            break
 
         variables = [head_weight]
         if head_bias is not None:
@@ -118,7 +122,12 @@ def meta_train_anil(
     outer_optimizer = torch.optim.Adam(model.parameters(), lr=outer_lr)
     criterion = nn.BCEWithLogitsLoss()
 
-    train_df = task_df[task_df[department_col].isin(meta_train_departments)].copy()
+    # Defensive filter: keep only rows with a valid label even though
+    # build_department_task_table already removes missing gold_y values.
+    train_df = task_df[
+        task_df[department_col].isin(meta_train_departments)
+        & task_df[target_col].notna()
+    ].copy()
     history_rows: List[Dict[str, Any]] = []
 
     total_skipped = 0
@@ -127,6 +136,7 @@ def meta_train_anil(
     for iteration in range(meta_iterations):
         outer_optimizer.zero_grad()
         valid_query_losses = []
+        skipped_before_iteration = total_skipped
 
         batch_depts = rng.choices(meta_train_departments, k=meta_batch_size)
 
@@ -176,7 +186,7 @@ def meta_train_anil(
             logits_query = F.linear(query_features, head_weight, head_bias)
             query_loss = criterion(logits_query, y_query)
 
-            if torch.isnan(query_loss):
+            if not torch.isfinite(query_loss):
                 total_skipped += 1
                 continue
 
@@ -188,19 +198,34 @@ def meta_train_anil(
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             outer_optimizer.step()
 
+            skipped_this_iteration = total_skipped - skipped_before_iteration
             history_rows.append(
                 {
                     "iteration": iteration + 1,
                     "meta_loss": float(outer_loss.item()),
-                    "n_skipped": total_skipped,
                     "n_valid_tasks": len(valid_query_losses),
+                    "n_skipped": total_skipped,              # kept for backward compatibility
+                    "n_skipped_this_iteration": skipped_this_iteration,
+                    "n_skipped_cumulative": total_skipped,
                 }
             )
+
+    total_possible_task_episodes = meta_iterations * meta_batch_size
+    diagnostics = {
+        "meta_iterations_requested": meta_iterations,
+        "iterations_with_valid_tasks": len(history_rows),
+        "meta_batch_size": meta_batch_size,
+        "total_possible_task_episodes": total_possible_task_episodes,
+        "total_skipped_task_episodes": total_skipped,
+        "skip_rate": total_skipped / max(1, total_possible_task_episodes),
+        "meta_train_departments_used": list(meta_train_departments),
+    }
 
     return {
         "method": "anil",
         "status": "success",
         "history": pd.DataFrame(history_rows),
+        "diagnostics": diagnostics,
         "model": model,
     }
 
@@ -249,7 +274,22 @@ def evaluate_anil_on_target_episodes(
             logits = F.linear(query_features, head_weight, head_bias)
             probs = torch.sigmoid(logits).cpu().numpy().ravel()
 
-        metrics = evaluate_on_gold_binary(y_query_np, probs, model_name="ANIL")
+        # Guard 1: replace any NaN/Inf probs with 0.5 (uninformative).
+        if not np.all(np.isfinite(probs)):
+            probs = np.where(np.isfinite(probs), probs, 0.5)
+
+        # Guard 2: filter rows where the gold label itself is NaN/missing.
+        # The query_df may contain unlabelled contracts (gold_y = NaN) that
+        # are not valid evaluation targets — passing NaN y_true to sklearn
+        # raises "Input contains NaN".
+        valid_mask = np.isfinite(y_query_np)
+        y_query_eval = y_query_np[valid_mask].astype(int)
+        probs_eval = probs[valid_mask]
+
+        if len(y_query_eval) == 0:
+            continue  # no labelled contracts in this episode's query set
+
+        metrics = evaluate_on_gold_binary(y_query_eval, probs_eval, model_name="ANIL")
         metrics["episode_idx"] = ep_idx
         metric_rows.append(metrics)
 
@@ -271,7 +311,9 @@ def evaluate_anil_on_target_episodes(
         return {
             "method": "anil",
             "status": "failed",
-            "n_target_episodes": 0,
+            "n_target_episodes": len(target_episodes),
+            "n_evaluated_episodes": 0,
+            "n_skipped_episodes": len(target_episodes),
             "raw_metrics": pd.DataFrame(),
             "predictions": pd.DataFrame(),
         }
@@ -280,6 +322,8 @@ def evaluate_anil_on_target_episodes(
         "method": "anil",
         "status": "success",
         "n_target_episodes": len(target_episodes),
+        "n_evaluated_episodes": len(metric_rows),
+        "n_skipped_episodes": len(target_episodes) - len(metric_rows),
         "raw_metrics": pd.concat(metric_rows, ignore_index=True),
         "predictions": pd.concat(prediction_rows, ignore_index=True),
     }

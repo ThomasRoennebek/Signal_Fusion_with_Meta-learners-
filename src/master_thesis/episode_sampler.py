@@ -427,6 +427,7 @@ def sample_support_query_split(
     n_support_neg: int = 2,
     query_strategy: str = "remainder",
     random_state: Optional[int] = None,
+    require_both_query_classes: bool = False,
 ) -> Dict[str, Any]:
     """
     Sample one contract-aware support/query episode for a single department.
@@ -441,6 +442,12 @@ def sample_support_query_split(
 
     Query set construction:
     - all remaining contracts and their rows
+
+    Parameters
+    ----------
+    require_both_query_classes:
+        If True, raise ValueError when the query set does not contain at least
+        one positive and one negative contract (checked at contract level).
 
     Returns
     -------
@@ -509,6 +516,19 @@ def sample_support_query_split(
     if len(query_df) == 0:
         raise ValueError(f"Department '{department_name}' produced an empty query set.")
 
+    if require_both_query_classes:
+        query_contract_labels = (
+            query_df[[contract_id_col, target_col]]
+            .drop_duplicates(subset=[contract_id_col])
+        )
+        n_query_pos = int((query_contract_labels[target_col] == 1).sum())
+        n_query_neg = int((query_contract_labels[target_col] == 0).sum())
+        if n_query_pos < 1 or n_query_neg < 1:
+            raise ValueError(
+                f"Department '{department_name}' produced query set without both classes "
+                f"(n_query_pos={n_query_pos}, n_query_neg={n_query_neg})."
+            )
+
     return _make_episode_dict(
         department=department_name,
         support_df=support_df,
@@ -531,6 +551,7 @@ def sample_meta_batch(
     n_support_neg: int = 2,
     query_strategy: str = "remainder",
     random_state: Optional[int] = None,
+    require_both_query_classes: bool = False,
 ) -> List[Dict[str, Any]]:
     """
     Sample a meta-batch of contract-aware department episodes.
@@ -539,6 +560,12 @@ def sample_meta_batch(
     - sample departments uniformly from valid_departments
     - sample one episode per department
     - return a list of episode dictionaries
+
+    Parameters
+    ----------
+    require_both_query_classes:
+        Forwarded to sample_support_query_split. If True, episodes whose query
+        set lacks either class are rejected with a ValueError.
     """
     _validate_required_columns(
         task_df,
@@ -551,15 +578,14 @@ def sample_meta_batch(
 
     rng = _get_rng(random_state)
 
-    if meta_batch_size > len(valid_departments):
-        raise ValueError(
-            f"meta_batch_size={meta_batch_size} exceeds number of valid departments={len(valid_departments)}."
-        )
-
+    # Sample with replacement only when the requested meta-batch size exceeds
+    # the number of valid departments; otherwise sample without replacement so
+    # the same department cannot appear twice in a single meta-batch.
+    replace = meta_batch_size > len(valid_departments)
     chosen_departments = rng.choice(
         np.array(valid_departments, dtype=object),
         size=meta_batch_size,
-        replace=False,
+        replace=replace,
     )
 
     batch: List[Dict[str, Any]] = []
@@ -582,6 +608,7 @@ def sample_meta_batch(
             n_support_neg=n_support_neg,
             query_strategy=query_strategy,
             random_state=episode_seed,
+            require_both_query_classes=require_both_query_classes,
         )
         batch.append(episode)
 
@@ -600,6 +627,7 @@ def make_logistics_meta_test_split(
     n_repeats: int = 20,
     query_strategy: str = "remainder",
     base_random_state: int = 42,
+    require_both_query_classes: bool = False,
 ) -> List[Dict[str, Any]]:
     """
     Construct repeated held-out contract-aware meta-test episodes for the target department.
@@ -637,6 +665,7 @@ def make_logistics_meta_test_split(
             n_support_neg=n_support_neg,
             query_strategy=query_strategy,
             random_state=seed,
+            require_both_query_classes=require_both_query_classes,
         )
         episode["repeat_idx"] = repeat_idx
         episode["episode_seed"] = seed

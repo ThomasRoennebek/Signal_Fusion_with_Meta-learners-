@@ -216,8 +216,21 @@ def resolve_stage2_paths(config: Dict[str, Any], experiment_id: Optional[str] = 
     method = config["method"]
 
     if init_type == "random":
+        # Random init: no pretrained weights are loaded, but a Stage 1
+        # preprocessor is still required so that feature encoding and input
+        # dimensionality remain identical to pretrained baselines, making the
+        # random-init condition directly comparable.  The preprocessor source
+        # is controlled by stage1_init.random_preprocessor_source
+        # (default: A_weak_only).
+        random_preprocessor_source = config["stage1_init"].get(
+            "random_preprocessor_source", "A_weak_only"
+        )
         stage1_model_path = None
-        stage1_preprocessor_path = None
+        stage1_preprocessor_path = (
+            MODELS_STAGE1
+            / random_preprocessor_source
+            / config["stage1_init"]["preprocessor_filename"]
+        )
     else:
         stage1_model_path = MODELS_STAGE1 / init_type / config["stage1_init"]["model_filename"]
         stage1_preprocessor_path = MODELS_STAGE1 / init_type / config["stage1_init"]["preprocessor_filename"]
@@ -305,7 +318,7 @@ def load_stage1_model_weights(
         raise FileNotFoundError(f"Stage 1 model not found: {model_path}")
     if device is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    state_dict = torch.load(model_path, map_location=device)
+    state_dict = torch.load(model_path, map_location=device, weights_only=True)
     model.load_state_dict(state_dict)
     return model
 
@@ -540,6 +553,7 @@ def _run_meta_method(
         "raw_metrics": eval_result.get("raw_metrics"),
         "predictions": eval_result.get("predictions"),
         "history": meta_train_result.get("history"),
+        "diagnostics": meta_train_result.get("diagnostics"),
     }
 
 

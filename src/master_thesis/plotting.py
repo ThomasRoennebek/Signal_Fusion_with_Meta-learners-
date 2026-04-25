@@ -52,32 +52,64 @@ DTU_PALETTE = {
     "white": "#FFFFFF",
 }
 
-METHOD_COLORS = {
-    "zero_shot": THESIS_PALETTE["grey"],
-    "zero-shot": THESIS_PALETTE["grey"],
-    "pretrained": THESIS_PALETTE["grey"],
-    "finetune": THESIS_PALETTE["blue"],
-    "fine_tune": THESIS_PALETTE["blue"],
-    "fine-tune": THESIS_PALETTE["blue"],
-    "anil": THESIS_PALETTE["green"],
-    "fomaml": THESIS_PALETTE["orange"],
-    "maml": THESIS_PALETTE["vermillion"],
-    "xgboost": THESIS_PALETTE["purple"],
-    "elastic_net": THESIS_PALETTE["sky_blue"],
-    "elastic net": THESIS_PALETTE["sky_blue"],
-    "mean_predictor": THESIS_PALETTE["grey"],
-    "mean predictor": THESIS_PALETTE["grey"],
+# METHOD_COLORS uses the DTU palette by default so that all Stage 2 plots
+# are consistent regardless of whether set_thesis_style() has been called.
+# When set_thesis_style(palette="thesis") is used instead, the values below
+# are overwritten with the colorblind-safe THESIS_PALETTE equivalents.
+METHOD_COLORS: dict[str, str] = {
+    # Meta-learning methods
+    "zero_shot":      DTU_PALETTE["grey"],
+    "zero-shot":      DTU_PALETTE["grey"],
+    "pretrained":     DTU_PALETTE["navy"],
+    "finetune":       DTU_PALETTE["blue"],
+    "fine_tune":      DTU_PALETTE["blue"],
+    "fine-tune":      DTU_PALETTE["blue"],
+    "anil":           DTU_PALETTE["green"],
+    "fomaml":         DTU_PALETTE["orange"],
+    "maml":           DTU_PALETTE["primary"],
+    # Stage 1 baselines (used in cross-stage comparison tables/plots)
+    "xgboost":        DTU_PALETTE["purple"],
+    "elastic_net":    DTU_PALETTE["blue"],
+    "elastic net":    DTU_PALETTE["blue"],
+    "mean_predictor": DTU_PALETTE["grey"],
+    "mean predictor": DTU_PALETTE["grey"],
+}
+
+# Color mapping for Stage 1 initialization sources.
+# Used by init-ablation plots throughout the Stage 2 analysis dashboard.
+# All colors drawn from DTU_PALETTE for consistency with set_thesis_style(palette="dtu").
+INIT_COLORS: dict[str, str] = {
+    "A_weak_only":       DTU_PALETTE["blue"],
+    "B_gold_only":       DTU_PALETTE["green"],
+    "C_hybrid":          DTU_PALETTE["orange"],
+    "D_hybrid_unweighted": DTU_PALETTE["purple"],
+    "random":            DTU_PALETTE["grey"],
 }
 
 # Color mapping for data view labels used in SHAP view-level importance plots.
+# Uses DTU palette for consistency with Stage 2 figures.
 VIEW_COLORS: dict = {
-    "financial": THESIS_PALETTE["blue"],
-    "procurement": THESIS_PALETTE["green"],
-    "supplier": THESIS_PALETTE["orange"],
-    "contract": THESIS_PALETTE["vermillion"],
-    "temporal": THESIS_PALETTE["sky_blue"],
-    "text": THESIS_PALETTE["purple"],
-    "meta": THESIS_PALETTE["grey"],
+    "financial":   DTU_PALETTE["blue"],
+    "procurement": DTU_PALETTE["green"],
+    "supplier":    DTU_PALETTE["orange"],
+    "contract":    DTU_PALETTE["primary"],
+    "temporal":    DTU_PALETTE["purple"],
+    "text":        DTU_PALETTE["navy"],
+    "meta":        DTU_PALETTE["grey"],
+}
+
+# Standard legend keyword arguments for publication figures.
+# Use LEGEND_KWS_RIGHT for comparison plots where the legend must not
+# overlap data; use LEGEND_KWS_INLINE for single-line plots.
+LEGEND_KWS_RIGHT: dict = {
+    "loc": "upper left",
+    "bbox_to_anchor": (1.02, 1.0),
+    "frameon": False,
+    "borderaxespad": 0.0,
+}
+LEGEND_KWS_INLINE: dict = {
+    "loc": "best",
+    "frameon": False,
 }
 
 
@@ -109,7 +141,9 @@ def set_thesis_style(
         font_scale=font_scale,
     )
 
-    # Determine color cycle based on palette
+    # Determine color cycle based on palette and update METHOD_COLORS globally
+    # so that all subsequent calls to method_palette() or direct METHOD_COLORS
+    # lookups are consistent with the chosen style.
     if palette.lower() == "dtu":
         color_cycle = [
             DTU_PALETTE["primary"],
@@ -121,18 +155,28 @@ def set_thesis_style(
             DTU_PALETTE["navy"],
             DTU_PALETTE["grey"],
         ]
+        # Overwrite ALL method entries with DTU palette so no THESIS_PALETTE
+        # colors can leak into DTU-styled figures.
         METHOD_COLORS.update({
-            "finetune": DTU_PALETTE["blue"],
-            "fine_tune": DTU_PALETTE["blue"],
-            "fine-tune": DTU_PALETTE["blue"],
-            "anil": DTU_PALETTE["green"],
-            "fomaml": DTU_PALETTE["orange"],
-            "maml": DTU_PALETTE["primary"],
-            "zero_shot": DTU_PALETTE["grey"],
-            "zero-shot": DTU_PALETTE["grey"],
-            "pretrained": DTU_PALETTE["navy"],
+            # Meta-learning methods
+            "zero_shot":      DTU_PALETTE["grey"],
+            "zero-shot":      DTU_PALETTE["grey"],
+            "pretrained":     DTU_PALETTE["navy"],
+            "finetune":       DTU_PALETTE["blue"],
+            "fine_tune":      DTU_PALETTE["blue"],
+            "fine-tune":      DTU_PALETTE["blue"],
+            "anil":           DTU_PALETTE["green"],
+            "fomaml":         DTU_PALETTE["orange"],
+            "maml":           DTU_PALETTE["primary"],
+            # Stage 1 baselines
+            "xgboost":        DTU_PALETTE["purple"],
+            "elastic_net":    DTU_PALETTE["blue"],
+            "elastic net":    DTU_PALETTE["blue"],
+            "mean_predictor": DTU_PALETTE["grey"],
+            "mean predictor": DTU_PALETTE["grey"],
         })
     else:
+        # Colorblind-safe thesis palette for non-DTU contexts.
         color_cycle = [
             THESIS_PALETTE["blue"],
             THESIS_PALETTE["vermillion"],
@@ -142,6 +186,22 @@ def set_thesis_style(
             THESIS_PALETTE["purple"],
             THESIS_PALETTE["grey"],
         ]
+        METHOD_COLORS.update({
+            "zero_shot":      THESIS_PALETTE["grey"],
+            "zero-shot":      THESIS_PALETTE["grey"],
+            "pretrained":     THESIS_PALETTE["grey"],
+            "finetune":       THESIS_PALETTE["blue"],
+            "fine_tune":      THESIS_PALETTE["blue"],
+            "fine-tune":      THESIS_PALETTE["blue"],
+            "anil":           THESIS_PALETTE["green"],
+            "fomaml":         THESIS_PALETTE["orange"],
+            "maml":           THESIS_PALETTE["vermillion"],
+            "xgboost":        THESIS_PALETTE["purple"],
+            "elastic_net":    THESIS_PALETTE["sky_blue"],
+            "elastic net":    THESIS_PALETTE["sky_blue"],
+            "mean_predictor": THESIS_PALETTE["grey"],
+            "mean predictor": THESIS_PALETTE["grey"],
+        })
 
     plt.rcParams.update({
         # Resolution
@@ -195,12 +255,26 @@ def _normalise_method_name(name: str) -> str:
 
 
 def method_palette(methods: Iterable[str]) -> dict[str, str]:
-    """Return a robust palette for a given list of method names."""
-    colors = {}
-    fallback = sns.color_palette("colorblind", n_colors=max(1, len(list(methods))))
-    for i, method in enumerate(methods):
+    """Return a color mapping for the given list of method names.
+
+    Known methods are resolved from METHOD_COLORS (DTU palette by default).
+    Unknown methods fall back to remaining DTU palette entries so that all
+    colors in a single figure remain within the DTU brand set.
+    """
+    _dtu_fallback = [
+        DTU_PALETTE["primary"], DTU_PALETTE["blue"], DTU_PALETTE["green"],
+        DTU_PALETTE["orange"], DTU_PALETTE["purple"], DTU_PALETTE["navy"],
+        DTU_PALETTE["yellow"], DTU_PALETTE["grey"],
+    ]
+    colors: dict[str, str] = {}
+    fallback_idx = 0
+    for method in methods:
         key = _normalise_method_name(method)
-        colors[method] = METHOD_COLORS.get(key, fallback[i % len(fallback)])
+        if key in METHOD_COLORS:
+            colors[method] = METHOD_COLORS[key]
+        else:
+            colors[method] = _dtu_fallback[fallback_idx % len(_dtu_fallback)]
+            fallback_idx += 1
     return colors
 
 
@@ -731,7 +805,7 @@ def plot_multiple_roc_curves(
     ax.set_xlabel("False Positive Rate")
     ax.set_ylabel("True Positive Rate")
     ax.set_title(title)
-    ax.legend(frameon=False)
+    ax.legend(**LEGEND_KWS_RIGHT)
     despine_thesis(ax)
     plt.tight_layout()
     return fig, ax
@@ -758,7 +832,7 @@ def plot_adaptation_curve(
     ax.set_ylabel("Adaptation Loss")
     ax.set_title(title)
     ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
-    ax.legend(frameon=False)
+    ax.legend(**LEGEND_KWS_RIGHT)
     despine_thesis(ax)
     plt.tight_layout()
     return fig, ax
@@ -856,7 +930,7 @@ def plot_k_shot_curve(
     ax.set_xlabel("Support examples per class (k-shot)")
     ax.set_ylabel(metric_col.replace("gold_", "").upper())
     ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
-    ax.legend(frameon=False)
+    ax.legend(**LEGEND_KWS_RIGHT)
     despine_thesis(ax)
     plt.tight_layout()
     return fig, ax
@@ -1224,7 +1298,7 @@ def plot_stage1_metric_comparison(
     ax.set_title(title)
     ax.set_xlabel("Metric")
     ax.set_ylabel("Value")
-    ax.legend(title="Condition", frameon=False)
+    ax.legend(title="Condition", **LEGEND_KWS_RIGHT)
     despine_thesis(ax)
     plt.tight_layout()
     return fig, ax
@@ -1287,7 +1361,7 @@ def plot_stage2_metric_comparison(
     ax.set_xlabel("Metric")
     ax.set_ylabel("Mean value")
     legend_title = group_col.replace("_", " ").title()
-    ax.legend(title=legend_title, frameon=False, bbox_to_anchor=(1.02, 1), loc="upper left")
+    ax.legend(title=legend_title, **LEGEND_KWS_RIGHT)
     despine_thesis(ax)
     plt.tight_layout()
     return fig, ax
@@ -1343,7 +1417,7 @@ def plot_inner_step_curve(
         palette = method_palette(results_df[method_col].unique())
         sns.lineplot(data=results_df, x=step_col, y=metric_col, hue=method_col,
                      marker="o", errorbar="sd", palette=palette, ax=ax)
-        ax.legend(title="Method", frameon=False)
+        ax.legend(title="Method", **LEGEND_KWS_RIGHT)
     else:
         sns.lineplot(data=results_df, x=step_col, y=metric_col,
                      marker="o", errorbar="sd", ax=ax)
@@ -2620,11 +2694,13 @@ def plot_init_ablation_bars(
     if n_panels == 1:
         axes = [axes]
 
-    init_colors = {
-        "A_weak_only": THESIS_PALETTE.get("blue", "#0072B2"),
-        "C_hybrid":    THESIS_PALETTE.get("green", "#009E73"),
-    }
-    default_colors = list(THESIS_PALETTE.values())
+    # Use INIT_COLORS (DTU_PALETTE-based) with ordinal fallback for unknown inits.
+    _fallback_cycle = [
+        DTU_PALETTE["blue"], DTU_PALETTE["green"], DTU_PALETTE["orange"],
+        DTU_PALETTE["purple"], DTU_PALETTE["grey"], DTU_PALETTE["red"],
+    ]
+    init_colors = {k: v for k, v in INIT_COLORS.items()}
+    default_colors = _fallback_cycle
 
     for panel, (col, lbl) in enumerate(_avail_metrics):
         ax = axes[panel]
@@ -3067,6 +3143,637 @@ def plot_lr_sweep_heatmaps(
                                 fontsize=7,
                                 color="white" if (v > (vmax or 1) * 0.65) else "black")
             plt.colorbar(im, ax=ax)
+
+    fig.suptitle(title, fontsize=12, fontweight="bold")
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    return fig, axes
+
+
+# =============================================================================
+# New helpers for the expanded init × method analysis (added 2026-04-24)
+# All new functions use DTU_PALETTE via INIT_COLORS / METHOD_COLORS.
+# =============================================================================
+
+def build_init_method_pivot(
+    summary_df: "pd.DataFrame",
+    metric_col: str = "auroc_mean",
+    init_col: str = "init_name",
+    method_col: str = "method",
+    aggfunc: str = "mean",
+    init_order: "list[str] | None" = None,
+    method_order: "list[str] | None" = None,
+) -> "pd.DataFrame":
+    """Build a pivot table with init sources as rows and methods as columns.
+
+    Parameters
+    ----------
+    summary_df : pd.DataFrame
+        Experiment registry (or filtered subset thereof).
+    metric_col : str
+        Column to aggregate, e.g. 'auroc_mean', 'log_loss_mean'.
+    init_col, method_col : str
+        Column names for initialization and method.
+    aggfunc : str
+        Aggregation function ('mean', 'max', 'min').
+    init_order : list of str, optional
+        Canonical row ordering.  Defaults to the five thesis inits.
+    method_order : list of str, optional
+        Canonical column ordering.  Defaults to the five thesis methods.
+
+    Returns
+    -------
+    pd.DataFrame
+        Pivot table indexed by init_name, columns = method names.
+    """
+    _INIT_ORDER = ["A_weak_only", "B_gold_only", "C_hybrid", "D_hybrid_unweighted", "random"]
+    _METHOD_ORDER = ["zero_shot", "finetune", "anil", "fomaml", "maml"]
+
+    if summary_df.empty or metric_col not in summary_df.columns:
+        return pd.DataFrame()
+
+    init_order = init_order or _INIT_ORDER
+    method_order = method_order or _METHOD_ORDER
+
+    pivot = summary_df.pivot_table(
+        index=init_col,
+        columns=method_col,
+        values=metric_col,
+        aggfunc=aggfunc,
+    )
+
+    row_order = [r for r in init_order if r in pivot.index]
+    row_order += [r for r in pivot.index if r not in row_order]
+    col_order = [c for c in method_order if c in pivot.columns]
+    col_order += [c for c in pivot.columns if c not in col_order]
+
+    return pivot.loc[row_order, col_order]
+
+
+def plot_init_method_matrix(
+    summary_df: "pd.DataFrame",
+    metric_col: str = "auroc_mean",
+    metric_label: str = "AUROC",
+    init_col: str = "init_name",
+    method_col: str = "method",
+    title: str = "Initialization x Method Matrix",
+    cmap: str = "Blues",
+    vmin: float = 0.4,
+    vmax: float = 0.95,
+    figsize: "tuple[float, float] | None" = None,
+    annotate: bool = True,
+    save_path: "str | None" = None,
+) -> "tuple":
+    """Heatmap of the full 5 x 5 initialization × method matrix.
+
+    Rows = init sources (A_weak_only ... random).
+    Columns = adaptation methods (zero_shot ... maml).
+    Cell color and annotation = metric value.
+
+    Parameters
+    ----------
+    summary_df : pd.DataFrame
+        Experiment registry (or filtered subset).
+    metric_col : str
+        Column to render.
+    metric_label : str
+        Display label for the colour bar.
+    cmap : str
+        Matplotlib colormap name.
+    vmin, vmax : float
+        Heatmap colour range.
+    figsize : (float, float), optional
+        Figure size; auto-computed if None.
+    annotate : bool
+        Whether to write the numeric value in each cell.
+    save_path : str, optional
+        If given, save at 300 dpi.
+
+    Returns
+    -------
+    (fig, ax)
+    """
+    pivot = build_init_method_pivot(summary_df, metric_col, init_col, method_col)
+    if pivot.empty:
+        fig, ax = plt.subplots(figsize=(8, 4))
+        ax.text(0.5, 0.5, "No data available", ha="center", va="center", transform=ax.transAxes)
+        ax.set_title(title)
+        return fig, ax
+
+    n_rows, n_cols = pivot.shape
+    if figsize is None:
+        figsize = (max(6, n_cols * 1.4), max(3, n_rows * 0.9))
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    data = pivot.values.astype(float)
+    im = ax.imshow(data, cmap=cmap, vmin=vmin, vmax=vmax, aspect="auto")
+
+    ax.set_xticks(range(n_cols))
+    ax.set_xticklabels(
+        [c.replace("_", " ") for c in pivot.columns],
+        rotation=30, ha="right", fontsize=9,
+    )
+    ax.set_yticks(range(n_rows))
+    ax.set_yticklabels(
+        [r.replace("_", " ") for r in pivot.index],
+        fontsize=9,
+    )
+
+    if annotate:
+        for ri in range(n_rows):
+            for ci in range(n_cols):
+                val = data[ri, ci]
+                if not np.isnan(val):
+                    text_color = "white" if val > (vmin + (vmax - vmin) * 0.6) else "black"
+                    ax.text(ci, ri, f"{val:.3f}", ha="center", va="center",
+                            fontsize=8, color=text_color)
+                else:
+                    ax.text(ci, ri, "—", ha="center", va="center", fontsize=8, color="#888888")
+
+    plt.colorbar(im, ax=ax, label=metric_label, shrink=0.8)
+    ax.set_xlabel("Adaptation Method", fontsize=10)
+    ax.set_ylabel("Stage 1 Initialization", fontsize=10)
+    ax.set_title(title, fontsize=12, fontweight="bold")
+    despine_thesis(ax)
+
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    return fig, ax
+
+
+def plot_repeated_episode_error_bars(
+    summary_df: "pd.DataFrame",
+    metric_col: str = "auroc_mean",
+    std_col: "str | None" = None,
+    group_col: str = "method",
+    hue_col: "str | None" = "init_name",
+    metric_label: str = "AUROC",
+    title: str = "Repeated-Episode Mean ± Std",
+    figsize: "tuple[float, float]" = (9, 4),
+    save_path: "str | None" = None,
+) -> "tuple":
+    """Bar chart with error bars from repeated-episode statistics.
+
+    Useful for showing mean ± std across N=20 repeated episodes,
+    confirming that results are not driven by a single lucky split.
+
+    Parameters
+    ----------
+    summary_df : pd.DataFrame
+        Registry subset.  Must contain `metric_col` (mean) and optionally
+        `std_col` (std).  If `std_col` is None, the function looks for a
+        column named `<metric_col[:-5]>_std` (strips trailing ``_mean``).
+    group_col : str
+        X-axis grouping (e.g. 'method').
+    hue_col : str or None
+        Secondary grouping (e.g. 'init_name').  Set to None for a single
+        bar per group.
+    figsize : (float, float)
+        Figure size.
+    save_path : str, optional
+        Save path for 300-dpi output.
+
+    Returns
+    -------
+    (fig, ax)
+    """
+    if summary_df.empty or metric_col not in summary_df.columns:
+        fig, ax = plt.subplots(figsize=figsize)
+        ax.text(0.5, 0.5, "No data available", ha="center", va="center", transform=ax.transAxes)
+        ax.set_title(title)
+        return fig, ax
+
+    # Resolve std column
+    if std_col is None and metric_col.endswith("_mean"):
+        _candidate = metric_col[:-5] + "_std"
+        std_col = _candidate if _candidate in summary_df.columns else None
+
+    df = summary_df.copy()
+    groups = sorted(df[group_col].unique()) if group_col in df.columns else [None]
+    hues = sorted(df[hue_col].unique()) if (hue_col and hue_col in df.columns) else [None]
+
+    x = np.arange(len(groups))
+    bar_width = 0.75 / max(len(hues), 1)
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    for hi, hue_val in enumerate(hues):
+        sub = df[df[hue_col] == hue_val] if hue_val is not None else df
+        means = [sub[sub[group_col] == g][metric_col].mean() if g in sub[group_col].values else np.nan
+                 for g in groups]
+        errs = None
+        if std_col and std_col in sub.columns:
+            errs = [sub[sub[group_col] == g][std_col].mean() if g in sub[group_col].values else np.nan
+                    for g in groups]
+
+        offset = (hi - (len(hues) - 1) / 2) * bar_width
+        color = (INIT_COLORS.get(hue_val) if hue_val in INIT_COLORS
+                 else METHOD_COLORS.get(hue_val.lower(), DTU_PALETTE["blue"])) if hue_val else DTU_PALETTE["blue"]
+        label = str(hue_val).replace("_", " ") if hue_val is not None else None
+
+        ax.bar(
+            x + offset, means, bar_width,
+            yerr=errs, capsize=3, alpha=0.85,
+            color=color, label=label,
+            error_kw={"elinewidth": 1.0, "ecolor": "#333333"},
+        )
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(
+        [str(g).replace("_", " ") for g in groups],
+        rotation=20, ha="right", fontsize=9,
+    )
+    ax.set_ylabel(metric_label, fontsize=10)
+    ax.set_ylim(0, 1.05)
+    ax.set_title(title, fontsize=12, fontweight="bold")
+    if hue_col:
+        ax.legend(title=hue_col.replace("_", " "), fontsize=8, frameon=False)
+    despine_thesis(ax)
+
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    return fig, ax
+
+
+def plot_k_shot_sensitivity_extended(
+    summary_df: "pd.DataFrame",
+    auroc_col: str = "auroc_mean",
+    ndcg_col: "str | None" = "ndcg_at_10_mean",
+    support_col: str = "n_support_pos",
+    method_col: str = "method",
+    init_col: "str | None" = None,
+    filter_inits: "list[str] | None" = None,
+    title: str = "K-Shot Sensitivity",
+    figsize: "tuple[float, float]" = (11, 4),
+    save_path: "str | None" = None,
+) -> "tuple":
+    """K-shot sensitivity curves, optionally faceted by init source.
+
+    Extends the existing Group D k-shot plot by supporting init-level
+    faceting and consistent DTU_PALETTE coloring.
+
+    Parameters
+    ----------
+    summary_df : pd.DataFrame
+        Registry rows with varying n_support_pos.
+    auroc_col, ndcg_col : str
+        Metric columns.
+    support_col : str
+        Column holding k (usually n_support_pos).
+    method_col : str
+        Column holding the method name.
+    init_col : str or None
+        If given, separate line series per init source within each panel.
+    filter_inits : list of str or None
+        If given, restrict to these init sources.
+    save_path : str, optional
+        Save path for 300-dpi output.
+
+    Returns
+    -------
+    (fig, axes)
+    """
+    if summary_df.empty or support_col not in summary_df.columns:
+        fig, ax = plt.subplots(figsize=figsize)
+        ax.text(0.5, 0.5, "No data available", ha="center", va="center", transform=ax.transAxes)
+        ax.set_title(title)
+        return fig, [ax]
+
+    df = summary_df.copy()
+    if filter_inits and init_col and init_col in df.columns:
+        df = df[df[init_col].isin(filter_inits)]
+
+    metrics = [(auroc_col, "AUROC")]
+    if ndcg_col and ndcg_col in df.columns:
+        metrics.append((ndcg_col, "NDCG@10"))
+    n_panels = len(metrics)
+
+    fig, axes = plt.subplots(1, n_panels, figsize=figsize, constrained_layout=True)
+    if n_panels == 1:
+        axes = [axes]
+
+    methods = sorted(df[method_col].unique()) if method_col in df.columns else []
+    inits = (sorted(df[init_col].unique()) if init_col and init_col in df.columns else [None])
+
+    for pi, (col, ylabel) in enumerate(metrics):
+        if col not in df.columns:
+            continue
+        ax = axes[pi]
+        for method in methods:
+            method_color = METHOD_COLORS.get(method.lower(), DTU_PALETTE["navy"])
+            for init in inits:
+                sub = df[df[method_col] == method]
+                if init is not None and init_col:
+                    sub = sub[sub[init_col] == init]
+                grouped = (sub.groupby(support_col)[col]
+                             .mean().reset_index().sort_values(support_col))
+                if grouped.empty:
+                    continue
+
+                _linestyle = "-" if init is None else (
+                    ["--", ":", "-.", (0, (3, 1, 1, 1))][
+                        inits.index(init) % 4
+                    ]
+                )
+                label = (method if init is None
+                         else f"{method} / {str(init).replace('_', ' ')}")
+                color = (INIT_COLORS.get(init, method_color) if init is not None
+                         else method_color)
+                ax.plot(grouped[support_col], grouped[col],
+                        marker="o", linestyle=_linestyle,
+                        color=color, label=label, linewidth=1.6)
+
+        ax.set_xlabel("k (support examples per class)", fontsize=10)
+        ax.set_ylabel(ylabel, fontsize=10)
+        ax.set_title(ylabel, fontsize=11)
+        ax.set_ylim(0, 1.05)
+        ax.legend(fontsize=7, frameon=False, ncol=2)
+        despine_thesis(ax)
+
+    fig.suptitle(title, fontsize=12, fontweight="bold")
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    return fig, axes
+
+
+def plot_per_department_init_comparison(
+    summary_df: "pd.DataFrame",
+    auroc_col: str = "auroc_mean",
+    dept_col: str = "target_department",
+    init_col: str = "init_name",
+    method_col: str = "method",
+    departments: "list[str] | None" = None,
+    filter_methods: "list[str] | None" = None,
+    title: str = "Per-Department Initialization Comparison",
+    figsize: "tuple[float, float] | None" = None,
+    save_path: "str | None" = None,
+) -> "tuple":
+    """Grouped bar chart: AUROC per department, hued by init source.
+
+    One sub-panel per method (or one panel total if filter_methods is a
+    single method).  Each panel shows departments on the x-axis with bars
+    coloured by initialization source.
+
+    Parameters
+    ----------
+    summary_df : pd.DataFrame
+        Registry subset.
+    departments : list of str, optional
+        Departments to display.  Defaults to all in data.
+    filter_methods : list of str, optional
+        If given, restrict to these methods and produce one panel per method.
+    save_path : str, optional
+        Save path.
+
+    Returns
+    -------
+    (fig, axes)
+    """
+    if summary_df.empty or auroc_col not in summary_df.columns:
+        fig, ax = plt.subplots()
+        ax.text(0.5, 0.5, "No data available", ha="center", va="center", transform=ax.transAxes)
+        ax.set_title(title)
+        return fig, [ax]
+
+    df = summary_df.copy()
+    if filter_methods and method_col in df.columns:
+        df = df[df[method_col].isin(filter_methods)]
+    if departments and dept_col in df.columns:
+        df = df[df[dept_col].isin(departments)]
+
+    methods = filter_methods or (sorted(df[method_col].unique()) if method_col in df.columns else ["all"])
+    inits = sorted(df[init_col].unique()) if init_col in df.columns else ["all"]
+    depts = departments or (sorted(df[dept_col].unique()) if dept_col in df.columns else [])
+
+    if not depts:
+        fig, ax = plt.subplots()
+        ax.text(0.5, 0.5, "No departments found", ha="center", va="center", transform=ax.transAxes)
+        return fig, [ax]
+
+    n_methods = len(methods)
+    if figsize is None:
+        figsize = (max(7, len(depts) * 1.2 * n_methods), 4)
+
+    fig, axes = plt.subplots(1, n_methods, figsize=figsize, constrained_layout=True, squeeze=False)
+    x = np.arange(len(depts))
+    bar_width = 0.8 / max(len(inits), 1)
+
+    for mi, method in enumerate(methods):
+        ax = axes[0, mi]
+        sub_m = df[df[method_col] == method] if method_col in df.columns else df
+
+        for ii, init_val in enumerate(inits):
+            sub_i = sub_m[sub_m[init_col] == init_val] if init_col in df.columns else sub_m
+            vals = [
+                sub_i[sub_i[dept_col] == dept][auroc_col].mean()
+                if dept in sub_i[dept_col].values else np.nan
+                for dept in depts
+            ]
+            offset = (ii - (len(inits) - 1) / 2) * bar_width
+            color = INIT_COLORS.get(init_val, DTU_PALETTE["grey"])
+            ax.bar(x + offset, vals, bar_width, label=str(init_val).replace("_", " "),
+                   alpha=0.85, color=color)
+
+        ax.set_xticks(x)
+        ax.set_xticklabels([d[:18] for d in depts], rotation=25, ha="right", fontsize=8)
+        ax.set_ylabel("AUROC" if mi == 0 else "")
+        ax.set_ylim(0, 1.05)
+        ax.set_title(method.replace("_", " "), fontsize=10)
+        ax.legend(title="init", fontsize=7, frameon=False)
+        despine_thesis(ax)
+
+    fig.suptitle(title, fontsize=12, fontweight="bold")
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    return fig, axes[0].tolist()
+
+
+def plot_confusion_matrix_grid(
+    predictions_dict: "dict[str, pd.DataFrame]",
+    threshold: float = 0.5,
+    title: str = "Confusion Matrices (Supplementary)",
+    y_true_col: str = "y_true",
+    y_prob_col: str = "y_prob",
+    figsize: "tuple[float, float] | None" = None,
+    save_path: "str | None" = None,
+) -> "tuple":
+    """Confusion-matrix grid for a selected set of experiments.
+
+    Treats this as a supplementary diagnostic, not a primary metric.
+    Predictions are thresholded at `threshold` to produce binary labels.
+
+    Parameters
+    ----------
+    predictions_dict : dict
+        Mapping of label (e.g. experiment_id or short label) to a DataFrame
+        with columns 'y_true' and 'y_prob'.
+    threshold : float
+        Decision threshold for binary classification (default 0.5).
+    title : str
+        Figure suptitle.
+    y_true_col, y_prob_col : str
+        Column names in each predictions DataFrame.
+    figsize : (float, float), optional
+        Figure size; auto-computed from number of panels.
+    save_path : str, optional
+        Save path at 300 dpi.
+
+    Returns
+    -------
+    (fig, axes)
+    """
+    from sklearn.metrics import confusion_matrix  # deferred import
+
+    if not predictions_dict:
+        fig, ax = plt.subplots()
+        ax.text(0.5, 0.5, "No predictions provided", ha="center", va="center",
+                transform=ax.transAxes)
+        ax.set_title(title)
+        return fig, [ax]
+
+    labels = list(predictions_dict.keys())
+    n = len(labels)
+    ncols = min(n, 4)
+    nrows = (n + ncols - 1) // ncols
+
+    if figsize is None:
+        figsize = (3.5 * ncols, 3.2 * nrows)
+
+    fig, axes = plt.subplots(nrows, ncols, figsize=figsize, constrained_layout=True, squeeze=False)
+
+    for idx, label in enumerate(labels):
+        ri, ci = divmod(idx, ncols)
+        ax = axes[ri, ci]
+        pred_df = predictions_dict[label]
+
+        if y_true_col not in pred_df.columns or y_prob_col not in pred_df.columns:
+            ax.set_title(f"{label}\n(missing columns)")
+            ax.axis("off")
+            continue
+
+        y_true = pred_df[y_true_col].astype(int).values
+        y_pred = (pred_df[y_prob_col].values >= threshold).astype(int)
+        cm = confusion_matrix(y_true, y_pred)
+
+        im = ax.imshow(cm, cmap="Blues", vmin=0, vmax=max(cm.max(), 1))
+        for r in range(cm.shape[0]):
+            for c in range(cm.shape[1]):
+                ax.text(c, r, str(cm[r, c]), ha="center", va="center",
+                        fontsize=11,
+                        color="white" if cm[r, c] > cm.max() * 0.55 else "black")
+        ax.set_xticks([0, 1])
+        ax.set_xticklabels(["Pred 0", "Pred 1"], fontsize=8)
+        ax.set_yticks([0, 1])
+        ax.set_yticklabels(["True 0", "True 1"], fontsize=8)
+        ax.set_title(str(label)[:30], fontsize=8, fontweight="bold")
+        ax.set_xlabel("Predicted", fontsize=7)
+        ax.set_ylabel("Actual", fontsize=7)
+
+    # Hide unused panels
+    for idx in range(len(labels), nrows * ncols):
+        ri, ci = divmod(idx, ncols)
+        axes[ri, ci].axis("off")
+
+    fig.suptitle(
+        f"{title}\n(threshold = {threshold:.2f}; supplementary diagnostic only)",
+        fontsize=11, fontweight="bold",
+    )
+    if save_path:
+        fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    return fig, axes
+
+
+def plot_init_method_bar_grid(
+    summary_df: "pd.DataFrame",
+    metrics: "list[tuple[str, str]] | None" = None,
+    init_col: str = "init_name",
+    method_col: str = "method",
+    title: str = "Initialization × Method Comparison",
+    figsize: "tuple[float, float] | None" = None,
+    save_path: "str | None" = None,
+) -> "tuple":
+    """Grouped bar chart across all (init, method) combinations.
+
+    Produces one panel per metric.  Within each panel, X-axis = method,
+    bars grouped by init source, coloured by INIT_COLORS.
+
+    Parameters
+    ----------
+    summary_df : pd.DataFrame
+        Registry subset.
+    metrics : list of (col_name, display_label) pairs, optional
+        Defaults to AUROC, NDCG@10, Log-Loss, ECE.
+    figsize : (float, float), optional
+        Auto-computed if None.
+    save_path : str, optional
+        Save path at 300 dpi.
+
+    Returns
+    -------
+    (fig, axes)
+    """
+    _DEFAULT_METRICS = [
+        ("auroc_mean",      "AUROC"),
+        ("ndcg_at_10_mean", "NDCG@10"),
+        ("log_loss_mean",   "Log-Loss"),
+        ("ece_mean",        "ECE"),
+    ]
+    if metrics is None:
+        metrics = [(c, l) for c, l in _DEFAULT_METRICS if c in summary_df.columns]
+
+    if not metrics or summary_df.empty:
+        fig, ax = plt.subplots()
+        ax.text(0.5, 0.5, "No data available", ha="center", va="center", transform=ax.transAxes)
+        ax.set_title(title)
+        return fig, [ax]
+
+    n_panels = len(metrics)
+    if figsize is None:
+        figsize = (max(8, n_panels * 5), 4)
+
+    inits = sorted(
+        [i for i in summary_df[init_col].unique() if i in INIT_COLORS or True],
+        key=lambda v: list(INIT_COLORS.keys()).index(v) if v in INIT_COLORS else 99,
+    )
+    methods = sorted(summary_df[method_col].unique())
+    x = np.arange(len(methods))
+    bar_width = 0.8 / max(len(inits), 1)
+
+    fig, axes = plt.subplots(1, n_panels, figsize=figsize, constrained_layout=True)
+    if n_panels == 1:
+        axes = [axes]
+
+    _fallback = [DTU_PALETTE["blue"], DTU_PALETTE["green"], DTU_PALETTE["orange"],
+                 DTU_PALETTE["purple"], DTU_PALETTE["grey"]]
+
+    for pi, (col, label) in enumerate(metrics):
+        ax = axes[pi]
+        for ii, init_val in enumerate(inits):
+            vals = [
+                summary_df[
+                    (summary_df[init_col] == init_val) & (summary_df[method_col] == m)
+                ][col].mean()
+                for m in methods
+            ]
+            offset = (ii - (len(inits) - 1) / 2) * bar_width
+            color = INIT_COLORS.get(init_val, _fallback[ii % len(_fallback)])
+            ax.bar(x + offset, vals, bar_width,
+                   label=str(init_val).replace("_", " "),
+                   alpha=0.85, color=color)
+
+        ax.set_xticks(x)
+        ax.set_xticklabels(
+            [m.replace("_", " ") for m in methods],
+            rotation=20, ha="right", fontsize=9,
+        )
+        ax.set_ylabel(label, fontsize=10)
+        ax.set_title(label, fontsize=11)
+        is_loss = label in ("Log-Loss", "ECE")
+        if not is_loss:
+            ax.set_ylim(0, 1.05)
+        ax.legend(title="init", fontsize=7, frameon=False)
+        despine_thesis(ax)
 
     fig.suptitle(title, fontsize=12, fontweight="bold")
     if save_path:

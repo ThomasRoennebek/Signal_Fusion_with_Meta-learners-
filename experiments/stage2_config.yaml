@@ -18,10 +18,6 @@ base_config:
   seed: 42
   verbose: true
   method: "finetune" # Default method for path resolution
-  
-  support_config:
-    n_support_pos: 2
-    n_support_neg: 2
 
   data:
     data_filename: "contract_with_features_labeled_with_gold.csv"
@@ -37,6 +33,11 @@ base_config:
     init_name: "A_weak_only" # Default init
     model_filename: "mlp_pretrained.pt"
     preprocessor_filename: "mlp_pretrained_preprocessor.joblib"
+    # When init_name == "random", no model weights are loaded.
+    # The preprocessor below is used to define the feature space.
+    # Defaults to A_weak_only so that random-init shares the same
+    # input dimension as the primary pretrained baseline.
+    random_preprocessor_source: "A_weak_only"
 
   task_config:
     target_department: "Logistics"
@@ -99,7 +100,9 @@ experiment_grid:
 
   init_names:
     - "A_weak_only"
+    - "B_gold_only"
     - "C_hybrid"
+    - "D_hybrid_unweighted"
     - "random"
 
 # ---------------------------------------------------------
@@ -181,7 +184,7 @@ presets:
       - n_support_pos: 2
         n_support_neg: 2
     inner_steps_grid: [0]
-    init_names: ["A_weak_only", "C_hybrid", "random"]
+    init_names: ["A_weak_only", "B_gold_only", "C_hybrid", "D_hybrid_unweighted", "random"]
 
   # Full 5-method comparison including the no-adapt zero-shot floor.
   # zero_shot_only + four_method_benchmark produces the full set of curves
@@ -373,13 +376,39 @@ presets:
   # Fixes the gap where only A_weak_only initialisation has been evaluated.
   # ──────────────────────────────────────────────────────────────────────────
   initialization_ablation:
+    # Full pretrained-init ablation: all four supervised conditions x
+    # three adaptive methods. Steps=3 and lr=0.005 match the existing
+    # A_weak_only runs so comparisons are on equal footing.
+    # random init is excluded here; add it via initialization_ablation_full
+    # once the random-init preprocessor fix is validated.
     methods: ["anil", "fomaml", "maml"]
     support_grid:
       - n_support_pos: 2
         n_support_neg: 2
     inner_steps_grid: [3]
     inner_lr_grid: [0.005]
-    init_names: ["A_weak_only", "C_hybrid"]
+    init_names: ["A_weak_only", "B_gold_only", "C_hybrid", "D_hybrid_unweighted"]
+    meta_batch_size: 4
+    n_repeats: 20
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # GROUP F — Full 5x5 initialization x method matrix
+  #
+  # All five init sources x all five methods x k=2/2 x steps=3 x lr=0.005.
+  # Produces the complete comparable experiment matrix for the thesis.
+  # Run after Groups C and D to fill the remaining cells.
+  # Existing A_weak_only runs at lr=0.005 are skipped via skip_if_exists.
+  # B_gold_only uses its own preprocessor (409 features); other conditions
+  # use A_weak_only-scale preprocessors (889 features).
+  # ──────────────────────────────────────────────────────────────────────────
+  full_init_ablation:
+    methods: ["zero_shot", "finetune", "anil", "fomaml", "maml"]
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+    inner_steps_grid: [3]
+    inner_lr_grid: [0.005]
+    init_names: ["A_weak_only", "B_gold_only", "C_hybrid", "D_hybrid_unweighted", "random"]
     meta_batch_size: 4
     n_repeats: 20
 

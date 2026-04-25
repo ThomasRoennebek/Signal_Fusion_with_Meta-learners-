@@ -82,6 +82,10 @@ def adapt_fomaml_on_episode(
     for _ in range(inner_steps):
         logits = torch.func.functional_call(model, (params, buffers), X_support)
         loss = criterion(logits, y_support)
+        # Skip gradient update if the support loss is non-finite to prevent
+        # Inf/NaN from propagating through the computation graph.
+        if not torch.isfinite(loss):
+            break
         grads = torch.autograd.grad(loss, params.values(), create_graph=False, allow_unused=True)
 
         params = {
@@ -118,7 +122,12 @@ def meta_train_fomaml(
     outer_optimizer = torch.optim.Adam(model.parameters(), lr=outer_lr)
     criterion = nn.BCEWithLogitsLoss()
 
-    train_df = task_df[task_df[department_col].isin(meta_train_departments)].copy()
+    # Defensive filter: keep only rows with a valid label even though
+    # build_department_task_table already removes missing gold_y values.
+    train_df = task_df[
+        task_df[department_col].isin(meta_train_departments)
+        & task_df[target_col].notna()
+    ].copy()
     history_rows: List[Dict[str, Any]] = []
     total_skipped = 0
     rng = random.Random(random_state)
@@ -126,6 +135,7 @@ def meta_train_fomaml(
     for iteration in range(meta_iterations):
         outer_optimizer.zero_grad()
         valid_query_losses = []
+        skipped_before_iteration = total_skipped
 
         # Sample departments without replacement when the pool is large enough,
         # so the same department cannot appear twice in one meta-batch.
@@ -181,7 +191,7 @@ def meta_train_fomaml(
             logits_query = torch.func.functional_call(model, (adapted_params, buffers), X_query)
             query_loss = criterion(logits_query, y_query)
 
-            if torch.isnan(query_loss):
+            if not torch.isfinite(query_loss):
                 total_skipped += 1
                 continue
 
@@ -193,19 +203,34 @@ def meta_train_fomaml(
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             outer_optimizer.step()
 
+            skipped_this_iteration = total_skipped - skipped_before_iteration
             history_rows.append(
                 {
                     "iteration": iteration + 1,
                     "meta_loss": float(outer_loss.item()),
-                    "n_skipped": total_skipped,
                     "n_valid_tasks": len(valid_query_losses),
+                    "n_skipped": total_skipped,              # kept for backward compatibility
+                    "n_skipped_this_iteration": skipped_this_iteration,
+                    "n_skipped_cumulative": total_skipped,
                 }
             )
+
+    total_possible_task_episodes = meta_iterations * meta_batch_size
+    diagnostics = {
+        "meta_iterations_requested": meta_iterations,
+        "iterations_with_valid_tasks": len(history_rows),
+        "meta_batch_size": meta_batch_size,
+        "total_possible_task_episodes": total_possible_task_episodes,
+        "total_skipped_task_episodes": total_skipped,
+        "skip_rate": total_skipped / max(1, total_possible_task_episodes),
+        "meta_train_departments_used": list(meta_train_departments),
+    }
 
     return {
         "method": "fomaml",
         "status": "success",
         "history": pd.DataFrame(history_rows),
+        "diagnostics": diagnostics,
         "model": model,
     }
 
@@ -291,7 +316,9 @@ def evaluate_fomaml_on_target_episodes(
         return {
             "method": "fomaml",
             "status": "failed",
-            "n_target_episodes": 0,
+            "n_target_episodes": len(target_episodes),
+            "n_evaluated_episodes": 0,
+            "n_skipped_episodes": len(target_episodes),
             "raw_metrics": pd.DataFrame(),
             "predictions": pd.DataFrame(),
         }
@@ -300,6 +327,8 @@ def evaluate_fomaml_on_target_episodes(
         "method": "fomaml",
         "status": "success",
         "n_target_episodes": len(target_episodes),
+        "n_evaluated_episodes": len(metric_rows),
+        "n_skipped_episodes": len(target_episodes) - len(metric_rows),
         "raw_metrics": pd.concat(metric_rows, ignore_index=True),
         "predictions": pd.concat(prediction_rows, ignore_index=True),
     }
