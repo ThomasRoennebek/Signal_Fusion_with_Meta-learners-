@@ -110,6 +110,281 @@ class Stage2Paths:
     stage1_model_path: Optional[Path]
     stage1_preprocessor_path: Optional[Path]
     output_dir: Path
+    # Diagnostic fields populated by ``resolve_stage2_paths`` so callers (and
+    # the pre-flight validator) can audit *exactly* where artifacts came from.
+    init_scope: str = "unknown"          # "global" | "target_aware" | "none"
+    init_source_dir: Optional[Path] = None  # The Stage 1 artifact directory used
+    target_department: Optional[str] = None
+
+
+# ---------------------------------------------------------------------------
+# Stage 1 artifact layout
+# ---------------------------------------------------------------------------
+# After the Stage 1 restructuring, Stage 1 artifacts live under:
+#
+#   models/stage_1/global/A_weak_only/...
+#   models/stage_1/{target_department}/B_gold_only/...
+#   models/stage_1/{target_department}/C_hybrid/...
+#   models/stage_1/{target_department}/D_hybrid_unweighted/...
+#
+# The legacy flat layout (models/stage_1/{init_name}/...) MUST NOT be used by
+# Stage 2 anymore — leaving it active caused target-specific runs to silently
+# load global B/C/D weights that had not seen the held-out department excluded
+# from meta-training.  The constants below make the routing rule explicit and
+# easy to audit.
+GLOBAL_INIT_NAMES: Tuple[str, ...] = ("A_weak_only",)
+TARGET_AWARE_INIT_NAMES: Tuple[str, ...] = (
+    "B_gold_only",
+    "C_hybrid",
+    "D_hybrid_unweighted",
+)
+RANDOM_INIT_NAME: str = "random"
+SUPPORTED_INIT_NAMES: Tuple[str, ...] = (
+    GLOBAL_INIT_NAMES + TARGET_AWARE_INIT_NAMES + (RANDOM_INIT_NAME,)
+)
+
+
+def _safe_target_dirname(target_department: str) -> str:
+    """Translate a target department label into a filesystem-safe directory.
+
+    Stage 1 artifact directories are written using the same string the user
+    supplies in ``task_config.target_department``.  Stage 2 must therefore use
+    a byte-identical key to look them up; we intentionally do NOT sanitise
+    spaces or special characters away.  This helper exists to centralise the
+    convention so that any future sanitisation lives in one place.
+    """
+    return str(target_department)
+
+
+def stage1_artifact_dir(
+    init_name: str,
+    target_department: Optional[str] = None,
+    stage1_root: Optional[Path] = None,
+) -> Path:
+    """Return the canonical Stage 1 artifact directory for ``(init, target)``.
+
+    The routing rule is:
+
+    * ``A_weak_only``                       → ``stage_1/global/A_weak_only``
+    * ``B_gold_only`` / ``C_hybrid`` /
+      ``D_hybrid_unweighted``               → ``stage_1/{target}/{init}``
+    * ``random``                            → not applicable; raises ValueError
+
+    No fallback to the legacy flat layout is performed.  Callers that need to
+    handle "missing artifact" gracefully should call
+    :func:`discover_stage1_artifacts` instead.
+    """
+    if stage1_root is None:
+        stage1_root = MODELS_STAGE1
+    if init_name in GLOBAL_INIT_NAMES:
+        return stage1_root / "global" / init_name
+    if init_name in TARGET_AWARE_INIT_NAMES:
+        if not target_department:
+            raise ValueError(
+                f"Init '{init_name}' is target-aware and requires a "
+                f"target_department; got None."
+            )
+        return stage1_root / _safe_target_dirname(target_department) / init_name
+    if init_name == RANDOM_INIT_NAME:
+        raise ValueError(
+            "Init 'random' has no Stage 1 artifact directory. "
+            "Resolve its preprocessor via stage1_artifact_dir(random_preprocessor_source=...) instead."
+        )
+    raise ValueError(
+        f"Unknown Stage 1 init '{init_name}'. "
+        f"Supported: {SUPPORTED_INIT_NAMES}"
+    )
+
+
+def discover_stage1_artifacts(
+    stage1_root: Optional[Path] = None,
+    model_filename: str = "mlp_pretrained.pt",
+    preprocessor_filename: str = "mlp_pretrained_preprocessor.joblib",
+) -> pd.DataFrame:
+    """Scan the Stage 1 artifact tree under the new target-aware layout.
+
+    Returns one row per ``(target_department, init_name)`` cell that exists on
+    disk, with explicit columns for the model/preprocessor presence.  This is
+    the building block for pre-flight validation: callers can filter by
+    ``has_model`` and ``has_preprocessor`` to find runnable Stage 2 cells, or
+    simply ``print(df)`` for an audit of what is currently available.
+
+    Columns
+    -------
+    init_name : str
+        One of A_weak_only, B_gold_only, C_hybrid, D_hybrid_unweighted.
+    target_department : str | None
+        Department label (None for the global ``A_weak_only`` artifact).
+    scope : str
+        ``"global"`` for ``A_weak_only`` and ``"target_aware"`` otherwise.
+    artifact_dir : str
+        Absolute path to the artifact directory.
+    has_model : bool
+    has_preprocessor : bool
+    is_runnable : bool
+        Convenience: ``has_model and has_preprocessor``.
+
+    Notes
+    -----
+    Random init is not enumerated here because it does not produce Stage 1
+    weights.  Use :func:`resolve_stage2_paths` with
+    ``stage1_init.init_name == "random"`` to surface its preprocessor path.
+    """
+    if stage1_root is None:
+        stage1_root = MODELS_STAGE1
+    rows: List[Dict[str, Any]] = []
+
+    # Global init(s)
+    global_root = stage1_root / "global"
+    for init_name in GLOBAL_INIT_NAMES:
+        d = global_root / init_name
+        rows.append(
+            {
+                "init_name": init_name,
+                "target_department": None,
+                "scope": "global",
+                "artifact_dir": str(d),
+                "has_model": (d / model_filename).exists(),
+                "has_preprocessor": (d / preprocessor_filename).exists(),
+            }
+        )
+
+    # Target-aware inits — enumerate every direct child of stage1_root that
+    # contains at least one of the target-aware sub-directories.
+    skip_dirs = {"global", "experiments"}
+    if stage1_root.exists():
+        for target_dir in sorted(stage1_root.iterdir()):
+            if not target_dir.is_dir() or target_dir.name in skip_dirs:
+                continue
+            # Skip legacy flat directories that look like an init_name; they
+            # are NOT a valid target-aware artifact location.
+            if target_dir.name in TARGET_AWARE_INIT_NAMES + GLOBAL_INIT_NAMES:
+                continue
+            for init_name in TARGET_AWARE_INIT_NAMES:
+                d = target_dir / init_name
+                if not d.exists():
+                    # We still emit a row so the caller can see "expected but
+                    # missing" cells instead of having to guess.
+                    rows.append(
+                        {
+                            "init_name": init_name,
+                            "target_department": target_dir.name,
+                            "scope": "target_aware",
+                            "artifact_dir": str(d),
+                            "has_model": False,
+                            "has_preprocessor": False,
+                        }
+                    )
+                    continue
+                rows.append(
+                    {
+                        "init_name": init_name,
+                        "target_department": target_dir.name,
+                        "scope": "target_aware",
+                        "artifact_dir": str(d),
+                        "has_model": (d / model_filename).exists(),
+                        "has_preprocessor": (d / preprocessor_filename).exists(),
+                    }
+                )
+
+    df = pd.DataFrame(rows)
+    if not df.empty:
+        df["is_runnable"] = df["has_model"] & df["has_preprocessor"]
+    else:
+        df["is_runnable"] = []
+    return df
+
+
+def validate_experiment_grid(
+    experiment_list: Sequence[Tuple[str, Dict[str, Any]]],
+    stage1_root: Optional[Path] = None,
+    drop_invalid: bool = False,
+    verbose: bool = True,
+) -> Tuple[List[Tuple[str, Dict[str, Any]]], pd.DataFrame]:
+    """Pre-flight check: confirm every cell has the Stage 1 artifacts it needs.
+
+    For each ``(experiment_id, config)`` pair, resolves the canonical Stage 1
+    paths under the new layout and records whether the model and preprocessor
+    exist.  Random-init cells are validated against their fallback
+    preprocessor (default: ``stage_1/global/A_weak_only``).
+
+    Parameters
+    ----------
+    experiment_list
+        Output of :func:`resolve_experiment_grid`.
+    stage1_root
+        Override the Stage 1 root directory (defaults to ``MODELS_STAGE1``).
+    drop_invalid
+        When True, the returned ``runnable_list`` excludes cells with missing
+        artifacts.  When False, the original list is returned unchanged.
+    verbose
+        Print a short report when invalid cells are detected.
+
+    Returns
+    -------
+    runnable_list, report_df
+        ``runnable_list`` is a list with the same shape as ``experiment_list``,
+        optionally filtered.  ``report_df`` always covers every input cell so
+        the caller can display a full audit table even after dropping.
+    """
+    rows: List[Dict[str, Any]] = []
+    runnable: List[Tuple[str, Dict[str, Any]]] = []
+    for exp_id, cfg in experiment_list:
+        try:
+            paths = resolve_stage2_paths(cfg, experiment_id=exp_id, stage1_root=stage1_root)
+            row = {
+                "experiment_id": exp_id,
+                "init_name": cfg["stage1_init"]["init_name"],
+                "target_department": cfg["task_config"]["target_department"],
+                "method": cfg["method"],
+                "init_scope": paths.init_scope,
+                "init_source_dir": str(paths.init_source_dir) if paths.init_source_dir else None,
+                "model_path": str(paths.stage1_model_path) if paths.stage1_model_path else None,
+                "preprocessor_path": str(paths.stage1_preprocessor_path) if paths.stage1_preprocessor_path else None,
+                "model_present": (
+                    paths.stage1_model_path is not None
+                    and paths.stage1_model_path.exists()
+                ),
+                "preprocessor_present": (
+                    paths.stage1_preprocessor_path is not None
+                    and paths.stage1_preprocessor_path.exists()
+                ),
+                "resolution_error": None,
+            }
+        except Exception as exc:
+            row = {
+                "experiment_id": exp_id,
+                "init_name": cfg.get("stage1_init", {}).get("init_name"),
+                "target_department": cfg.get("task_config", {}).get("target_department"),
+                "method": cfg.get("method"),
+                "init_scope": "error",
+                "init_source_dir": None,
+                "model_path": None,
+                "preprocessor_path": None,
+                "model_present": False,
+                "preprocessor_present": False,
+                "resolution_error": str(exc),
+            }
+
+        # Random init is allowed to have model_present == False; it just needs
+        # a valid preprocessor to define the feature space.
+        if row["init_name"] == RANDOM_INIT_NAME:
+            row["is_runnable"] = bool(row["preprocessor_present"]) and (row["resolution_error"] is None)
+        else:
+            row["is_runnable"] = bool(row["model_present"] and row["preprocessor_present"])
+        rows.append(row)
+        if row["is_runnable"]:
+            runnable.append((exp_id, cfg))
+
+    report_df = pd.DataFrame(rows)
+    invalid = report_df[~report_df["is_runnable"]] if not report_df.empty else report_df
+    if verbose and not invalid.empty:
+        print(f"[Stage 2 pre-flight] {len(invalid)} of {len(report_df)} cell(s) are NOT runnable:")
+        cols = ["experiment_id", "init_name", "target_department", "method",
+                "model_present", "preprocessor_present", "resolution_error"]
+        print(invalid[[c for c in cols if c in invalid.columns]].to_string(index=False))
+
+    return (runnable if drop_invalid else list(experiment_list)), report_df
 
 
 def load_stage2_config(config_path: str | Path) -> Dict[str, Any]:
@@ -450,34 +725,112 @@ def build_experiment_preview_df(
     return pd.DataFrame(rows)
 
 
-def resolve_stage2_paths(config: Dict[str, Any], experiment_id: Optional[str] = None) -> Stage2Paths:
+def _resolve_random_preprocessor_path(
+    config: Dict[str, Any],
+    stage1_root: Path,
+) -> Tuple[Path, Path]:
+    """Resolve the preprocessor used for random-init experiments.
+
+    Returns ``(preprocessor_path, source_dir)``.
+
+    Random init has no pretrained weights, but it still needs a preprocessor
+    so that the feature space and input dimensionality match the pretrained
+    baselines.  Under the new layout this preprocessor lives at
+    ``stage_1/global/A_weak_only/`` by default.  The source can be overridden
+    by ``stage1_init.random_preprocessor_source``; the value may be either:
+
+    * ``"A_weak_only"`` (resolves to ``stage_1/global/A_weak_only``)
+    * a target-aware init name (``B_gold_only`` / ``C_hybrid`` /
+      ``D_hybrid_unweighted``) — in which case the target_department from
+      ``task_config`` is used to locate the matching folder
+    """
+    init_cfg = config["stage1_init"]
+    preprocessor_filename = init_cfg["preprocessor_filename"]
+    source = init_cfg.get("random_preprocessor_source", "A_weak_only")
+    target_department = config["task_config"].get("target_department")
+
+    if source in GLOBAL_INIT_NAMES:
+        source_dir = stage1_root / "global" / source
+    elif source in TARGET_AWARE_INIT_NAMES:
+        if not target_department:
+            raise ValueError(
+                f"random_preprocessor_source='{source}' is target-aware but no "
+                f"target_department was provided in task_config."
+            )
+        source_dir = stage1_root / _safe_target_dirname(target_department) / source
+    else:
+        raise ValueError(
+            f"Unknown random_preprocessor_source='{source}'. "
+            f"Supported: {GLOBAL_INIT_NAMES + TARGET_AWARE_INIT_NAMES}"
+        )
+
+    return source_dir / preprocessor_filename, source_dir
+
+
+def resolve_stage2_paths(
+    config: Dict[str, Any],
+    experiment_id: Optional[str] = None,
+    stage1_root: Optional[Path] = None,
+) -> Stage2Paths:
+    """Resolve every filesystem path Stage 2 needs for one experiment cell.
+
+    Routing rule (new Stage 1 layout, target-aware):
+
+    * ``A_weak_only``                               → ``stage_1/global/A_weak_only/``
+    * ``B_gold_only`` / ``C_hybrid`` /
+      ``D_hybrid_unweighted``                       → ``stage_1/{target}/{init}/``
+    * ``random``                                    → no model file; preprocessor
+      drawn from ``stage_1/global/A_weak_only/`` (or whatever
+      ``random_preprocessor_source`` points to)
+
+    The legacy flat layout (``stage_1/{init}/...``) is intentionally ignored.
+    Missing artifacts are NOT silently substituted — downstream loaders raise a
+    clean ``FileNotFoundError`` so a misconfigured run fails immediately rather
+    than secretly using the wrong pretrained weights.
+    """
     config = normalize_stage2_config(config)
+    if stage1_root is None:
+        stage1_root = MODELS_STAGE1
 
     task_table_path = DATA_PROCESSED / config["data"]["data_filename"]
-    init_type = config["stage1_init"]["init_name"]
+    init_name = config["stage1_init"]["init_name"]
     method = config["method"]
+    target_department = config["task_config"].get("target_department")
 
-    if init_type == "random":
-        # Random init: no pretrained weights are loaded, but a Stage 1
-        # preprocessor is still required so that feature encoding and input
-        # dimensionality remain identical to pretrained baselines, making the
-        # random-init condition directly comparable.  The preprocessor source
-        # is controlled by stage1_init.random_preprocessor_source
-        # (default: A_weak_only).
-        random_preprocessor_source = config["stage1_init"].get(
-            "random_preprocessor_source", "A_weak_only"
+    if init_name not in SUPPORTED_INIT_NAMES:
+        raise ValueError(
+            f"Unsupported stage1_init.init_name='{init_name}'. "
+            f"Supported: {SUPPORTED_INIT_NAMES}"
         )
-        stage1_model_path = None
-        stage1_preprocessor_path = (
-            MODELS_STAGE1
-            / random_preprocessor_source
-            / config["stage1_init"]["preprocessor_filename"]
+
+    if init_name == RANDOM_INIT_NAME:
+        # Random init: no pretrained weights, but the preprocessor must exist
+        # so we still get a valid feature space.
+        stage1_model_path: Optional[Path] = None
+        stage1_preprocessor_path, source_dir = _resolve_random_preprocessor_path(
+            config, stage1_root
         )
+        init_scope = "none"
+    elif init_name in GLOBAL_INIT_NAMES:
+        source_dir = stage1_artifact_dir(init_name, stage1_root=stage1_root)
+        stage1_model_path = source_dir / config["stage1_init"]["model_filename"]
+        stage1_preprocessor_path = source_dir / config["stage1_init"]["preprocessor_filename"]
+        init_scope = "global"
     else:
-        stage1_model_path = MODELS_STAGE1 / init_type / config["stage1_init"]["model_filename"]
-        stage1_preprocessor_path = MODELS_STAGE1 / init_type / config["stage1_init"]["preprocessor_filename"]
+        # Target-aware: B_gold_only / C_hybrid / D_hybrid_unweighted.
+        source_dir = stage1_artifact_dir(
+            init_name,
+            target_department=target_department,
+            stage1_root=stage1_root,
+        )
+        stage1_model_path = source_dir / config["stage1_init"]["model_filename"]
+        stage1_preprocessor_path = source_dir / config["stage1_init"]["preprocessor_filename"]
+        init_scope = "target_aware"
 
-    output_dir = MODELS_STAGE2 / "experiments" / experiment_id if experiment_id else MODELS_STAGE2 / init_type / method
+    if experiment_id:
+        output_dir = MODELS_STAGE2 / "experiments" / experiment_id
+    else:
+        output_dir = MODELS_STAGE2 / init_name / method
     output_dir.mkdir(parents=True, exist_ok=True)
 
     return Stage2Paths(
@@ -485,6 +838,9 @@ def resolve_stage2_paths(config: Dict[str, Any], experiment_id: Optional[str] = 
         stage1_model_path=stage1_model_path,
         stage1_preprocessor_path=stage1_preprocessor_path,
         output_dir=output_dir,
+        init_scope=init_scope,
+        init_source_dir=source_dir,
+        target_department=target_department,
     )
 
 
@@ -605,11 +961,27 @@ def prepare_stage2_tasks(
         require_both_query_classes=config["task_config"]["require_both_query_classes"],
     )
 
+    # ── Target-aware meta-train / meta-test split ──────────────────────────
+    # The held-out target department is excluded from meta-training and is
+    # the *only* department used for meta-test adaptation/evaluation.  This
+    # is the same rule applied across all four Stage 2 methods (zero-shot,
+    # ANIL, FOMAML, MAML) and is the reason Stage 2 results can be read as a
+    # genuine few-shot generalisation test rather than within-distribution
+    # performance on departments the model already saw during meta-training.
     target_department = config["task_config"]["target_department"]
     exclude_departments = set(config["task_config"].get("exclude_departments", []))
     meta_train_departments = [
-        dept for dept in valid_departments if dept != target_department and dept not in exclude_departments
+        dept
+        for dept in valid_departments
+        if dept != target_department and dept not in exclude_departments
     ]
+    # Defensive assertion — fail loudly if the held-out department somehow
+    # leaks into meta-training (e.g. through future refactors of
+    # filter_valid_departments).
+    assert target_department not in meta_train_departments, (
+        f"Target department '{target_department}' must be excluded from "
+        f"meta-training but appears in meta_train_departments."
+    )
 
     try:
         target_episodes = make_logistics_meta_test_split(
@@ -1232,6 +1604,52 @@ def backfill_legacy_stage2_results(
         print(f"Saved updated experiment_summary.csv to {summary_path}")
 
     return updated_summary
+
+
+def stage1_artifact_inventory(
+    stage1_root: Optional[Path] = None,
+    model_filename: str = "mlp_pretrained.pt",
+    preprocessor_filename: str = "mlp_pretrained_preprocessor.joblib",
+) -> Dict[str, Any]:
+    """High-level summary of which Stage 1 artifacts are present on disk.
+
+    Wraps :func:`discover_stage1_artifacts` and produces a small report bundle
+    suitable for in-notebook display.  Useful as a one-shot diagnostic at the
+    top of notebook 17 / 17.1.
+
+    Returns a dict with keys:
+      * ``df`` — full per-cell discovery table
+      * ``runnable`` — subset filtered to ``is_runnable == True``
+      * ``missing`` — subset that is *expected* but not present
+      * ``targets_with_full_set`` — sorted list of departments that have all
+        three target-aware inits available
+    """
+    df = discover_stage1_artifacts(
+        stage1_root=stage1_root,
+        model_filename=model_filename,
+        preprocessor_filename=preprocessor_filename,
+    )
+    if df.empty:
+        return {"df": df, "runnable": df, "missing": df, "targets_with_full_set": []}
+
+    runnable = df[df["is_runnable"]].copy()
+    missing = df[~df["is_runnable"]].copy()
+
+    targets_with_full_set: List[str] = []
+    if "target_department" in runnable.columns:
+        target_aware = runnable[runnable["scope"] == "target_aware"]
+        for dept, sub in target_aware.groupby("target_department"):
+            present_inits = set(sub["init_name"].tolist())
+            if set(TARGET_AWARE_INIT_NAMES).issubset(present_inits):
+                targets_with_full_set.append(str(dept))
+    targets_with_full_set.sort()
+
+    return {
+        "df": df,
+        "runnable": runnable,
+        "missing": missing,
+        "targets_with_full_set": targets_with_full_set,
+    }
 
 
 def run_stage2_pipeline(

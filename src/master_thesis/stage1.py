@@ -468,6 +468,44 @@ def save_stage1_gold_results(
     return gold_path
 
 
+def save_stage1_feature_names(
+    feature_columns: list[str],
+    output_dir: str | Path,
+) -> Path:
+    """
+    Save the input feature names used for a Stage 1 condition.
+
+    The file ``feature_names.json`` records the ordered list of column names
+    that were passed to every model in the condition.  This is the Stage 2
+    handoff artifact: the Stage 2 preprocessor must receive data in the same
+    feature space to produce embeddings that are compatible with the Stage 1
+    MLP weights.
+
+    Parameters
+    ----------
+    feature_columns : list[str]
+        Ordered list of input feature column names.
+    output_dir : str | Path
+        Condition-specific artifact directory.
+
+    Returns
+    -------
+    Path
+        Path to the saved feature_names.json.
+    """
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    payload = {
+        "n_features": len(feature_columns),
+        "feature_names": feature_columns,
+    }
+    path = output_dir / "feature_names.json"
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2)
+    return path
+
+
 def save_stage1_condition_artifacts(
     trained_bundle: dict,
     output_dir: str | Path,
@@ -482,6 +520,7 @@ def save_stage1_condition_artifacts(
     ------------
     - pretrained MLP bundle (weights, preprocessor, history)
     - tabular weak-distillation result table (tabular_results.csv)
+    - feature_names.json (ordered input feature list for Stage 2 handoff)
 
     Saves when provided
     -------------------
@@ -497,7 +536,7 @@ def save_stage1_condition_artifacts(
     trained_bundle : dict
         Bundle returned by fit_all_stage1_models().
     output_dir : str | Path
-        Destination directory, e.g. models/stage_1/A_weak_only/.
+        Destination directory, e.g. models/stage_1/global/A_weak_only/.
     save_xgb_importance : bool
         Whether to also save XGBoost feature importances.
     df_gold_results : pd.DataFrame or None
@@ -523,6 +562,13 @@ def save_stage1_condition_artifacts(
     tabular_results_path = output_dir / "tabular_results.csv"
     trained_bundle["tabular_results"].to_csv(tabular_results_path, index=False)
     saved_paths["tabular_results_path"] = tabular_results_path
+
+    # Always save feature names — critical for Stage 2 handoff.
+    feature_names_path = save_stage1_feature_names(
+        feature_columns=trained_bundle["feature_columns"],
+        output_dir=output_dir,
+    )
+    saved_paths["feature_names_path"] = feature_names_path
 
     if df_predictions is not None:
         predictions_path = output_dir / "predictions.csv"

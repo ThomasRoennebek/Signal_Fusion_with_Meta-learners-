@@ -10,7 +10,7 @@
     "XGBoost",
     "MLP"
   ],
-  "training_timestamp": "2026-04-25T15:56:23.157813+00:00",
+  "training_timestamp": "2026-04-25T16:17:35.226788+00:00",
   "config": {
     "baseline_config": {
       "scale_numeric_for_elastic_net": true,
@@ -40,17 +40,17 @@
       "patience": 10,
       "lr": 0.0005,
       "weight_decay": 0.0001,
-      "train_batch_size": 256,
-      "val_batch_size": 512,
-      "hidden_dim_1": 256,
-      "hidden_dim_2": 128,
-      "dropout": 0.1
+      "train_batch_size": 64,
+      "val_batch_size": 256,
+      "hidden_dim_1": 128,
+      "hidden_dim_2": 64,
+      "dropout": 0.2
     }
   },
   "mlp_architecture": {
-    "hidden_dim_1": 256,
-    "hidden_dim_2": 128,
-    "dropout": 0.1
+    "hidden_dim_1": 128,
+    "hidden_dim_2": 64,
+    "dropout": 0.2
   },
   "n_train_rows": 9401,
   "n_val_rows": 207,
