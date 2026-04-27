@@ -601,29 +601,67 @@ def fit_stage1_conditions(
     config: Optional[Stage1ModelConfig] = None,
     seed: int = 42,
     verbose: bool = True,
+    condition_val_overrides: Optional[dict[str, tuple]] = None,
 ) -> dict[str, dict]:
     """
     Fit multiple Stage 1 conditions in one call.
 
     Expected condition payload format
-    -------------------------------
-    {
-        "A_weak_only": {
-            "X_train_df": ...,
-            "y_train": ...,
-            "sample_weight": None,
-        },
-        ...
-    }
+    ----------------------------------
+    ::
+
+        {
+            "A_weak_only": {
+                "X_train_df": ...,
+                "y_train": ...,
+                "sample_weight": None,
+            },
+            ...
+        }
+
+    Parameters
+    ----------
+    conditions : dict
+        Mapping from condition name to training payload.
+    X_val : pd.DataFrame
+        Default validation feature matrix (used when no per-condition
+        override is provided).
+    y_val : array-like
+        Default validation targets.
+    config : Stage1ModelConfig or None
+        Combined baseline + MLP config.
+    seed : int
+        Random seed.
+    verbose : bool
+        Whether to print MLP training logs.
+    condition_val_overrides : dict or None
+        Optional per-condition validation overrides.  Keys are condition
+        names; values are ``(X_val_override, y_val_override)`` tuples.
+        Allows A_weak_only to use weak validation targets while B/C/D use
+        gold validation targets — matching the design documented in
+        ``experiments/stage1_config.yaml``.
+
+        Example::
+
+            condition_val_overrides = {
+                "A_weak_only": (X_weak_val_df, y_weak_val),
+                # B/C/D use the default X_val / y_val (gold targets)
+            }
     """
+    condition_val_overrides = condition_val_overrides or {}
     trained_bundles: dict[str, dict] = {}
 
     for condition_name, payload in conditions.items():
+        if condition_name in condition_val_overrides:
+            X_val_cond, y_val_cond = condition_val_overrides[condition_name]
+        else:
+            X_val_cond, y_val_cond = X_val, y_val
+
         trained_bundles[condition_name] = fit_all_stage1_models(
             X_train=payload["X_train_df"],
-            X_val=X_val,
+            X_val=X_val_cond,
             y_train=payload["y_train"],
-            y_val=y_val,
+            y_val=y_val_cond,
             sample_weight=payload.get("sample_weight"),
             condition_name=condition_name,
             config=config,
@@ -683,6 +721,73 @@ def evaluate_stage1_conditions(
         "df_gold_results_all": pd.concat(df_gold_all, ignore_index=True),
         "df_gold_results_by_condition": df_gold_by_condition,
     }
+
+
+def backfill_feature_names_for_artifact_dir(
+    artifact_dir: str | Path,
+    feature_names: Optional[list[str]] = None,
+    preprocessor=None,
+) -> Optional[Path]:
+    """
+    Write ``feature_names.json`` into an existing Stage 1 artifact directory.
+
+    Use this to patch artifact directories that were created before
+    ``feature_names.json`` saving was added (or when the save was skipped
+    for any reason).
+
+    Priority for resolving feature names
+    -------------------------------------
+    1. ``feature_names`` argument — use directly if provided.
+    2. ``preprocessor.feature_names_in_`` — extracted from a fitted sklearn
+       preprocessor that was fitted on a DataFrame.
+    3. Neither available — warns and returns None without writing.
+
+    Parameters
+    ----------
+    artifact_dir : str | Path
+        The Stage 1 condition directory (e.g. ``models/stage_1/global/A_weak_only/``).
+    feature_names : list[str] or None
+        Ordered list of raw input feature column names.
+    preprocessor : fitted sklearn Pipeline or ColumnTransformer or None
+        If provided and ``feature_names`` is None, the function attempts to
+        extract ``feature_names_in_`` from the preprocessor.
+
+    Returns
+    -------
+    Path or None
+        Path to the written ``feature_names.json``, or None if names could
+        not be resolved.
+    """
+    import warnings
+
+    artifact_dir = Path(artifact_dir)
+
+    # Try to resolve feature names from the preprocessor if not given directly.
+    if feature_names is None and preprocessor is not None:
+        if hasattr(preprocessor, "feature_names_in_"):
+            feature_names = list(preprocessor.feature_names_in_)
+        else:
+            warnings.warn(
+                f"[backfill_feature_names] Preprocessor does not have "
+                f"feature_names_in_ attribute; cannot extract names automatically. "
+                f"Pass feature_names explicitly.",
+                UserWarning,
+            )
+
+    if feature_names is None:
+        warnings.warn(
+            f"[backfill_feature_names] No feature names available for "
+            f"'{artifact_dir}'. Skipping.",
+            UserWarning,
+        )
+        return None
+
+    path = save_stage1_feature_names(
+        feature_columns=feature_names,
+        output_dir=artifact_dir,
+    )
+    print(f"[backfill] Wrote feature_names.json -> {path}")
+    return path
 
 
 def save_all_stage1_gold_results(

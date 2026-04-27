@@ -58,10 +58,28 @@ base_config:
     target_inner_steps: 5
     n_repeats: 20
 
+  # ---------------------------------------------------------------------------
+  # MLP architecture (mlp_config)
+  # ---------------------------------------------------------------------------
+  # IMPORTANT: This block is used ONLY for the random-init baseline.
+  #
+  # For all pretrained Stage 1 inits (A_weak_only / B_gold_only / C_hybrid /
+  # D_hybrid_unweighted), Stage 2 reads the architecture from the artifact's
+  # metadata.json via build_stage2_model_for_init().  This guarantees that
+  # strict=True weight loading always succeeds even if the YAML values here
+  # differ from what Stage 1 was trained with.
+  #
+  # The canonical Stage 1 architecture (as of the current artifacts) is:
+  #   hidden_dim_1: 128, hidden_dim_2: 64, dropout: 0.2
+  # (confirmed in models/stage_1/*/metadata.json → mlp_architecture)
+  #
+  # If you retrain Stage 1 with a new architecture, update Stage 1 YAML and
+  # re-run; Stage 2 will automatically pick up the new dims from metadata.json.
+  # You only need to update random_mlp_config (below) manually.
   mlp_config:
-    hidden_dim_1: 256
-    hidden_dim_2: 128
-    dropout: 0.3
+    hidden_dim_1: 128  # Must match the random-init model you want to compare.
+    hidden_dim_2: 64   # Set to match Stage 1 artifact dims for a fair comparison.
+    dropout: 0.2       # Adjust independently if desired for the random baseline.
 
   evaluation:
     ranking_k: 10

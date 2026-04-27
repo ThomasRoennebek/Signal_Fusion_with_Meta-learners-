@@ -332,23 +332,84 @@ def validate_experiment_grid(
     for exp_id, cfg in experiment_list:
         try:
             paths = resolve_stage2_paths(cfg, experiment_id=exp_id, stage1_root=stage1_root)
+            init_name_here = cfg["stage1_init"]["init_name"]
+            source_dir = paths.init_source_dir
+
+            # --- Basic artifact presence ---
+            model_present = (
+                paths.stage1_model_path is not None
+                and paths.stage1_model_path.exists()
+            )
+            preprocessor_present = (
+                paths.stage1_preprocessor_path is not None
+                and paths.stage1_preprocessor_path.exists()
+            )
+
+            # --- Metadata presence ---
+            metadata_path = (source_dir / "metadata.json") if source_dir else None
+            metadata_present = metadata_path is not None and metadata_path.exists()
+
+            # --- feature_names.json presence (warning only, not blocking) ---
+            feature_names_path = (source_dir / "feature_names.json") if source_dir else None
+            feature_names_present = feature_names_path is not None and feature_names_path.exists()
+            feature_names_warning = (
+                None if (feature_names_present or init_name_here == RANDOM_INIT_NAME)
+                else (
+                    f"feature_names.json missing at '{source_dir}'. "
+                    f"SHAP and interpretability code may fail. "
+                    f"Re-run Stage 1 training to regenerate."
+                )
+            )
+
+            # --- Architecture compatibility check ---
+            arch_warning = None
+            arch_compatible = True
+            if init_name_here != RANDOM_INIT_NAME and metadata_present and model_present:
+                try:
+                    meta = load_stage1_artifact_metadata(source_dir)
+                    mlp_arch = meta.get("mlp_architecture")
+                    stage2_mlp_cfg = cfg.get("mlp_config", {})
+                    if mlp_arch is None:
+                        arch_warning = (
+                            f"metadata.json at '{source_dir}' is missing "
+                            f"'mlp_architecture'. Cannot verify architecture "
+                            f"compatibility. Re-run Stage 1 to regenerate."
+                        )
+                        arch_compatible = False
+                    else:
+                        s2_h1 = stage2_mlp_cfg.get("hidden_dim_1")
+                        s2_h2 = stage2_mlp_cfg.get("hidden_dim_2")
+                        m_h1 = mlp_arch.get("hidden_dim_1")
+                        m_h2 = mlp_arch.get("hidden_dim_2")
+                        if s2_h1 != m_h1 or s2_h2 != m_h2:
+                            arch_warning = (
+                                f"Stage 2 config mlp_config ({s2_h1}/{s2_h2}) differs "
+                                f"from artifact metadata ({m_h1}/{m_h2}). "
+                                f"build_stage2_model_for_init() will use the artifact "
+                                f"architecture ({m_h1}/{m_h2}) for safe strict=True loading."
+                            )
+                            # This is NOT a blocking error — the new builder handles it.
+                            # arch_compatible stays True; the warning is informational.
+                except Exception as exc:
+                    arch_warning = f"Architecture check failed: {exc}"
+                    arch_compatible = False
+
             row = {
                 "experiment_id": exp_id,
-                "init_name": cfg["stage1_init"]["init_name"],
+                "init_name": init_name_here,
                 "target_department": cfg["task_config"]["target_department"],
                 "method": cfg["method"],
                 "init_scope": paths.init_scope,
-                "init_source_dir": str(paths.init_source_dir) if paths.init_source_dir else None,
+                "init_source_dir": str(source_dir) if source_dir else None,
                 "model_path": str(paths.stage1_model_path) if paths.stage1_model_path else None,
                 "preprocessor_path": str(paths.stage1_preprocessor_path) if paths.stage1_preprocessor_path else None,
-                "model_present": (
-                    paths.stage1_model_path is not None
-                    and paths.stage1_model_path.exists()
-                ),
-                "preprocessor_present": (
-                    paths.stage1_preprocessor_path is not None
-                    and paths.stage1_preprocessor_path.exists()
-                ),
+                "model_present": model_present,
+                "preprocessor_present": preprocessor_present,
+                "metadata_present": metadata_present,
+                "feature_names_present": feature_names_present,
+                "arch_compatible": arch_compatible,
+                "arch_warning": arch_warning,
+                "feature_names_warning": feature_names_warning,
                 "resolution_error": None,
             }
         except Exception as exc:
@@ -363,25 +424,51 @@ def validate_experiment_grid(
                 "preprocessor_path": None,
                 "model_present": False,
                 "preprocessor_present": False,
+                "metadata_present": False,
+                "feature_names_present": False,
+                "arch_compatible": False,
+                "arch_warning": None,
+                "feature_names_warning": None,
                 "resolution_error": str(exc),
             }
 
-        # Random init is allowed to have model_present == False; it just needs
-        # a valid preprocessor to define the feature space.
+        # Random init: needs preprocessor only (no model weights, no metadata).
+        # Pretrained init: needs model + preprocessor + metadata (for arch-safe
+        #   loading via build_stage2_model_for_init).  Arch mismatch vs the
+        #   stage2_config is ALLOWED because the builder reads from metadata.
         if row["init_name"] == RANDOM_INIT_NAME:
-            row["is_runnable"] = bool(row["preprocessor_present"]) and (row["resolution_error"] is None)
+            row["is_runnable"] = (
+                bool(row["preprocessor_present"])
+                and row["resolution_error"] is None
+            )
         else:
-            row["is_runnable"] = bool(row["model_present"] and row["preprocessor_present"])
+            row["is_runnable"] = (
+                bool(row["model_present"])
+                and bool(row["preprocessor_present"])
+                and bool(row["metadata_present"])
+                and bool(row["arch_compatible"])
+                and row["resolution_error"] is None
+            )
+
         rows.append(row)
         if row["is_runnable"]:
             runnable.append((exp_id, cfg))
 
+        # Emit non-blocking warnings even for runnable cells.
+        if verbose and row.get("arch_warning"):
+            print(f"[Stage 2 pre-flight] ARCH NOTE  [{exp_id}]: {row['arch_warning']}")
+        if verbose and row.get("feature_names_warning"):
+            print(f"[Stage 2 pre-flight] FN WARNING [{exp_id}]: {row['feature_names_warning']}")
+
     report_df = pd.DataFrame(rows)
     invalid = report_df[~report_df["is_runnable"]] if not report_df.empty else report_df
     if verbose and not invalid.empty:
-        print(f"[Stage 2 pre-flight] {len(invalid)} of {len(report_df)} cell(s) are NOT runnable:")
-        cols = ["experiment_id", "init_name", "target_department", "method",
-                "model_present", "preprocessor_present", "resolution_error"]
+        print(f"\n[Stage 2 pre-flight] {len(invalid)} of {len(report_df)} cell(s) are NOT runnable:")
+        cols = [
+            "experiment_id", "init_name", "target_department", "method",
+            "model_present", "preprocessor_present", "metadata_present",
+            "arch_compatible", "resolution_error",
+        ]
         print(invalid[[c for c in cols if c in invalid.columns]].to_string(index=False))
 
     return (runnable if drop_invalid else list(experiment_list)), report_df
@@ -893,6 +980,15 @@ def build_stage2_model_from_config(
     config: Dict[str, Any],
     device: Optional[torch.device] = None,
 ) -> TabularMLP:
+    """Build a TabularMLP from stage2_config.yaml's mlp_config section.
+
+    .. warning::
+        This function is kept for backward compatibility and for random-init
+        experiments.  For all pretrained Stage 1 inits (A / B / C / D) you
+        MUST use :func:`build_stage2_model_for_init` instead, which reads the
+        architecture from the artifact's ``metadata.json`` and guarantees that
+        ``strict=True`` weight loading will succeed.
+    """
     mlp_cfg = config["mlp_config"]
     model = TabularMLP(
         input_dim=input_dim,
@@ -903,6 +999,273 @@ def build_stage2_model_from_config(
     if device is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     return model.to(device)
+
+
+# ---------------------------------------------------------------------------
+# Architecture-safe model building for Stage 2
+# ---------------------------------------------------------------------------
+
+def load_stage1_artifact_metadata(artifact_dir: Path) -> Dict[str, Any]:
+    """Load and return the ``metadata.json`` from a Stage 1 artifact directory.
+
+    Parameters
+    ----------
+    artifact_dir : Path
+        The canonical Stage 1 condition directory, e.g.
+        ``models/stage_1/global/A_weak_only/``.
+
+    Raises
+    ------
+    FileNotFoundError
+        If ``metadata.json`` does not exist under ``artifact_dir``.
+    """
+    metadata_path = artifact_dir / "metadata.json"
+    if not metadata_path.exists():
+        raise FileNotFoundError(
+            f"Stage 1 metadata not found: {metadata_path}\n"
+            f"Re-run Stage 1 training (run_stage1.py or notebook 16) so that "
+            f"metadata.json is saved alongside the model weights."
+        )
+    with open(metadata_path, "r", encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def infer_arch_from_state_dict(state_dict: Dict[str, Any]) -> Dict[str, int]:
+    """Infer TabularMLP architecture from a loaded state_dict.
+
+    The expected key layout for :class:`TabularMLP` is::
+
+        net.0.weight  shape (h1, input_dim)   — first Linear
+        net.4.weight  shape (h2, h1)           — second Linear
+        net.8.weight  shape (1,  h2)           — output Linear
+
+    Parameters
+    ----------
+    state_dict : dict
+        PyTorch state dict (e.g. from ``torch.load(path, weights_only=True)``).
+
+    Returns
+    -------
+    dict with keys ``input_dim``, ``hidden_dim_1``, ``hidden_dim_2``.
+
+    Raises
+    ------
+    KeyError
+        If the expected weight keys are absent (wrong model class or layout).
+    """
+    try:
+        w0 = state_dict["net.0.weight"]  # (h1, input_dim)
+        w4 = state_dict["net.4.weight"]  # (h2, h1)
+    except KeyError as exc:
+        raise KeyError(
+            f"Cannot infer architecture from state_dict — expected keys "
+            f"'net.0.weight' and 'net.4.weight', got: {list(state_dict.keys())}"
+        ) from exc
+    return {
+        "input_dim": w0.shape[1],
+        "hidden_dim_1": w0.shape[0],
+        "hidden_dim_2": w4.shape[0],
+    }
+
+
+def validate_artifact_architecture(
+    artifact_dir: Path,
+    model_filename: str = "mlp_pretrained.pt",
+) -> Dict[str, Any]:
+    """Cross-check ``metadata.json`` against the actual ``.pt`` tensor shapes.
+
+    Returns a dict with keys ``metadata_arch``, ``actual_arch``, ``match``,
+    and ``warning`` (None if OK, else an explanation string).
+
+    The function will not raise unless metadata is completely absent; shape
+    mismatches are surfaced as warnings so the caller can decide what to do.
+    """
+    result: Dict[str, Any] = {
+        "metadata_arch": None,
+        "actual_arch": None,
+        "match": None,
+        "warning": None,
+    }
+
+    # 1. Load metadata architecture.
+    try:
+        meta = load_stage1_artifact_metadata(artifact_dir)
+    except FileNotFoundError as exc:
+        result["warning"] = str(exc)
+        return result
+
+    mlp_arch = meta.get("mlp_architecture")
+    if mlp_arch is None:
+        result["warning"] = (
+            f"'mlp_architecture' key missing from metadata.json at '{artifact_dir}'. "
+            f"Re-run Stage 1 training to regenerate metadata."
+        )
+        return result
+    result["metadata_arch"] = mlp_arch
+
+    # 2. Load state_dict and infer actual shapes.
+    model_path = artifact_dir / model_filename
+    if not model_path.exists():
+        result["warning"] = f"Model file not found: {model_path}"
+        return result
+
+    try:
+        state_dict = torch.load(model_path, map_location="cpu", weights_only=True)
+        actual = infer_arch_from_state_dict(state_dict)
+        result["actual_arch"] = actual
+    except Exception as exc:
+        result["warning"] = f"Could not load or parse state_dict: {exc}"
+        return result
+
+    # 3. Compare.
+    meta_h1 = int(mlp_arch.get("hidden_dim_1", -1))
+    meta_h2 = int(mlp_arch.get("hidden_dim_2", -1))
+    if meta_h1 == actual["hidden_dim_1"] and meta_h2 == actual["hidden_dim_2"]:
+        result["match"] = True
+    else:
+        result["match"] = False
+        result["warning"] = (
+            f"Architecture mismatch between metadata.json and .pt tensor shapes at "
+            f"'{artifact_dir}':\n"
+            f"  metadata: hidden_dim_1={meta_h1}, hidden_dim_2={meta_h2}\n"
+            f"  actual:   hidden_dim_1={actual['hidden_dim_1']}, "
+            f"hidden_dim_2={actual['hidden_dim_2']}\n"
+            f"Stage 2 will use the ACTUAL tensor shapes for safe loading."
+        )
+    return result
+
+
+def build_stage2_model_for_init(
+    input_dim: int,
+    config: Dict[str, Any],
+    init_source_dir: Optional[Path],
+    init_name: str,
+    model_filename: str = "mlp_pretrained.pt",
+    device: Optional[torch.device] = None,
+) -> TabularMLP:
+    """Build a Stage 2 TabularMLP with the architecture that matches its init.
+
+    This is the **only correct way** to build a model before loading Stage 1
+    weights with ``strict=True``.  The architecture is resolved as follows:
+
+    * **Pretrained inits** (A_weak_only / B_gold_only / C_hybrid /
+      D_hybrid_unweighted):
+
+      1. Reads ``mlp_architecture`` from the artifact's ``metadata.json``.
+      2. Falls back to inferring shapes from the actual ``.pt`` file if
+         metadata is absent or stale (emits a warning in that case).
+      3. Raises a clear ``ValueError`` if neither source is available.
+
+    * **Random init**: uses the ``mlp_config`` section of
+      ``stage2_config.yaml``.  No Stage 1 weights are loaded for random
+      init; this is an intentional clean baseline that keeps the feature
+      space consistent (by reusing the Stage 1 preprocessor) while
+      starting from random parameter values.
+
+    Parameters
+    ----------
+    input_dim : int
+        Number of input features *after* preprocessing (the actual first-layer
+        width seen by the MLP, not the raw feature count).
+    config : dict
+        Resolved Stage 2 experiment config (output of
+        :func:`normalize_stage2_config`).
+    init_source_dir : Path or None
+        Canonical Stage 1 artifact directory.  May be ``None`` only when
+        ``init_name == "random"``.
+    init_name : str
+        One of ``A_weak_only``, ``B_gold_only``, ``C_hybrid``,
+        ``D_hybrid_unweighted``, or ``random``.
+    model_filename : str
+        Filename of the model weights file inside ``init_source_dir``.
+    device : torch.device or None
+        Target device.  Defaults to CUDA if available, else CPU.
+
+    Returns
+    -------
+    TabularMLP
+        An untrained (or about to be weight-loaded) model on ``device``.
+
+    Raises
+    ------
+    ValueError
+        If ``init_source_dir`` is required but missing, or if neither
+        metadata nor the actual state_dict can supply architecture info.
+    """
+    if device is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    if init_name == RANDOM_INIT_NAME:
+        # ── Random init: clean baseline, no Stage 1 weights loaded ──────────
+        # Architecture comes from stage2_config.yaml's mlp_config.
+        # The preprocessor is still shared with A_weak_only so the input
+        # dimensionality is identical across all init conditions.
+        mlp_cfg = config["mlp_config"]
+        return TabularMLP(
+            input_dim=input_dim,
+            hidden_dim_1=mlp_cfg["hidden_dim_1"],
+            hidden_dim_2=mlp_cfg["hidden_dim_2"],
+            dropout=mlp_cfg["dropout"],
+        ).to(device)
+
+    # ── Pretrained init: architecture MUST match the stored weights ──────────
+    if init_source_dir is None:
+        raise ValueError(
+            f"init_source_dir must be provided for pretrained init '{init_name}'; "
+            f"got None."
+        )
+
+    # Attempt 1: read from metadata.json (fast, no torch needed).
+    try:
+        meta = load_stage1_artifact_metadata(init_source_dir)
+        mlp_arch = meta.get("mlp_architecture")
+    except FileNotFoundError:
+        meta = None
+        mlp_arch = None
+
+    if mlp_arch is not None:
+        h1 = int(mlp_arch["hidden_dim_1"])
+        h2 = int(mlp_arch["hidden_dim_2"])
+        dropout = float(mlp_arch.get("dropout", 0.0))
+    else:
+        # Attempt 2: infer from actual .pt tensor shapes.
+        model_path = init_source_dir / model_filename
+        if not model_path.exists():
+            raise ValueError(
+                f"Cannot determine architecture for init '{init_name}': "
+                f"metadata.json is missing from '{init_source_dir}' and "
+                f"the model file '{model_path}' does not exist."
+            )
+        try:
+            state_dict = torch.load(model_path, map_location="cpu", weights_only=True)
+            inferred = infer_arch_from_state_dict(state_dict)
+            h1 = inferred["hidden_dim_1"]
+            h2 = inferred["hidden_dim_2"]
+            mlp_cfg_fallback = config.get("mlp_config", {})
+            dropout = float(mlp_cfg_fallback.get("dropout", 0.0))
+            import warnings
+            warnings.warn(
+                f"[build_stage2_model_for_init] metadata.json missing at "
+                f"'{init_source_dir}'; inferred architecture from .pt tensor "
+                f"shapes: hidden_dim_1={h1}, hidden_dim_2={h2}. "
+                f"Re-run Stage 1 training to regenerate metadata.",
+                UserWarning,
+                stacklevel=2,
+            )
+        except Exception as exc:
+            raise ValueError(
+                f"Cannot determine architecture for init '{init_name}' at "
+                f"'{init_source_dir}': metadata.json is absent and the .pt "
+                f"file could not be parsed ({exc}). "
+                f"Re-run Stage 1 training to regenerate both artifacts."
+            ) from exc
+
+    return TabularMLP(
+        input_dim=input_dim,
+        hidden_dim_1=h1,
+        hidden_dim_2=h2,
+        dropout=dropout,
+    ).to(device)
 
 
 def load_stage1_model_weights(
@@ -1042,7 +1405,14 @@ def run_finetune_baseline(config: Dict[str, Any], prepared: Dict[str, Any]) -> D
     dummy_processed = preprocessor.transform(target_episodes[0]["support_df"][feature_cols].iloc[:2])
     if hasattr(dummy_processed, "toarray"):
         dummy_processed = dummy_processed.toarray()
-    base_model = build_stage2_model_from_config(dummy_processed.shape[1], config, device)
+    init_name = config["stage1_init"]["init_name"]
+    base_model = build_stage2_model_for_init(
+        input_dim=dummy_processed.shape[1],
+        config=config,
+        init_source_dir=paths.init_source_dir,
+        init_name=init_name,
+        device=device,
+    )
     base_model = load_stage1_model_weights(base_model, paths.stage1_model_path, device)
 
     all_metrics, all_predictions = [], []
@@ -1120,8 +1490,14 @@ def _run_meta_method(
     if hasattr(dummy_processed, "toarray"):
         dummy_processed = dummy_processed.toarray()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-    model = build_stage2_model_from_config(dummy_processed.shape[1], config, device)
+    init_name = config["stage1_init"]["init_name"]
+    model = build_stage2_model_for_init(
+        input_dim=dummy_processed.shape[1],
+        config=config,
+        init_source_dir=paths.init_source_dir,
+        init_name=init_name,
+        device=device,
+    )
     model = load_stage1_model_weights(model, paths.stage1_model_path, device)
 
     meta_train_result = meta_train_fn(
@@ -1237,7 +1613,14 @@ def run_zero_shot_method(config: Dict[str, Any], prepared: Dict[str, Any]) -> Di
     dummy_processed = preprocessor.transform(target_episodes[0]["support_df"][feature_cols].iloc[:2])
     if hasattr(dummy_processed, "toarray"):
         dummy_processed = dummy_processed.toarray()
-    base_model = build_stage2_model_from_config(dummy_processed.shape[1], config, device)
+    init_name = config["stage1_init"]["init_name"]
+    base_model = build_stage2_model_for_init(
+        input_dim=dummy_processed.shape[1],
+        config=config,
+        init_source_dir=paths.init_source_dir,
+        init_name=init_name,
+        device=device,
+    )
     base_model = load_stage1_model_weights(base_model, paths.stage1_model_path, device)
 
     eval_result = evaluate_zero_shot_on_target_episodes(

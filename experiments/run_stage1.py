@@ -51,7 +51,7 @@ import yaml
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from master_thesis.config import DATA_PROCESSED, MODELS_STAGE1, SEED
-from master_thesis.baselines import BaselineTrainingConfig
+from master_thesis.baselines import BaselineTrainingConfig, ElasticNetConfig, XGBoostConfig
 from master_thesis.mlp import MLPTrainingConfig
 from master_thesis.stage1 import (
     GLOBAL_CONDITIONS,
@@ -76,30 +76,50 @@ def load_stage1_config(config_path: str | Path) -> dict:
 
 
 def build_stage1_model_config(cfg: dict) -> Stage1ModelConfig:
-    """Translate YAML config dict into a Stage1ModelConfig dataclass."""
+    """Translate YAML config dict into a Stage1ModelConfig dataclass.
+
+    Always reads from ``stage1_config.yaml`` via ``load_stage1_config()``.
+    Do NOT call with bare ``MLPTrainingConfig()`` defaults — that would
+    silently bypass the YAML values and produce stale artifacts.
+    """
     bc = cfg.get("baseline_config", {})
     mc = cfg.get("mlp_config", {})
+    en = bc.get("elastic_net", {})
+    xgb = bc.get("xgboost", {})
     return Stage1ModelConfig(
         baseline_config=BaselineTrainingConfig(
             scale_numeric_for_elastic_net=bc.get("scale_numeric_for_elastic_net", True),
             scale_numeric_for_xgboost=bc.get("scale_numeric_for_xgboost", False),
             add_numeric_missing_indicator=bc.get("add_numeric_missing_indicator", True),
-            elastic_net_alpha=bc.get("elastic_net", {}).get("alpha", 0.005),
-            elastic_net_l1_ratio=bc.get("elastic_net", {}).get("l1_ratio", 0.5),
-            xgb_n_estimators=bc.get("xgboost", {}).get("n_estimators", 500),
-            xgb_learning_rate=bc.get("xgboost", {}).get("learning_rate", 0.05),
-            xgb_max_depth=bc.get("xgboost", {}).get("max_depth", 6),
+            elastic_net=ElasticNetConfig(
+                alpha=en.get("alpha", 0.005),
+                l1_ratio=en.get("l1_ratio", 0.5),
+                max_iter=en.get("max_iter", 10000),
+                random_state=en.get("random_state", 42),
+            ),
+            xgboost=XGBoostConfig(
+                n_estimators=xgb.get("n_estimators", 500),
+                learning_rate=xgb.get("learning_rate", 0.05),
+                max_depth=xgb.get("max_depth", 6),
+                min_child_weight=xgb.get("min_child_weight", 3),
+                subsample=xgb.get("subsample", 0.8),
+                colsample_bytree=xgb.get("colsample_bytree", 0.8),
+                reg_alpha=xgb.get("reg_alpha", 0.0),
+                reg_lambda=xgb.get("reg_lambda", 1.0),
+                random_state=xgb.get("random_state", 42),
+                n_jobs=xgb.get("n_jobs", -1),
+            ),
         ),
         mlp_config=MLPTrainingConfig(
             n_epochs=mc.get("n_epochs", 100),
             patience=mc.get("patience", 10),
-            lr=mc.get("lr", 0.001),
-            weight_decay=mc.get("weight_decay", 1e-5),
-            train_batch_size=mc.get("train_batch_size", 128),
-            val_batch_size=mc.get("val_batch_size", 256),
+            lr=mc.get("lr", 5e-4),
+            weight_decay=mc.get("weight_decay", 1e-4),
+            train_batch_size=mc.get("train_batch_size", 256),
+            val_batch_size=mc.get("val_batch_size", 512),
             hidden_dim_1=mc.get("hidden_dim_1", 256),
             hidden_dim_2=mc.get("hidden_dim_2", 128),
-            dropout=mc.get("dropout", 0.3),
+            dropout=mc.get("dropout", 0.1),
         ),
     )
 
