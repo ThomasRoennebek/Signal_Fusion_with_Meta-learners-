@@ -1,0 +1,2703 @@
+{
+  "method": "anil",
+  "status": "success",
+  "target_department": "Packaging Material",
+  "weight_path": "/Users/Thomas/Desktop/Master Thesis/models/stage_2/experiments/stage2__init-random__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-0__gen-none/anil_initialized.pt",
+  "raw_metrics": [
+    {
+      "model": "ANIL",
+      "gold_auroc": NaN,
+      "gold_ap": NaN,
+      "gold_logloss": 18.420680743952367,
+      "gold_brier": 0.9999999799999999,
+      "gold_ece": 0.99999999,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.0,
+      "gold_pred_mean": 1e-08,
+      "gold_true_mean": 1.0,
+      "n_eval_rows": 40,
+      "n_positive": 40,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.125,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.25,
+      "ndcg_at_10": 1.0,
+      "precision_at_20": 1.0,
+      "recall_at_20": 0.5,
+      "ndcg_at_20": 0.9999999999999999,
+      "episode_idx": 0
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": NaN,
+      "gold_ap": NaN,
+      "gold_logloss": 1.0000000100247594e-08,
+      "gold_brier": 1.0000000100495186e-16,
+      "gold_ece": 1.0000000050247593e-08,
+      "gold_f1": 1.0,
+      "gold_accuracy": 1.0,
+      "gold_pred_mean": 0.99999999,
+      "gold_true_mean": 1.0,
+      "n_eval_rows": 32,
+      "n_positive": 32,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.15625,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.3125,
+      "ndcg_at_10": 1.0,
+      "precision_at_20": 1.0,
+      "recall_at_20": 0.625,
+      "ndcg_at_20": 0.9999999999999999,
+      "episode_idx": 1
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": NaN,
+      "gold_ap": NaN,
+      "gold_logloss": 18.420680743952367,
+      "gold_brier": 0.9999999799999999,
+      "gold_ece": 0.99999999,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.0,
+      "gold_pred_mean": 1e-08,
+      "gold_true_mean": 1.0,
+      "n_eval_rows": 40,
+      "n_positive": 40,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.125,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.25,
+      "ndcg_at_10": 1.0,
+      "precision_at_20": 1.0,
+      "recall_at_20": 0.5,
+      "ndcg_at_20": 0.9999999999999999,
+      "episode_idx": 2
+    }
+  ],
+  "predictions": [
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.00365926470181e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.999547886797018e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 6.582808964594733e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 6.355076020980732e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.582241335844174e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 7.158408532603744e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.559576798930266e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.570393035725374e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.9672026491975885e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.557573068415422e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.485528031812237e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.0133657225615025e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.011338899407747e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.009608727846171e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.997136038298322e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.995163394028168e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.9929349543731405e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.992601443376543e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.994353375309402e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.954646470878288e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.952520171741526e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.951018706123023e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.026300708976805e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.024278326715148e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.022534832477277e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.0100483761639225e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.008061521039053e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.005817094172471e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.005482694997454e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.0072497259634474e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.967449118709055e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.965298394665751e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.96379293224436e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.896212768557007e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.8940096419869406e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.893682792328491e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.8954285070124115e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.856507640482732e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.853035306950915e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.850397861133615e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 1.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.18385512293662e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.1795954192357385e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 6.821617493102394e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 6.5831482487510584e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.783184597873969e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 7.416244507396641e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.76019898446134e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.769919209086538e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.147655635084902e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.757826215813111e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.685222959073144e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.193315999463266e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.1912265597309215e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.18945419969441e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.176059580946912e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.1740363105068354e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.171717720742208e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.171431727291065e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.173384831635985e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.1323718608387026e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.130159852484439e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.128633517870185e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.20766940681483e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.205563979870931e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.203787178942321e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.190365026663812e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.188335538974798e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.186020946013059e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.185714080369053e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.1876929418881446e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.1465560702013136e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.144338288687322e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.142807957270179e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.070855735311852e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.068593100787666e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.068312880496251e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.0702269049907045e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.0300408283021625e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.02643482391818e-09,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.023712557061799e-09,
+      "method": "anil"
+    }
+  ],
+  "history": [
+    {
+      "iteration": 1,
+      "meta_loss": 0.7509974241256714,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 2,
+      "meta_loss": 135.52330017089844,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 3,
+      "meta_loss": 62.3095703125,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 4,
+      "meta_loss": 64.29222106933594,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 5,
+      "meta_loss": 137.66937255859375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 6,
+      "meta_loss": 23.75339126586914,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 7,
+      "meta_loss": 42.65741729736328,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 8,
+      "meta_loss": 22.86448097229004,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 9,
+      "meta_loss": 13.343419075012207,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 10,
+      "meta_loss": 6.396549224853516,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 11,
+      "meta_loss": 9.885427474975586,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 12,
+      "meta_loss": 31.122161865234375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 13,
+      "meta_loss": 31.122074127197266,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 14,
+      "meta_loss": 47.987545013427734,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 15,
+      "meta_loss": 17.5116024017334,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 16,
+      "meta_loss": 32.50996017456055,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 17,
+      "meta_loss": 31.798404693603516,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 18,
+      "meta_loss": 6.15477180480957,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 19,
+      "meta_loss": 5.433756351470947,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 20,
+      "meta_loss": 32.13947296142578,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 21,
+      "meta_loss": 63.81502914428711,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 22,
+      "meta_loss": 32.171714782714844,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 23,
+      "meta_loss": 90.72146606445312,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 24,
+      "meta_loss": 3.145693778991699,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 25,
+      "meta_loss": 5.516200065612793,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 26,
+      "meta_loss": 44.32807922363281,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 27,
+      "meta_loss": 7.3294548988342285,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 28,
+      "meta_loss": 20.966554641723633,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 29,
+      "meta_loss": 32.26028060913086,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 30,
+      "meta_loss": 63.63105010986328,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 31,
+      "meta_loss": 44.429080963134766,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 32,
+      "meta_loss": 19.388263702392578,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 33,
+      "meta_loss": 20.866832733154297,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 34,
+      "meta_loss": 31.34368896484375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 35,
+      "meta_loss": 50.8131217956543,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 36,
+      "meta_loss": 32.2355842590332,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 37,
+      "meta_loss": 90.7741470336914,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 38,
+      "meta_loss": 51.575008392333984,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 39,
+      "meta_loss": 19.418378829956055,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 40,
+      "meta_loss": 3.179123878479004,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 41,
+      "meta_loss": 50.41925811767578,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 42,
+      "meta_loss": 31.01792335510254,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 43,
+      "meta_loss": 5.1091837882995605,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 44,
+      "meta_loss": 3.2180373668670654,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 45,
+      "meta_loss": 19.576793670654297,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 46,
+      "meta_loss": 50.04656982421875,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 47,
+      "meta_loss": 32.36246871948242,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 48,
+      "meta_loss": 43.73785400390625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 49,
+      "meta_loss": 7.3882737159729,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 50,
+      "meta_loss": 7.387414932250977,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 51,
+      "meta_loss": 12.181381225585938,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 52,
+      "meta_loss": 43.885398864746094,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 53,
+      "meta_loss": 80.69578552246094,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 54,
+      "meta_loss": 32.319358825683594,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 55,
+      "meta_loss": 43.996803283691406,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 56,
+      "meta_loss": 7.380730152130127,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 57,
+      "meta_loss": 32.2856559753418,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 58,
+      "meta_loss": 44.1999397277832,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 59,
+      "meta_loss": 44.294090270996094,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 60,
+      "meta_loss": 31.079261779785156,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 61,
+      "meta_loss": 80.77137756347656,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 62,
+      "meta_loss": 30.814849853515625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 63,
+      "meta_loss": 89.91426849365234,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 64,
+      "meta_loss": 63.12586975097656,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 65,
+      "meta_loss": 4.5073347091674805,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 66,
+      "meta_loss": 30.590805053710938,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 67,
+      "meta_loss": 3.2232446670532227,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 68,
+      "meta_loss": 50.07387161254883,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 69,
+      "meta_loss": 89.99370574951172,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 70,
+      "meta_loss": 6.076879501342773,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 71,
+      "meta_loss": 21.054887771606445,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 72,
+      "meta_loss": 6.055932521820068,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 73,
+      "meta_loss": 30.66364097595215,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 74,
+      "meta_loss": 43.919734954833984,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 75,
+      "meta_loss": 3.207040786743164,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 76,
+      "meta_loss": 51.19455337524414,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 77,
+      "meta_loss": 32.32372283935547,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 78,
+      "meta_loss": 32.31627655029297,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 79,
+      "meta_loss": 7.3452229499816895,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 80,
+      "meta_loss": 15.318145751953125,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 81,
+      "meta_loss": 44.2730712890625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 82,
+      "meta_loss": 30.901344299316406,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 83,
+      "meta_loss": 5.3178324699401855,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 84,
+      "meta_loss": 30.93414306640625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 85,
+      "meta_loss": 29.99843406677246,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 86,
+      "meta_loss": 3.2208471298217773,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 87,
+      "meta_loss": 19.6005802154541,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 88,
+      "meta_loss": 30.699480056762695,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 89,
+      "meta_loss": 4.476778030395508,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 90,
+      "meta_loss": 63.13440704345703,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 91,
+      "meta_loss": 7.410745620727539,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 92,
+      "meta_loss": 90.0144271850586,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 93,
+      "meta_loss": 5.0369086265563965,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 94,
+      "meta_loss": 30.828824996948242,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 95,
+      "meta_loss": 30.62126922607422,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 96,
+      "meta_loss": 30.736398696899414,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 97,
+      "meta_loss": 49.9708366394043,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 98,
+      "meta_loss": 32.36829376220703,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 99,
+      "meta_loss": 5.0170674324035645,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 100,
+      "meta_loss": 63.33797073364258,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 101,
+      "meta_loss": 3.185133457183838,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 102,
+      "meta_loss": 44.21098709106445,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 103,
+      "meta_loss": 15.377129554748535,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 104,
+      "meta_loss": 19.40357208251953,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 105,
+      "meta_loss": 19.373071670532227,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 106,
+      "meta_loss": 20.84845733642578,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 107,
+      "meta_loss": 32.19585418701172,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 108,
+      "meta_loss": 81.15312194824219,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 109,
+      "meta_loss": 3.06459903717041,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 110,
+      "meta_loss": 5.676205158233643,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 111,
+      "meta_loss": 31.774377822875977,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 112,
+      "meta_loss": 51.49989700317383,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 113,
+      "meta_loss": 31.91046142578125,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 114,
+      "meta_loss": 30.932861328125,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 115,
+      "meta_loss": 31.62734031677246,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 116,
+      "meta_loss": 30.82309341430664,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 117,
+      "meta_loss": 32.00799560546875,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 118,
+      "meta_loss": 45.00481414794922,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 119,
+      "meta_loss": 3.0938761234283447,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 120,
+      "meta_loss": 5.780052185058594,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 121,
+      "meta_loss": 51.64949417114258,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 122,
+      "meta_loss": 31.162200927734375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 123,
+      "meta_loss": 51.37580108642578,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 124,
+      "meta_loss": 50.233154296875,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 125,
+      "meta_loss": 19.571500778198242,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 126,
+      "meta_loss": 32.43044662475586,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 127,
+      "meta_loss": 7.387535095214844,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 128,
+      "meta_loss": 43.68856430053711,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 129,
+      "meta_loss": 43.71344757080078,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 130,
+      "meta_loss": 32.43413543701172,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 131,
+      "meta_loss": 80.51991271972656,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 132,
+      "meta_loss": 32.434364318847656,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 133,
+      "meta_loss": 7.386202335357666,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 134,
+      "meta_loss": 49.982357025146484,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 135,
+      "meta_loss": 51.052425384521484,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 136,
+      "meta_loss": 4.479846000671387,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 137,
+      "meta_loss": 19.617618560791016,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 138,
+      "meta_loss": 4.897826671600342,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 139,
+      "meta_loss": 21.071361541748047,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 140,
+      "meta_loss": 4.944854736328125,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 141,
+      "meta_loss": 30.613672256469727,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 142,
+      "meta_loss": 43.81363296508789,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 143,
+      "meta_loss": 80.55213928222656,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 144,
+      "meta_loss": 32.36810302734375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 145,
+      "meta_loss": 21.08241081237793,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 146,
+      "meta_loss": 30.68903350830078,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 147,
+      "meta_loss": 29.847888946533203,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 148,
+      "meta_loss": 7.387962818145752,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 149,
+      "meta_loss": 30.701196670532227,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 150,
+      "meta_loss": 3.2267675399780273,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 151,
+      "meta_loss": 4.915091037750244,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 152,
+      "meta_loss": 89.92879486083984,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 153,
+      "meta_loss": 4.899714946746826,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 154,
+      "meta_loss": 80.51458740234375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 155,
+      "meta_loss": 30.702112197875977,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 156,
+      "meta_loss": 4.910597801208496,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 157,
+      "meta_loss": 63.1500244140625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 158,
+      "meta_loss": 12.184283256530762,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 159,
+      "meta_loss": 32.42878341674805,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 160,
+      "meta_loss": 32.360740661621094,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 161,
+      "meta_loss": 6.046647548675537,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 162,
+      "meta_loss": 15.181885719299316,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 163,
+      "meta_loss": 90.21163940429688,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 164,
+      "meta_loss": 90.23641204833984,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 165,
+      "meta_loss": 4.709554672241211,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 166,
+      "meta_loss": 5.974943161010742,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 167,
+      "meta_loss": 5.077428340911865,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 168,
+      "meta_loss": 32.3411979675293,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 169,
+      "meta_loss": 63.23366928100586,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 170,
+      "meta_loss": 51.08723831176758,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 171,
+      "meta_loss": 51.04490661621094,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 172,
+      "meta_loss": 7.411759853363037,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 173,
+      "meta_loss": 51.031185150146484,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 174,
+      "meta_loss": 43.711891174316406,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 175,
+      "meta_loss": 4.877551078796387,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 176,
+      "meta_loss": 49.96221923828125,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 177,
+      "meta_loss": 49.964481353759766,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 178,
+      "meta_loss": 30.537841796875,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 179,
+      "meta_loss": 19.6044921875,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 180,
+      "meta_loss": 30.7388916015625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 181,
+      "meta_loss": 7.365368843078613,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 182,
+      "meta_loss": 30.89058494567871,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 183,
+      "meta_loss": 44.006141662597656,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 184,
+      "meta_loss": 19.4912052154541,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 185,
+      "meta_loss": 44.0927734375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 186,
+      "meta_loss": 30.95720100402832,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 187,
+      "meta_loss": 19.52393341064453,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 188,
+      "meta_loss": 90.1159896850586,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 189,
+      "meta_loss": 3.207625150680542,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 190,
+      "meta_loss": 21.03534507751465,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 191,
+      "meta_loss": 50.15302658081055,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 192,
+      "meta_loss": 21.010522842407227,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 193,
+      "meta_loss": 30.93097496032715,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 194,
+      "meta_loss": 4.692071437835693,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 195,
+      "meta_loss": 90.07120513916016,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 196,
+      "meta_loss": 19.58502197265625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 197,
+      "meta_loss": 89.92269134521484,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 198,
+      "meta_loss": 30.544479370117188,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 199,
+      "meta_loss": 43.70553207397461,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 200,
+      "meta_loss": 30.704565048217773,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    }
+  ],
+  "diagnostics": {
+    "meta_iterations_requested": 200,
+    "iterations_with_valid_tasks": 200,
+    "meta_batch_size": 4,
+    "total_possible_task_episodes": 800,
+    "total_skipped_task_episodes": 0,
+    "skip_rate": 0.0,
+    "meta_train_departments_used": [
+      "Logistics"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+seed: 42
+verbose: true
+method: fomaml
+support_config:
+  n_support_pos: 2
+  n_support_neg: 2
+data:
+  data_filename: contract_with_features_labeled_with_gold.csv
+  target_col: gold_y
+  group_col: contract_id
+  department_col: department
+  observation_year_col: observation_year
+features:
+  source: stage1_preprocessor
+stage1_init:
+  init_name: A_weak_only
+  model_filename: mlp_pretrained.pt
+  preprocessor_filename: mlp_pretrained_preprocessor.joblib
+task_config:
+  target_department: Logistics
+  require_both_query_classes: false
+  min_query_contracts: 1
+  exclude_departments: []
+meta_config:
+  meta_batch_size: 4
+  meta_iterations: 200
+  inner_lr: 0.001
+  outer_lr: 0.001
+  inner_steps: 2
+  target_inner_steps: 5
+  n_repeats: 20
+mlp_config:
+  hidden_dim_1: 256
+  hidden_dim_2: 128
+  dropout: 0.3
+evaluation:
+  ranking_k: 10
+  calibration_method: null
+output:
+  save_predictions: true
+  save_history: true
+  skip_if_exists: true
+  force_rerun: false

@@ -1,0 +1,178 @@
+{
+  "method": "finetune",
+  "status": "success",
+  "target_department": "Logistics",
+  "n_target_episodes": 3,
+  "raw_metrics": [
+    {
+      "model": "FINETUNE",
+      "gold_auroc": NaN,
+      "gold_ap": NaN,
+      "gold_logloss": 1.0000000100247592e-08,
+      "gold_brier": 1.0000000100495186e-16,
+      "gold_ece": 1.0000000050247593e-08,
+      "gold_f1": 1.0,
+      "gold_accuracy": 1.0,
+      "gold_pred_mean": 0.99999999,
+      "gold_true_mean": 1.0,
+      "n_eval_rows": 6,
+      "n_positive": 6,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.8333333333333334,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 1.0,
+      "recall_at_10": 1.0,
+      "ndcg_at_10": 1.0,
+      "precision_at_20": 1.0,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 1.0,
+      "episode_idx": 0
+    },
+    {
+      "model": "FINETUNE",
+      "gold_auroc": NaN,
+      "gold_ap": NaN,
+      "gold_logloss": 1.0000000100247592e-08,
+      "gold_brier": 1.0000000100495186e-16,
+      "gold_ece": 1.0000000050247593e-08,
+      "gold_f1": 1.0,
+      "gold_accuracy": 1.0,
+      "gold_pred_mean": 0.99999999,
+      "gold_true_mean": 1.0,
+      "n_eval_rows": 6,
+      "n_positive": 6,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.8333333333333334,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 1.0,
+      "recall_at_10": 1.0,
+      "ndcg_at_10": 1.0,
+      "precision_at_20": 1.0,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 1.0,
+      "episode_idx": 1
+    },
+    {
+      "model": "FINETUNE",
+      "gold_auroc": NaN,
+      "gold_ap": NaN,
+      "gold_logloss": 5.688386486716759,
+      "gold_brier": 0.9016536470070421,
+      "gold_ece": 0.9449543409038077,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.0,
+      "gold_pred_mean": 0.055045659096192266,
+      "gold_true_mean": 1.0,
+      "n_eval_rows": 7,
+      "n_positive": 7,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.7142857142857143,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 1.0,
+      "recall_at_10": 1.0,
+      "ndcg_at_10": 1.0,
+      "precision_at_20": 1.0,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 1.0,
+      "episode_idx": 2
+    }
+  ],
+  "predictions": [
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.2721615135669708
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.08722885698080063
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.0003801988495979458
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.0002837139763869345
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 3.876196205965243e-05
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.0022311597131192684
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.02299540862441063
+    }
+  ],
+  "history": null
+}

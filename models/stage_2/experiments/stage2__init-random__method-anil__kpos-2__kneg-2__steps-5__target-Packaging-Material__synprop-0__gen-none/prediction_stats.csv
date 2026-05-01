@@ -1,0 +1,6 @@
+method,episode_idx,repeat_idx,n_query,pred_mean,pred_std,pred_min,pred_max,frac_near_zero,frac_near_one,collapsed,collapse_reason
+anil,0,0,40,4.381869533887084e-09,3.836994888484213e-10,4.129344421954784e-09,5.917743628458538e-09,1.0,0.0,True,std<0.01
+anil,1,1,32,1.0,0.0,1.0,1.0,0.0,1.0,True,std<0.01
+anil,2,2,40,4.536544473410231e-09,3.9749431524072065e-10,4.274138376558767e-09,6.126918083992905e-09,1.0,0.0,True,std<0.01
+anil,3,3,32,1.0,0.0,1.0,1.0,0.0,1.0,True,std<0.01
+anil,4,4,36,1.0,0.0,1.0,1.0,0.0,1.0,True,std<0.01

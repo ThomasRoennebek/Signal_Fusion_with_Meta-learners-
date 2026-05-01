@@ -1,0 +1,5477 @@
+{
+  "method": "anil",
+  "status": "success",
+  "target_department": "Logistics",
+  "weight_path": "/Users/Thomas/Desktop/Master Thesis/models/stage_2/experiments/stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-0__gen-none/anil_initialized.pt",
+  "raw_metrics": [
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.625,
+      "gold_ap": 0.7593933299815654,
+      "gold_logloss": 0.8695324368911386,
+      "gold_brier": 0.3223763142617614,
+      "gold_ece": 0.3502921532182133,
+      "gold_f1": 0.6923076923076923,
+      "gold_accuracy": 0.5294117647058824,
+      "gold_pred_mean": 0.8092708903200486,
+      "gold_true_mean": 0.5294117647058824,
+      "n_eval_rows": 17,
+      "n_positive": 9,
+      "precision_at_5": 0.8,
+      "recall_at_5": 0.4444444444444444,
+      "ndcg_at_5": 0.8539316501572934,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.6666666666666666,
+      "ndcg_at_10": 0.7434619002283402,
+      "precision_at_20": 0.5294117647058824,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9203247448091874,
+      "episode_idx": 0
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.375,
+      "gold_ap": 0.7903853091353091,
+      "gold_logloss": 1.383870042073611,
+      "gold_brier": 0.5186419855255666,
+      "gold_ece": 0.5723110255785286,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.25,
+      "gold_pred_mean": 0.17768897442147136,
+      "gold_true_mean": 0.75,
+      "n_eval_rows": 16,
+      "n_positive": 12,
+      "precision_at_5": 0.8,
+      "recall_at_5": 0.3333333333333333,
+      "ndcg_at_5": 0.8687949224876581,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.5,
+      "ndcg_at_10": 0.6994739030813918,
+      "precision_at_20": 0.75,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9308427247952715,
+      "episode_idx": 1
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.3787878787878788,
+      "gold_ap": 0.6656563430627602,
+      "gold_logloss": 0.8363614085383516,
+      "gold_brier": 0.3141657669371366,
+      "gold_ece": 0.3480156940572402,
+      "gold_f1": 0.3076923076923077,
+      "gold_accuracy": 0.47058823529411764,
+      "gold_pred_mean": 0.3799624653423534,
+      "gold_true_mean": 0.6470588235294118,
+      "n_eval_rows": 17,
+      "n_positive": 11,
+      "precision_at_5": 0.4,
+      "recall_at_5": 0.18181818181818182,
+      "ndcg_at_5": 0.5531464700081437,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.5454545454545454,
+      "ndcg_at_10": 0.6366587127404281,
+      "precision_at_20": 0.6470588235294118,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.8656730278195763,
+      "episode_idx": 2
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.47916666666666663,
+      "gold_ap": 0.8319888444888445,
+      "gold_logloss": 1.3462772925417472,
+      "gold_brier": 0.5079934175877714,
+      "gold_ece": 0.5659734550863504,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.25,
+      "gold_pred_mean": 0.18402654491364956,
+      "gold_true_mean": 0.75,
+      "n_eval_rows": 16,
+      "n_positive": 12,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.4166666666666667,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 0.7,
+      "recall_at_10": 0.5833333333333334,
+      "ndcg_at_10": 0.7788065869851872,
+      "precision_at_20": 0.75,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9485570778895861,
+      "episode_idx": 3
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.5416666666666666,
+      "gold_ap": 0.7400579683474421,
+      "gold_logloss": 0.6609708689628585,
+      "gold_brier": 0.23754785657161276,
+      "gold_ece": 0.21423523128032684,
+      "gold_f1": 0.6666666666666666,
+      "gold_accuracy": 0.5,
+      "gold_pred_mean": 0.6560096710920333,
+      "gold_true_mean": 0.6,
+      "n_eval_rows": 20,
+      "n_positive": 12,
+      "precision_at_5": 0.8,
+      "recall_at_5": 0.3333333333333333,
+      "ndcg_at_5": 0.8687949224876581,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.5,
+      "ndcg_at_10": 0.6968404678259545,
+      "precision_at_20": 0.6,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9153082816625298,
+      "episode_idx": 4
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.625,
+      "gold_ap": 0.7593933299815654,
+      "gold_logloss": 0.8695324368911386,
+      "gold_brier": 0.3223763142617614,
+      "gold_ece": 0.3502921532182133,
+      "gold_f1": 0.6923076923076923,
+      "gold_accuracy": 0.5294117647058824,
+      "gold_pred_mean": 0.8092708903200486,
+      "gold_true_mean": 0.5294117647058824,
+      "n_eval_rows": 17,
+      "n_positive": 9,
+      "precision_at_5": 0.8,
+      "recall_at_5": 0.4444444444444444,
+      "ndcg_at_5": 0.8539316501572934,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.6666666666666666,
+      "ndcg_at_10": 0.7434619002283402,
+      "precision_at_20": 0.5294117647058824,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9203247448091874,
+      "episode_idx": 5
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.5833333333333334,
+      "gold_ap": 0.8513338513338515,
+      "gold_logloss": 0.6918190541254794,
+      "gold_brier": 0.24883300897179142,
+      "gold_ece": 0.27423790097236633,
+      "gold_f1": 0.5882352941176471,
+      "gold_accuracy": 0.46153846153846156,
+      "gold_pred_mean": 0.5127368500599494,
+      "gold_true_mean": 0.6923076923076923,
+      "n_eval_rows": 13,
+      "n_positive": 9,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.5555555555555556,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.6666666666666666,
+      "ndcg_at_10": 0.7637779542442368,
+      "precision_at_20": 0.6923076923076923,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9545951319065037,
+      "episode_idx": 6
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.5833333333333334,
+      "gold_ap": 0.8513338513338515,
+      "gold_logloss": 0.6918190541254794,
+      "gold_brier": 0.24883300897179142,
+      "gold_ece": 0.27423790097236633,
+      "gold_f1": 0.5882352941176471,
+      "gold_accuracy": 0.46153846153846156,
+      "gold_pred_mean": 0.5127368500599494,
+      "gold_true_mean": 0.6923076923076923,
+      "n_eval_rows": 13,
+      "n_positive": 9,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.5555555555555556,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.6666666666666666,
+      "ndcg_at_10": 0.7637779542442368,
+      "precision_at_20": 0.6923076923076923,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9545951319065037,
+      "episode_idx": 7
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.4431818181818182,
+      "gold_ap": 0.6676720939878835,
+      "gold_logloss": 0.6911511005707367,
+      "gold_brier": 0.2530875839667895,
+      "gold_ece": 0.20228671086461922,
+      "gold_f1": 0.6428571428571429,
+      "gold_accuracy": 0.47368421052631576,
+      "gold_pred_mean": 0.6403291821479797,
+      "gold_true_mean": 0.5789473684210527,
+      "n_eval_rows": 19,
+      "n_positive": 11,
+      "precision_at_5": 0.6,
+      "recall_at_5": 0.2727272727272727,
+      "ndcg_at_5": 0.7227265726449517,
+      "precision_at_10": 0.5,
+      "recall_at_10": 0.45454545454545453,
+      "ndcg_at_10": 0.6020521034564038,
+      "precision_at_20": 0.5789473684210527,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.8794381107451056,
+      "episode_idx": 8
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.5,
+      "gold_ap": 0.6118055555555555,
+      "gold_logloss": 0.9578350927763075,
+      "gold_brier": 0.35286347004468066,
+      "gold_ece": 0.33760910481214523,
+      "gold_f1": 0.6666666666666666,
+      "gold_accuracy": 0.5,
+      "gold_pred_mean": 0.8322810530662537,
+      "gold_true_mean": 0.5,
+      "n_eval_rows": 16,
+      "n_positive": 8,
+      "precision_at_5": 0.6,
+      "recall_at_5": 0.375,
+      "ndcg_at_5": 0.6548086577531306,
+      "precision_at_10": 0.5,
+      "recall_at_10": 0.625,
+      "ndcg_at_10": 0.6376107259305349,
+      "precision_at_20": 0.5,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.8339438853847048,
+      "episode_idx": 9
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.47916666666666663,
+      "gold_ap": 0.8319888444888445,
+      "gold_logloss": 1.3462772925417472,
+      "gold_brier": 0.5079934175877714,
+      "gold_ece": 0.5659734550863504,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.25,
+      "gold_pred_mean": 0.18402654491364956,
+      "gold_true_mean": 0.75,
+      "n_eval_rows": 16,
+      "n_positive": 12,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.4166666666666667,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 0.7,
+      "recall_at_10": 0.5833333333333334,
+      "ndcg_at_10": 0.7788065869851872,
+      "precision_at_20": 0.75,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9485570778895861,
+      "episode_idx": 10
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.3787878787878788,
+      "gold_ap": 0.6656563430627602,
+      "gold_logloss": 0.8363614085383516,
+      "gold_brier": 0.3141657669371366,
+      "gold_ece": 0.3480156940572402,
+      "gold_f1": 0.3076923076923077,
+      "gold_accuracy": 0.47058823529411764,
+      "gold_pred_mean": 0.3799624653423534,
+      "gold_true_mean": 0.6470588235294118,
+      "n_eval_rows": 17,
+      "n_positive": 11,
+      "precision_at_5": 0.4,
+      "recall_at_5": 0.18181818181818182,
+      "ndcg_at_5": 0.5531464700081437,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.5454545454545454,
+      "ndcg_at_10": 0.6366587127404281,
+      "precision_at_20": 0.6470588235294118,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.8656730278195763,
+      "episode_idx": 11
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.41666666666666663,
+      "gold_ap": 0.5919844044844045,
+      "gold_logloss": 0.7081945124772375,
+      "gold_brier": 0.2578802905763545,
+      "gold_ece": 0.16428123201642714,
+      "gold_f1": 0.7272727272727273,
+      "gold_accuracy": 0.5714285714285714,
+      "gold_pred_mean": 0.6392232860837664,
+      "gold_true_mean": 0.5714285714285714,
+      "n_eval_rows": 14,
+      "n_positive": 8,
+      "precision_at_5": 0.4,
+      "recall_at_5": 0.25,
+      "ndcg_at_5": 0.4703652827859579,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.75,
+      "ndcg_at_10": 0.664163249382445,
+      "precision_at_20": 0.5714285714285714,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.8011551152463896,
+      "episode_idx": 12
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.5625,
+      "gold_ap": 0.7378754286649025,
+      "gold_logloss": 0.656041759082109,
+      "gold_brier": 0.23560065252820853,
+      "gold_ece": 0.17414832413196563,
+      "gold_f1": 0.7096774193548387,
+      "gold_accuracy": 0.55,
+      "gold_pred_mean": 0.674606254696846,
+      "gold_true_mean": 0.6,
+      "n_eval_rows": 20,
+      "n_positive": 12,
+      "precision_at_5": 0.8,
+      "recall_at_5": 0.3333333333333333,
+      "ndcg_at_5": 0.8539316501572934,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.5,
+      "ndcg_at_10": 0.6911279212606076,
+      "precision_at_20": 0.6,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9124320676128443,
+      "episode_idx": 13
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.5,
+      "gold_ap": 0.6118055555555555,
+      "gold_logloss": 0.9578350927763075,
+      "gold_brier": 0.35286347004468066,
+      "gold_ece": 0.33760910481214523,
+      "gold_f1": 0.6666666666666666,
+      "gold_accuracy": 0.5,
+      "gold_pred_mean": 0.8322810530662537,
+      "gold_true_mean": 0.5,
+      "n_eval_rows": 16,
+      "n_positive": 8,
+      "precision_at_5": 0.6,
+      "recall_at_5": 0.375,
+      "ndcg_at_5": 0.6548086577531306,
+      "precision_at_10": 0.5,
+      "recall_at_10": 0.625,
+      "ndcg_at_10": 0.6376107259305349,
+      "precision_at_20": 0.5,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.8339438853847048,
+      "episode_idx": 14
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.625,
+      "gold_ap": 0.7593933299815654,
+      "gold_logloss": 0.8695324368911386,
+      "gold_brier": 0.3223763142617614,
+      "gold_ece": 0.3502921532182133,
+      "gold_f1": 0.6923076923076923,
+      "gold_accuracy": 0.5294117647058824,
+      "gold_pred_mean": 0.8092708903200486,
+      "gold_true_mean": 0.5294117647058824,
+      "n_eval_rows": 17,
+      "n_positive": 9,
+      "precision_at_5": 0.8,
+      "recall_at_5": 0.4444444444444444,
+      "ndcg_at_5": 0.8539316501572934,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.6666666666666666,
+      "ndcg_at_10": 0.7434619002283402,
+      "precision_at_20": 0.5294117647058824,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9203247448091874,
+      "episode_idx": 15
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.5138888888888888,
+      "gold_ap": 0.7541080447330447,
+      "gold_logloss": 1.048137631300079,
+      "gold_brier": 0.3979870993617339,
+      "gold_ece": 0.42247364876998794,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.3333333333333333,
+      "gold_pred_mean": 0.24419301789667872,
+      "gold_true_mean": 0.6666666666666666,
+      "n_eval_rows": 18,
+      "n_positive": 12,
+      "precision_at_5": 0.6,
+      "recall_at_5": 0.25,
+      "ndcg_at_5": 0.7227265726449517,
+      "precision_at_10": 0.7,
+      "recall_at_10": 0.5833333333333334,
+      "ndcg_at_10": 0.7467045958894681,
+      "precision_at_20": 0.6666666666666666,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9145679270215225,
+      "episode_idx": 16
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.2727272727272727,
+      "gold_ap": 0.7362284180465999,
+      "gold_logloss": 1.0774856713944834,
+      "gold_brier": 0.4114351848883822,
+      "gold_ece": 0.45730524758497865,
+      "gold_f1": 0.16666666666666666,
+      "gold_accuracy": 0.3333333333333333,
+      "gold_pred_mean": 0.2760280857483546,
+      "gold_true_mean": 0.7333333333333333,
+      "n_eval_rows": 15,
+      "n_positive": 11,
+      "precision_at_5": 0.6,
+      "recall_at_5": 0.2727272727272727,
+      "ndcg_at_5": 0.7227265726449517,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.5454545454545454,
+      "ndcg_at_10": 0.6683063269107927,
+      "precision_at_20": 0.7333333333333333,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9029084603954007,
+      "episode_idx": 17
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.5740740740740741,
+      "gold_ap": 0.7681115181115183,
+      "gold_logloss": 0.654057580253377,
+      "gold_brier": 0.2340590463367939,
+      "gold_ece": 0.16681119799613955,
+      "gold_f1": 0.7272727272727273,
+      "gold_accuracy": 0.6,
+      "gold_pred_mean": 0.6228401402632395,
+      "gold_true_mean": 0.6,
+      "n_eval_rows": 15,
+      "n_positive": 9,
+      "precision_at_5": 0.8,
+      "recall_at_5": 0.4444444444444444,
+      "ndcg_at_5": 0.8539316501572934,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.6666666666666666,
+      "ndcg_at_10": 0.7380855027006419,
+      "precision_at_20": 0.6,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9220997698006655,
+      "episode_idx": 18
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.375,
+      "gold_ap": 0.7903853091353091,
+      "gold_logloss": 1.383870042073611,
+      "gold_brier": 0.5186419855255666,
+      "gold_ece": 0.5723110255785286,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.25,
+      "gold_pred_mean": 0.17768897442147136,
+      "gold_true_mean": 0.75,
+      "n_eval_rows": 16,
+      "n_positive": 12,
+      "precision_at_5": 0.8,
+      "recall_at_5": 0.3333333333333333,
+      "ndcg_at_5": 0.8687949224876581,
+      "precision_at_10": 0.6,
+      "recall_at_10": 0.5,
+      "ndcg_at_10": 0.6994739030813918,
+      "precision_at_20": 0.75,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9308427247952715,
+      "episode_idx": 19
+    }
+  ],
+  "predictions": [
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8214613199234009,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8206987977027893,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8138368129730225,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8062976002693176,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7097093462944031,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7988893389701843,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7731911540031433,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8405637145042419,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.7926511168479919,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6341389417648315,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.924635112285614,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.9159820675849915,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.7107082605361938,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8363427519798279,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.9265631437301636,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8241435885429382,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.807792067527771,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.1520417034626007,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.174055278301239,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.17374718189239502,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.16726163029670715,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.18856243789196014,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.18669579923152924,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.1781584918498993,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.14893832802772522,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.08464328944683075,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.2417444884777069,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.24145987629890442,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.11664245277643204,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.2689157724380493,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.19077511131763458,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.1588633954524994,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "533151",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.17051835358142853,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.3064834475517273,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.34281572699546814,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.3403567373752594,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.32473039627075195,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.31612446904182434,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.2805866003036499,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.41299259662628174,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.38197144865989685,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.43964695930480957,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.29896080493927,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.19172212481498718,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6685134172439575,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.7076424956321716,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.2774377465248108,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.4031297564506531,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.3342021405696869,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "533151",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.432045042514801,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.16164201498031616,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.17660187184810638,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.1778711974620819,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.17429672181606293,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.18752053380012512,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.18736137449741364,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.18205811083316803,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.15471777319908142,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.09142319113016129,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.26018646359443665,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.2527162730693817,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.11656973510980606,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.20199307799339294,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.26333317160606384,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.1917663812637329,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "533151",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.16436682641506195,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6494179368019104,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.669571578502655,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6675295233726501,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6561237573623657,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6850367784500122,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6809972524642944,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6677823066711426,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6545401811599731,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5120017528533936,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6440433263778687,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5687574744224548,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6802455186843872,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6398011445999146,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.43188416957855225,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8358080387115479,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8092459440231323,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.4990386366844177,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8417676091194153,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6851570010185242,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6414434909820557,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8214613199234009,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8206987977027893,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8138368129730225,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8062976002693176,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7097093462944031,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7988893389701843,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7731911540031433,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8405637145042419,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.7926511168479919,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6341389417648315,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.924635112285614,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.9159820675849915,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.7107082605361938,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8363427519798279,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.9265631437301636,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8241435885429382,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 5,
+      "repeat_idx": 5,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.807792067527771,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5166770815849304,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5172423124313354,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5075300931930542,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.4520591199398041,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.29874035716056824,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6364697813987732,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6421087980270386,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.3937877416610718,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.5518194437026978,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6683675646781921,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.5220669507980347,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.48798373341560364,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 6,
+      "repeat_idx": 6,
+      "contract_id": "533151",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.4707260727882385,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5166770815849304,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5172423124313354,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5075300931930542,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.4520591199398041,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.29874035716056824,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6364697813987732,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6421087980270386,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.3937877416610718,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.5518194437026978,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6683675646781921,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.5220669507980347,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.48798373341560364,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 7,
+      "repeat_idx": 7,
+      "contract_id": "533151",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.4707260727882385,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.619269073009491,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6402403712272644,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6364715099334717,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6217458844184875,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6604962944984436,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6547680497169495,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6381783485412598,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6293947100639343,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5717774033546448,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6664392352104187,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5982446074485779,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6516687870025635,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6031156778335571,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.41080355644226074,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8871832489967346,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8809987902641296,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.48241788148880005,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6849855184555054,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 8,
+      "repeat_idx": 8,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6280555129051208,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8102397918701172,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.821256160736084,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.820592999458313,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8122439980506897,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8315653204917908,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8299480080604553,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8209360837936401,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8173324465751648,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7723613381385803,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8266409635543823,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8294028043746948,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8587428331375122,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8473544120788574,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.9573755860328674,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8392865061759949,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 9,
+      "repeat_idx": 9,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8212175965309143,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.16164201498031616,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.17660187184810638,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.1778711974620819,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.17429672181606293,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.18752053380012512,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.18736137449741364,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.18205811083316803,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.15471777319908142,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.09142319113016129,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.26018646359443665,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.2527162730693817,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.11656973510980606,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.20199307799339294,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.26333317160606384,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.1917663812637329,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 10,
+      "repeat_idx": 10,
+      "contract_id": "533151",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.16436682641506195,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.3064834475517273,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.34281572699546814,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.3403567373752594,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.32473039627075195,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.31612446904182434,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.2805866003036499,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.41299259662628174,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.38197144865989685,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.43964695930480957,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.29896080493927,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.19172212481498718,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6685134172439575,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.7076424956321716,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.2774377465248108,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.4031297564506531,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.3342021405696869,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 11,
+      "repeat_idx": 11,
+      "contract_id": "533151",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.432045042514801,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.5664953589439392,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.5950879454612732,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.5948305130004883,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.5800876617431641,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5798649191856384,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5256823897361755,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6388034820556641,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6700770854949951,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.72022545337677,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6492499709129333,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8825455904006958,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6365769505500793,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6012882590293884,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 12,
+      "repeat_idx": 12,
+      "contract_id": "533151",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7083104252815247,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6843193173408508,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6806580424308777,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6830946207046509,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6807805299758911,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6858686208724976,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6864000558853149,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.682444155216217,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6918058395385742,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.546099066734314,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.641892671585083,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5671185851097107,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.702246367931366,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6635234355926514,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.4758092164993286,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8627063632011414,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8291608691215515,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.5019884705543518,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6979429721832275,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8369028568267822,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 13,
+      "repeat_idx": 13,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6913630366325378,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8102397918701172,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.821256160736084,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.820592999458313,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8122439980506897,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8315653204917908,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8299480080604553,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8209360837936401,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8173324465751648,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7723613381385803,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8266409635543823,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8294028043746948,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8587428331375122,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8473544120788574,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.9573755860328674,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8392865061759949,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 14,
+      "repeat_idx": 14,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8212175965309143,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8214613199234009,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8206987977027893,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8138368129730225,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8062976002693176,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7097093462944031,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7988893389701843,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7731911540031433,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.8405637145042419,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.7926511168479919,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6341389417648315,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.924635112285614,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.9159820675849915,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.7107082605361938,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8363427519798279,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.9265631437301636,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8241435885429382,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 15,
+      "repeat_idx": 15,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.807792067527771,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.2039068341255188,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.23154869675636292,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.23094312846660614,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.22137479484081268,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.21025462448596954,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.1330813616514206,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.24831902980804443,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.21141323447227478,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.3159758746623993,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.2023688405752182,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.1198098435997963,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.3658559322357178,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.3766670823097229,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.17229142785072327,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.4132535755634308,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.25569769740104675,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.21463079750537872,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 16,
+      "repeat_idx": 16,
+      "contract_id": "533151",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.26808154582977295,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.22503165900707245,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.25573456287384033,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.2541074752807617,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.2431122362613678,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.27664172649383545,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.2729967534542084,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.2592773735523224,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.21597234904766083,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.12967446446418762,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.4846615195274353,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.5154744982719421,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.18225686252117157,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.3070094585418701,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.24342334270477295,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 17,
+      "repeat_idx": 17,
+      "contract_id": "533151",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.2750470042228699,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.5737045407295227,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.45054319500923157,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6099960803985596,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.6043793559074402,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "525275",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.7090003490447998,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.5579982995986938,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.4027327299118042,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.7865594625473022,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.7997565269470215,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.5250852704048157,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "569028",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6458010673522949,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.8159118294715881,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.6256000399589539,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.594241201877594,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 18,
+      "repeat_idx": 18,
+      "contract_id": "533151",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.641292154788971,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.1520417034626007,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.174055278301239,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.17374718189239502,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "541883",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.16726163029670715,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.18856243789196014,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.18669579923152924,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "335471",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.1781584918498993,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.14893832802772522,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.08464328944683075,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.2417444884777069,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.24145987629890442,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "192312",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.11664245277643204,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.2689157724380493,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "470427",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.19077511131763458,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "582913",
+      "department": "Logistics",
+      "y_true": 1.0,
+      "y_prob": 0.1588633954524994,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 19,
+      "repeat_idx": 19,
+      "contract_id": "533151",
+      "department": "Logistics",
+      "y_true": 0.0,
+      "y_prob": 0.17051835358142853,
+      "method": "anil"
+    }
+  ],
+  "history": [
+    {
+      "iteration": 1,
+      "meta_loss": 1.4129011631011963,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 2,
+      "meta_loss": 1.2727696895599365,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 3,
+      "meta_loss": 1.4110567569732666,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 4,
+      "meta_loss": 1.0704667568206787,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 5,
+      "meta_loss": 1.2297570705413818,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 6,
+      "meta_loss": 1.3476272821426392,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 7,
+      "meta_loss": 1.660374641418457,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 8,
+      "meta_loss": 1.6435458660125732,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 9,
+      "meta_loss": 1.2307298183441162,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 10,
+      "meta_loss": 1.142773151397705,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 11,
+      "meta_loss": 1.0040764808654785,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 12,
+      "meta_loss": 1.2759034633636475,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 13,
+      "meta_loss": 0.9021804332733154,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 14,
+      "meta_loss": 0.9786813259124756,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 15,
+      "meta_loss": 1.080743432044983,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 16,
+      "meta_loss": 1.2442535161972046,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 17,
+      "meta_loss": 1.1446669101715088,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 18,
+      "meta_loss": 1.1146700382232666,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 19,
+      "meta_loss": 0.9400883913040161,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 20,
+      "meta_loss": 1.084140419960022,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 21,
+      "meta_loss": 1.006922960281372,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 22,
+      "meta_loss": 0.993192732334137,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 23,
+      "meta_loss": 0.995919942855835,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 24,
+      "meta_loss": 0.9388560652732849,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 25,
+      "meta_loss": 0.8785184621810913,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 26,
+      "meta_loss": 1.0768407583236694,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 27,
+      "meta_loss": 0.9749068021774292,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 28,
+      "meta_loss": 1.1804157495498657,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 29,
+      "meta_loss": 0.9534686803817749,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 30,
+      "meta_loss": 0.9172290563583374,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 31,
+      "meta_loss": 0.8103007078170776,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 32,
+      "meta_loss": 0.9426546692848206,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 33,
+      "meta_loss": 0.8023402094841003,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 34,
+      "meta_loss": 0.8508895635604858,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 35,
+      "meta_loss": 0.81243896484375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 36,
+      "meta_loss": 1.149424433708191,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 37,
+      "meta_loss": 0.8407756686210632,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 38,
+      "meta_loss": 1.1419799327850342,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 39,
+      "meta_loss": 0.7534951567649841,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 40,
+      "meta_loss": 1.341166615486145,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 41,
+      "meta_loss": 0.78902667760849,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 42,
+      "meta_loss": 0.7751445174217224,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 43,
+      "meta_loss": 0.7449315190315247,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 44,
+      "meta_loss": 0.7528864741325378,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 45,
+      "meta_loss": 0.7321468591690063,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 46,
+      "meta_loss": 0.7223073244094849,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 47,
+      "meta_loss": 0.6984911561012268,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 48,
+      "meta_loss": 0.7224234342575073,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 49,
+      "meta_loss": 0.68160080909729,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 50,
+      "meta_loss": 0.694233775138855,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 51,
+      "meta_loss": 0.6805806159973145,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 52,
+      "meta_loss": 0.7085842490196228,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 53,
+      "meta_loss": 1.237921118736267,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 54,
+      "meta_loss": 0.659424364566803,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 55,
+      "meta_loss": 0.673136293888092,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 56,
+      "meta_loss": 1.0911287069320679,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 57,
+      "meta_loss": 0.6400234699249268,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 58,
+      "meta_loss": 0.6884891986846924,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 59,
+      "meta_loss": 0.6460388898849487,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 60,
+      "meta_loss": 0.9648476243019104,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 61,
+      "meta_loss": 0.5996224880218506,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 62,
+      "meta_loss": 0.5959940552711487,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 63,
+      "meta_loss": 0.6239714026451111,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 64,
+      "meta_loss": 0.9957301020622253,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 65,
+      "meta_loss": 0.6028449535369873,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 66,
+      "meta_loss": 1.0937037467956543,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 67,
+      "meta_loss": 1.0944632291793823,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 68,
+      "meta_loss": 0.5926928520202637,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 69,
+      "meta_loss": 0.5898128747940063,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 70,
+      "meta_loss": 0.5671350359916687,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 71,
+      "meta_loss": 1.0848088264465332,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 72,
+      "meta_loss": 1.0883709192276,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 73,
+      "meta_loss": 1.098554253578186,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 74,
+      "meta_loss": 0.577273428440094,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 75,
+      "meta_loss": 1.0935178995132446,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 76,
+      "meta_loss": 1.1007866859436035,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 77,
+      "meta_loss": 0.5710176229476929,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 78,
+      "meta_loss": 0.5697590708732605,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 79,
+      "meta_loss": 1.055605411529541,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 80,
+      "meta_loss": 1.055559515953064,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 81,
+      "meta_loss": 0.6668909192085266,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 82,
+      "meta_loss": 1.1041148900985718,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 83,
+      "meta_loss": 0.6663212180137634,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 84,
+      "meta_loss": 0.5652575492858887,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 85,
+      "meta_loss": 1.0910507440567017,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 86,
+      "meta_loss": 0.5484361052513123,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 87,
+      "meta_loss": 0.5719465613365173,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 88,
+      "meta_loss": 0.5467239022254944,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 89,
+      "meta_loss": 0.5496857762336731,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 90,
+      "meta_loss": 0.5596522092819214,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 91,
+      "meta_loss": 0.6853353381156921,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 92,
+      "meta_loss": 0.5579561591148376,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 93,
+      "meta_loss": 0.5611525774002075,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 94,
+      "meta_loss": 0.5522035956382751,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 95,
+      "meta_loss": 0.6824957728385925,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 96,
+      "meta_loss": 0.5480072498321533,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 97,
+      "meta_loss": 0.5474284291267395,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 98,
+      "meta_loss": 0.5293654799461365,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 99,
+      "meta_loss": 0.5429110527038574,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 100,
+      "meta_loss": 0.5392109751701355,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 101,
+      "meta_loss": 1.1722105741500854,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 102,
+      "meta_loss": 0.6788890361785889,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 103,
+      "meta_loss": 1.100315809249878,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 104,
+      "meta_loss": 0.5331959128379822,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 105,
+      "meta_loss": 0.6643857359886169,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 106,
+      "meta_loss": 1.1463727951049805,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 107,
+      "meta_loss": 1.1461334228515625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 108,
+      "meta_loss": 1.1379233598709106,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 109,
+      "meta_loss": 0.5155225396156311,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 110,
+      "meta_loss": 0.5150303244590759,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 111,
+      "meta_loss": 0.514417290687561,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 112,
+      "meta_loss": 0.5290679931640625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 113,
+      "meta_loss": 1.116687536239624,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 114,
+      "meta_loss": 1.1691193580627441,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 115,
+      "meta_loss": 0.6748958230018616,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 116,
+      "meta_loss": 1.1671228408813477,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 117,
+      "meta_loss": 0.5242260694503784,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 118,
+      "meta_loss": 0.6608185768127441,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 119,
+      "meta_loss": 1.1360411643981934,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 120,
+      "meta_loss": 0.6731889247894287,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 121,
+      "meta_loss": 0.5110419988632202,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 122,
+      "meta_loss": 0.523796796798706,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 123,
+      "meta_loss": 0.5104751586914062,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 124,
+      "meta_loss": 0.5099747776985168,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 125,
+      "meta_loss": 0.6567986607551575,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 126,
+      "meta_loss": 0.5073317289352417,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 127,
+      "meta_loss": 0.5093165636062622,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 128,
+      "meta_loss": 0.6688695549964905,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 129,
+      "meta_loss": 0.5205857753753662,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 130,
+      "meta_loss": 0.5041784644126892,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 131,
+      "meta_loss": 0.506404459476471,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 132,
+      "meta_loss": 0.5021151900291443,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 133,
+      "meta_loss": 0.5160178542137146,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 134,
+      "meta_loss": 0.5145778059959412,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 135,
+      "meta_loss": 1.1596649885177612,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 136,
+      "meta_loss": 0.4975377321243286,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 137,
+      "meta_loss": 0.5118350982666016,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 138,
+      "meta_loss": 0.654568076133728,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 139,
+      "meta_loss": 1.1656537055969238,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 140,
+      "meta_loss": 0.5075583457946777,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 141,
+      "meta_loss": 0.49315106868743896,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 142,
+      "meta_loss": 0.6542255282402039,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 143,
+      "meta_loss": 0.4968346953392029,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 144,
+      "meta_loss": 1.1848729848861694,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 145,
+      "meta_loss": 1.1486501693725586,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 146,
+      "meta_loss": 0.4944166839122772,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 147,
+      "meta_loss": 0.4953064024448395,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 148,
+      "meta_loss": 0.4949357211589813,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 149,
+      "meta_loss": 1.1583285331726074,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 150,
+      "meta_loss": 1.1498011350631714,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 151,
+      "meta_loss": 0.5020606517791748,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 152,
+      "meta_loss": 0.5043917894363403,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 153,
+      "meta_loss": 0.6507893800735474,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 154,
+      "meta_loss": 1.1721512079238892,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 155,
+      "meta_loss": 1.1468300819396973,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 156,
+      "meta_loss": 0.6492578983306885,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 157,
+      "meta_loss": 0.5042216777801514,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 158,
+      "meta_loss": 0.504365086555481,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 159,
+      "meta_loss": 1.1460137367248535,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 160,
+      "meta_loss": 1.1284714937210083,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 161,
+      "meta_loss": 1.150246500968933,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 162,
+      "meta_loss": 1.1179746389389038,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 163,
+      "meta_loss": 0.5048083662986755,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 164,
+      "meta_loss": 0.5074814558029175,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 165,
+      "meta_loss": 0.5077013373374939,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 166,
+      "meta_loss": 1.1750268936157227,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 167,
+      "meta_loss": 0.6444186568260193,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 168,
+      "meta_loss": 0.4903348982334137,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 169,
+      "meta_loss": 1.0884968042373657,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 170,
+      "meta_loss": 1.173823595046997,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 171,
+      "meta_loss": 1.1381226778030396,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 172,
+      "meta_loss": 1.0798574686050415,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 173,
+      "meta_loss": 1.1684142351150513,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 174,
+      "meta_loss": 0.64169842004776,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 175,
+      "meta_loss": 0.6409892439842224,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 176,
+      "meta_loss": 0.5108703970909119,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 177,
+      "meta_loss": 0.5132831931114197,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 178,
+      "meta_loss": 1.1144331693649292,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 179,
+      "meta_loss": 0.5121508836746216,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 180,
+      "meta_loss": 0.5004334449768066,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 181,
+      "meta_loss": 0.5002977848052979,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 182,
+      "meta_loss": 0.5137836337089539,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 183,
+      "meta_loss": 0.5109695792198181,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 184,
+      "meta_loss": 0.6369145512580872,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 185,
+      "meta_loss": 0.6366391181945801,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 186,
+      "meta_loss": 0.49767035245895386,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 187,
+      "meta_loss": 0.5105688571929932,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 188,
+      "meta_loss": 0.5097202658653259,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 189,
+      "meta_loss": 0.4934729337692261,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 190,
+      "meta_loss": 1.0905753374099731,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 191,
+      "meta_loss": 0.5067750215530396,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 192,
+      "meta_loss": 1.1458293199539185,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 193,
+      "meta_loss": 0.5055716633796692,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 194,
+      "meta_loss": 0.48408225178718567,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 195,
+      "meta_loss": 0.5032157301902771,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 196,
+      "meta_loss": 0.48210418224334717,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 197,
+      "meta_loss": 0.4870848059654236,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 198,
+      "meta_loss": 0.479848712682724,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 199,
+      "meta_loss": 0.6378360390663147,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 200,
+      "meta_loss": 0.4868505001068115,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    }
+  ],
+  "diagnostics": {
+    "meta_iterations_requested": 200,
+    "iterations_with_valid_tasks": 200,
+    "meta_batch_size": 4,
+    "total_possible_task_episodes": 800,
+    "total_skipped_task_episodes": 0,
+    "skip_rate": 0.0,
+    "meta_train_departments_used": [
+      "Packaging Material"
+    ]
+  },
+  "episode_accounting": [
+    {
+      "real_k_pos": 4,
+      "real_k_neg": 1,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 4,
+      "effective_k_neg": 1,
+      "n_real_support_rows": 5,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 5,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 0,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 17,
+      "n_query_pos": 9,
+      "n_query_neg": 8,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 1,
+      "real_k_neg": 5,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 1,
+      "effective_k_neg": 5,
+      "n_real_support_rows": 6,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 6,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 1,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 16,
+      "n_query_pos": 12,
+      "n_query_neg": 4,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 2,
+      "real_k_neg": 3,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 2,
+      "effective_k_neg": 3,
+      "n_real_support_rows": 5,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 5,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 2,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 17,
+      "n_query_pos": 11,
+      "n_query_neg": 6,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 1,
+      "real_k_neg": 5,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 1,
+      "effective_k_neg": 5,
+      "n_real_support_rows": 6,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 6,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 3,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 16,
+      "n_query_pos": 12,
+      "n_query_neg": 4,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 1,
+      "real_k_neg": 1,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 1,
+      "effective_k_neg": 1,
+      "n_real_support_rows": 2,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 2,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 4,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 20,
+      "n_query_pos": 12,
+      "n_query_neg": 8,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 4,
+      "real_k_neg": 1,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 4,
+      "effective_k_neg": 1,
+      "n_real_support_rows": 5,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 5,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 5,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 17,
+      "n_query_pos": 9,
+      "n_query_neg": 8,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 4,
+      "real_k_neg": 5,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 4,
+      "effective_k_neg": 5,
+      "n_real_support_rows": 9,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 9,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 6,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 13,
+      "n_query_pos": 9,
+      "n_query_neg": 4,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 4,
+      "real_k_neg": 5,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 4,
+      "effective_k_neg": 5,
+      "n_real_support_rows": 9,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 9,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 7,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 13,
+      "n_query_pos": 9,
+      "n_query_neg": 4,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 2,
+      "real_k_neg": 1,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 2,
+      "effective_k_neg": 1,
+      "n_real_support_rows": 3,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 3,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 8,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 19,
+      "n_query_pos": 11,
+      "n_query_neg": 8,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 5,
+      "real_k_neg": 1,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 5,
+      "effective_k_neg": 1,
+      "n_real_support_rows": 6,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 6,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 9,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 16,
+      "n_query_pos": 8,
+      "n_query_neg": 8,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 1,
+      "real_k_neg": 5,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 1,
+      "effective_k_neg": 5,
+      "n_real_support_rows": 6,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 6,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 10,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 16,
+      "n_query_pos": 12,
+      "n_query_neg": 4,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 2,
+      "real_k_neg": 3,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 2,
+      "effective_k_neg": 3,
+      "n_real_support_rows": 5,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 5,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 11,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 17,
+      "n_query_pos": 11,
+      "n_query_neg": 6,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 5,
+      "real_k_neg": 3,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 5,
+      "effective_k_neg": 3,
+      "n_real_support_rows": 8,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 8,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 12,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 14,
+      "n_query_pos": 8,
+      "n_query_neg": 6,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 1,
+      "real_k_neg": 1,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 1,
+      "effective_k_neg": 1,
+      "n_real_support_rows": 2,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 2,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 13,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 20,
+      "n_query_pos": 12,
+      "n_query_neg": 8,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 5,
+      "real_k_neg": 1,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 5,
+      "effective_k_neg": 1,
+      "n_real_support_rows": 6,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 6,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 14,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 16,
+      "n_query_pos": 8,
+      "n_query_neg": 8,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 4,
+      "real_k_neg": 1,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 4,
+      "effective_k_neg": 1,
+      "n_real_support_rows": 5,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 5,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 15,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 17,
+      "n_query_pos": 9,
+      "n_query_neg": 8,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 1,
+      "real_k_neg": 3,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 1,
+      "effective_k_neg": 3,
+      "n_real_support_rows": 4,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 4,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 16,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 18,
+      "n_query_pos": 12,
+      "n_query_neg": 6,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 2,
+      "real_k_neg": 5,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 2,
+      "effective_k_neg": 5,
+      "n_real_support_rows": 7,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 7,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 17,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 15,
+      "n_query_pos": 11,
+      "n_query_neg": 4,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 4,
+      "real_k_neg": 3,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 4,
+      "effective_k_neg": 3,
+      "n_real_support_rows": 7,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 7,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 18,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 15,
+      "n_query_pos": 9,
+      "n_query_neg": 6,
+      "n_query_synthetic_rows": 0
+    },
+    {
+      "real_k_pos": 1,
+      "real_k_neg": 5,
+      "synthetic_k_pos": 0,
+      "synthetic_k_neg": 0,
+      "effective_k_pos": 1,
+      "effective_k_neg": 5,
+      "n_real_support_rows": 6,
+      "n_synthetic_support_rows": 0,
+      "n_effective_support_rows": 6,
+      "n_real_support_contracts": 2,
+      "n_synthetic_support_contracts": 0,
+      "episode_idx": 19,
+      "augmentation_method": "none",
+      "synthetic_proportion": 0.0,
+      "n_query_rows": 16,
+      "n_query_pos": 12,
+      "n_query_neg": 4,
+      "n_query_synthetic_rows": 0
+    }
+  ],
+  "accounting_summary": {
+    "real_k_pos_mean": 2.7,
+    "real_k_neg_mean": 2.9,
+    "synthetic_k_pos_mean": 0.0,
+    "synthetic_k_neg_mean": 0.0,
+    "effective_k_pos_mean": 2.7,
+    "effective_k_neg_mean": 2.9,
+    "n_real_support_rows_mean": 5.6,
+    "n_synthetic_support_rows_mean": 0.0,
+    "n_effective_support_rows_mean": 5.6,
+    "n_real_support_contracts_mean": 2.0,
+    "n_synthetic_support_contracts_mean": 0.0,
+    "n_query_rows_mean": 16.4,
+    "n_query_pos_mean": 10.3,
+    "n_query_neg_mean": 6.1,
+    "n_query_synthetic_rows_mean": 0.0,
+    "augmentation_method_actual": "none",
+    "gen_fallback_used": false,
+    "gen_skip_reason": null
+  }
+}

@@ -495,6 +495,12 @@ def ndcg_at_k(
     if len(y_true) == 0:
         return np.nan
 
+    # sklearn ndcg_score requires at least 2 documents; with only 1 the metric
+    # is undefined (there is no ranking to evaluate). Return nan so downstream
+    # aggregations (mean, std) simply skip this cell instead of crashing.
+    if len(y_true) < 2:
+        return np.nan
+
     k = min(k, len(y_true))
 
     # sklearn handles normalization robustly

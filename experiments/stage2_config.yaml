@@ -1,23 +1,64 @@
-# -----------------------------------------------------------------------------
+# =============================================================================
 # Stage 2 Experiment Configuration
+# =============================================================================
 #
-# Purpose:
-# This configuration defines the experimental setup for Stage 2,
-# which evaluates department-level adaptation (Logistics) using gold labels.
+# PURPOSE:
+# This YAML file is the SINGLE SOURCE OF TRUTH for all Stage 2 experiments.
+# It defines the experimental setup for department-level few-shot adaptation
+# using gold labels and optional synthetic support augmentation.
 #
-# Structure:
-# - base_config: Global defaults for all runs.
-# - experiment_grid: Parameters for combinatorial sweeps.
-# - presets: Named subsets of the grid for common experimental scenarios.
-# -----------------------------------------------------------------------------
+# IMPORTANT THESIS CONSTRAINTS:
+# - Stage 1 pretrained initializers are loaded from saved artifacts.
+# - Random init must use the same MLP capacity as Stage 1 for fair comparison.
+# - Synthetic augmentation, when used, is applied only to the support set.
+# - Query/evaluation sets must remain fully real.
+# - Balanced k-shot settings must respect the available contract-level labels.
+#
+# PRESET STATUS KEY:
+#   CANONICAL  — use this preset for thesis experiments; located in presets: section
+#   ARCHIVED   — duplicate or superseded; located in archived_presets: section only;
+#                preserved for reference and reproducibility
+#
+# DOCUMENTATION-ONLY FIELDS:
+# The following fields are read by humans but NOT by the runner:
+#   - augmentation_scope    : always "meta_test_support_only" by implementation;
+#                             kept in presets for clarity, silently ignored by
+#                             resolve_experiment_grid() / run_stage2_pipeline()
+#   - freeze_strategy       : PLANNED, not yet implemented; see maml_freeze_ablation
+#
+# CANONICAL EXPERIMENT GROUPS (10 presets in 4 groups):
+#
+#   [GROUP 1 — DEBUG / SMOKE TESTS]
+#   - quick_debug           : 2-episode ANIL+finetune on Logistics (k=2, A_weak_only)
+#   - stage2b_debug         : Minimal Stage 2b smoke test (k=1, ANIL+finetune, none vs smote_nc)
+#     Research questions: Confirm pipeline is healthy before running longer experiments
+#
+#   [GROUP 2 — MAIN THESIS EXPERIMENTS]
+#   - thesis_main           : 5 methods × k=1/k=2 × 2 depts × 2 inits (RQs 1–8)
+#   - init_ablation         : 5 methods × 5 inits × 2 depts (RQ: Stage 1 → Stage 2 transfer)
+#   - k_shot_label_budget   : k=1/k=2 curve, all 5 methods, 2 depts, 2 inits
+#     Research questions: RQs 1–8 (method comparison, initialization quality, k-shot effects)
+#
+#   [GROUP 3 — MAML-FOCUSED OPTIMIZATION]
+#   - maml_lr_sweep         : ANIL/FOMAML/MAML with inner-LR × inner-step grid
+#   - maml_freeze_ablation  : [TODO — NOT YET RUNNABLE] Layer-freeze ablation
+#   - maml_mechanics_debug  : [TODO — NOT YET RUNNABLE] MAML inner-loop mechanics
+#     Research questions: RQ 9 (MAML hyperparameter sensitivity and convergence behavior)
+#
+#   [GROUP 4 — STAGE 2B SUPPORT AUGMENTATION]
+#   - stage2b_smotenc       : ANIL with none vs SMOTENC, target_effective_k ablation
+#   - stage2b_label_budget  : 4 adaptive methods with augmentation under label budget
+#     Research questions: RQ 11–12 (Does SMOTENC help under real label constraints?)
+#
+# =============================================================================
 
 # ---------------------------------------------------------
-# Base Configuration (Defaults)
+# Base Configuration
 # ---------------------------------------------------------
 base_config:
   seed: 42
   verbose: true
-  method: "finetune" # Default method for path resolution
+  method: "finetune"
 
   data:
     data_filename: "contract_with_features_labeled_with_gold.csv"
@@ -30,18 +71,22 @@ base_config:
     source: "stage1_preprocessor"
 
   stage1_init:
-    init_name: "A_weak_only" # Default init
+    init_name: "A_weak_only"
     model_filename: "mlp_pretrained.pt"
     preprocessor_filename: "mlp_pretrained_preprocessor.joblib"
-    # When init_name == "random", no model weights are loaded.
-    # The preprocessor below is used to define the feature space.
-    # Defaults to A_weak_only so that random-init shares the same
-    # input dimension as the primary pretrained baseline.
+
+    # For random init, no pretrained weights are loaded.
+    # The A_weak_only preprocessor defines the feature space so random init
+    # uses the same input representation as the primary pretrained baseline.
     random_preprocessor_source: "A_weak_only"
 
   task_config:
     target_department: "Logistics"
+
+    # False because some query sets become one-class under extreme scarcity.
+    # Metrics such as AUROC should return NaN when query has one class.
     require_both_query_classes: false
+
     min_query_contracts: 1
     exclude_departments: []
 
@@ -50,7 +95,7 @@ base_config:
     n_support_neg: 2
 
   meta_config:
-    meta_batch_size: 2
+    meta_batch_size: 4
     meta_iterations: 200
     inner_lr: 0.01
     outer_lr: 0.001
@@ -59,27 +104,20 @@ base_config:
     n_repeats: 20
 
   # ---------------------------------------------------------------------------
-  # MLP architecture (mlp_config)
+  # MLP architecture for random-init baseline only.
+  #
+  # Pretrained Stage 1 initializers read architecture from metadata.json.
+  # Random init must match Stage 1 capacity for a fair comparison.
+  #
+  # Current Stage 1 architecture:
+  #   hidden_dim_1: 256
+  #   hidden_dim_2: 128
+  #   dropout: 0.1
   # ---------------------------------------------------------------------------
-  # IMPORTANT: This block is used ONLY for the random-init baseline.
-  #
-  # For all pretrained Stage 1 inits (A_weak_only / B_gold_only / C_hybrid /
-  # D_hybrid_unweighted), Stage 2 reads the architecture from the artifact's
-  # metadata.json via build_stage2_model_for_init().  This guarantees that
-  # strict=True weight loading always succeeds even if the YAML values here
-  # differ from what Stage 1 was trained with.
-  #
-  # The canonical Stage 1 architecture (as of the current artifacts) is:
-  #   hidden_dim_1: 128, hidden_dim_2: 64, dropout: 0.2
-  # (confirmed in models/stage_1/*/metadata.json → mlp_architecture)
-  #
-  # If you retrain Stage 1 with a new architecture, update Stage 1 YAML and
-  # re-run; Stage 2 will automatically pick up the new dims from metadata.json.
-  # You only need to update random_mlp_config (below) manually.
   mlp_config:
-    hidden_dim_1: 128  # Must match the random-init model you want to compare.
-    hidden_dim_2: 64   # Set to match Stage 1 artifact dims for a fair comparison.
-    dropout: 0.2       # Adjust independently if desired for the random baseline.
+    hidden_dim_1: 256
+    hidden_dim_2: 128
+    dropout: 0.1
 
   evaluation:
     ranking_k: 10
@@ -91,8 +129,9 @@ base_config:
     skip_if_exists: true
     force_rerun: false
 
+
 # ---------------------------------------------------------
-# Experiment Grid (Sweep Parameters)
+# Global Experiment Grid
 # ---------------------------------------------------------
 experiment_grid:
   methods:
@@ -101,20 +140,19 @@ experiment_grid:
     - "anil"
     - "fomaml"
     - "maml"
-  
+
+  # Feasible balanced contract-level support sizes.
+  # Avoid k=5/k=10 because current gold labels do not support those settings.
   support_grid:
+    - n_support_pos: 1
+      n_support_neg: 1
     - n_support_pos: 2
       n_support_neg: 2
-    - n_support_pos: 5
-      n_support_neg: 5
-    - n_support_pos: 10
-      n_support_neg: 10
-  
+
   inner_steps_grid:
     - 1
     - 3
     - 5
-    - 10
 
   init_names:
     - "A_weak_only"
@@ -123,478 +161,1424 @@ experiment_grid:
     - "D_hybrid_unweighted"
     - "random"
 
+
 # ---------------------------------------------------------
-# Presets (Named Sweeps)
+# Presets  [CANONICAL — use these for thesis experiments]
 # ---------------------------------------------------------
 presets:
-  # The primary suite of experiments for the Master's Thesis
-  thesis_main:
-    methods: ["finetune", "anil", "fomaml", "maml"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-      - n_support_pos: 5
-        n_support_neg: 5
-      - n_support_pos: 10
-        n_support_neg: 10
-    inner_steps_grid: [3, 5]
-    init_names: ["A_weak_only", "C_hybrid"]
 
-  # A small subset to verify the pipeline logic
+  # ═══════════════════════════════════════════════════════════════════════════
+  # GROUP 1: DEBUG / SMOKE TESTS
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  # -------------------------------------------------------
+  # [CANONICAL] Quick pipeline debug smoke test
+  # -------------------------------------------------------
   quick_debug:
-    methods: ["finetune", "anil"]
+    description: "Minimal smoke test: 2-episode ANIL+finetune on Logistics (k=2, A_weak_only init). Safe defaults — run first to confirm pipeline is healthy."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "finetune"
+      - "anil"
+
     support_grid:
       - n_support_pos: 2
         n_support_neg: 2
-    inner_steps_grid: [3]
-    init_names: ["A_weak_only"]
+
+    inner_steps_grid:
+      - 3
+
+    init_names:
+      - "A_weak_only"
+
     meta_iterations: 5
     n_repeats: 2
-
-  # Focused test for imbalanced support settings
-  imbalance_debug:
-    methods: ["finetune", "anil"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-      - n_support_pos: 3
-        n_support_neg: 1
-      - n_support_pos: 5
-        n_support_neg: 2
-      - n_support_pos: 10
-        n_support_neg: 5
-    inner_steps_grid: [5]
-    init_names: ["A_weak_only"]
-
-  # Fair 4-method comparison — all methods, identical settings, full evaluation.
-  # kpos=2/kneg=2 is the correct maximum for Logistics (5 pos / 3 neg contracts).
-  # inner_steps_grid covers 1, 3, 5 so you can see the step-count effect.
-  # meta_batch_size=4 stabilises MAML/FOMAML outer gradients.
-  four_method_benchmark:
-    methods: ["finetune", "anil", "fomaml", "maml"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-    inner_steps_grid: [1, 3, 5]
-    init_names: ["A_weak_only"]
     meta_batch_size: 4
 
-  # Quick sanity-check version of the 4-method comparison.
-  # Runs in ~2 minutes with minimal iterations — use to verify the pipeline
-  # before committing to a full run with four_method_benchmark.
-  four_method_quick:
-    methods: ["finetune", "anil", "fomaml", "maml"]
+
+  # -------------------------------------------------------
+  # [CANONICAL] Stage 2b debug smoke test
+  # -------------------------------------------------------
+  stage2b_debug:
+    description: "Minimal Stage 2b smoke test: ANIL+finetune on Logistics (k=1, A_weak_only), comparing none vs smote_nc. Confirm synthetic support pipeline is healthy before running stage2b_smotenc."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "finetune"
+      - "anil"
+
     support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-    inner_steps_grid: [3]
-    init_names: ["A_weak_only"]
-    meta_iterations: 5
+      - n_support_pos: 1
+        n_support_neg: 1
+
+    inner_steps_grid:
+      - 3
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
     n_repeats: 3
 
-  # Zero-shot-only sweep. Evaluates the pretrained Stage 1 MLP directly
-  # on every target episode with no adaptation. Acts as the no-adapt floor
-  # that every Stage 2 method should beat. inner_steps is irrelevant but
-  # kept at [0] to document that adaptation was not performed.
-  zero_shot_only:
-    methods: ["zero_shot"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-    inner_steps_grid: [0]
-    init_names: ["A_weak_only", "B_gold_only", "C_hybrid", "D_hybrid_unweighted", "random"]
+    augmentation_method_grid:
+      - "none"
+      - "smote_nc"
 
-  # Full 5-method comparison including the no-adapt zero-shot floor.
-  # zero_shot_only + four_method_benchmark produces the full set of curves
-  # for the main Stage 2 table.
-  five_method_benchmark:
-    methods: ["zero_shot", "finetune", "anil", "fomaml", "maml"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-    inner_steps_grid: [1, 3, 5]
-    init_names: ["A_weak_only"]
-    meta_batch_size: 4
+    target_effective_k_grid:
+      - null
 
-  # k-shot sweep from k=1..5 (k positive + k negative support examples per
-  # episode). Drives the `plot_k_shot_curve` / `plot_support_size_curve`
-  # figures in notebook 17.1. Departments that cannot supply k positives and
-  # k negatives for a given k are auto-dropped by filter_valid_departments,
-  # so the effective number of target episodes shrinks as k grows.
-  k_shot_sweep:
-    methods: ["zero_shot", "finetune", "anil", "fomaml", "maml"]
+    synthetic_proportion_grid:
+      - 0.0
+
+    augmentation_scope: "meta_test_support_only"
+
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # GROUP 2: MAIN THESIS EXPERIMENTS
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  # -------------------------------------------------------
+  # [CANONICAL] Main thesis benchmark — all five methods
+  # -------------------------------------------------------
+  thesis_main:
+    description: "Main thesis benchmark. All five methods (zero_shot/finetune/ANIL/FOMAML/MAML) × k=1/k=2 support × Logistics+Packaging Material × A_weak_only+C_hybrid init. Answers RQs 1–8."
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "zero_shot"
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
     support_grid:
       - n_support_pos: 1
         n_support_neg: 1
       - n_support_pos: 2
         n_support_neg: 2
-      - n_support_pos: 3
-        n_support_neg: 3
-      - n_support_pos: 4
-        n_support_neg: 4
-      - n_support_pos: 5
-        n_support_neg: 5
-    inner_steps_grid: [3]
-    init_names: ["A_weak_only"]
+
+    inner_steps_grid:
+      - 3
+      - 5
+
+    init_names:
+      - "A_weak_only"
+      - "C_hybrid"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # -------------------------------------------------------
+  # [CANONICAL] Full initialization ablation
+  # -------------------------------------------------------
+  init_ablation:
+    description: "Full initialization ablation — all five init sources × all five methods on both target departments. Primary answer to RQ: does Stage 1 pre-training quality transfer to Stage 2 adaptation?"
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "zero_shot"
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+
+    inner_lr_grid:
+      - 0.005
+
+    init_names:
+      - "A_weak_only"
+      - "B_gold_only"
+      - "C_hybrid"
+      - "D_hybrid_unweighted"
+      - "random"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # -------------------------------------------------------
+  # [CANONICAL] K-shot label-budget curve
+  # -------------------------------------------------------
+  k_shot_label_budget:
+    description: "K-shot label-budget curve. Currently feasible at k=1 and k=2 only. Rows where the query has a single class are kept; AUROC will be NaN and should be treated as diagnostic-only in Notebook 17.1."
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "zero_shot"
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+
+    init_names:
+      - "A_weak_only"
+      - "C_hybrid"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # GROUP 3: MAML-FOCUSED OPTIMIZATION
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  # -------------------------------------------------------
+  # [CANONICAL] MAML-family inner-LR and inner-step sweep
+  # -------------------------------------------------------
+  maml_lr_sweep:
+    description: "MAML-family inner-LR and inner-step sweep for thesis optimization chapter. All adaptive methods (ANIL/FOMAML/MAML) with comprehensive hyperparameter search across both departments."
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 1
+      - 3
+      - 5
+
+    inner_lr_grid:
+      - 0.001
+      - 0.005
+      - 0.01
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # -------------------------------------------------------
+  # [CANONICAL] Layer-freeze ablation
+  #
+  # NOTE: freeze_strategy is NOT currently supported by the runner.
+  # This preset documents the intended ablation design.
+  # Do not run until stage2.py implements adaptation_scope branching.
+  #
+  # TODO: add adaptation_scope branching to _run_meta_method():
+  #   "full_model"            — all parameters updated in inner loop
+  #   "head_only"             — only final linear layer updated (= ANIL)
+  #   "last_hidden_plus_head" — last hidden layer + head updated
+  # freeze_strategy will be plumbed through synthetic_config or meta_config.
+  # -------------------------------------------------------
+  maml_freeze_ablation:
+    description: "[TODO — NOT YET RUNNABLE] Layer-freeze ablation comparing full-model adaptation vs head-only (ANIL) vs last-hidden+head strategies. Requires adaptation_scope support in stage2.py before this preset can produce results. Runner will ignore freeze_strategy fields."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+
+    inner_lr_grid:
+      - 0.005
+
+    init_names:
+      - "A_weak_only"
+      - "C_hybrid"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # -------------------------------------------------------
+  # [CANONICAL] MAML inner-loop mechanics debug
+  #
+  # NOTE: This preset is documentation-only and NOT YET RUNNABLE.
+  # It reserves the design space for future investigation of gradient
+  # approximation quality and inner-loop convergence behavior.
+  # Requires custom gradient-logging hooks in stage2.py.
+  # -------------------------------------------------------
+  maml_mechanics_debug:
+    description: "[TODO — NOT YET RUNNABLE] Debug preset for investigating MAML inner-loop mechanics. Reserved for future ablations of gradient approximation quality. Requires custom gradient-logging hooks not yet implemented."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 1
+      - 3
+      - 5
+      - 10
+
+    inner_lr_grid:
+      - 0.001
+      - 0.005
+      - 0.01
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # GROUP 4: STAGE 2B SUPPORT AUGMENTATION
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  # -------------------------------------------------------
+  # [CANONICAL] Stage 2b — SMOTENC support augmentation
+  #
+  # Canonical preset for the thesis Stage 2b chapter.
+  # Both departments, ANIL only (most stable meta-learner),
+  # A_weak_only + C_hybrid init, k=1/k=2, steps=3/5.
+  #
+  # Support augmentation axes:
+  #   gen-none vs gen-smote_nc × synprop-0.5 vs tek-5
+  #   target_effective_k=5 fills support up to 5 per class
+  #
+  # Accounting is written automatically:
+  #   support_accounting.csv + stage2b_config.json per experiment folder
+  #
+  # NOTE: augmentation_scope is a documentation-only field.
+  # It is NOT read by the runner. Augmentation is always support-only
+  # by implementation in prepare_stage2_tasks().
+  # -------------------------------------------------------
+  stage2b_smotenc:
+    description: "Canonical Stage 2b SMOTENC support-augmentation experiment. Compares real-only vs SMOTENC-augmented support (proportion-mode and effective-k-mode) for ANIL on Logistics and Packaging Material. Answers RQ 11–12."
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "anil"
+
+    init_names:
+      - "A_weak_only"
+      - "C_hybrid"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+      - 5
+
+    augmentation_method_grid:
+      - "none"
+      - "smote_nc"
+
+    target_effective_k_grid:
+      - null
+      - 5
+
+    synthetic_proportion_grid:
+      - 0.0
+      - 0.5
+
+    augmentation_scope: "meta_test_support_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # -------------------------------------------------------
+  # [CANONICAL] Stage 2b label-budget curve with augmentation
+  # -------------------------------------------------------
+  stage2b_label_budget:
+    description: "Stage 2b label-budget curve: all four adaptive methods × k=1/k=2 × both departments × none vs smote_nc augmentation. Answers RQ 11+12: does SMOTENC help under the same real label budget?"
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    init_names:
+      - "A_weak_only"
+      - "C_hybrid"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+
+    augmentation_method_grid:
+      - "none"
+      - "smote_nc"
+
+    target_effective_k_grid:
+      - null
+      - 5
+
+    synthetic_proportion_grid:
+      - 0.0
+      - 0.5
+      - 0.9
+
+    augmentation_scope: "meta_test_support_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+
+
+# =============================================================================
+# ARCHIVED PRESETS (27 total)
+#
+# These presets are preserved for reference and reproducibility only.
+# They are NOT used by the runner (runner reads only from `presets:` above).
+# Each entry documents why it was retired and what supersedes it.
+# Canonical presets: 10 (organized in 4 groups as documented at top of file)
+# Archived presets: 27 (including 12 original + 15 newly retired)
+# =============================================================================
+archived_presets:
+
+  # Retired: superseded by five_method_benchmark (which adds zero_shot method)
+  four_method_benchmark:
+    superseded_by: "five_method_benchmark"
+    reason: "Omits zero_shot method; five_method_benchmark covers all five methods."
+    description: "ARCHIVED — Four adaptive methods on feasible k=2 setting."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 1
+      - 3
+      - 5
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # Retired: superseded by quick_debug
+  four_method_quick:
+    superseded_by: "quick_debug"
+    reason: "Omits zero_shot; quick_debug covers the same debug purpose."
+    description: "ARCHIVED — Fast version of the four-method benchmark."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+
+    init_names:
+      - "A_weak_only"
+
+    meta_iterations: 5
+    n_repeats: 3
     meta_batch_size: 4
 
-  # Same as k_shot_sweep but adaptive methods only (no zero_shot row).
-  # Use this when you only want the k-shot curve for the adaptive methods,
-  # e.g. if the zero-shot floor is already cached from a previous run.
+
+  # Retired: superseded by k_shot_sweep (which includes all five methods)
   k_shot_sweep_adaptive:
-    methods: ["finetune", "anil", "fomaml", "maml"]
+    superseded_by: "k_shot_sweep"
+    reason: "Adaptive-methods-only subset of k_shot_sweep."
+    description: "ARCHIVED — Feasible k-shot curve for adaptive methods only."
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
     support_grid:
       - n_support_pos: 1
         n_support_neg: 1
       - n_support_pos: 2
         n_support_neg: 2
-      - n_support_pos: 3
-        n_support_neg: 3
-      - n_support_pos: 4
-        n_support_neg: 4
-      - n_support_pos: 5
-        n_support_neg: 5
-    inner_steps_grid: [3]
-    init_names: ["A_weak_only"]
-    meta_batch_size: 4
 
-  # Optimization benchmark: sweep inner_lr × inner_steps for ANIL / FOMAML / MAML.
-  # Zero-shot reference is loaded separately from existing results (lr-agnostic).
-  # Each (method, steps, lr) combination gets a unique experiment ID via __lr-{lr}.
-  # meta_batch_size=4 stabilises outer gradients; 200 iterations matches prior runs.
+    inner_steps_grid:
+      - 3
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # Retired: exact duplicate of thesis_adaptive_lr_sweep (verified programmatically)
   lr_sweep_benchmark:
-    methods: ["anil", "fomaml", "maml"]
+    superseded_by: "thesis_adaptive_lr_sweep"
+    reason: "Exact duplicate; identical methods, support_grid, inner_steps_grid, inner_lr_grid, init_names."
+    description: "ARCHIVED — Inner learning-rate sweep for ANIL/FOMAML/MAML."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "anil"
+      - "fomaml"
+      - "maml"
+
     support_grid:
       - n_support_pos: 2
         n_support_neg: 2
-    inner_steps_grid: [1, 3, 5]
-    inner_lr_grid: [0.001, 0.005, 0.01]
-    init_names: ["A_weak_only"]
+
+    inner_steps_grid:
+      - 1
+      - 3
+      - 5
+
+    inner_lr_grid:
+      - 0.001
+      - 0.005
+      - 0.01
+
+    init_names:
+      - "A_weak_only"
+
     meta_batch_size: 4
     n_repeats: 20
 
-  # ──────────────────────────────────────────────────────────────────────────
-  # THESIS MAIN BENCHMARK — Part 1: Reference methods (no LR sweep)
-  # zero_shot and finetune are LR-agnostic; meta_batch_size=4 for consistency.
-  # These use the standard experiment IDs (no __lr-{lr} suffix).
-  # Run with --force-rerun to guarantee clean, comparable artifacts.
-  # ──────────────────────────────────────────────────────────────────────────
-  thesis_ref_methods:
-    methods: ["zero_shot", "finetune"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-    inner_steps_grid: [1, 3, 5]
-    init_names: ["A_weak_only"]
-    meta_batch_size: 4
-    n_repeats: 20
 
-  # ──────────────────────────────────────────────────────────────────────────
-  # THESIS MAIN BENCHMARK — Part 2: Adaptive methods with LR sweep
-  # ANIL, FOMAML, MAML × steps {1,3,5} × lr {0.001,0.005,0.01} = 27 runs.
-  # Each combination gets a unique ID (e.g. __lr-0.001) so no overwrites.
-  # meta_batch_size=4 stabilises outer gradients vs. the legacy meta_batch=2.
-  # Run with --force-rerun to guarantee clean, comparable artifacts.
-  # ──────────────────────────────────────────────────────────────────────────
-  thesis_adaptive_lr_sweep:
-    methods: ["anil", "fomaml", "maml"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-    inner_steps_grid: [1, 3, 5]
-    inner_lr_grid: [0.001, 0.005, 0.01]
-    init_names: ["A_weak_only"]
-    meta_batch_size: 4
-    n_repeats: 20
-
-  # ──────────────────────────────────────────────────────────────────────────
-  # OPTIMIZATION CYCLE 1 — Focused FOMAML / MAML LR sweep
-  #
-  # Evaluates all five methods on the Logistics k=2/2 benchmark with the
-  # following structure:
-  #   - zero_shot and finetune: lr-agnostic reference methods (no LR suffix
-  #     appended to experiment IDs). Run once per step count.
-  #   - anil, fomaml, maml: explicit LR sweep over {0.001, 0.005, 0.01}.
-  #     Each (method, steps, lr) combination receives a unique ID via __lr-{lr}.
-  #
-  # Total: 6 reference + 27 adaptive = 33 experiments.
-  # meta_batch_size=4 stabilises outer gradients throughout.
-  # Run with --force-rerun for clean, fully comparable artifacts.
-  #
-  # This preset supersedes the legacy lr=0.01-only runs that showed full
-  # collapse for FOMAML and instability for MAML.
-  # ──────────────────────────────────────────────────────────────────────────
+  # Retired: exact duplicate of thesis_ref_methods (verified programmatically)
   optimization_cycle_ref:
-    methods: ["zero_shot", "finetune"]
+    superseded_by: "thesis_ref_methods"
+    reason: "Exact duplicate; identical methods, support_grid, inner_steps_grid, init_names."
+    description: "ARCHIVED — Reference methods for optimization cycle."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "zero_shot"
+      - "finetune"
+
     support_grid:
       - n_support_pos: 2
         n_support_neg: 2
-    inner_steps_grid: [1, 3, 5]
-    init_names: ["A_weak_only"]
+
+    inner_steps_grid:
+      - 1
+      - 3
+      - 5
+
+    init_names:
+      - "A_weak_only"
+
     meta_batch_size: 4
     n_repeats: 20
 
+
+  # Retired: exact duplicate of thesis_adaptive_lr_sweep (verified programmatically)
   optimization_cycle_adaptive:
-    methods: ["anil", "fomaml", "maml"]
+    superseded_by: "thesis_adaptive_lr_sweep"
+    reason: "Exact duplicate; identical methods, support_grid, inner_steps_grid, inner_lr_grid, init_names."
+    description: "ARCHIVED — Adaptive optimization cycle."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "anil"
+      - "fomaml"
+      - "maml"
+
     support_grid:
       - n_support_pos: 2
         n_support_neg: 2
-    inner_steps_grid: [1, 3, 5]
-    inner_lr_grid: [0.001, 0.005, 0.01]
-    init_names: ["A_weak_only"]
+
+    inner_steps_grid:
+      - 1
+      - 3
+      - 5
+
+    inner_lr_grid:
+      - 0.001
+      - 0.005
+      - 0.01
+
+    init_names:
+      - "A_weak_only"
+
     meta_batch_size: 4
     n_repeats: 20
 
-  # ──────────────────────────────────────────────────────────────────────────
-  # GROUP A — Clean Logistics baseline (reference — already complete)
-  #
-  # All 5 methods on Logistics, A_weak_only init, k=2/2, steps=[1,3,5].
-  # These 15 runs already exist in the registry; skip_if_exists will no-op.
-  # Listed here so the preset name appears in the registry browser.
-  # ──────────────────────────────────────────────────────────────────────────
-  clean_logistics_baseline:
-    methods: ["zero_shot", "finetune", "anil", "fomaml", "maml"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-    inner_steps_grid: [1, 3, 5]
-    init_names: ["A_weak_only"]
-    meta_batch_size: 4
-    n_repeats: 20
 
-  # ──────────────────────────────────────────────────────────────────────────
-  # GROUP B — FOMAML / MAML inner-LR sweep (extended grid)
-  #
-  # FOMAML and MAML × steps=[1,2,3,5] × lr=[0.0005,0.001,0.002,0.005,0.01]
-  # = 40 experiments. Extends optimization_cycle_adaptive by adding:
-  #   - steps=2 (new) for all lr values
-  #   - lr=0.0005 and lr=0.002 (new) for all step counts
-  # All combinations use inner_lr_grid so IDs carry __lr-{lr} suffix.
-  # Existing overlap (steps=[1,3,5] × lr=[0.001,0.005,0.01]) will be skipped
-  # if run after optimization_cycle_adaptive; otherwise all 40 run fresh.
-  # ──────────────────────────────────────────────────────────────────────────
-  maml_fomaml_lr_sweep:
-    methods: ["fomaml", "maml"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-    inner_steps_grid: [1, 2, 3, 5]
-    inner_lr_grid: [0.0005, 0.001, 0.002, 0.005, 0.01]
-    init_names: ["A_weak_only"]
-    meta_batch_size: 4
-    n_repeats: 20
-
-  # ──────────────────────────────────────────────────────────────────────────
-  # GROUP C — Initialization ablation (A_weak_only vs. C_hybrid)
-  #
-  # ANIL / FOMAML / MAML × {A_weak_only, C_hybrid} × k=2/2 × steps=3 × lr=0.005
-  # = 6 experiments. C_hybrid runs are entirely new; A_weak_only at lr=0.005
-  # produces __lr-0.005 IDs that may already exist from Group B (fomaml/maml)
-  # or from optimization_cycle_adaptive — those will be skipped.
-  # Fixes the gap where only A_weak_only initialisation has been evaluated.
-  # ──────────────────────────────────────────────────────────────────────────
+  # Retired: superseded by full_init_ablation (adds zero_shot, finetune, random)
   initialization_ablation:
-    # Full pretrained-init ablation: all four supervised conditions x
-    # three adaptive methods. Steps=3 and lr=0.005 match the existing
-    # A_weak_only runs so comparisons are on equal footing.
-    # random init is excluded here; add it via initialization_ablation_full
-    # once the random-init preprocessor fix is validated.
-    methods: ["anil", "fomaml", "maml"]
+    superseded_by: "full_init_ablation"
+    reason: "Subset of full_init_ablation; missing zero_shot, finetune methods and random init."
+    description: "ARCHIVED — Pretrained initialization ablation."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "anil"
+      - "fomaml"
+      - "maml"
+
     support_grid:
       - n_support_pos: 2
         n_support_neg: 2
-    inner_steps_grid: [3]
-    inner_lr_grid: [0.005]
-    init_names: ["A_weak_only", "B_gold_only", "C_hybrid", "D_hybrid_unweighted"]
+
+    inner_steps_grid:
+      - 3
+
+    inner_lr_grid:
+      - 0.005
+
+    init_names:
+      - "A_weak_only"
+      - "B_gold_only"
+      - "C_hybrid"
+      - "D_hybrid_unweighted"
+
     meta_batch_size: 4
     n_repeats: 20
 
-  # ──────────────────────────────────────────────────────────────────────────
-  # GROUP F — Full 5x5 initialization x method matrix
-  #
-  # All five init sources x all five methods x k=2/2 x steps=3 x lr=0.005.
-  # Produces the complete comparable experiment matrix for the thesis.
-  # Run after Groups C and D to fill the remaining cells.
-  # Existing A_weak_only runs at lr=0.005 are skipped via skip_if_exists.
-  # B_gold_only uses its own preprocessor (409 features); other conditions
-  # use A_weak_only-scale preprocessors (889 features).
-  # ──────────────────────────────────────────────────────────────────────────
-  full_init_ablation:
-    methods: ["zero_shot", "finetune", "anil", "fomaml", "maml"]
+
+  # Retired: exact duplicate of five_method_benchmark (verified programmatically)
+  clean_logistics_baseline:
+    superseded_by: "five_method_benchmark"
+    reason: "Exact duplicate; identical methods, support_grid, inner_steps_grid, init_names."
+    description: "ARCHIVED — Clean Logistics baseline using all five methods."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "zero_shot"
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
     support_grid:
       - n_support_pos: 2
         n_support_neg: 2
-    inner_steps_grid: [3]
-    inner_lr_grid: [0.005]
-    init_names: ["A_weak_only", "B_gold_only", "C_hybrid", "D_hybrid_unweighted", "random"]
+
+    inner_steps_grid:
+      - 1
+      - 3
+      - 5
+
+    init_names:
+      - "A_weak_only"
+
     meta_batch_size: 4
     n_repeats: 20
 
-  # ──────────────────────────────────────────────────────────────────────────
-  # GROUP D — K-shot sweep for Logistics (k=1..4)
-  #
-  # zero_shot / anil / fomaml / maml × k={1,2,3,4} × steps=3 × A_weak_only
-  # = 16 combinations. k=2 runs without __lr suffix already exist (lr=0.01);
-  # those 4 will be skipped. The 12 new runs cover k=1, k=3, k=4.
-  # No inner_lr_grid so IDs follow the standard format (no __lr- suffix),
-  # making them directly comparable to the existing k=2/2 baseline.
-  # Logistics has max_k=5 (5 pos + 5 neg gold contracts); k=4 is safe.
-  # ──────────────────────────────────────────────────────────────────────────
-  k_shot_sweep_logistics:
-    methods: ["zero_shot", "anil", "fomaml", "maml"]
+
+  # Retired: superseded by richer_department_check (adds fomaml, maml methods)
+  richer_dept_ref:
+    superseded_by: "richer_department_check"
+    reason: "Subset of richer_department_check; missing fomaml and maml methods."
+    description: "ARCHIVED — Reference methods for Packaging Material."
+
+    target_departments:
+      - "Packaging Material"
+
+    methods:
+      - "zero_shot"
+      - "anil"
+
     support_grid:
       - n_support_pos: 1
         n_support_neg: 1
       - n_support_pos: 2
         n_support_neg: 2
-      - n_support_pos: 3
-        n_support_neg: 3
-      - n_support_pos: 4
-        n_support_neg: 4
-    inner_steps_grid: [3]
-    init_names: ["A_weak_only"]
+
+    inner_steps_grid:
+      - 3
+
+    init_names:
+      - "A_weak_only"
+
     meta_batch_size: 4
     n_repeats: 20
 
-  # ──────────────────────────────────────────────────────────────────────────
-  # GROUP E — Richer department check (non-Logistics targets)
-  #
-  # Original preset kept for reference (uses lr=0.005 for all methods).
-  # Superseded by the three focused presets below which use Group-B-stabilized
-  # settings for FOMAML and MAML.
-  # ──────────────────────────────────────────────────────────────────────────
-  richer_department_check:
-    methods: ["zero_shot", "anil", "fomaml", "maml"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-    inner_steps_grid: [3]
-    inner_lr_grid: [0.005]
-    target_departments: ["Devices & Needles", "Packaging Material"]
-    init_names: ["A_weak_only"]
-    meta_batch_size: 4
-    n_repeats: 20
 
-  # ──────────────────────────────────────────────────────────────────────────
-  # GROUP E (v2) — Stabilized department check using Group B best settings
-  #
-  # Split into three presets so each method uses its own optimal settings
-  # from the Group B LR sweep without wasting runs on a cartesian product.
-  #
-  # Reference methods (zero_shot, anil):
-  #   zero_shot / anil × 2 departments × k=2/2 × steps=3 = 4 experiments.
-  #   No inner_lr_grid → IDs carry no __lr suffix → lr uses base default (0.01).
-  #   zero_shot ignores inner_lr/steps entirely; anil uses standard steps=3.
-  #
-  # FOMAML (Group B best stable: steps=5, lr=0.001, collapse_rate=0.05):
-  #   fomaml × 2 departments × k=2/2 × steps=5 × lr=0.001 = 2 experiments.
-  #   Uses inner_lr_grid so IDs carry __lr-0.001 suffix.
-  #
-  # MAML (Group B best stable: steps=3, lr=0.001, collapse_rate=0.20):
-  #   maml × 2 departments × k=2/2 × steps=3 × lr=0.001 = 2 experiments.
-  #   Uses inner_lr_grid so IDs carry __lr-0.001 suffix.
-  #
-  # Total: 8 experiments. All departments are non-Logistics → classified Group E.
-  # Both departments support k=2/2:
-  #   Devices & Needles:  8 pos, 6 neg gold contracts (max_k=6)
-  #   Packaging Material: 6 pos, 5 neg gold contracts (max_k=5)
-  # ──────────────────────────────────────────────────────────────────────────
-  richer_dept_ref:
-    methods: ["zero_shot", "anil"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-    inner_steps_grid: [3]
-    target_departments: ["Devices & Needles", "Packaging Material"]
-    init_names: ["A_weak_only"]
-    meta_batch_size: 4
-    n_repeats: 20
+  # Retired: superseded by synthetic_quick_debug (same debug purpose, cleaner design)
+  synthetic_label_budget_debug:
+    superseded_by: "synthetic_quick_debug"
+    reason: "Both serve as Stage 2b debug presets; synthetic_quick_debug is cleaner."
+    description: "ARCHIVED — Stage 2b label-budget curve, debug preset."
 
-  richer_dept_fomaml_stable:
-    methods: ["fomaml"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-    inner_steps_grid: [5]
-    inner_lr_grid: [0.001]
-    target_departments: ["Devices & Needles", "Packaging Material"]
-    init_names: ["A_weak_only"]
-    meta_batch_size: 4
-    n_repeats: 20
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
 
-  richer_dept_maml_stable:
-    methods: ["maml"]
-    support_grid:
-      - n_support_pos: 2
-        n_support_neg: 2
-    inner_steps_grid: [3]
-    inner_lr_grid: [0.001]
-    target_departments: ["Devices & Needles", "Packaging Material"]
-    init_names: ["A_weak_only"]
-    meta_batch_size: 4
-    n_repeats: 20
+    methods:
+      - "finetune"
 
-  # ──────────────────────────────────────────────────────────────────────────
-  # SYNTHETIC AUGMENTATION — RQ1/RQ2/RQ3 grid
-  #
-  # Drives notebook 19.0_synthetic_augmentation_experiment.ipynb.  Sweeps the
-  # synthetic_proportion × augmentation_method axes on top of the existing
-  # five-method × k-shot grid.  The runner notebook reads `synthetic_config`
-  # from each resolved experiment and feeds it into
-  # sample_episode_with_synthetic_support before adapting + evaluating.
-  #
-  # Cells where (syn_prop=0.0) collapse onto gen_method="none" via the
-  # deduplication rule in resolve_experiment_grid; this is exactly the
-  # "real-only" reference column.
-  # ──────────────────────────────────────────────────────────────────────────
-  synthetic_quick_debug:
-    # 2 methods × k=2/2 × {syn_prop ∈ [0.0, 0.5]} × {none, smote_nc}
-    # → 1 (real-only) + 1 (syn_prop=0.5, smote_nc) = 2 cells.
-    methods: ["zero_shot", "finetune"]
+    init_names:
+      - "A_weak_only"
+
     support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
       - n_support_pos: 2
         n_support_neg: 2
-    inner_steps_grid: [3]
-    init_names: ["A_weak_only"]
+
+    synthetic_proportion_grid:
+      - 0.0
+      - 0.5
+
+    augmentation_method_grid:
+      - "none"
+      - "smote_nc"
+
+    target_effective_k_grid:
+      - null
+      - 5
+
+    augmentation_scope: "meta_test_support_only"
+
+    inner_steps_grid:
+      - 3
+
+    meta_batch_size: 4
+    n_repeats: 3
+
+
+  # Retired: superseded by stage2b_anil_final_light (n_repeats=20, adds inner_steps=5)
+  anil_stage2b_light:
+    superseded_by: "stage2b_anil_final_light"
+    reason: "Only n_repeats=3; missing inner_steps=5; stage2b_anil_final_light is the clean thesis preset."
+    description: "ARCHIVED — ANIL-focused Stage 2b light experiment."
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "anil"
+
+    init_names:
+      - "A_weak_only"
+      - "C_hybrid"
+      - "random"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+
+    augmentation_method_grid:
+      - "none"
+      - "smote_nc"
+
+    target_effective_k_grid:
+      - null
+      - 5
+
+    synthetic_proportion_grid:
+      - 0.0
+      - 0.5
+      - 0.9
+
+    augmentation_scope: "meta_test_support_only"
+
+    meta_batch_size: 4
+    n_repeats: 3
+
+
+  # Retired: superseded by stage2b_anil_final_light (n_repeats=20, cleaner design)
+  synthetic_anil_feasible:
+    superseded_by: "stage2b_anil_final_light"
+    reason: "Only n_repeats=5; includes random init (not in thesis final); stage2b_anil_final_light is the clean thesis preset."
+    description: "ARCHIVED — Feasible ANIL-focused Stage 2b run with real-query-only evaluation."
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "anil"
+
+    init_names:
+      - "A_weak_only"
+      - "C_hybrid"
+      - "random"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+      - 5
+
+    augmentation_method_grid:
+      - "none"
+      - "smote_nc"
+
+    target_effective_k_grid:
+      - null
+      - 5
+
+    synthetic_proportion_grid:
+      - 0.0
+      - 0.5
+      - 0.9
+
+    augmentation_scope: "meta_test_support_only"
+
     meta_batch_size: 4
     n_repeats: 5
-    synthetic_proportion_grid: [0.0, 0.5]
-    augmentation_method_grid: ["none", "smote_nc"]
 
-  synthetic_main_logistics:
-    # All 5 methods × Logistics × k ∈ {1,2,3} × syn_prop ∈ {0.0, 0.5, 0.9} × {none, smote_nc}
-    # After dedup: 5 methods × 3 k × (1 real-only + 2 augmented) = 45 cells.
-    # NOTE: synthetic_proportion is constrained to the half-open interval [0, 1)
-    # by the augment_support validator, so we use 0.9 as the upper anchor
-    # rather than 1.0 (which would mean "100% synthetic, 0% real" and is
-    # explicitly rejected).
-    methods: ["zero_shot", "finetune", "anil", "fomaml", "maml"]
+
+  # ═════════════════════════════════════════════════════════════════════════
+  # NEWLY ARCHIVED PRESETS (Phase 7 restructuring)
+  # These 15 presets were canonical but are now archived as the 10-preset
+  # canonical structure consolidates coverage and improves focus.
+  # ═════════════════════════════════════════════════════════════════════════
+
+  # Retired: zero_shot method now included in thesis_main
+  zero_shot_only:
+    superseded_by: "thesis_main"
+    reason: "zero_shot method is now included in thesis_main methods list (5 methods: zero_shot/finetune/ANIL/FOMAML/MAML)"
+    description: "ARCHIVED — Zero-shot baseline: Stage 1 model evaluated without adaptation."
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "zero_shot"
+
     support_grid:
       - n_support_pos: 1
         n_support_neg: 1
       - n_support_pos: 2
         n_support_neg: 2
-      - n_support_pos: 3
-        n_support_neg: 3
-    inner_steps_grid: [3]
-    init_names: ["A_weak_only"]
+
+    inner_steps_grid:
+      - 0
+
+    init_names:
+      - "A_weak_only"
+      - "B_gold_only"
+      - "C_hybrid"
+      - "D_hybrid_unweighted"
+      - "random"
+
     meta_batch_size: 4
     n_repeats: 20
-    synthetic_proportion_grid: [0.0, 0.5, 0.9]
-    augmentation_method_grid: ["none", "smote_nc"]
 
-  synthetic_richer_dept:
-    # Repeat the main grid on the two non-Logistics departments to validate
-    # that any RQ1 effect generalises beyond Logistics.
-    # syn_prop upper bound 0.9 for the same reason documented above.
-    methods: ["zero_shot", "finetune", "anil", "fomaml", "maml"]
+
+  # Retired: superseded by thesis_main (adds zero_shot, both departments)
+  five_method_benchmark:
+    superseded_by: "thesis_main"
+    reason: "thesis_main covers same methods with both departments and k=1/k=2"
+    description: "ARCHIVED — Full five-method comparison on feasible k=2 support."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "zero_shot"
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
     support_grid:
       - n_support_pos: 2
         n_support_neg: 2
-    inner_steps_grid: [3]
-    target_departments: ["Devices & Needles", "Packaging Material"]
-    init_names: ["A_weak_only"]
+
+    inner_steps_grid:
+      - 1
+      - 3
+      - 5
+
+    init_names:
+      - "A_weak_only"
+
     meta_batch_size: 4
     n_repeats: 20
-    synthetic_proportion_grid: [0.0, 0.5, 0.9]
-    augmentation_method_grid: ["none", "smote_nc"]
+
+
+  # Retired: superseded by thesis_main (both methods now in main)
+  thesis_ref_methods:
+    superseded_by: "thesis_main"
+    reason: "finetune and zero_shot are now part of thesis_main"
+    description: "ARCHIVED — Reference methods for main benchmark."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "zero_shot"
+      - "finetune"
+
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 1
+      - 3
+      - 5
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # Retired: superseded by maml_lr_sweep (extended to both departments)
+  thesis_adaptive_lr_sweep:
+    superseded_by: "maml_lr_sweep"
+    reason: "maml_lr_sweep covers same adaptive methods with extended LR grid"
+    description: "ARCHIVED — Adaptive methods with LR sweep."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 1
+      - 3
+      - 5
+
+    inner_lr_grid:
+      - 0.001
+      - 0.005
+      - 0.01
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # Retired: superseded by maml_lr_sweep (adds ANIL and both departments)
+  maml_fomaml_lr_sweep:
+    superseded_by: "maml_lr_sweep"
+    reason: "maml_lr_sweep adds ANIL and covers both departments"
+    description: "ARCHIVED — Extended FOMAML/MAML LR sweep."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 1
+      - 2
+      - 3
+      - 5
+
+    inner_lr_grid:
+      - 0.0005
+      - 0.001
+      - 0.002
+      - 0.005
+      - 0.01
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # Retired: superseded by init_ablation (adds both departments)
+  full_init_ablation:
+    superseded_by: "init_ablation"
+    reason: "init_ablation is the canonical renamed version (includes Packaging Material)"
+    description: "ARCHIVED — Full initialization-by-method matrix."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "zero_shot"
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+
+    inner_lr_grid:
+      - 0.005
+
+    init_names:
+      - "A_weak_only"
+      - "B_gold_only"
+      - "C_hybrid"
+      - "D_hybrid_unweighted"
+      - "random"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # Retired: superseded by k_shot_label_budget (renamed, extended LR grid)
+  k_shot_sweep:
+    superseded_by: "k_shot_label_budget"
+    reason: "k_shot_label_budget is the canonical renamed version"
+    description: "ARCHIVED — Feasible k-shot curve. k=1/k=2 only for main claims."
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "zero_shot"
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # Retired: superseded by thesis_main (now includes Packaging Material)
+  richer_department_check:
+    superseded_by: "thesis_main"
+    reason: "thesis_main now includes Packaging Material"
+    description: "ARCHIVED — Additional department check for Packaging Material."
+
+    target_departments:
+      - "Packaging Material"
+
+    methods:
+      - "zero_shot"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+
+    inner_lr_grid:
+      - 0.005
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # Retired: superseded by thesis_main (stabilized runs covered by main)
+  richer_dept_fomaml_stable:
+    superseded_by: "thesis_main"
+    reason: "stabilized single-method runs covered by thesis_main"
+    description: "ARCHIVED — Stabilized FOMAML check for Packaging Material."
+
+    target_departments:
+      - "Packaging Material"
+
+    methods:
+      - "fomaml"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 5
+
+    inner_lr_grid:
+      - 0.001
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # Retired: superseded by thesis_main (stabilized runs covered by main)
+  richer_dept_maml_stable:
+    superseded_by: "thesis_main"
+    reason: "stabilized single-method runs covered by thesis_main"
+    description: "ARCHIVED — Stabilized MAML check for Packaging Material."
+
+    target_departments:
+      - "Packaging Material"
+
+    methods:
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+
+    inner_lr_grid:
+      - 0.001
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # Retired: superseded by stage2b_smotenc (covers Logistics and Packaging Material)
+  synthetic_main_logistics:
+    superseded_by: "stage2b_smotenc"
+    reason: "stage2b_smotenc covers Logistics and Packaging Material"
+    description: "ARCHIVED — Stage 2b support augmentation on Logistics."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+    synthetic_proportion_grid:
+      - 0.0
+      - 0.5
+      - 0.9
+
+    augmentation_method_grid:
+      - "none"
+      - "smote_nc"
+
+    target_effective_k_grid:
+      - null
+      - 5
+
+    augmentation_scope: "meta_test_support_only"
+
+
+  # Retired: superseded by stage2b_smotenc (covers both departments)
+  synthetic_richer_dept:
+    superseded_by: "stage2b_smotenc"
+    reason: "stage2b_smotenc covers both departments"
+    description: "ARCHIVED — Stage 2b support augmentation on Packaging Material."
+
+    target_departments:
+      - "Packaging Material"
+
+    methods:
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+    synthetic_proportion_grid:
+      - 0.0
+      - 0.5
+      - 0.9
+
+    augmentation_method_grid:
+      - "none"
+      - "smote_nc"
+
+    target_effective_k_grid:
+      - null
+      - 5
+
+    augmentation_scope: "meta_test_support_only"
+
+
+  # Retired: superseded by stage2b_label_budget (renamed, extended methods)
+  synthetic_label_budget_curve:
+    superseded_by: "stage2b_label_budget"
+    reason: "stage2b_label_budget is the canonical renamed version"
+    description: "ARCHIVED — Stage 2b full label-budget curve."
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "finetune"
+      - "anil"
+      - "fomaml"
+      - "maml"
+
+    init_names:
+      - "A_weak_only"
+      - "C_hybrid"
+      - "random"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    synthetic_proportion_grid:
+      - 0.0
+      - 0.5
+      - 0.9
+
+    augmentation_method_grid:
+      - "none"
+      - "smote_nc"
+
+    target_effective_k_grid:
+      - null
+      - 5
+
+    augmentation_scope: "meta_test_support_only"
+
+    inner_steps_grid:
+      - 3
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # Retired: superseded by stage2b_debug (renamed, smoke test purpose)
+  synthetic_quick_debug:
+    superseded_by: "stage2b_debug"
+    reason: "stage2b_debug is the canonical renamed version"
+    description: "ARCHIVED — Stage 2b synthetic augmentation smoke test."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "finetune"
+      - "anil"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+
+    inner_steps_grid:
+      - 3
+
+    init_names:
+      - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 3
+
+    synthetic_proportion_grid:
+      - 0.0
+      - 0.5
+
+    augmentation_method_grid:
+      - "none"
+      - "smote_nc"
+
+    target_effective_k_grid:
+      - null
+      - 5
+
+    augmentation_scope: "meta_test_support_only"
+
+
+  # Retired: superseded by stage2b_smotenc (canonical Stage 2b preset)
+  stage2b_anil_final_light:
+    superseded_by: "stage2b_smotenc"
+    reason: "stage2b_smotenc is the canonical Stage 2b preset with full method coverage"
+    description: "ARCHIVED — Clean ANIL Stage 2b support-augmentation experiment."
+
+    target_departments:
+      - "Logistics"
+      - "Packaging Material"
+
+    methods:
+      - "anil"
+
+    init_names:
+      - "A_weak_only"
+      - "C_hybrid"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 3
+      - 5
+
+    augmentation_method_grid:
+      - "none"
+      - "smote_nc"
+
+    target_effective_k_grid:
+      - null
+      - 5
+
+    synthetic_proportion_grid:
+      - 0.0
+      - 0.5
+
+    augmentation_scope: "meta_test_support_only"
+
+    meta_batch_size: 4
+    n_repeats: 20

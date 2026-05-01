@@ -1,0 +1,65 @@
+condition,model,sample_index,y_true,y_pred
+B_gold_only,Mean Predictor,0,0.0,0.7349397590361446
+B_gold_only,Mean Predictor,1,0.0,0.7349397590361446
+B_gold_only,Mean Predictor,2,0.0,0.7349397590361446
+B_gold_only,Mean Predictor,3,0.0,0.7349397590361446
+B_gold_only,Mean Predictor,4,0.0,0.7349397590361446
+B_gold_only,Mean Predictor,5,0.0,0.7349397590361446
+B_gold_only,Mean Predictor,6,0.0,0.7349397590361446
+B_gold_only,Mean Predictor,7,0.0,0.7349397590361446
+B_gold_only,Mean Predictor,8,1.0,0.7349397590361446
+B_gold_only,Mean Predictor,9,1.0,0.7349397590361446
+B_gold_only,Mean Predictor,10,1.0,0.7349397590361446
+B_gold_only,Mean Predictor,11,1.0,0.7349397590361446
+B_gold_only,Mean Predictor,12,1.0,0.7349397590361446
+B_gold_only,Mean Predictor,13,1.0,0.7349397590361446
+B_gold_only,Mean Predictor,14,1.0,0.7349397590361446
+B_gold_only,Mean Predictor,15,0.0,0.7349397590361446
+B_gold_only,Elastic Net,0,0.0,1.0
+B_gold_only,Elastic Net,1,0.0,1.0
+B_gold_only,Elastic Net,2,0.0,1.0
+B_gold_only,Elastic Net,3,0.0,0.9253271675476924
+B_gold_only,Elastic Net,4,0.0,0.9364468727696931
+B_gold_only,Elastic Net,5,0.0,0.9364468727696931
+B_gold_only,Elastic Net,6,0.0,0.9364468727696931
+B_gold_only,Elastic Net,7,0.0,0.9253271675476924
+B_gold_only,Elastic Net,8,1.0,1.0
+B_gold_only,Elastic Net,9,1.0,1.0
+B_gold_only,Elastic Net,10,1.0,1.0
+B_gold_only,Elastic Net,11,1.0,1.0
+B_gold_only,Elastic Net,12,1.0,1.0
+B_gold_only,Elastic Net,13,1.0,0.9879676547573126
+B_gold_only,Elastic Net,14,1.0,0.6865119238097463
+B_gold_only,Elastic Net,15,0.0,1.0
+B_gold_only,XGBoost,0,0.0,1.0
+B_gold_only,XGBoost,1,0.0,1.0
+B_gold_only,XGBoost,2,0.0,1.0
+B_gold_only,XGBoost,3,0.0,0.9947086572647095
+B_gold_only,XGBoost,4,0.0,0.9895401000976562
+B_gold_only,XGBoost,5,0.0,0.9969096183776855
+B_gold_only,XGBoost,6,0.0,0.9928812980651855
+B_gold_only,XGBoost,7,0.0,0.9886921048164368
+B_gold_only,XGBoost,8,1.0,0.9792509078979492
+B_gold_only,XGBoost,9,1.0,0.9843671321868896
+B_gold_only,XGBoost,10,1.0,0.9908434152603149
+B_gold_only,XGBoost,11,1.0,0.9871755242347717
+B_gold_only,XGBoost,12,1.0,0.9823089241981506
+B_gold_only,XGBoost,13,1.0,1.0
+B_gold_only,XGBoost,14,1.0,0.9777991771697998
+B_gold_only,XGBoost,15,0.0,1.0
+B_gold_only,MLP,0,0.0,1.0
+B_gold_only,MLP,1,0.0,1.0
+B_gold_only,MLP,2,0.0,1.0
+B_gold_only,MLP,3,0.0,1.0
+B_gold_only,MLP,4,0.0,1.0
+B_gold_only,MLP,5,0.0,1.0
+B_gold_only,MLP,6,0.0,1.0
+B_gold_only,MLP,7,0.0,1.0
+B_gold_only,MLP,8,1.0,1.0
+B_gold_only,MLP,9,1.0,1.0
+B_gold_only,MLP,10,1.0,1.0
+B_gold_only,MLP,11,1.0,1.0
+B_gold_only,MLP,12,1.0,1.0
+B_gold_only,MLP,13,1.0,1.0
+B_gold_only,MLP,14,1.0,1.0
+B_gold_only,MLP,15,0.0,1.0

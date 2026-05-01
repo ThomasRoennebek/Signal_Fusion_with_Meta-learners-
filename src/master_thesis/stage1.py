@@ -339,18 +339,76 @@ def evaluate_stage1_on_gold_labels(
     """
     Evaluate all four models on gold labels.
 
-    This is the primary Stage 1 evaluation layer.
+    This is the primary Stage 1 evaluation layer (Layer B).
+
+    Diagnostic guard (Fix 4)
+    -------------------------
+    If the gold evaluation set has fewer than 2 samples or fewer than 2
+    distinct classes, most binary classification metrics (AUROC, NDCG, AP,
+    F1, ECE, log-loss) are either undefined or trivially uninformative.
+
+    In that case this function:
+    - Emits a console warning with the sample/class counts.
+    - Returns a DataFrame where all metric columns are NaN.
+    - Adds ``diagnostic_only=True`` to signal that these results must NOT
+      be presented as valid held-out performance.
+
+    This situation arises when the global gold split assigns only 1 row
+    (or only 1 class) to the non-target-department test set after the
+    target department is excluded.  The fix is to increase gold-label
+    coverage or widen the test split; the guard makes the problem explicit
+    rather than silently returning misleading values.
     """
     if condition_name is None:
         condition_name = trained_bundle["condition_name"]
 
-    y_true_gold = np.asarray(y_true_gold).astype(int)
-    preds = predict_all_stage1_models(trained_bundle, X_eval)
+    y_true_gold = np.asarray(y_true_gold)
+    # Filter to valid (non-NaN) gold labels for evaluation.
+    valid_mask = ~np.isnan(y_true_gold.astype(float))
+    y_eval = y_true_gold[valid_mask].astype(int)
+    X_eval_valid = X_eval.iloc[valid_mask] if hasattr(X_eval, "iloc") else X_eval[valid_mask]
+
+    n_samples = len(y_eval)
+    n_classes = len(set(y_eval.tolist()))
+
+    _degenerate = (n_samples < 2) or (n_classes < 2)
+
+    if _degenerate:
+        import warnings
+        warnings.warn(
+            f"[evaluate_stage1_on_gold_labels | {condition_name}] "
+            f"Gold evaluation set has {n_samples} sample(s) and {n_classes} class(es). "
+            f"Binary classification metrics require ≥2 samples with ≥2 classes. "
+            f"All metrics will be NaN.  Tag: diagnostic_only=True.",
+            UserWarning,
+            stacklevel=2,
+        )
+        model_names = list(predict_all_stage1_models(trained_bundle, X_eval).keys())
+        nan_rows = []
+        for model_name in model_names:
+            nan_rows.append({
+                "model": f"{model_name}_{condition_name}",
+                "condition": condition_name,
+                "model_base": model_name,
+                "n_gold_samples": n_samples,
+                "n_gold_classes": n_classes,
+                "diagnostic_only": True,
+                "gold_auroc": np.nan,
+                "gold_ap": np.nan,
+                "gold_logloss": np.nan,
+                "gold_brier": np.nan,
+                "gold_ece": np.nan,
+                "gold_f1": np.nan,
+                "gold_accuracy": np.nan,
+            })
+        return pd.DataFrame(nan_rows)
+
+    preds = predict_all_stage1_models(trained_bundle, X_eval_valid)
 
     df_results = []
     for model_name, y_pred in preds.items():
         df_result = evaluate_on_gold_binary(
-            y_true_gold=y_true_gold,
+            y_true_gold=y_eval,
             y_pred_prob=y_pred,
             model_name=f"{model_name}_{condition_name}",
             threshold=threshold,
@@ -358,6 +416,9 @@ def evaluate_stage1_on_gold_labels(
         )
         df_result["condition"] = condition_name
         df_result["model_base"] = model_name
+        df_result["n_gold_samples"] = n_samples
+        df_result["n_gold_classes"] = n_classes
+        df_result["diagnostic_only"] = False
         df_results.append(df_result)
 
     return pd.concat(df_results, ignore_index=True)
@@ -925,6 +986,8 @@ def save_stage1_metadata(
     model_families: tuple[str, ...] = (
         "MeanPredictor", "ElasticNet", "XGBoost", "MLP",
     ),
+    excluded_leakage_cols: Optional[list[str]] = None,
+    validation_strategy: Optional[str] = None,
     extra: Optional[dict] = None,
 ) -> Path:
     """
@@ -965,11 +1028,36 @@ def save_stage1_metadata(
         else f"gold labels from '{target_department}' excluded from training"
     )
 
+    # Canonical leakage columns always excluded from Stage 1 features.
+    # Populated from the function signature; callers should pass this explicitly
+    # so that the artifact's provenance is self-describing.
+    _default_leakage_cols = ["label_source", "label_note", "label_date"]
+    _excl = excluded_leakage_cols if excluded_leakage_cols is not None else _default_leakage_cols
+
+    # Validation strategy description for self-documenting artifacts.
+    _val_strategy = validation_strategy
+    if _val_strategy is None:
+        if condition_name in GLOBAL_CONDITIONS:
+            _val_strategy = (
+                "A_weak_only: weak val set (held-out gold-test contract rows, "
+                "weak labels).  Early stopping tracks BCEWithLogitsLoss on "
+                "renegotiation_prob."
+            )
+        else:
+            _val_strategy = (
+                "B/C/D: internal grouped gold val split (25 %% of gold-train "
+                "contracts, both classes required).  Early stopping tracks "
+                "BCEWithLogitsLoss on gold_y.  The 1-row held-out gold test "
+                "set is kept for diagnostic evaluation only."
+            )
+
     metadata = {
         "condition": condition_name,
         "target_department": "global" if is_global else target_department,
         "is_global": is_global,
         "exclusion_rule": exclusion_rule,
+        "excluded_leakage_cols": _excl,
+        "validation_strategy": _val_strategy,
         "feature_count": feature_count,
         "model_families": list(model_families),
         "training_timestamp": datetime.now(timezone.utc).isoformat(),

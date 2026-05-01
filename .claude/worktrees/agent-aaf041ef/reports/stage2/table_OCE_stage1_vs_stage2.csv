@@ -1,0 +1,4 @@
+label,auroc_mean,auroc_std,ndcg_at_10_mean,ndcg_at_10_std,log_loss_mean,log_loss_std,ece_mean,ece_std,collapse_rate
+Stage 1 — zero-shot (no adaptation),0.634,0.199,0.789,0.334,2.06,0.295,0.585,0.072,0.0
+"Stage 2 — maml (steps=3, lr=0.005)",0.591,0.158,0.757,0.161,0.993,0.704,0.214,0.154,0.7
+"Stage 2 best ECE — fomaml (steps=2, lr=0.005)",0.501,0.03,0.715,0.09,0.624,0.05,0.093,0.052,1.0

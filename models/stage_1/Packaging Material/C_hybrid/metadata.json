@@ -1,0 +1,65 @@
+{
+  "condition": "C_hybrid",
+  "target_department": "Packaging Material",
+  "is_global": false,
+  "exclusion_rule": "gold labels from 'Packaging Material' excluded from training",
+  "excluded_leakage_cols": [
+    "label_source",
+    "label_note",
+    "label_date"
+  ],
+  "validation_strategy": "B/C/D: internal grouped gold val split (25 %% of gold-train contracts, both classes required).  Early stopping tracks BCEWithLogitsLoss on gold_y.  The 1-row held-out gold test set is kept for diagnostic evaluation only.",
+  "feature_count": 151,
+  "model_families": [
+    "MeanPredictor",
+    "ElasticNet",
+    "XGBoost",
+    "MLP"
+  ],
+  "training_timestamp": "2026-04-29T15:58:24.906094+00:00",
+  "config": {
+    "baseline_config": {
+      "scale_numeric_for_elastic_net": true,
+      "scale_numeric_for_xgboost": false,
+      "add_numeric_missing_indicator": true,
+      "elastic_net": {
+        "alpha": 0.005,
+        "l1_ratio": 0.5,
+        "max_iter": 10000,
+        "random_state": 42
+      },
+      "xgboost": {
+        "n_estimators": 500,
+        "learning_rate": 0.05,
+        "max_depth": 6,
+        "min_child_weight": 3,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "reg_alpha": 0.0,
+        "reg_lambda": 1.0,
+        "random_state": 42,
+        "n_jobs": -1
+      }
+    },
+    "mlp_config": {
+      "n_epochs": 200,
+      "patience": 20,
+      "lr": 0.0003,
+      "weight_decay": 0.0001,
+      "train_batch_size": 256,
+      "val_batch_size": 512,
+      "hidden_dim_1": 256,
+      "hidden_dim_2": 128,
+      "dropout": 0.1
+    }
+  },
+  "mlp_architecture": {
+    "hidden_dim_1": 256,
+    "hidden_dim_2": 128,
+    "dropout": 0.1
+  },
+  "n_train_rows": 9268,
+  "n_val_rows": 16,
+  "has_sample_weight": true,
+  "seed": 42
+}

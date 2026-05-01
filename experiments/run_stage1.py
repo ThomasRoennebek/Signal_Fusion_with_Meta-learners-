@@ -164,9 +164,25 @@ def load_and_split(cfg: dict, target_department: str) -> dict:
     seed = cfg.get("seed", SEED)
     test_size = cfg.get("test_size", 0.30)
 
-    # Non-feature columns to exclude
-    meta_cols = {weak_col, gold_col, group_col, dept_col}
-    feature_cols = [c for c in df.columns if c not in meta_cols]
+    # Non-feature columns to exclude.
+    # LEAKAGE GUARD: label_source / label_note / label_date are gold-label
+    # metadata columns that are present only on the 99 manually labelled rows
+    # and NaN elsewhere.  Including them would give classifiers a trivial
+    # separator between labelled and unlabelled contracts (data leakage).
+    _ALWAYS_EXCLUDE = {
+        weak_col, gold_col, group_col, dept_col,
+        # gold-label metadata — perfect leakage signal
+        "label_source", "label_note", "label_date",
+    }
+    feature_cols = [c for c in df.columns if c not in _ALWAYS_EXCLUDE]
+
+    # Assertion: none of the leakage columns must appear in the feature set.
+    _leaked = [c for c in ("label_source", "label_note", "label_date") if c in feature_cols]
+    assert not _leaked, (
+        f"[LEAKAGE GUARD] Gold-label metadata column(s) {_leaked} slipped into "
+        f"the feature set.  Remove them from the DataFrame before calling "
+        f"load_and_split(), or add them to _ALWAYS_EXCLUDE above."
+    )
     X = df[feature_cols]
     y_weak = df[weak_col].values
     y_gold = df[gold_col].values

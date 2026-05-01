@@ -1,0 +1,4281 @@
+{
+  "method": "anil",
+  "status": "success",
+  "target_department": "Packaging Material",
+  "weight_path": "/Users/Thomas/Desktop/Master Thesis/models/stage_2/experiments/stage2__init-random__method-anil__kpos-1__kneg-1__steps-5__target-Packaging-Material__synprop-0.5__gen-smote_nc/anil_initialized.pt",
+  "raw_metrics": [
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.5,
+      "gold_ap": 0.8225806451612904,
+      "gold_logloss": 15.152495452444693,
+      "gold_brier": 0.8225806287096772,
+      "gold_ece": 0.8225806351612903,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.1774193548387097,
+      "gold_pred_mean": 1e-08,
+      "gold_true_mean": 0.8225806451612904,
+      "n_eval_rows": 62,
+      "n_positive": 51,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.09803921568627451,
+      "ndcg_at_5": 0.8225806451612901,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.19607843137254902,
+      "ndcg_at_10": 0.8225806451612904,
+      "precision_at_20": 0.6,
+      "recall_at_20": 0.23529411764705882,
+      "ndcg_at_20": 0.8225806451612904,
+      "episode_idx": 0
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.40803382663847776,
+      "gold_ap": 0.8160814413237969,
+      "gold_logloss": 7.82565093667746,
+      "gold_brier": 0.7962101014985334,
+      "gold_ece": 0.7962424353345003,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.2037037037037037,
+      "gold_pred_mean": 5.386096179588801e-05,
+      "gold_true_mean": 0.7962962962962963,
+      "n_eval_rows": 54,
+      "n_positive": 43,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.11627906976744186,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 0.9,
+      "recall_at_10": 0.20930232558139536,
+      "ndcg_at_10": 0.9363792118010483,
+      "precision_at_20": 0.75,
+      "recall_at_20": 0.3488372093023256,
+      "ndcg_at_20": 0.8188872586325757,
+      "episode_idx": 1
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.6828752642706131,
+      "gold_ap": 0.9175918272988275,
+      "gold_logloss": 8.024099423292292,
+      "gold_brier": 0.7962291144806982,
+      "gold_ece": 0.7962544226570403,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.2037037037037037,
+      "gold_pred_mean": 4.187363925599062e-05,
+      "gold_true_mean": 0.7962962962962963,
+      "n_eval_rows": 54,
+      "n_positive": 43,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.11627906976744186,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.23255813953488372,
+      "ndcg_at_10": 1.0,
+      "precision_at_20": 1.0,
+      "recall_at_20": 0.46511627906976744,
+      "ndcg_at_20": 0.9999999999999999,
+      "episode_idx": 2
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.5,
+      "gold_ap": 0.8103448275862069,
+      "gold_logloss": 14.927103363375197,
+      "gold_brier": 0.8103448113793102,
+      "gold_ece": 0.8103448175862068,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.1896551724137931,
+      "gold_pred_mean": 9.999999999999999e-09,
+      "gold_true_mean": 0.8103448275862069,
+      "n_eval_rows": 58,
+      "n_positive": 47,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.10638297872340426,
+      "ndcg_at_5": 0.8103448275862067,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.2127659574468085,
+      "ndcg_at_10": 0.8103448275862069,
+      "precision_at_20": 0.85,
+      "recall_at_20": 0.3617021276595745,
+      "ndcg_at_20": 0.8103448275862069,
+      "episode_idx": 3
+    },
+    {
+      "model": "ANIL",
+      "gold_auroc": 0.40803382663847776,
+      "gold_ap": 0.8160814413237969,
+      "gold_logloss": 7.82565093667746,
+      "gold_brier": 0.7962101014985334,
+      "gold_ece": 0.7962424353345003,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.2037037037037037,
+      "gold_pred_mean": 5.386096179588801e-05,
+      "gold_true_mean": 0.7962962962962963,
+      "n_eval_rows": 54,
+      "n_positive": 43,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.11627906976744186,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 0.9,
+      "recall_at_10": 0.20930232558139536,
+      "ndcg_at_10": 0.9363792118010483,
+      "precision_at_20": 0.75,
+      "recall_at_20": 0.3488372093023256,
+      "ndcg_at_20": 0.8188872586325757,
+      "episode_idx": 4
+    }
+  ],
+  "predictions": [
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 0,
+      "repeat_idx": 0,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.283923746901564e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.513878568308428e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.296899325912818e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.299997064867057e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.299921031109989e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 6.875113467685878e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 6.655937613686547e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.851002788404003e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 7.430915138684213e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.737205719924532e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.762482760474086e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.0514048780314624e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.677516310242936e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.664196942234412e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2625218813773245e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2625669923145324e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2634652092820033e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.239617166807875e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.239817255642265e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.239222809905186e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.244076601229608e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.254954521660693e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.204975968808867e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.204638364375569e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2060975576750934e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2675630286103114e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.267607775749639e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.268487075227313e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2446113841142505e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2448263886617497e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2442461310420185e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.249069363344461e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.260008401819505e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2099614549661055e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2096238505328074e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2110797696514055e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.289424007060006e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.289449109113775e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.290357512421906e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.26639269082807e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.2666033298010007e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.2659906941698864e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.2708492148667574e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.4807413107482716e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.231588875176385e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.231259638094343e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.232701369095594e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.159643114893697e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.159072679816745e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.163832247490063e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.174568286747672e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.1253544370410964e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.125188181409612e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 1,
+      "repeat_idx": 1,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.1267426897538826e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.1179162508342415e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.300494401832111e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.128568252781406e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.1279698052676395e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.127883221372031e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.354277527658269e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.189744842937216e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.562542380881496e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.793675154563971e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.471926513360813e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.494920722208917e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 3.93527552660089e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.4271440856391564e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.409115717862733e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.099352008779533e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.099363650311716e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.100008663954213e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.081790029886179e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.081910810782574e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.081466977368109e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.0850063669495285e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.092957533430308e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.054354576510377e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.0540915506426245e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.0551472920924425e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.108145731152035e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.108153734705411e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.1087921999860555e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.090549919055775e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.0906630601966754e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.090222137165256e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.0937538869911805e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.1017257899511606e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.0630518924444914e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.0627764974487945e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.06383078370709e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.0220184018835425e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.021584754809737e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.025061207357794e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 4.032922151964158e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 3.994881990365684e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 3.994748476543464e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 3.99588025175035e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "250",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 4.088327114004642e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "250",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 4.08845953643322e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "250",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 4.089212234248407e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "250",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 4.003409048891626e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "250",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 4.070932845934294e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "250",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 4.0705057472223416e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "250",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 4.0982809878187254e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "250",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 4.081957376911305e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "250",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 4.0434664697386324e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "250",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 4.0431925299344584e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 2,
+      "repeat_idx": 2,
+      "contract_id": "250",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 4.044241359224543e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "1245",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 3,
+      "repeat_idx": 3,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 0.0,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.283923746901564e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.513878568308428e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "213",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.296899325912818e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.299997064867057e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.299921031109989e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 6.875113467685878e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 6.655937613686547e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.851002788404003e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 7.430915138684213e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.737205719924532e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.762482760474086e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.0514048780314624e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.677516310242936e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1265",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.664196942234412e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2625218813773245e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2625669923145324e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2634652092820033e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.239617166807875e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.239817255642265e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.239222809905186e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.244076601229608e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.254954521660693e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.204975968808867e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.204638364375569e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "1256",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2060975576750934e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2675630286103114e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.267607775749639e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.268487075227313e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2446113841142505e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2448263886617497e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2442461310420185e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.249069363344461e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.260008401819505e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2099614549661055e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2096238505328074e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "193",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.2110797696514055e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.289424007060006e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.289449109113775e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.290357512421906e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.26639269082807e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.2666033298010007e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.2659906941698864e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.2708492148667574e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.4807413107482716e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.231588875176385e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.231259638094343e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "248",
+      "department": "Packaging Material",
+      "y_true": 0.0,
+      "y_prob": 5.232701369095594e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.159643114893697e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.159072679816745e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.163832247490063e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.174568286747672e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.1253544370410964e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.125188181409612e-05,
+      "method": "anil"
+    },
+    {
+      "episode_idx": 4,
+      "repeat_idx": 4,
+      "contract_id": "190",
+      "department": "Packaging Material",
+      "y_true": 1.0,
+      "y_prob": 5.1267426897538826e-05,
+      "method": "anil"
+    }
+  ],
+  "history": [
+    {
+      "iteration": 1,
+      "meta_loss": 79.3204116821289,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 2,
+      "meta_loss": 108.69235229492188,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 3,
+      "meta_loss": 68.17294311523438,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 4,
+      "meta_loss": 91.56668090820312,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 5,
+      "meta_loss": 22.192718505859375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 6,
+      "meta_loss": 83.21696472167969,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 7,
+      "meta_loss": 1.5159307718276978,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 8,
+      "meta_loss": 0.9879703521728516,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 9,
+      "meta_loss": 11.049630165100098,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 10,
+      "meta_loss": 11.811424255371094,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 11,
+      "meta_loss": 72.94110870361328,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 12,
+      "meta_loss": 35.573097229003906,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 13,
+      "meta_loss": 11.286911010742188,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 14,
+      "meta_loss": 31.05353355407715,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 15,
+      "meta_loss": 2.359245538711548,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 16,
+      "meta_loss": 16.712385177612305,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 17,
+      "meta_loss": 9.751781463623047,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 18,
+      "meta_loss": 115.22551727294922,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 19,
+      "meta_loss": 34.8768196105957,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 20,
+      "meta_loss": 44.213600158691406,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 21,
+      "meta_loss": 41.06465148925781,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 22,
+      "meta_loss": 38.20438766479492,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 23,
+      "meta_loss": 41.68882369995117,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 24,
+      "meta_loss": 24.969879150390625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 25,
+      "meta_loss": 42.54889678955078,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 26,
+      "meta_loss": 101.21350860595703,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 27,
+      "meta_loss": 33.530086517333984,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 28,
+      "meta_loss": 13.862015724182129,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 29,
+      "meta_loss": 100.66683197021484,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 30,
+      "meta_loss": 16.80877685546875,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 31,
+      "meta_loss": 42.92423629760742,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 32,
+      "meta_loss": 33.551673889160156,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 33,
+      "meta_loss": 3.728970527648926,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 34,
+      "meta_loss": 4.782296657562256,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 35,
+      "meta_loss": 42.82463455200195,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 36,
+      "meta_loss": 3.8616063594818115,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 37,
+      "meta_loss": 101.24462127685547,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 38,
+      "meta_loss": 3.841702699661255,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 39,
+      "meta_loss": 42.79692459106445,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 40,
+      "meta_loss": 13.717259407043457,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 41,
+      "meta_loss": 28.919546127319336,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 42,
+      "meta_loss": 4.837721824645996,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 43,
+      "meta_loss": 28.870784759521484,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 44,
+      "meta_loss": 4.917826175689697,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 45,
+      "meta_loss": 33.944923400878906,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 46,
+      "meta_loss": 101.24332427978516,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 47,
+      "meta_loss": 16.67548179626465,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 48,
+      "meta_loss": 33.766143798828125,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 49,
+      "meta_loss": 101.03768157958984,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 50,
+      "meta_loss": 4.6064066886901855,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 51,
+      "meta_loss": 33.40354537963867,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 52,
+      "meta_loss": 42.9373779296875,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 53,
+      "meta_loss": 23.487306594848633,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 54,
+      "meta_loss": 33.27921676635742,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 55,
+      "meta_loss": 42.91884231567383,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 56,
+      "meta_loss": 3.6267752647399902,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 57,
+      "meta_loss": 15.414106369018555,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 58,
+      "meta_loss": 33.849971771240234,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 59,
+      "meta_loss": 28.820632934570312,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 60,
+      "meta_loss": 14.902484893798828,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 61,
+      "meta_loss": 16.200214385986328,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 62,
+      "meta_loss": 15.711220741271973,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 63,
+      "meta_loss": 26.676223754882812,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 64,
+      "meta_loss": 32.36860275268555,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 65,
+      "meta_loss": 35.54932403564453,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 66,
+      "meta_loss": 3.9273264408111572,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 67,
+      "meta_loss": 79.1275863647461,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 68,
+      "meta_loss": 95.4776611328125,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 69,
+      "meta_loss": 14.429443359375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 70,
+      "meta_loss": 58.64900588989258,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 71,
+      "meta_loss": 30.019222259521484,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 72,
+      "meta_loss": 35.40924835205078,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 73,
+      "meta_loss": 4.024146556854248,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 74,
+      "meta_loss": 48.81660842895508,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 75,
+      "meta_loss": 38.65032958984375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 76,
+      "meta_loss": 13.211891174316406,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 77,
+      "meta_loss": 30.413463592529297,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 78,
+      "meta_loss": 57.51116943359375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 79,
+      "meta_loss": 27.04979705810547,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 80,
+      "meta_loss": 66.92572784423828,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 81,
+      "meta_loss": 61.364593505859375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 82,
+      "meta_loss": 5.9680962562561035,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 83,
+      "meta_loss": 61.97700119018555,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 84,
+      "meta_loss": 61.83552169799805,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 85,
+      "meta_loss": 17.400014877319336,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 86,
+      "meta_loss": 106.38262939453125,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 87,
+      "meta_loss": 85.8465576171875,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 88,
+      "meta_loss": 16.936418533325195,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 89,
+      "meta_loss": 82.3675537109375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 90,
+      "meta_loss": 10.913405418395996,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 91,
+      "meta_loss": 94.633056640625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 92,
+      "meta_loss": 43.14228057861328,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 93,
+      "meta_loss": 58.73701477050781,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 94,
+      "meta_loss": 136.05064392089844,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 95,
+      "meta_loss": 55.67431640625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 96,
+      "meta_loss": 5.783598899841309,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 97,
+      "meta_loss": 2.4041543006896973,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 98,
+      "meta_loss": 93.44934844970703,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 99,
+      "meta_loss": 4.007811546325684,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 100,
+      "meta_loss": 12.80580997467041,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 101,
+      "meta_loss": 50.73149490356445,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 102,
+      "meta_loss": 79.79515075683594,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 103,
+      "meta_loss": 2.9771432876586914,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 104,
+      "meta_loss": 46.95014190673828,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 105,
+      "meta_loss": 37.617042541503906,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 106,
+      "meta_loss": 9.32422161102295,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 107,
+      "meta_loss": 11.471643447875977,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 108,
+      "meta_loss": 6.310389995574951,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 109,
+      "meta_loss": 14.802059173583984,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 110,
+      "meta_loss": 105.54805755615234,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 111,
+      "meta_loss": 8.620994567871094,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 112,
+      "meta_loss": 26.9405574798584,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 113,
+      "meta_loss": 34.21877670288086,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 114,
+      "meta_loss": 27.23276710510254,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 115,
+      "meta_loss": 14.892900466918945,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 116,
+      "meta_loss": 27.479034423828125,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 117,
+      "meta_loss": 40.664764404296875,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 118,
+      "meta_loss": 40.291996002197266,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 119,
+      "meta_loss": 11.335773468017578,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 120,
+      "meta_loss": 41.47318649291992,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 121,
+      "meta_loss": 12.682300567626953,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 122,
+      "meta_loss": 36.812557220458984,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 123,
+      "meta_loss": 9.821314811706543,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 124,
+      "meta_loss": 44.53958511352539,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 125,
+      "meta_loss": 25.524011611938477,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 126,
+      "meta_loss": 44.247283935546875,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 127,
+      "meta_loss": 33.5488395690918,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 128,
+      "meta_loss": 98.65419006347656,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 129,
+      "meta_loss": 12.293673515319824,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 130,
+      "meta_loss": 63.78841781616211,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 131,
+      "meta_loss": 43.309906005859375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 132,
+      "meta_loss": 29.035390853881836,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 133,
+      "meta_loss": 85.42582702636719,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 134,
+      "meta_loss": 2.2111546993255615,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 135,
+      "meta_loss": 83.60747528076172,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 136,
+      "meta_loss": 3.928468942642212,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 137,
+      "meta_loss": 2.6286871433258057,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 138,
+      "meta_loss": 2.6879897117614746,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 139,
+      "meta_loss": 2.7969672679901123,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 140,
+      "meta_loss": 17.065349578857422,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 141,
+      "meta_loss": 64.26568603515625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 142,
+      "meta_loss": 9.99269962310791,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 143,
+      "meta_loss": 32.40030288696289,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 144,
+      "meta_loss": 26.991426467895508,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 145,
+      "meta_loss": 6.345418930053711,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 146,
+      "meta_loss": 3.042152166366577,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 147,
+      "meta_loss": 5.33922004699707,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 148,
+      "meta_loss": 25.271018981933594,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 149,
+      "meta_loss": 25.105789184570312,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 150,
+      "meta_loss": 16.68551254272461,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 151,
+      "meta_loss": 64.72974395751953,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 152,
+      "meta_loss": 12.75154972076416,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 153,
+      "meta_loss": 21.736370086669922,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 154,
+      "meta_loss": 24.950237274169922,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 155,
+      "meta_loss": 85.67117309570312,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 156,
+      "meta_loss": 14.489801406860352,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 157,
+      "meta_loss": 12.754058837890625,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 158,
+      "meta_loss": 8.619185447692871,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 159,
+      "meta_loss": 39.510074615478516,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 160,
+      "meta_loss": 68.64900970458984,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 161,
+      "meta_loss": 66.40193176269531,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 162,
+      "meta_loss": 51.683189392089844,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 163,
+      "meta_loss": 55.202903747558594,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 164,
+      "meta_loss": 41.372314453125,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 165,
+      "meta_loss": 43.19921112060547,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 166,
+      "meta_loss": 4.174008369445801,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 167,
+      "meta_loss": 45.01408004760742,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 168,
+      "meta_loss": 12.954920768737793,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 169,
+      "meta_loss": 41.24287033081055,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 170,
+      "meta_loss": 76.29601287841797,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 171,
+      "meta_loss": 83.51475524902344,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 172,
+      "meta_loss": 78.85761260986328,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 173,
+      "meta_loss": 16.618284225463867,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 174,
+      "meta_loss": 21.082239151000977,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 175,
+      "meta_loss": 14.457498550415039,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 176,
+      "meta_loss": 25.104610443115234,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 177,
+      "meta_loss": 5.084877967834473,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 178,
+      "meta_loss": 47.02937698364258,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 179,
+      "meta_loss": 3.9746124744415283,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 180,
+      "meta_loss": 13.176094055175781,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 181,
+      "meta_loss": 80.35075378417969,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 182,
+      "meta_loss": 14.063621520996094,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 183,
+      "meta_loss": 67.8206787109375,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 184,
+      "meta_loss": 66.2795181274414,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 185,
+      "meta_loss": 30.824432373046875,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 186,
+      "meta_loss": 51.897361755371094,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 187,
+      "meta_loss": 5.2513604164123535,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 188,
+      "meta_loss": 32.35188674926758,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 189,
+      "meta_loss": 7.60145378112793,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 190,
+      "meta_loss": 25.447586059570312,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 191,
+      "meta_loss": 14.72035026550293,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 192,
+      "meta_loss": 52.927425384521484,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 193,
+      "meta_loss": 21.041614532470703,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 194,
+      "meta_loss": 7.0418620109558105,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 195,
+      "meta_loss": 14.28124713897705,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 196,
+      "meta_loss": 3.0677881240844727,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 197,
+      "meta_loss": 2.6144983768463135,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 198,
+      "meta_loss": 5.092294692993164,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 199,
+      "meta_loss": 54.952919006347656,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    },
+    {
+      "iteration": 200,
+      "meta_loss": 44.011878967285156,
+      "n_valid_tasks": 4,
+      "n_skipped": 0,
+      "n_skipped_this_iteration": 0,
+      "n_skipped_cumulative": 0
+    }
+  ],
+  "diagnostics": {
+    "meta_iterations_requested": 200,
+    "iterations_with_valid_tasks": 200,
+    "meta_batch_size": 4,
+    "total_possible_task_episodes": 800,
+    "total_skipped_task_episodes": 0,
+    "skip_rate": 0.0,
+    "meta_train_departments_used": [
+      "Logistics"
+    ]
+  }
+}

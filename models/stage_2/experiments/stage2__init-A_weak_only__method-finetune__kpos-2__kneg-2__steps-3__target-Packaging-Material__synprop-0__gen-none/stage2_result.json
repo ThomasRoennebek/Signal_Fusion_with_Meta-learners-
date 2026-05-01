@@ -1,0 +1,643 @@
+{
+  "method": "finetune",
+  "status": "success",
+  "target_department": "Packaging Material",
+  "n_target_episodes": 3,
+  "raw_metrics": [
+    {
+      "model": "FINETUNE",
+      "gold_auroc": NaN,
+      "gold_ap": NaN,
+      "gold_logloss": 1.0000000100247594e-08,
+      "gold_brier": 1.0000000100495187e-16,
+      "gold_ece": 1.0000000161269895e-08,
+      "gold_f1": 1.0,
+      "gold_accuracy": 1.0,
+      "gold_pred_mean": 0.9999999899999998,
+      "gold_true_mean": 1.0,
+      "n_eval_rows": 40,
+      "n_positive": 40,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.125,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.25,
+      "ndcg_at_10": 1.0,
+      "precision_at_20": 1.0,
+      "recall_at_20": 0.5,
+      "ndcg_at_20": 0.9999999999999999,
+      "episode_idx": 0
+    },
+    {
+      "model": "FINETUNE",
+      "gold_auroc": NaN,
+      "gold_ap": NaN,
+      "gold_logloss": 18.420680743952367,
+      "gold_brier": 0.99999998,
+      "gold_ece": 0.99999999,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.0,
+      "gold_pred_mean": 1e-08,
+      "gold_true_mean": 1.0,
+      "n_eval_rows": 32,
+      "n_positive": 32,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.15625,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.3125,
+      "ndcg_at_10": 1.0,
+      "precision_at_20": 1.0,
+      "recall_at_20": 0.625,
+      "ndcg_at_20": 0.9999999999999999,
+      "episode_idx": 1
+    },
+    {
+      "model": "FINETUNE",
+      "gold_auroc": NaN,
+      "gold_ap": NaN,
+      "gold_logloss": 1.0000000100247594e-08,
+      "gold_brier": 1.0000000100495187e-16,
+      "gold_ece": 1.0000000161269895e-08,
+      "gold_f1": 1.0,
+      "gold_accuracy": 1.0,
+      "gold_pred_mean": 0.9999999899999998,
+      "gold_true_mean": 1.0,
+      "n_eval_rows": 40,
+      "n_positive": 40,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.125,
+      "ndcg_at_5": 0.9999999999999999,
+      "precision_at_10": 1.0,
+      "recall_at_10": 0.25,
+      "ndcg_at_10": 1.0,
+      "precision_at_20": 1.0,
+      "recall_at_20": 0.5,
+      "ndcg_at_20": 0.9999999999999999,
+      "episode_idx": 2
+    }
+  ],
+  "predictions": [
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 1.0
+    }
+  ],
+  "history": null
+}

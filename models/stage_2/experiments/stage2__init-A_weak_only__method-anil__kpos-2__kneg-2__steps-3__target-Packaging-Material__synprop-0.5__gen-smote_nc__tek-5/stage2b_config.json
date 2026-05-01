@@ -1,0 +1,13 @@
+{
+  "augmentation_method_requested": "smote_nc",
+  "augmentation_method_actual": "smote_nc",
+  "synthetic_proportion": 0.5,
+  "target_per_class": 5,
+  "k_neighbors": 5,
+  "categorical_cols": null,
+  "augmentation_seed_offset": 10007,
+  "gen_fallback_used": true,
+  "gen_skip_reason": "real_support_exceeds_target_effective_k",
+  "n_real_support_rows_mean": 40.6,
+  "n_synthetic_support_rows_mean": 0.0
+}

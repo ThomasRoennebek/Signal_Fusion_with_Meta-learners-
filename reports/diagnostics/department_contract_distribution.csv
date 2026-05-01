@@ -1,4 +1,4 @@
-department,n_rows,n_unique_contracts,pct_contracts
+department,n_rows,n_unique_contracts,pct
 Devices & Needles,2197,476,21.76
 Drug Product Outsourcing,589,300,13.72
 Drug Substance Outsourcing,943,298,13.63

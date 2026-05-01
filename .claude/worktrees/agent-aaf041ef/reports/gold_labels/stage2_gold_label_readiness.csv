@@ -1,0 +1,6 @@
+department,gold_total,gold_yes,gold_no,gold_yes_rate,valid_k2,valid_k5,valid_k10,suggested_role
+Logistics,13,6,7,0.46153846153846156,True,True,False,target_candidate
+Packaging material,8,6,2,0.75,False,False,False,invalid_too_few
+Global Strategic Outsourcing & Devices & Needles,5,3,2,0.6,False,False,False,invalid_too_few
+Bioprocessing and Excipients,4,2,2,0.5,False,False,False,invalid_too_few
+Aseptic Production,3,0,3,0.0,False,False,False,invalid_one_class

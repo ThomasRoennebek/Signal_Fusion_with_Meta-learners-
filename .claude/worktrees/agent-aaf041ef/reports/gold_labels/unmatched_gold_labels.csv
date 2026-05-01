@@ -1,0 +1,13 @@
+contract_id,contract_number,department,gold_y,label_source,label_date,notes,exists_by_contract_id,exists_by_contract_number,exists_in_features
+613927,612555,Bioprocessing and Excipients,1,category_manager,2026-04-16,,False,False,False
+345318,346312,Bioprocessing and Excipients,0,category_manager,2026-04-16,,False,False,False
+1877,1877,Bioprocessing and Excipients,0,category_manager,2026-04-16,,False,False,False
+25777,25777,Global Strategic Outsourcing & Devices & Needles,0,category_manager,2026-04-16,,False,False,False
+577893,577893,Aseptic Production,0,category_manager,2026-04-16,,False,False,False
+370849,370849,Aseptic Production,0,category_manager,2026-04-16,,False,False,False
+595207,595207,Aseptic Production,0,category_manager,2026-04-16,,False,False,False
+530290,529779,Logistics,1,category_manager,2026-04-16,,False,False,False
+550918,550237,Logistics,0,category_manager,2026-04-16,,False,False,False
+607710,606340,Logistics,0,category_manager,2026-04-16,,False,False,False
+536891,536319,Logistics,0,category_manager,2026-04-16,,False,False,False
+599608,598142,Logistics,0,category_manager,2026-04-16,,False,False,False

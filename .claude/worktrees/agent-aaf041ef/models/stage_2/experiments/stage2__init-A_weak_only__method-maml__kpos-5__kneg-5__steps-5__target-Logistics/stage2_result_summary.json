@@ -1,0 +1,12 @@
+{
+  "experiment_id": "stage2__init-A_weak_only__method-maml__kpos-5__kneg-5__steps-5__target-Logistics",
+  "method": "maml",
+  "init_name": "A_weak_only",
+  "target_department": "Logistics",
+  "n_support_pos": 5,
+  "n_support_neg": 5,
+  "inner_steps": 5,
+  "status": "success",
+  "n_metric_rows": 0,
+  "n_predictions": 0
+}

@@ -505,14 +505,15 @@ def generate_experiment_id(
     inner_lr: Optional[float] = None,
     synthetic_proportion: Optional[float] = None,
     augmentation_method: Optional[str] = None,
+    target_effective_k: Optional[int] = None,
 ) -> str:
     """Build a deterministic experiment ID.
 
-    The synthetic-augmentation suffixes (``__synprop-…``, ``__gen-…``) are
-    appended only when explicitly provided.  This keeps legacy experiment
-    directories (which were generated before synthetic augmentation existed)
-    byte-identical, while letting new experiments carve out their own
-    directories per ``(syn_prop, gen_method)`` combination.
+    The synthetic-augmentation suffixes (``__synprop-…``, ``__gen-…``,
+    ``__tek-…``) are appended only when explicitly provided.  This keeps legacy
+    experiment directories (which were generated before synthetic augmentation
+    existed) byte-identical, while letting new experiments carve out their own
+    directories per ``(syn_prop, gen_method, target_effective_k)`` combination.
     """
     safe_target = str(target_department).replace(" ", "-").replace("/", "-")
     id_str = (
@@ -536,6 +537,8 @@ def generate_experiment_id(
     if augmentation_method is not None:
         safe_gen = str(augmentation_method).replace(" ", "-").replace("/", "-")
         id_str += f"__gen-{safe_gen}"
+    if target_effective_k is not None:
+        id_str += f"__tek-{int(target_effective_k)}"
     return id_str
 
 
@@ -594,6 +597,7 @@ def _build_synthetic_block(
     experiment_grid: Dict[str, Any],
     synthetic_proportion: float,
     augmentation_method: str,
+    target_effective_k: Optional[int] = None,
 ) -> Dict[str, Any]:
     """Build the per-experiment ``synthetic_config`` block.
 
@@ -601,7 +605,8 @@ def _build_synthetic_block(
       1. ``DEFAULT_SYNTHETIC_CONFIG`` module constant
       2. ``base_config["synthetic_config"]`` if present
       3. ``experiment_grid["synthetic_config"]`` if present (preset-level)
-      4. The two per-cell axes (synthetic_proportion, augmentation_method)
+      4. The per-cell axes (synthetic_proportion, augmentation_method,
+         target_effective_k)
     """
     block = copy.deepcopy(DEFAULT_SYNTHETIC_CONFIG)
     if isinstance(base_config.get("synthetic_config"), dict):
@@ -614,6 +619,11 @@ def _build_synthetic_block(
     # into downstream code that might branch on either signal.  Pin both.
     if block["augmentation_method"] == "none":
         block["synthetic_proportion"] = 0.0
+        block["target_per_class"] = None
+    elif target_effective_k is not None:
+        # target_effective_k overrides synthetic_proportion for support sizing.
+        # Store as target_per_class so downstream episode sampler sees it.
+        block["target_per_class"] = int(target_effective_k)
     return block
 
 
@@ -693,6 +703,22 @@ def resolve_experiment_grid(
         experiment_grid, base_config
     )
 
+    # target_effective_k sweep axis.  When present in the preset, each non-null
+    # value pins target_per_class for augmented cells and gets its own __tek-N
+    # suffix in the experiment ID (preventing folder collision with the
+    # synthetic_proportion-only runs of the same cell).  A value of null in the
+    # grid means "use synthetic_proportion instead", i.e. the default behaviour.
+    tek_raw = experiment_grid.get("target_effective_k_grid", None)
+    if tek_raw is None:
+        tek_grid: List[Optional[int]] = [None]
+        sweep_tek = False
+    else:
+        tek_grid = [int(v) if v is not None else None for v in tek_raw]
+        # Only embed __tek-N in IDs when at least one value is non-null.
+        sweep_tek = any(v is not None for v in tek_grid)
+        if sweep_tek:
+            sweep_synth = True  # non-null tek implies an augmentation sweep
+
     preset_meta_overrides = {}
     for key in ["meta_iterations", "n_repeats", "inner_lr", "outer_lr", "meta_batch_size", "target_inner_steps"]:
         if key in experiment_grid:
@@ -709,6 +735,7 @@ def resolve_experiment_grid(
         inner_lr,
         synthetic_proportion,
         augmentation_method,
+        target_effective_k,
     ) in product(
         methods,
         support_grid,
@@ -718,6 +745,7 @@ def resolve_experiment_grid(
         inner_lr_grid,
         synprop_grid,
         gen_method_grid,
+        tek_grid,
     ):
         # Deduplication rule: when augmentation is disabled, the sweep over
         # synthetic_proportion is meaningless — every (syn_prop, "none") cell
@@ -731,6 +759,10 @@ def resolve_experiment_grid(
         elif canonical_synprop == 0.0:
             canonical_method = "none"
 
+        # When augmentation is disabled, target_effective_k is meaningless;
+        # canonicalize to None so duplicate cells are collapsed.
+        canonical_tek = target_effective_k if canonical_method != "none" else None
+
         cell_key = (
             method,
             int(support_cfg["n_support_pos"]),
@@ -741,6 +773,7 @@ def resolve_experiment_grid(
             float(inner_lr),
             canonical_synprop,
             canonical_method,
+            canonical_tek,
         )
         if cell_key in seen_cells:
             continue
@@ -763,6 +796,7 @@ def resolve_experiment_grid(
             experiment_grid=experiment_grid,
             synthetic_proportion=canonical_synprop,
             augmentation_method=canonical_method,
+            target_effective_k=canonical_tek,
         )
 
         exp_id = generate_experiment_id(
@@ -775,6 +809,7 @@ def resolve_experiment_grid(
             inner_lr=inner_lr if sweep_lr else None,
             synthetic_proportion=canonical_synprop if sweep_synth else None,
             augmentation_method=canonical_method if sweep_synth else None,
+            target_effective_k=canonical_tek if sweep_tek else None,
         )
         experiment_list.append((exp_id, resolved))
 
@@ -1346,20 +1381,133 @@ def prepare_stage2_tasks(
         f"meta-training but appears in meta_train_departments."
     )
 
+    # ── Synthetic-augmentation-aware episode generation ────────────────────
+    # When synthetic_config specifies an active augmentation method,
+    # generate episodes via `sample_episode_with_synthetic_support` so that
+    # synthetic support rows are actually added.  Without this branch the
+    # augmentation config is saved in resolved_config.yaml but never applied,
+    # making gen-smote_nc identical to gen-none.
+    syn_cfg = config.get("synthetic_config") or {}
+    _aug_method = syn_cfg.get("augmentation_method", "none")
+    _syn_prop = float(syn_cfg.get("synthetic_proportion", 0.0))
+    _target_per_class = syn_cfg.get("target_per_class", None)
+    _aug_seed_offset = int(syn_cfg.get("augmentation_seed_offset", 10007))
+    _use_augmentation = (
+        _aug_method != "none"
+        and (_syn_prop > 0.0 or _target_per_class is not None)
+    )
+
     try:
-        target_episodes = make_logistics_meta_test_split(
-            task_df=task_df,
-            feature_cols=feature_cols,
-            target_department=target_department,
-            department_col=config["data"]["department_col"],
-            target_col=config["data"]["target_col"],
-            contract_id_col=config["data"]["group_col"],
-            n_support_pos=config["support_config"]["n_support_pos"],
-            n_support_neg=config["support_config"]["n_support_neg"],
-            n_repeats=config["meta_config"]["n_repeats"],
-        )
+        if _use_augmentation:
+            _target_df = task_df[
+                task_df[config["data"]["department_col"]] == target_department
+            ].copy()
+            _n_repeats = config["meta_config"]["n_repeats"]
+            _base_seed = config.get("seed", 42) + _aug_seed_offset
+            target_episodes = []
+            for _ep_idx in range(_n_repeats):
+                _ep = sample_episode_with_synthetic_support(
+                    dept_df=_target_df,
+                    feature_cols=feature_cols,
+                    department_name=target_department,
+                    target_col=config["data"]["target_col"],
+                    department_col=config["data"]["department_col"],
+                    contract_id_col=config["data"]["group_col"],
+                    n_support_pos=config["support_config"]["n_support_pos"],
+                    n_support_neg=config["support_config"]["n_support_neg"],
+                    query_strategy="remainder",
+                    augmentation_method=_aug_method,
+                    synthetic_proportion=_syn_prop if _target_per_class is None else None,
+                    target_per_class=_target_per_class,
+                    categorical_cols=syn_cfg.get("categorical_cols", None),
+                    k_neighbors=int(syn_cfg.get("k_neighbors", 5)),
+                    random_state=_base_seed + _ep_idx,
+                )
+                _ep["repeat_idx"] = _ep_idx
+                _ep["episode_seed"] = _base_seed + _ep_idx
+                target_episodes.append(_ep)
+        else:
+            target_episodes = make_logistics_meta_test_split(
+                task_df=task_df,
+                feature_cols=feature_cols,
+                target_department=target_department,
+                department_col=config["data"]["department_col"],
+                target_col=config["data"]["target_col"],
+                contract_id_col=config["data"]["group_col"],
+                n_support_pos=config["support_config"]["n_support_pos"],
+                n_support_neg=config["support_config"]["n_support_neg"],
+                n_repeats=config["meta_config"]["n_repeats"],
+            )
     except ValueError:
         target_episodes = []
+
+    # ── Per-episode support accounting ────────────────────────────────────────
+    # Compute real/synthetic row counts from each episode's support_df so the
+    # pipeline can write support_accounting.csv without needing episode_results
+    # to be embedded in the method's return dict (which it never is).
+    try:
+        from master_thesis.stage2b_synthetic import compute_support_accounting as _csa
+        _target_col = config["data"]["target_col"]
+        _group_col = config["data"]["group_col"]
+        _episode_accounting: List[Dict[str, Any]] = []
+        for _ep_idx, _ep in enumerate(target_episodes):
+            _support = _ep.get("support_df") if isinstance(_ep, dict) else getattr(_ep, "support_df", None)
+            _query = _ep.get("query_df") if isinstance(_ep, dict) else getattr(_ep, "query_df", None)
+            if isinstance(_support, pd.DataFrame) and not _support.empty:
+                _acct = _csa(
+                    support_df=_support,
+                    target_col=_target_col,
+                    contract_id_col=_group_col,
+                )
+            else:
+                _acct = {
+                    "real_k_pos": 0, "real_k_neg": 0,
+                    "synthetic_k_pos": 0, "synthetic_k_neg": 0,
+                    "effective_k_pos": 0, "effective_k_neg": 0,
+                    "n_real_support_rows": 0, "n_synthetic_support_rows": 0,
+                    "n_effective_support_rows": 0,
+                    "n_real_support_contracts": 0, "n_synthetic_support_contracts": 0,
+                }
+            _acct["episode_idx"] = _ep_idx
+            _acct["augmentation_method"] = _aug_method
+            _acct["synthetic_proportion"] = _syn_prop
+            # ── Per-episode gen_skip_reason ─────────────────────────────────
+            # Record WHY synthetic rows were not generated when augmentation
+            # was requested but produced zero synthetic rows.
+            _n_syn = _acct.get("n_synthetic_support_rows", 0) or 0
+            _ep_skip_reason: Optional[str] = None
+            if _aug_method != "none" and _n_syn == 0:
+                _real_pos = _acct.get("real_k_pos", 0) or 0
+                _real_neg = _acct.get("real_k_neg", 0) or 0
+                if _target_per_class is not None and (
+                    _real_pos >= _target_per_class and _real_neg >= _target_per_class
+                ):
+                    # Both classes already have at least target_per_class rows;
+                    # augment_support() correctly computed n_class_synth=0 for both.
+                    _ep_skip_reason = "real_support_exceeds_target_effective_k"
+                elif _target_per_class is not None and (
+                    _real_pos < 2 or _real_neg < 2
+                ):
+                    # SMOTENC needs ≥2 samples per class to interpolate.
+                    _ep_skip_reason = "insufficient_samples_for_smotenc"
+                else:
+                    _ep_skip_reason = "no_synthetic_rows_generated"
+            _acct["gen_skip_reason"] = _ep_skip_reason
+            # Query accounting (real rows only by design)
+            if isinstance(_query, pd.DataFrame) and not _query.empty:
+                _y_q = _query[_target_col] if _target_col in _query.columns else pd.Series(dtype=float)
+                _acct["n_query_rows"] = len(_query)
+                _acct["n_query_pos"] = int((_y_q == 1).sum())
+                _acct["n_query_neg"] = int((_y_q == 0).sum())
+                _acct["n_query_synthetic_rows"] = 0  # always real-only
+            else:
+                _acct["n_query_rows"] = 0
+                _acct["n_query_pos"] = 0
+                _acct["n_query_neg"] = 0
+                _acct["n_query_synthetic_rows"] = 0
+            _episode_accounting.append(_acct)
+    except Exception:
+        _episode_accounting = []
 
     return {
         "paths": paths,
@@ -1373,6 +1521,9 @@ def prepare_stage2_tasks(
         "target_department": target_department,
         "target_episodes": target_episodes,
         "feature_cols": feature_cols,
+        "episode_accounting": _episode_accounting,
+        "augmentation_method": _aug_method,
+        "use_augmentation": _use_augmentation,
     }
 
 
@@ -1668,6 +1819,7 @@ def summarize_stage2_result(
     experiment_id: Optional[str] = None,
 ) -> Dict[str, Any]:
     syn_cfg = config.get("synthetic_config") or {}
+    acct = result.get("accounting_summary") or {}
     summary = {
         "experiment_id": experiment_id,
         "method": config.get("method"),
@@ -1685,6 +1837,31 @@ def summarize_stage2_result(
             "k_neighbors", DEFAULT_SYNTHETIC_CONFIG["k_neighbors"]
         ),
         "status": result.get("status"),
+        # ── Support accounting fields ────────────────────────────────────────
+        # augmentation_method_requested: what the config asked for
+        "augmentation_method_requested": syn_cfg.get("augmentation_method", "none"),
+        # augmentation_method_actual: what was applied (may differ if fallback)
+        "augmentation_method_actual": acct.get(
+            "augmentation_method_actual", syn_cfg.get("augmentation_method", "none")
+        ),
+        # target_effective_k mirrors target_per_class (the resolved per-class cap)
+        "target_effective_k": syn_cfg.get("target_per_class"),
+        # Mean real/synthetic support row counts across episodes
+        "n_real_support_rows": acct.get("n_real_support_rows_mean"),
+        "n_synthetic_support_rows": acct.get("n_synthetic_support_rows_mean"),
+        "n_effective_support_rows": acct.get("n_effective_support_rows_mean"),
+        "n_real_support_pos": acct.get("real_k_pos_mean"),
+        "n_real_support_neg": acct.get("real_k_neg_mean"),
+        "n_synthetic_support_pos": acct.get("synthetic_k_pos_mean"),
+        "n_synthetic_support_neg": acct.get("synthetic_k_neg_mean"),
+        # Query accounting (real-only by design)
+        "n_query_rows": acct.get("n_query_rows_mean"),
+        "n_query_pos": acct.get("n_query_pos_mean"),
+        "n_query_neg": acct.get("n_query_neg_mean"),
+        "n_query_synthetic_rows": 0,  # invariant: query is always real-only
+        # Augmentation health flags
+        "gen_fallback_used": acct.get("gen_fallback_used"),
+        "gen_skip_reason": acct.get("gen_skip_reason"),
     }
 
     raw_metrics = result.get("raw_metrics")
@@ -1777,6 +1954,47 @@ def save_stage2_result(
                 pred_stats = None
     if isinstance(pred_stats, pd.DataFrame) and not pred_stats.empty:
         pred_stats.to_csv(output_dir / "prediction_stats.csv", index=False)
+
+    # ── Support accounting CSV ─────────────────────────────────────────────
+    # episode_accounting is injected into result by run_stage2_pipeline()
+    # from the prepared dict (computed in prepare_stage2_tasks).  This
+    # replaces the old dead-code path that checked result["episode_results"]
+    # — a key that _run_meta_method and run_finetune_baseline never populate.
+    _episode_accounting = result.get("episode_accounting", [])
+    if _episode_accounting:
+        _acct_df = pd.DataFrame(_episode_accounting)
+        _acct_df.to_csv(output_dir / "support_accounting.csv", index=False)
+
+    # ── stage2b_config.json ────────────────────────────────────────────────
+    # Write a machine-readable audit file for every run that touched synthetic
+    # augmentation (including gen-none runs in a synth sweep, so the folder
+    # always has this file for easy programmatic checks).
+    syn_cfg = config.get("synthetic_config") or {}
+    _aug_method_cfg = syn_cfg.get("augmentation_method", "none")
+    _is_synth_sweep = (
+        _aug_method_cfg != "none"
+        or float(syn_cfg.get("synthetic_proportion", 0.0)) > 0.0
+        or syn_cfg.get("target_per_class") is not None
+    )
+    if _is_synth_sweep:
+        _accounting_summary = result.get("accounting_summary") or {}
+        _stage2b_cfg: Dict[str, Any] = {
+            "augmentation_method_requested": _aug_method_cfg,
+            "augmentation_method_actual": _accounting_summary.get(
+                "augmentation_method_actual", _aug_method_cfg
+            ),
+            "synthetic_proportion": syn_cfg.get("synthetic_proportion", 0.0),
+            "target_per_class": syn_cfg.get("target_per_class"),
+            "k_neighbors": syn_cfg.get("k_neighbors"),
+            "categorical_cols": syn_cfg.get("categorical_cols"),
+            "augmentation_seed_offset": syn_cfg.get("augmentation_seed_offset"),
+            "gen_fallback_used": _accounting_summary.get("gen_fallback_used"),
+            "gen_skip_reason": _accounting_summary.get("gen_skip_reason"),
+            "n_real_support_rows_mean": _accounting_summary.get("n_real_support_rows_mean"),
+            "n_synthetic_support_rows_mean": _accounting_summary.get("n_synthetic_support_rows_mean"),
+        }
+        with open(output_dir / "stage2b_config.json", "w", encoding="utf-8") as _f:
+            json.dump(_make_serializable(_stage2b_cfg), _f, indent=2)
 
     summary = summarize_stage2_result(result, config, experiment_id)
     with open(output_dir / "stage2_result_summary.json", "w", encoding="utf-8") as f:
@@ -2035,6 +2253,58 @@ def stage1_artifact_inventory(
     }
 
 
+def _aggregate_episode_accounting(episode_accounting: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Aggregate per-episode accounting stats into means for the summary row.
+
+    Numeric columns are averaged across episodes.  The ``gen_fallback_used``
+    flag is True when every episode produced zero synthetic rows despite an
+    active augmentation method (i.e. SMOTENC fell back to real-only).
+    """
+    if not episode_accounting:
+        return {}
+    numeric_keys = [
+        "real_k_pos", "real_k_neg",
+        "synthetic_k_pos", "synthetic_k_neg",
+        "effective_k_pos", "effective_k_neg",
+        "n_real_support_rows", "n_synthetic_support_rows", "n_effective_support_rows",
+        "n_real_support_contracts", "n_synthetic_support_contracts",
+        "n_query_rows", "n_query_pos", "n_query_neg", "n_query_synthetic_rows",
+    ]
+    agg: Dict[str, Any] = {}
+    for k in numeric_keys:
+        vals = [ep[k] for ep in episode_accounting if ep.get(k) is not None]
+        if vals:
+            agg[f"{k}_mean"] = float(sum(vals) / len(vals))
+    # Detect fallback: augmentation was requested but no synthetic rows generated
+    aug_methods = [ep.get("augmentation_method", "none") for ep in episode_accounting]
+    agg["augmentation_method_actual"] = aug_methods[0] if aug_methods else "none"
+    syn_counts = [ep.get("n_synthetic_support_rows", 0) or 0 for ep in episode_accounting]
+    requested_aug = any(m not in (None, "none") for m in aug_methods)
+    agg["gen_fallback_used"] = bool(requested_aug and all(c == 0 for c in syn_counts))
+
+    # Aggregate gen_skip_reason from per-episode reasons.
+    # Priority: use the per-episode reasons when all episodes share the same
+    # reason (the common case).  Fall back to a generic label only when reasons
+    # are mixed or absent.
+    if agg["gen_fallback_used"]:
+        ep_reasons = [ep.get("gen_skip_reason") for ep in episode_accounting]
+        non_null_reasons = [r for r in ep_reasons if r]
+        if non_null_reasons:
+            unique_reasons = set(non_null_reasons)
+            if len(unique_reasons) == 1:
+                # All episodes share the same skip reason — use it directly.
+                agg["gen_skip_reason"] = unique_reasons.pop()
+            else:
+                # Mixed reasons across episodes — record all unique ones.
+                agg["gen_skip_reason"] = "mixed:" + "|".join(sorted(unique_reasons))
+        else:
+            # Per-episode reasons were not recorded (pre-fix data or empty).
+            agg["gen_skip_reason"] = "smotenc_fallback_all_episodes"
+    else:
+        agg["gen_skip_reason"] = None
+    return agg
+
+
 def run_stage2_pipeline(
     config: Dict[str, Any],
     experiment_id: Optional[str] = None,
@@ -2053,6 +2323,14 @@ def run_stage2_pipeline(
     output_dir = prepared["paths"].output_dir
     save_stage2_tables(prepared, output_dir)
     result = run_stage2_method(config, prepared)
+
+    # Inject per-episode accounting computed during prepare_stage2_tasks so
+    # save_stage2_result can write support_accounting.csv without relying on
+    # episode_results being in the method's return dict (which it never is).
+    episode_accounting = prepared.get("episode_accounting", [])
+    result["episode_accounting"] = episode_accounting
+    result["accounting_summary"] = _aggregate_episode_accounting(episode_accounting)
+
     save_stage2_result(result, config, output_dir, experiment_id=experiment_id)
 
     return {

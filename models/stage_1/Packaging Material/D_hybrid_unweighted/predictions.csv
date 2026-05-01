@@ -1,0 +1,65 @@
+condition,model,sample_index,y_true,y_pred
+D_hybrid_unweighted,Mean Predictor,0,0.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,1,0.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,2,0.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,3,0.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,4,0.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,5,0.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,6,0.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,7,0.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,8,1.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,9,1.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,10,1.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,11,1.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,12,1.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,13,1.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,14,1.0,0.5522754094571811
+D_hybrid_unweighted,Mean Predictor,15,0.0,0.5522754094571811
+D_hybrid_unweighted,Elastic Net,0,0.0,0.30756754691970656
+D_hybrid_unweighted,Elastic Net,1,0.0,0.36385003999098586
+D_hybrid_unweighted,Elastic Net,2,0.0,0.41839408947103607
+D_hybrid_unweighted,Elastic Net,3,0.0,0.4204998971642837
+D_hybrid_unweighted,Elastic Net,4,0.0,0.30809456136031343
+D_hybrid_unweighted,Elastic Net,5,0.0,0.2551353041341997
+D_hybrid_unweighted,Elastic Net,6,0.0,0.29225499663313315
+D_hybrid_unweighted,Elastic Net,7,0.0,0.5403653985883352
+D_hybrid_unweighted,Elastic Net,8,1.0,0.40029812225775174
+D_hybrid_unweighted,Elastic Net,9,1.0,0.4450009248786415
+D_hybrid_unweighted,Elastic Net,10,1.0,0.12481374428394787
+D_hybrid_unweighted,Elastic Net,11,1.0,0.15487012759829355
+D_hybrid_unweighted,Elastic Net,12,1.0,0.4874447954551471
+D_hybrid_unweighted,Elastic Net,13,1.0,0.07130038416161
+D_hybrid_unweighted,Elastic Net,14,1.0,0.33491446590682017
+D_hybrid_unweighted,Elastic Net,15,0.0,0.1287228846554882
+D_hybrid_unweighted,XGBoost,0,0.0,0.07137247174978256
+D_hybrid_unweighted,XGBoost,1,0.0,0.06911855936050415
+D_hybrid_unweighted,XGBoost,2,0.0,0.1137922927737236
+D_hybrid_unweighted,XGBoost,3,0.0,0.35782042145729065
+D_hybrid_unweighted,XGBoost,4,0.0,0.15836597979068756
+D_hybrid_unweighted,XGBoost,5,0.0,0.09059877693653107
+D_hybrid_unweighted,XGBoost,6,0.0,0.06198424845933914
+D_hybrid_unweighted,XGBoost,7,0.0,0.10024518519639969
+D_hybrid_unweighted,XGBoost,8,1.0,0.4539397656917572
+D_hybrid_unweighted,XGBoost,9,1.0,0.39634251594543457
+D_hybrid_unweighted,XGBoost,10,1.0,0.0
+D_hybrid_unweighted,XGBoost,11,1.0,0.0
+D_hybrid_unweighted,XGBoost,12,1.0,0.11299634724855423
+D_hybrid_unweighted,XGBoost,13,1.0,0.027847398072481155
+D_hybrid_unweighted,XGBoost,14,1.0,0.3080565631389618
+D_hybrid_unweighted,XGBoost,15,0.0,0.016189277172088623
+D_hybrid_unweighted,MLP,0,0.0,0.0745280459523201
+D_hybrid_unweighted,MLP,1,0.0,0.08730069547891617
+D_hybrid_unweighted,MLP,2,0.0,0.10178857296705246
+D_hybrid_unweighted,MLP,3,0.0,0.11413586139678955
+D_hybrid_unweighted,MLP,4,0.0,0.023350121453404427
+D_hybrid_unweighted,MLP,5,0.0,0.053918708115816116
+D_hybrid_unweighted,MLP,6,0.0,0.01451167929917574
+D_hybrid_unweighted,MLP,7,0.0,0.1307896077632904
+D_hybrid_unweighted,MLP,8,1.0,0.1076221689581871
+D_hybrid_unweighted,MLP,9,1.0,0.1472562998533249
+D_hybrid_unweighted,MLP,10,1.0,0.002212213585153222
+D_hybrid_unweighted,MLP,11,1.0,0.0023021704982966185
+D_hybrid_unweighted,MLP,12,1.0,0.07007504254579544
+D_hybrid_unweighted,MLP,13,1.0,0.01750093884766102
+D_hybrid_unweighted,MLP,14,1.0,0.11109469830989838
+D_hybrid_unweighted,MLP,15,0.0,0.02314348705112934

@@ -1,0 +1,5 @@
+method,inner_steps,inner_lr,auroc_mean,auroc_std,ndcg_at_10_mean,ndcg_at_10_std,ece_mean,ece_std,collapse_rate,pred_std
+zero_shot,1,0.01,0.634,0.199,0.789,0.334,0.585,0.072,0.0,0.138
+maml,3,0.005,0.591,0.158,0.757,0.161,0.214,0.154,0.7,0.012
+fomaml,5,0.005,0.515,0.121,0.722,0.13,0.132,0.09,1.0,0.002
+finetune,1,0.01,0.503,0.033,0.699,0.114,0.467,0.204,0.9,0.028

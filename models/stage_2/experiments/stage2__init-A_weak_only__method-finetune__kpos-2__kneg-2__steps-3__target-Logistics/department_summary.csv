@@ -1,15 +1,4 @@
 department,n_total_rows,n_pos_rows,n_neg_rows,n_total_contracts,n_pos_contracts,n_neg_contracts,pos_rate_rows,pos_rate_contracts
-Devices & Needles,80,55,25,14,8,6,0.6875,0.5714285714285714
-Logistics,60,38,22,14,9,5,0.6333333333333333,0.6428571428571429
-Packaging Material,91,54,37,11,6,5,0.5934065934065934,0.5454545454545454
-"Alliance, Acquisitions & PPM CoE",87,48,39,10,5,5,0.5517241379310345,0.5
-Bioprocessing & Raw Materials,85,43,42,10,5,5,0.5058823529411764,0.5
-Raw Materials & Energy,84,42,42,10,5,5,0.5,0.5
-"Quality, Production Services & Supplies",60,25,35,10,5,5,0.4166666666666667,0.5
-Drug Substance Outsourcing,47,19,28,10,5,5,0.40425531914893614,0.5
-Drug Product Outsourcing,25,11,14,10,5,5,0.44,0.5
-Strategic Sourcing US Hub,14,9,5,8,4,4,0.6428571428571429,0.5
-Bioprocessing and Excipients,34,22,12,7,4,3,0.6470588235294118,0.5714285714285714
-HI Warehouse Expansion Program,16,11,5,6,4,2,0.6875,0.6666666666666666
-Global Strategic Outsourcing & Devices,15,9,6,4,2,2,0.6,0.5
-"Strategy, Sourcing & Negotiation CoE",2,1,1,2,1,1,0.5,0.5
+Packaging Material,76,54,22,8,6,2,0.7105263157894737,0.75
+Logistics,22,13,9,8,5,3,0.5909090909090909,0.625
+Bioprocessing and Excipients,1,1,0,1,1,0,1.0,1.0

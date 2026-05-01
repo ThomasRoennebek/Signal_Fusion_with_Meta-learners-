@@ -1,0 +1,223 @@
+{
+  "method": "finetune",
+  "status": "success",
+  "target_department": "Logistics",
+  "n_target_episodes": 3,
+  "raw_metrics": [
+    {
+      "model": "FINETUNE",
+      "gold_auroc": 0.5,
+      "gold_ap": 0.875,
+      "gold_logloss": 2.3025851011159513,
+      "gold_brier": 0.1249999975000001,
+      "gold_ece": 0.12499998999999995,
+      "gold_f1": 0.9333333333333333,
+      "gold_accuracy": 0.875,
+      "gold_pred_mean": 0.99999999,
+      "gold_true_mean": 0.875,
+      "n_eval_rows": 8,
+      "n_positive": 7,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.7142857142857143,
+      "ndcg_at_5": 0.8749999999999999,
+      "precision_at_10": 0.875,
+      "recall_at_10": 1.0,
+      "ndcg_at_10": 0.9508745999323549,
+      "precision_at_20": 0.875,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9508745999323549,
+      "episode_idx": 0
+    },
+    {
+      "model": "FINETUNE",
+      "gold_auroc": 0.5,
+      "gold_ap": 0.9090909090909091,
+      "gold_logloss": 1.674607348993419,
+      "gold_brier": 0.09090908909090918,
+      "gold_ece": 0.09090908090909078,
+      "gold_f1": 0.9523809523809523,
+      "gold_accuracy": 0.9090909090909091,
+      "gold_pred_mean": 0.9999999899999998,
+      "gold_true_mean": 0.9090909090909091,
+      "n_eval_rows": 11,
+      "n_positive": 10,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.5,
+      "ndcg_at_5": 0.9090909090909088,
+      "precision_at_10": 1.0,
+      "recall_at_10": 1.0,
+      "ndcg_at_10": 0.9090909090909091,
+      "precision_at_20": 0.9090909090909091,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.9649027687315876,
+      "episode_idx": 1
+    },
+    {
+      "model": "FINETUNE",
+      "gold_auroc": 0.5,
+      "gold_ap": 0.8888888888888888,
+      "gold_logloss": 16.373938440179884,
+      "gold_brier": 0.8888888711111111,
+      "gold_ece": 0.8888888788888888,
+      "gold_f1": 0.0,
+      "gold_accuracy": 0.1111111111111111,
+      "gold_pred_mean": 1e-08,
+      "gold_true_mean": 0.8888888888888888,
+      "n_eval_rows": 9,
+      "n_positive": 8,
+      "precision_at_5": 1.0,
+      "recall_at_5": 0.625,
+      "ndcg_at_5": 0.8888888888888886,
+      "precision_at_10": 0.8888888888888888,
+      "recall_at_10": 1.0,
+      "ndcg_at_10": 0.956571858415452,
+      "precision_at_20": 0.8888888888888888,
+      "recall_at_20": 1.0,
+      "ndcg_at_20": 0.956571858415452,
+      "episode_idx": 2
+    }
+  ],
+  "predictions": [
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 0,
+      "y_true": 0,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 1,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 1,
+      "y_true": 0,
+      "y_prob": 1.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 1,
+      "y_prob": 0.0
+    },
+    {
+      "episode_idx": 2,
+      "y_true": 0,
+      "y_prob": 0.0
+    }
+  ],
+  "history": null
+}

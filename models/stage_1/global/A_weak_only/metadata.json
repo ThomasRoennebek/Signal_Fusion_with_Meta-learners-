@@ -3,14 +3,20 @@
   "target_department": "global",
   "is_global": true,
   "exclusion_rule": "none (global condition, no department excluded)",
-  "feature_count": 154,
+  "excluded_leakage_cols": [
+    "label_source",
+    "label_note",
+    "label_date"
+  ],
+  "validation_strategy": "A_weak_only: weak val set (held-out gold-test contract rows, weak labels).  Early stopping tracks BCEWithLogitsLoss on renegotiation_prob.",
+  "feature_count": 151,
   "model_families": [
     "MeanPredictor",
     "ElasticNet",
     "XGBoost",
     "MLP"
   ],
-  "training_timestamp": "2026-04-25T16:17:35.182336+00:00",
+  "training_timestamp": "2026-04-29T15:58:24.837069+00:00",
   "config": {
     "baseline_config": {
       "scale_numeric_for_elastic_net": true,
@@ -19,7 +25,7 @@
       "elastic_net": {
         "alpha": 0.005,
         "l1_ratio": 0.5,
-        "max_iter": 1000,
+        "max_iter": 10000,
         "random_state": 42
       },
       "xgboost": {
@@ -32,28 +38,28 @@
         "reg_alpha": 0.0,
         "reg_lambda": 1.0,
         "random_state": 42,
-        "n_jobs": 4
+        "n_jobs": -1
       }
     },
     "mlp_config": {
-      "n_epochs": 100,
-      "patience": 10,
-      "lr": 0.0005,
+      "n_epochs": 200,
+      "patience": 20,
+      "lr": 0.0003,
       "weight_decay": 0.0001,
-      "train_batch_size": 64,
-      "val_batch_size": 256,
-      "hidden_dim_1": 128,
-      "hidden_dim_2": 64,
-      "dropout": 0.2
+      "train_batch_size": 256,
+      "val_batch_size": 512,
+      "hidden_dim_1": 256,
+      "hidden_dim_2": 128,
+      "dropout": 0.1
     }
   },
   "mlp_architecture": {
-    "hidden_dim_1": 128,
-    "hidden_dim_2": 64,
-    "dropout": 0.2
+    "hidden_dim_1": 256,
+    "hidden_dim_2": 128,
+    "dropout": 0.1
   },
-  "n_train_rows": 8968,
-  "n_val_rows": 207,
+  "n_train_rows": 9185,
+  "n_val_rows": 16,
   "has_sample_weight": false,
   "seed": 42
 }

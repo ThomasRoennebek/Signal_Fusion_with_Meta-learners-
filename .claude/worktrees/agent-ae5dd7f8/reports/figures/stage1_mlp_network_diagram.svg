@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+    <radialGradient id="inputNode" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#D5E8F7"/>
+      <stop offset="100%" stop-color="#5B9BD5"/>
+    </radialGradient>
+    <radialGradient id="hidden1Node" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#F5E6CC"/>
+      <stop offset="100%" stop-color="#ED7D31"/>
+    </radialGradient>
+    <radialGradient id="hidden2Node" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#EAD5F2"/>
+      <stop offset="100%" stop-color="#9B51E0"/>
+    </radialGradient>
+    <radialGradient id="outputNode" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#F8D7DA"/>
+      <stop offset="100%" stop-color="#C0392B"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="700" y="35" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">
+    Stage 1 MLP — Fully-Connected Feedforward Network
+  </text>
+  <text x="700" y="58" text-anchor="middle" font-size="13" fill="#666">
+    TabularMLP (src/master_thesis/mlp.py)  ·  input_dim → 256 → 64 → 1  ·  ReLU + BatchNorm + Dropout(0.3)
+  </text>
+
+  <!-- Layer labels -->
+  <text x="180" y="100" text-anchor="middle" font-size="16" font-weight="bold" fill="#1F4E79">Input Layer</text>
+  <text x="180" y="120" text-anchor="middle" font-size="12" fill="#1F4E79">~50 features</text>
+
+  <text x="500" y="100" text-anchor="middle" font-size="16" font-weight="bold" fill="#A04000">Hidden Layer 1</text>
+  <text x="500" y="120" text-anchor="middle" font-size="12" fill="#A04000">256 neurons</text>
+
+  <text x="870" y="100" text-anchor="middle" font-size="16" font-weight="bold" fill="#6C3483">Hidden Layer 2</text>
+  <text x="870" y="120" text-anchor="middle" font-size="12" fill="#6C3483">64 neurons</text>
+
+  <text x="1220" y="100" text-anchor="middle" font-size="16" font-weight="bold" fill="#922B21">Output</text>
+  <text x="1220" y="120" text-anchor="middle" font-size="12" fill="#922B21">1 logit → sigmoid → ŷ</text>
+
+  <!-- ================= CONNECTIONS (drawn first so nodes cover endpoints) ================= -->
+
+  <!-- Input → Hidden1 : draw many lines -->
+  <g stroke="#5B9BD5" stroke-width="0.5" opacity="0.35">
+    <!-- 8 input positions × 10 hidden1 positions = 80 lines -->
+    <!-- Input y positions: 170,225,280,335,390,445,500,555 -->
+    <!-- Hidden1 y positions: 150,200,250,300,350,400,450,500,550,600 -->
+    <line x1="205" y1="170" x2="475" y2="150"/>
+    <line x1="205" y1="170" x2="475" y2="200"/>
+    <line x1="205" y1="170" x2="475" y2="250"/>
+    <line x1="205" y1="170" x2="475" y2="300"/>
+    <line x1="205" y1="170" x2="475" y2="350"/>
+    <line x1="205" y1="170" x2="475" y2="400"/>
+    <line x1="205" y1="170" x2="475" y2="450"/>
+    <line x1="205" y1="170" x2="475" y2="500"/>
+    <line x1="205" y1="170" x2="475" y2="550"/>
+    <line x1="205" y1="170" x2="475" y2="600"/>
+
+    <line x1="205" y1="225" x2="475" y2="150"/>
+    <line x1="205" y1="225" x2="475" y2="200"/>
+    <line x1="205" y1="225" x2="475" y2="250"/>
+    <line x1="205" y1="225" x2="475" y2="300"/>
+    <line x1="205" y1="225" x2="475" y2="350"/>
+    <line x1="205" y1="225" x2="475" y2="400"/>
+    <line x1="205" y1="225" x2="475" y2="450"/>
+    <line x1="205" y1="225" x2="475" y2="500"/>
+    <line x1="205" y1="225" x2="475" y2="550"/>
+    <line x1="205" y1="225" x2="475" y2="600"/>
+
+    <line x1="205" y1="280" x2="475" y2="150"/>
+    <line x1="205" y1="280" x2="475" y2="200"/>
+    <line x1="205" y1="280" x2="475" y2="250"/>
+    <line x1="205" y1="280" x2="475" y2="300"/>
+    <line x1="205" y1="280" x2="475" y2="350"/>
+    <line x1="205" y1="280" x2="475" y2="400"/>
+    <line x1="205" y1="280" x2="475" y2="450"/>
+    <line x1="205" y1="280" x2="475" y2="500"/>
+    <line x1="205" y1="280" x2="475" y2="550"/>
+    <line x1="205" y1="280" x2="475" y2="600"/>
+
+    <line x1="205" y1="335" x2="475" y2="150"/>
+    <line x1="205" y1="335" x2="475" y2="200"/>
+    <line x1="205" y1="335" x2="475" y2="250"/>
+    <line x1="205" y1="335" x2="475" y2="300"/>
+    <line x1="205" y1="335" x2="475" y2="350"/>
+    <line x1="205" y1="335" x2="475" y2="400"/>
+    <line x1="205" y1="335" x2="475" y2="450"/>
+    <line x1="205" y1="335" x2="475" y2="500"/>
+    <line x1="205" y1="335" x2="475" y2="550"/>
+    <line x1="205" y1="335" x2="475" y2="600"/>
+
+    <line x1="205" y1="390" x2="475" y2="150"/>
+    <line x1="205" y1="390" x2="475" y2="200"/>
+    <line x1="205" y1="390" x2="475" y2="250"/>
+    <line x1="205" y1="390" x2="475" y2="300"/>
+    <line x1="205" y1="390" x2="475" y2="350"/>
+    <line x1="205" y1="390" x2="475" y2="400"/>
+    <line x1="205" y1="390" x2="475" y2="450"/>
+    <line x1="205" y1="390" x2="475" y2="500"/>
+    <line x1="205" y1="390" x2="475" y2="550"/>
+    <line x1="205" y1="390" x2="475" y2="600"/>
+
+    <line x1="205" y1="445" x2="475" y2="150"/>
+    <line x1="205" y1="445" x2="475" y2="200"/>
+    <line x1="205" y1="445" x2="475" y2="250"/>
+    <line x1="205" y1="445" x2="475" y2="300"/>
+    <line x1="205" y1="445" x2="475" y2="350"/>
+    <line x1="205" y1="445" x2="475" y2="400"/>
+    <line x1="205" y1="445" x2="475" y2="450"/>
+    <line x1="205" y1="445" x2="475" y2="500"/>
+    <line x1="205" y1="445" x2="475" y2="550"/>
+    <line x1="205" y1="445" x2="475" y2="600"/>
+
+    <line x1="205" y1="555" x2="475" y2="150"/>
+    <line x1="205" y1="555" x2="475" y2="200"/>
+    <line x1="205" y1="555" x2="475" y2="250"/>
+    <line x1="205" y1="555" x2="475" y2="300"/>
+    <line x1="205" y1="555" x2="475" y2="350"/>
+    <line x1="205" y1="555" x2="475" y2="400"/>
+    <line x1="205" y1="555" x2="475" y2="450"/>
+    <line x1="205" y1="555" x2="475" y2="500"/>
+    <line x1="205" y1="555" x2="475" y2="550"/>
+    <line x1="205" y1="555" x2="475" y2="600"/>
+
+    <line x1="205" y1="610" x2="475" y2="150"/>
+    <line x1="205" y1="610" x2="475" y2="200"/>
+    <line x1="205" y1="610" x2="475" y2="250"/>
+    <line x1="205" y1="610" x2="475" y2="300"/>
+    <line x1="205" y1="610" x2="475" y2="350"/>
+    <line x1="205" y1="610" x2="475" y2="400"/>
+    <line x1="205" y1="610" x2="475" y2="450"/>
+    <line x1="205" y1="610" x2="475" y2="500"/>
+    <line x1="205" y1="610" x2="475" y2="550"/>
+    <line x1="205" y1="610" x2="475" y2="600"/>
+  </g>
+
+  <!-- Hidden1 → Hidden2 : many lines -->
+  <g stroke="#ED7D31" stroke-width="0.5" opacity="0.35">
+    <!-- hidden1 x=525, y {150,200,250,300,350,400,450,500,550,600} -->
+    <!-- hidden2 x=845, y {180,230,280,330,380,430,480,530,580} -->
+    <line x1="525" y1="150" x2="845" y2="180"/>
+    <line x1="525" y1="150" x2="845" y2="230"/>
+    <line x1="525" y1="150" x2="845" y2="280"/>
+    <line x1="525" y1="150" x2="845" y2="330"/>
+    <line x1="525" y1="150" x2="845" y2="380"/>
+    <line x1="525" y1="150" x2="845" y2="430"/>
+    <line x1="525" y1="150" x2="845" y2="480"/>
+    <line x1="525" y1="150" x2="845" y2="530"/>
+    <line x1="525" y1="150" x2="845" y2="580"/>
+
+    <line x1="525" y1="200" x2="845" y2="180"/>
+    <line x1="525" y1="200" x2="845" y2="230"/>
+    <line x1="525" y1="200" x2="845" y2="280"/>
+    <line x1="525" y1="200" x2="845" y2="330"/>
+    <line x1="525" y1="200" x2="845" y2="380"/>
+    <line x1="525" y1="200" x2="845" y2="430"/>
+    <line x1="525" y1="200" x2="845" y2="480"/>
+    <line x1="525" y1="200" x2="845" y2="530"/>
+    <line x1="525" y1="200" x2="845" y2="580"/>
+
+    <line x1="525" y1="250" x2="845" y2="180"/>
+    <line x1="525" y1="250" x2="845" y2="230"/>
+    <line x1="525" y1="250" x2="845" y2="280"/>
+    <line x1="525" y1="250" x2="845" y2="330"/>
+    <line x1="525" y1="250" x2="845" y2="380"/>
+    <line x1="525" y1="250" x2="845" y2="430"/>
+    <line x1="525" y1="250" x2="845" y2="480"/>
+    <line x1="525" y1="250" x2="845" y2="530"/>
+    <line x1="525" y1="250" x2="845" y2="580"/>
+
+    <line x1="525" y1="300" x2="845" y2="180"/>
+    <line x1="525" y1="300" x2="845" y2="230"/>
+    <line x1="525" y1="300" x2="845" y2="280"/>
+    <line x1="525" y1="300" x2="845" y2="330"/>
+    <line x1="525" y1="300" x2="845" y2="380"/>
+    <line x1="525" y1="300" x2="845" y2="430"/>
+    <line x1="525" y1="300" x2="845" y2="480"/>
+    <line x1="525" y1="300" x2="845" y2="530"/>
+    <line x1="525" y1="300" x2="845" y2="580"/>
+
+    <line x1="525" y1="350" x2="845" y2="180"/>
+    <line x1="525" y1="350" x2="845" y2="230"/>
+    <line x1="525" y1="350" x2="845" y2="280"/>
+    <line x1="525" y1="350" x2="845" y2="330"/>
+    <line x1="525" y1="350" x2="845" y2="380"/>
+    <line x1="525" y1="350" x2="845" y2="430"/>
+    <line x1="525" y1="350" x2="845" y2="480"/>
+    <line x1="525" y1="350" x2="845" y2="530"/>
+    <line x1="525" y1="350" x2="845" y2="580"/>
+
+    <line x1="525" y1="400" x2="845" y2="180"/>
+    <line x1="525" y1="400" x2="845" y2="230"/>
+    <line x1="525" y1="400" x2="845" y2="280"/>
+    <line x1="525" y1="400" x2="845" y2="330"/>
+    <line x1="525" y1="400" x2="845" y2="380"/>
+    <line x1="525" y1="400" x2="845" y2="430"/>
+    <line x1="525" y1="400" x2="845" y2="480"/>
+    <line x1="525" y1="400" x2="845" y2="530"/>
+    <line x1="525" y1="400" x2="845" y2="580"/>
+
+    <line x1="525" y1="450" x2="845" y2="180"/>
+    <line x1="525" y1="450" x2="845" y2="230"/>
+    <line x1="525" y1="450" x2="845" y2="280"/>
+    <line x1="525" y1="450" x2="845" y2="330"/>
+    <line x1="525" y1="450" x2="845" y2="380"/>
+    <line x1="525" y1="450" x2="845" y2="430"/>
+    <line x1="525" y1="450" x2="845" y2="480"/>
+    <line x1="525" y1="450" x2="845" y2="530"/>
+    <line x1="525" y1="450" x2="845" y2="580"/>
+
+    <line x1="525" y1="500" x2="845" y2="180"/>
+    <line x1="525" y1="500" x2="845" y2="230"/>
+    <line x1="525" y1="500" x2="845" y2="280"/>
+    <line x1="525" y1="500" x2="845" y2="330"/>
+    <line x1="525" y1="500" x2="845" y2="380"/>
+    <line x1="525" y1="500" x2="845" y2="430"/>
+    <line x1="525" y1="500" x2="845" y2="480"/>
+    <line x1="525" y1="500" x2="845" y2="530"/>
+    <line x1="525" y1="500" x2="845" y2="580"/>
+
+    <line x1="525" y1="550" x2="845" y2="180"/>
+    <line x1="525" y1="550" x2="845" y2="230"/>
+    <line x1="525" y1="550" x2="845" y2="280"/>
+    <line x1="525" y1="550" x2="845" y2="330"/>
+    <line x1="525" y1="550" x2="845" y2="380"/>
+    <line x1="525" y1="550" x2="845" y2="430"/>
+    <line x1="525" y1="550" x2="845" y2="480"/>
+    <line x1="525" y1="550" x2="845" y2="530"/>
+    <line x1="525" y1="550" x2="845" y2="580"/>
+
+    <line x1="525" y1="600" x2="845" y2="180"/>
+    <line x1="525" y1="600" x2="845" y2="230"/>
+    <line x1="525" y1="600" x2="845" y2="280"/>
+    <line x1="525" y1="600" x2="845" y2="330"/>
+    <line x1="525" y1="600" x2="845" y2="380"/>
+    <line x1="525" y1="600" x2="845" y2="430"/>
+    <line x1="525" y1="600" x2="845" y2="480"/>
+    <line x1="525" y1="600" x2="845" y2="530"/>
+    <line x1="525" y1="600" x2="845" y2="580"/>
+  </g>
+
+  <!-- Hidden2 → Output -->
+  <g stroke="#9B51E0" stroke-width="0.7" opacity="0.45">
+    <line x1="895" y1="180" x2="1195" y2="380"/>
+    <line x1="895" y1="230" x2="1195" y2="380"/>
+    <line x1="895" y1="280" x2="1195" y2="380"/>
+    <line x1="895" y1="330" x2="1195" y2="380"/>
+    <line x1="895" y1="380" x2="1195" y2="380"/>
+    <line x1="895" y1="430" x2="1195" y2="380"/>
+    <line x1="895" y1="480" x2="1195" y2="380"/>
+    <line x1="895" y1="530" x2="1195" y2="380"/>
+    <line x1="895" y1="580" x2="1195" y2="380"/>
+  </g>
+
+  <!-- ================= NODES ================= -->
+
+  <!-- INPUT nodes (8 shown) -->
+  <g>
+    <circle cx="180" cy="170" r="22" fill="url(#inputNode)" stroke="#1F4E79" stroke-width="1.5"/>
+    <text x="180" y="175" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">x₁</text>
+    <text x="130" y="175" text-anchor="end" font-size="10" fill="#555">contract_age</text>
+
+    <circle cx="180" cy="225" r="22" fill="url(#inputNode)" stroke="#1F4E79" stroke-width="1.5"/>
+    <text x="180" y="230" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">x₂</text>
+    <text x="130" y="230" text-anchor="end" font-size="10" fill="#555">ESG_score</text>
+
+    <circle cx="180" cy="280" r="22" fill="url(#inputNode)" stroke="#1F4E79" stroke-width="1.5"/>
+    <text x="180" y="285" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">x₃</text>
+    <text x="130" y="285" text-anchor="end" font-size="10" fill="#555">financial_rating</text>
+
+    <circle cx="180" cy="335" r="22" fill="url(#inputNode)" stroke="#1F4E79" stroke-width="1.5"/>
+    <text x="180" y="340" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">x₄</text>
+    <text x="130" y="340" text-anchor="end" font-size="10" fill="#555">news_sentiment</text>
+
+    <circle cx="180" cy="390" r="22" fill="url(#inputNode)" stroke="#1F4E79" stroke-width="1.5"/>
+    <text x="180" y="395" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">x₅</text>
+    <text x="130" y="395" text-anchor="end" font-size="10" fill="#555">market_stress</text>
+
+    <circle cx="180" cy="445" r="22" fill="url(#inputNode)" stroke="#1F4E79" stroke-width="1.5"/>
+    <text x="180" y="450" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">x₆</text>
+    <text x="130" y="450" text-anchor="end" font-size="10" fill="#555">dept_onehot</text>
+
+    <text x="180" y="505" text-anchor="middle" font-size="22" font-weight="bold" fill="#888">⋮</text>
+
+    <circle cx="180" cy="555" r="22" fill="url(#inputNode)" stroke="#1F4E79" stroke-width="1.5"/>
+    <text x="180" y="560" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">x_{n-1}</text>
+
+    <circle cx="180" cy="610" r="22" fill="url(#inputNode)" stroke="#1F4E79" stroke-width="1.5"/>
+    <text x="180" y="615" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">x_n</text>
+    <text x="130" y="615" text-anchor="end" font-size="10" fill="#555">≈ 50 total</text>
+  </g>
+
+  <!-- HIDDEN LAYER 1 nodes (10 shown, representing 256) -->
+  <g>
+    <circle cx="500" cy="150" r="20" fill="url(#hidden1Node)" stroke="#A04000" stroke-width="1.5"/>
+    <text x="500" y="155" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₁⁽¹⁾</text>
+
+    <circle cx="500" cy="200" r="20" fill="url(#hidden1Node)" stroke="#A04000" stroke-width="1.5"/>
+    <text x="500" y="205" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₂⁽¹⁾</text>
+
+    <circle cx="500" cy="250" r="20" fill="url(#hidden1Node)" stroke="#A04000" stroke-width="1.5"/>
+    <text x="500" y="255" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₃⁽¹⁾</text>
+
+    <circle cx="500" cy="300" r="20" fill="url(#hidden1Node)" stroke="#A04000" stroke-width="1.5"/>
+    <text x="500" y="305" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₄⁽¹⁾</text>
+
+    <circle cx="500" cy="350" r="20" fill="url(#hidden1Node)" stroke="#A04000" stroke-width="1.5"/>
+    <text x="500" y="355" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₅⁽¹⁾</text>
+
+    <circle cx="500" cy="400" r="20" fill="url(#hidden1Node)" stroke="#A04000" stroke-width="1.5"/>
+    <text x="500" y="405" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₆⁽¹⁾</text>
+
+    <circle cx="500" cy="450" r="20" fill="url(#hidden1Node)" stroke="#A04000" stroke-width="1.5"/>
+    <text x="500" y="455" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₇⁽¹⁾</text>
+
+    <circle cx="500" cy="500" r="20" fill="url(#hidden1Node)" stroke="#A04000" stroke-width="1.5"/>
+    <text x="500" y="505" text-anchor="middle" font-size="9" font-weight="bold" fill="#fff">...</text>
+
+    <circle cx="500" cy="550" r="20" fill="url(#hidden1Node)" stroke="#A04000" stroke-width="1.5"/>
+    <text x="500" y="555" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₂₅₅⁽¹⁾</text>
+
+    <circle cx="500" cy="600" r="20" fill="url(#hidden1Node)" stroke="#A04000" stroke-width="1.5"/>
+    <text x="500" y="605" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₂₅₆⁽¹⁾</text>
+  </g>
+
+  <!-- Hidden Layer 1 operations box (below the layer) -->
+  <rect x="400" y="650" width="200" height="110" rx="8" fill="#FFF5E6" stroke="#ED7D31" stroke-width="1.5"/>
+  <text x="500" y="670" text-anchor="middle" font-size="12" font-weight="bold" fill="#A04000">Operations per neuron</text>
+  <text x="500" y="688" text-anchor="middle" font-size="11" fill="#333">z⁽¹⁾ = W₁ · x + b₁</text>
+  <text x="500" y="705" text-anchor="middle" font-size="11" fill="#333">BatchNorm(z⁽¹⁾)</text>
+  <text x="500" y="722" text-anchor="middle" font-size="11" fill="#333">a⁽¹⁾ = ReLU(...)</text>
+  <text x="500" y="740" text-anchor="middle" font-size="11" fill="#333">Dropout(a⁽¹⁾, p=0.3)</text>
+  <text x="500" y="754" text-anchor="middle" font-size="9" fill="#888">W₁ ∈ ℝ^(256×n),  b₁ ∈ ℝ^256</text>
+
+  <!-- HIDDEN LAYER 2 nodes (9 shown, representing 64) -->
+  <g>
+    <circle cx="870" cy="180" r="20" fill="url(#hidden2Node)" stroke="#6C3483" stroke-width="1.5"/>
+    <text x="870" y="185" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₁⁽²⁾</text>
+
+    <circle cx="870" cy="230" r="20" fill="url(#hidden2Node)" stroke="#6C3483" stroke-width="1.5"/>
+    <text x="870" y="235" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₂⁽²⁾</text>
+
+    <circle cx="870" cy="280" r="20" fill="url(#hidden2Node)" stroke="#6C3483" stroke-width="1.5"/>
+    <text x="870" y="285" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₃⁽²⁾</text>
+
+    <circle cx="870" cy="330" r="20" fill="url(#hidden2Node)" stroke="#6C3483" stroke-width="1.5"/>
+    <text x="870" y="335" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₄⁽²⁾</text>
+
+    <circle cx="870" cy="380" r="20" fill="url(#hidden2Node)" stroke="#6C3483" stroke-width="1.5"/>
+    <text x="870" y="385" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₅⁽²⁾</text>
+
+    <circle cx="870" cy="430" r="20" fill="url(#hidden2Node)" stroke="#6C3483" stroke-width="1.5"/>
+    <text x="870" y="435" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₆⁽²⁾</text>
+
+    <circle cx="870" cy="480" r="20" fill="url(#hidden2Node)" stroke="#6C3483" stroke-width="1.5"/>
+    <text x="870" y="485" text-anchor="middle" font-size="9" font-weight="bold" fill="#fff">...</text>
+
+    <circle cx="870" cy="530" r="20" fill="url(#hidden2Node)" stroke="#6C3483" stroke-width="1.5"/>
+    <text x="870" y="535" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₆₃⁽²⁾</text>
+
+    <circle cx="870" cy="580" r="20" fill="url(#hidden2Node)" stroke="#6C3483" stroke-width="1.5"/>
+    <text x="870" y="585" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">h₆₄⁽²⁾</text>
+  </g>
+
+  <!-- Hidden Layer 2 operations box -->
+  <rect x="770" y="650" width="200" height="110" rx="8" fill="#F3EAF7" stroke="#9B51E0" stroke-width="1.5"/>
+  <text x="870" y="670" text-anchor="middle" font-size="12" font-weight="bold" fill="#6C3483">Operations per neuron</text>
+  <text x="870" y="688" text-anchor="middle" font-size="11" fill="#333">z⁽²⁾ = W₂ · a⁽¹⁾ + b₂</text>
+  <text x="870" y="705" text-anchor="middle" font-size="11" fill="#333">BatchNorm(z⁽²⁾)</text>
+  <text x="870" y="722" text-anchor="middle" font-size="11" fill="#333">a⁽²⁾ = ReLU(...)</text>
+  <text x="870" y="740" text-anchor="middle" font-size="11" fill="#333">Dropout(a⁽²⁾, p=0.3)</text>
+  <text x="870" y="754" text-anchor="middle" font-size="9" fill="#888">W₂ ∈ ℝ^(64×256),  b₂ ∈ ℝ^64</text>
+
+  <!-- OUTPUT node -->
+  <circle cx="1220" cy="380" r="30" fill="url(#outputNode)" stroke="#922B21" stroke-width="2"/>
+  <text x="1220" y="378" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">ŷ</text>
+  <text x="1220" y="395" text-anchor="middle" font-size="9" fill="#fff">(logit z)</text>
+
+  <!-- Output operations box -->
+  <rect x="1100" y="450" width="240" height="120" rx="8" fill="#FDEDEC" stroke="#C0392B" stroke-width="1.5"/>
+  <text x="1220" y="472" text-anchor="middle" font-size="12" font-weight="bold" fill="#922B21">Output Head</text>
+  <text x="1220" y="492" text-anchor="middle" font-size="11" fill="#333">z = W₃ · a⁽²⁾ + b₃</text>
+  <text x="1220" y="510" text-anchor="middle" font-size="11" fill="#333">ŷ = σ(z) = 1 / (1 + e⁻ᶻ)</text>
+  <text x="1220" y="527" text-anchor="middle" font-size="10" fill="#555">W₃ ∈ ℝ^(1×64),  b₃ ∈ ℝ</text>
+  <text x="1220" y="547" text-anchor="middle" font-size="10" font-style="italic" fill="#922B21">↑ ANIL adapts only this layer</text>
+  <text x="1220" y="563" text-anchor="middle" font-size="10" font-style="italic" fill="#922B21">in Stage 2</text>
+
+  <!-- Final probability arrow -->
+  <line x1="1250" y1="380" x2="1320" y2="380" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="1360" y="378" text-anchor="middle" font-size="14" font-weight="bold" fill="#222">ŷ ∈ [0,1]</text>
+  <text x="1360" y="398" text-anchor="middle" font-size="10" fill="#555">P(risky)</text>
+
+  <!-- ============ BOTTOM INFO STRIP ============ -->
+  <rect x="40" y="790" width="1320" height="95" rx="8" fill="#F8F9FA" stroke="#CCC"/>
+
+  <text x="60" y="815" font-size="13" font-weight="bold" fill="#1F4E79">Forward pass (in words):</text>
+  <text x="60" y="835" font-size="12" fill="#333">
+    1. Every input feature x_i connects to every neuron in Hidden Layer 1  →  learned weights W₁ combine them
+  </text>
+  <text x="60" y="853" font-size="12" fill="#333">
+    2. Each hidden-1 activation feeds into every neuron of Hidden Layer 2  →  the 64-dim compressed "risk representation"
+  </text>
+  <text x="60" y="871" font-size="12" fill="#333">
+    3. The 64-dim embedding connects to a single output neuron →  logit z →  sigmoid  →  risk probability ŷ
+  </text>
+
+  <text x="900" y="815" font-size="13" font-weight="bold" fill="#922B21">Why "fully connected":</text>
+  <text x="900" y="835" font-size="11" fill="#333">Every node in layer L is wired to every node</text>
+  <text x="900" y="850" font-size="11" fill="#333">in layer L+1. No shortcuts, no skip links.</text>
+  <text x="900" y="872" font-size="11" fill="#666" font-style="italic">Total parameters ≈ 30,000 – 40,000</text>
+
+  <!-- Legend top-right -->
+  <g>
+    <circle cx="1270" cy="105" r="8" fill="url(#inputNode)" stroke="#1F4E79"/>
+    <text x="1285" y="110" font-size="11" fill="#333">Input feature</text>
+    <circle cx="1270" cy="125" r="8" fill="url(#hidden1Node)" stroke="#A04000"/>
+    <text x="1285" y="130" font-size="11" fill="#333">Hidden 1 neuron</text>
+  </g>
+
+  <!-- Subtitle below title showing activation -->
+  <text x="700" y="760" text-anchor="middle" font-size="11" fill="#888" font-style="italic">
+    ReLU(x) = max(0, x)  ·  σ(z) = 1/(1+e⁻ᶻ)  ·  Loss: BCEWithLogits  ·  Optimizer: Adam (lr=0.001, weight_decay=1e-5)
+  </text>
+</svg>

@@ -1,0 +1,158 @@
+experiment_id,method,init_name,target_department,n_support_pos,n_support_neg,inner_steps,status,gold_auroc_mean,synthetic_proportion,augmentation_method,is_stale,stale_reason,is_diagnostic,diagnostic_reason,is_current_clean
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-1__gen-smote_nc,anil,A_weak_only,Logistics,1,1,3,success,0.4595959595959596,1.0,smote_nc,True,synprop_1.0_invalid,False,,False
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-0.9__gen-smote_nc,anil,A_weak_only,Logistics,1,1,3,success,0.4799242424242423,0.9,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-0__gen-none,anil,A_weak_only,Logistics,1,1,3,success,0.4916140572390574,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-0.5__gen-smote_nc,anil,A_weak_only,Logistics,1,1,3,success,0.4916140572390574,0.5,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-3__target-Packaging-Material__synprop-1__gen-smote_nc,anil,A_weak_only,Packaging Material,1,1,3,success,0.2892398678992386,1.0,smote_nc,True,synprop_1.0_invalid,False,,False
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-3__target-Packaging-Material__synprop-0.9__gen-smote_nc,anil,A_weak_only,Packaging Material,1,1,3,success,0.2776597949692224,0.9,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-3__target-Packaging-Material__synprop-0__gen-none,anil,A_weak_only,Packaging Material,1,1,3,success,0.3173191736322975,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-3__target-Packaging-Material__synprop-0.5__gen-smote_nc,anil,A_weak_only,Packaging Material,1,1,3,success,0.3173191736322975,0.5,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-5__target-Logistics__synprop-0.9__gen-smote_nc,anil,A_weak_only,Logistics,1,1,5,success,0.4632575757575757,0.9,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-5__target-Logistics__synprop-0__gen-none,anil,A_weak_only,Logistics,1,1,5,success,0.4810132575757576,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-5__target-Logistics__synprop-0.5__gen-smote_nc,anil,A_weak_only,Logistics,1,1,5,success,0.4810132575757576,0.5,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-5__target-Packaging-Material__synprop-0.9__gen-smote_nc,anil,A_weak_only,Packaging Material,1,1,5,success,0.2776597949692224,0.9,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-5__target-Packaging-Material__synprop-0__gen-none,anil,A_weak_only,Packaging Material,1,1,5,success,0.3170683756386815,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-1__kneg-1__steps-5__target-Packaging-Material__synprop-0.5__gen-smote_nc,anil,A_weak_only,Packaging Material,1,1,5,success,0.3170683756386815,0.5,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-1__target-Logistics,anil,A_weak_only,Logistics,2,2,1,failed,,,,True,architecture_mismatch,False,,False
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-3__target-Logistics,anil,A_weak_only,Logistics,2,2,3,success,0.7571428571428571,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-3__target-Logistics__synprop-1__gen-smote_nc,anil,A_weak_only,Logistics,2,2,3,success,0.2869047619047619,1.0,smote_nc,True,synprop_1.0_invalid,False,,False
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-3__target-Logistics__synprop-0.9__gen-smote_nc,anil,A_weak_only,Logistics,2,2,3,success,0.280021645021645,0.9,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-3__target-Logistics__synprop-0__gen-none,anil,A_weak_only,Logistics,2,2,3,success,0.3748863636363636,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-3__target-Logistics__synprop-0.5__gen-smote_nc,anil,A_weak_only,Logistics,2,2,3,success,0.3748863636363636,0.5,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-1__gen-smote_nc,anil,A_weak_only,Packaging Material,2,2,3,success,,1.0,smote_nc,True,synprop_1.0_invalid,False,,False
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-0.9__gen-smote_nc,anil,A_weak_only,Packaging Material,2,2,3,success,,0.9,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-0__gen-none,anil,A_weak_only,Packaging Material,2,2,3,success,,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-0.5__gen-smote_nc,anil,A_weak_only,Packaging Material,2,2,3,success,,0.5,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-5__target-Logistics,anil,A_weak_only,Logistics,2,2,5,success,0.5418224906264986,,,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-5__target-Logistics__synprop-0.9__gen-smote_nc,anil,A_weak_only,Logistics,2,2,5,success,0.2666883116883117,0.9,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-5__target-Logistics__synprop-0__gen-none,anil,A_weak_only,Logistics,2,2,5,success,0.3510768398268398,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-5__target-Logistics__synprop-0.5__gen-smote_nc,anil,A_weak_only,Logistics,2,2,5,success,0.3510768398268398,0.5,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-5__target-Packaging-Material__synprop-0.9__gen-smote_nc,anil,A_weak_only,Packaging Material,2,2,5,success,,0.9,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-5__target-Packaging-Material__synprop-0__gen-none,anil,A_weak_only,Packaging Material,2,2,5,success,,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-5__target-Packaging-Material__synprop-0.5__gen-smote_nc,anil,A_weak_only,Packaging Material,2,2,5,success,,0.5,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-anil__kpos-5__kneg-5__steps-3__target-Logistics,anil,A_weak_only,Logistics,5,5,3,failed,,,,True,infeasible_k_shot(k=10),False,,False
+stage2__init-A_weak_only__method-anil__kpos-5__kneg-5__steps-5__target-Logistics,anil,A_weak_only,Logistics,5,5,5,success,,,,True,infeasible_k_shot(k=10),True,1_row_gold_test_logistics,False
+stage2__init-A_weak_only__method-anil__kpos-10__kneg-10__steps-3__target-Logistics,anil,A_weak_only,Logistics,10,10,3,failed,,,,True,infeasible_k_shot(k=20),False,,False
+stage2__init-A_weak_only__method-anil__kpos-10__kneg-10__steps-5__target-Logistics,anil,A_weak_only,Logistics,10,10,5,failed,,,,True,infeasible_k_shot(k=20),False,,False
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-1__gen-smote_nc,anil,C_hybrid,Logistics,1,1,3,success,0.5622895622895623,1.0,smote_nc,True,synprop_1.0_invalid,False,,False
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-0.9__gen-smote_nc,anil,C_hybrid,Logistics,1,1,3,success,0.5707070707070707,0.9,smote_nc,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-0__gen-none,anil,C_hybrid,Logistics,1,1,3,success,0.559190867003367,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-0.5__gen-smote_nc,anil,C_hybrid,Logistics,1,1,3,success,0.559190867003367,0.5,smote_nc,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-3__target-Packaging-Material__synprop-1__gen-smote_nc,anil,C_hybrid,Packaging Material,1,1,3,failed,,,,False,,False,,False
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-3__target-Packaging-Material__synprop-0.9__gen-smote_nc,anil,C_hybrid,Packaging Material,1,1,3,failed,,,,False,,False,,False
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-3__target-Packaging-Material__synprop-0__gen-none,anil,C_hybrid,Packaging Material,1,1,3,success,0.9899040026248456,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-3__target-Packaging-Material__synprop-0.5__gen-smote_nc,anil,C_hybrid,Packaging Material,1,1,3,success,0.9899040026248456,0.5,smote_nc,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-5__target-Logistics__synprop-0.9__gen-smote_nc,anil,C_hybrid,Logistics,1,1,5,success,0.5825757575757576,0.9,smote_nc,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-5__target-Logistics__synprop-0__gen-none,anil,C_hybrid,Logistics,1,1,5,success,0.5805187289562289,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-5__target-Logistics__synprop-0.5__gen-smote_nc,anil,C_hybrid,Logistics,1,1,5,success,0.5805187289562289,0.5,smote_nc,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-5__target-Packaging-Material__synprop-0.9__gen-smote_nc,anil,C_hybrid,Packaging Material,1,1,5,failed,,,,False,,False,,False
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-5__target-Packaging-Material__synprop-0__gen-none,anil,C_hybrid,Packaging Material,1,1,5,success,0.9848383858963944,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-1__kneg-1__steps-5__target-Packaging-Material__synprop-0.5__gen-smote_nc,anil,C_hybrid,Packaging Material,1,1,5,success,0.9848383858963944,0.5,smote_nc,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-3__target-Logistics,anil,C_hybrid,Logistics,2,2,3,success,0.5891991341991342,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-3__target-Logistics__synprop-1__gen-smote_nc,anil,C_hybrid,Logistics,2,2,3,success,0.5428571428571428,1.0,smote_nc,True,synprop_1.0_invalid,False,,False
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-3__target-Logistics__synprop-0.9__gen-smote_nc,anil,C_hybrid,Logistics,2,2,3,success,0.612987012987013,0.9,smote_nc,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-3__target-Logistics__synprop-0__gen-none,anil,C_hybrid,Logistics,2,2,3,success,0.5891991341991342,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-3__target-Logistics__synprop-0.5__gen-smote_nc,anil,C_hybrid,Logistics,2,2,3,success,0.5891991341991342,0.5,smote_nc,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-1__gen-smote_nc,anil,C_hybrid,Packaging Material,2,2,3,failed,,,,False,,False,,False
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-0.9__gen-smote_nc,anil,C_hybrid,Packaging Material,2,2,3,failed,,,,False,,False,,False
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-0__gen-none,anil,C_hybrid,Packaging Material,2,2,3,success,,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-0.5__gen-smote_nc,anil,C_hybrid,Packaging Material,2,2,3,success,,0.5,smote_nc,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-5__target-Logistics,anil,C_hybrid,Logistics,2,2,5,success,0.6026515151515152,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-5__target-Logistics__synprop-0.9__gen-smote_nc,anil,C_hybrid,Logistics,2,2,5,success,0.612987012987013,0.9,smote_nc,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-5__target-Logistics__synprop-0__gen-none,anil,C_hybrid,Logistics,2,2,5,success,0.6026515151515152,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-5__target-Logistics__synprop-0.5__gen-smote_nc,anil,C_hybrid,Logistics,2,2,5,success,0.6026515151515152,0.5,smote_nc,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-5__target-Packaging-Material__synprop-0.9__gen-smote_nc,anil,C_hybrid,Packaging Material,2,2,5,failed,,,,False,,False,,False
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-5__target-Packaging-Material__synprop-0__gen-none,anil,C_hybrid,Packaging Material,2,2,5,success,,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-2__kneg-2__steps-5__target-Packaging-Material__synprop-0.5__gen-smote_nc,anil,C_hybrid,Packaging Material,2,2,5,success,,0.5,smote_nc,False,,False,,True
+stage2__init-C_hybrid__method-anil__kpos-5__kneg-5__steps-3__target-Logistics,anil,C_hybrid,Logistics,5,5,3,failed,,,,True,infeasible_k_shot(k=10),False,,False
+stage2__init-C_hybrid__method-anil__kpos-5__kneg-5__steps-5__target-Logistics,anil,C_hybrid,Logistics,5,5,5,failed,,,,True,infeasible_k_shot(k=10),False,,False
+stage2__init-C_hybrid__method-anil__kpos-10__kneg-10__steps-3__target-Logistics,anil,C_hybrid,Logistics,10,10,3,failed,,,,True,infeasible_k_shot(k=20),False,,False
+stage2__init-C_hybrid__method-anil__kpos-10__kneg-10__steps-5__target-Logistics,anil,C_hybrid,Logistics,10,10,5,failed,,,,True,infeasible_k_shot(k=20),False,,False
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-1__gen-smote_nc,anil,random,Logistics,1,1,3,success,0.5,1.0,smote_nc,True,synprop_1.0_invalid,False,,False
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-0__gen-none,anil,random,Logistics,1,1,3,success,0.5,0.0,none,False,,False,,True
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-0.5__gen-smote_nc,anil,random,Logistics,1,1,3,success,0.5,0.5,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-3__target-Logistics__synprop-0.9__gen-smote_nc,anil,random,Logistics,1,1,3,success,0.5,0.9,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-3__target-Packaging-Material__synprop-1__gen-smote_nc,anil,random,Packaging Material,1,1,3,success,0.463458110516934,1.0,smote_nc,True,synprop_1.0_invalid,False,,False
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-3__target-Packaging-Material__synprop-0__gen-none,anil,random,Packaging Material,1,1,3,success,0.463458110516934,0.0,none,False,,False,,True
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-3__target-Packaging-Material__synprop-0.5__gen-smote_nc,anil,random,Packaging Material,1,1,3,success,0.4780748663101605,0.5,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-3__target-Packaging-Material__synprop-0.9__gen-smote_nc,anil,random,Packaging Material,1,1,3,success,0.4780748663101605,0.9,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-5__target-Logistics__synprop-0__gen-none,anil,random,Logistics,1,1,5,success,0.5,0.0,none,False,,False,,True
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-5__target-Logistics__synprop-0.5__gen-smote_nc,anil,random,Logistics,1,1,5,success,0.5,0.5,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-5__target-Logistics__synprop-0.9__gen-smote_nc,anil,random,Logistics,1,1,5,success,0.5,0.9,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-5__target-Packaging-Material__synprop-0__gen-none,anil,random,Packaging Material,1,1,5,success,0.4997885835095137,0.0,none,False,,False,,True
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-5__target-Packaging-Material__synprop-0.5__gen-smote_nc,anil,random,Packaging Material,1,1,5,success,0.4997885835095137,0.5,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-1__kneg-1__steps-5__target-Packaging-Material__synprop-0.9__gen-smote_nc,anil,random,Packaging Material,1,1,5,success,0.4997885835095137,0.9,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-3__target-Logistics__synprop-1__gen-smote_nc,anil,random,Logistics,2,2,3,success,0.5,1.0,smote_nc,True,synprop_1.0_invalid,False,,False
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-3__target-Logistics__synprop-0__gen-none,anil,random,Logistics,2,2,3,success,0.5,0.0,none,False,,False,,True
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-3__target-Logistics__synprop-0.5__gen-smote_nc,anil,random,Logistics,2,2,3,success,0.5818181818181818,0.5,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-3__target-Logistics__synprop-0.9__gen-smote_nc,anil,random,Logistics,2,2,3,success,0.5818181818181818,0.9,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-1__gen-smote_nc,anil,random,Packaging Material,2,2,3,success,,1.0,smote_nc,True,synprop_1.0_invalid,False,,False
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-0__gen-none,anil,random,Packaging Material,2,2,3,success,,0.0,none,False,,False,,True
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-0.5__gen-smote_nc,anil,random,Packaging Material,2,2,3,success,,0.5,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-0.9__gen-smote_nc,anil,random,Packaging Material,2,2,3,success,,0.9,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-5__target-Logistics__synprop-0__gen-none,anil,random,Logistics,2,2,5,success,0.5818181818181818,0.0,none,False,,False,,True
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-5__target-Logistics__synprop-0.5__gen-smote_nc,anil,random,Logistics,2,2,5,success,0.5818181818181818,0.5,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-5__target-Logistics__synprop-0.9__gen-smote_nc,anil,random,Logistics,2,2,5,success,0.5818181818181818,0.9,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-5__target-Packaging-Material__synprop-0__gen-none,anil,random,Packaging Material,2,2,5,success,,0.0,none,False,,False,,True
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-5__target-Packaging-Material__synprop-0.5__gen-smote_nc,anil,random,Packaging Material,2,2,5,success,,0.5,smote_nc,False,,False,,True
+stage2__init-random__method-anil__kpos-2__kneg-2__steps-5__target-Packaging-Material__synprop-0.9__gen-smote_nc,anil,random,Packaging Material,2,2,5,success,,0.9,smote_nc,False,,False,,True
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-1__target-Logistics,finetune,A_weak_only,Logistics,2,2,1,failed,,,,True,architecture_mismatch,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-3__target-Logistics__synprop-0__gen-none,finetune,A_weak_only,Logistics,2,2,3,success,0.5,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-3__target-Logistics,finetune,A_weak_only,Logistics,2,2,3,success,0.5,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-3__target-Packaging-Material__synprop-0__gen-none,finetune,A_weak_only,Packaging Material,2,2,3,success,,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-3__target-___synprop-0__gen-none,finetune,A_weak_only,_,2,2,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-3__target-a__synprop-0__gen-none,finetune,A_weak_only,a,2,2,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-3__target-b__synprop-0__gen-none,finetune,A_weak_only,b,2,2,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-3__target-e__synprop-0__gen-none,finetune,A_weak_only,e,2,2,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-3__target-g__synprop-0__gen-none,finetune,A_weak_only,g,2,2,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-3__target-i__synprop-0__gen-none,finetune,A_weak_only,i,2,2,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-3__target-l__synprop-0__gen-none,finetune,A_weak_only,l,2,2,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-5__target-Logistics,finetune,A_weak_only,Logistics,2,2,5,success,0.503264428182663,,,False,,False,,True
+stage2__init-A_weak_only__method-finetune__kpos-3__kneg-3__steps-3__target-Logistics__synprop-0__gen-none,finetune,A_weak_only,Logistics,3,3,3,success,,0.0,none,False,,False,,True
+stage2__init-A_weak_only__method-finetune__kpos-3__kneg-3__steps-3__target-Packaging-Material__synprop-0__gen-none,finetune,A_weak_only,Packaging Material,3,3,3,no_target_episodes_available,,0.0,none,False,,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-3__kneg-3__steps-3__target-___synprop-0__gen-none,finetune,A_weak_only,_,3,3,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-3__kneg-3__steps-3__target-a__synprop-0__gen-none,finetune,A_weak_only,a,3,3,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-3__kneg-3__steps-3__target-b__synprop-0__gen-none,finetune,A_weak_only,b,3,3,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-3__kneg-3__steps-3__target-e__synprop-0__gen-none,finetune,A_weak_only,e,3,3,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-3__kneg-3__steps-3__target-g__synprop-0__gen-none,finetune,A_weak_only,g,3,3,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-3__kneg-3__steps-3__target-i__synprop-0__gen-none,finetune,A_weak_only,i,3,3,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-3__kneg-3__steps-3__target-l__synprop-0__gen-none,finetune,A_weak_only,l,3,3,3,no_target_episodes_available,,0.0,none,True,single_letter_dept,False,,False
+stage2__init-A_weak_only__method-finetune__kpos-5__kneg-5__steps-3__target-Logistics,finetune,A_weak_only,Logistics,5,5,3,no_target_episodes_available,,0.0,none,True,infeasible_k_shot(k=10),False,,False
+stage2__init-A_weak_only__method-finetune__kpos-5__kneg-5__steps-5__target-Logistics,finetune,A_weak_only,Logistics,5,5,5,no_target_episodes_available,,,,True,infeasible_k_shot(k=10),False,,False
+stage2__init-A_weak_only__method-finetune__kpos-10__kneg-10__steps-3__target-Logistics,finetune,A_weak_only,Logistics,10,10,3,no_target_episodes_available,,0.0,none,True,infeasible_k_shot(k=20),False,,False
+stage2__init-A_weak_only__method-finetune__kpos-10__kneg-10__steps-5__target-Logistics,finetune,A_weak_only,Logistics,10,10,5,no_target_episodes_available,,0.0,none,True,infeasible_k_shot(k=20),False,,False
+stage2__init-C_hybrid__method-finetune__kpos-2__kneg-2__steps-3__target-Logistics,finetune,C_hybrid,Logistics,2,2,3,success,0.5063988095238094,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-finetune__kpos-2__kneg-2__steps-5__target-Logistics,finetune,C_hybrid,Logistics,2,2,5,success,0.5063988095238094,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-finetune__kpos-5__kneg-5__steps-3__target-Logistics,finetune,C_hybrid,Logistics,5,5,3,no_target_episodes_available,,0.0,none,True,infeasible_k_shot(k=10),False,,False
+stage2__init-C_hybrid__method-finetune__kpos-5__kneg-5__steps-5__target-Logistics,finetune,C_hybrid,Logistics,5,5,5,no_target_episodes_available,,0.0,none,True,infeasible_k_shot(k=10),False,,False
+stage2__init-C_hybrid__method-finetune__kpos-10__kneg-10__steps-3__target-Logistics,finetune,C_hybrid,Logistics,10,10,3,no_target_episodes_available,,0.0,none,True,infeasible_k_shot(k=20),False,,False
+stage2__init-C_hybrid__method-finetune__kpos-10__kneg-10__steps-5__target-Logistics,finetune,C_hybrid,Logistics,10,10,5,no_target_episodes_available,,0.0,none,True,infeasible_k_shot(k=20),False,,False
+stage2__init-A_weak_only__method-fomaml__kpos-2__kneg-2__steps-1__target-Logistics,fomaml,A_weak_only,Logistics,2,2,1,failed,,,,True,architecture_mismatch,False,,False
+stage2__init-A_weak_only__method-fomaml__kpos-2__kneg-2__steps-3__target-Logistics,fomaml,A_weak_only,Logistics,2,2,3,success,0.4899119730325473,,,False,,False,,True
+stage2__init-A_weak_only__method-fomaml__kpos-2__kneg-2__steps-5__target-Logistics,fomaml,A_weak_only,Logistics,2,2,5,success,0.5025399127257044,,,False,,False,,True
+stage2__init-A_weak_only__method-fomaml__kpos-5__kneg-5__steps-3__target-Logistics,fomaml,A_weak_only,Logistics,5,5,3,failed,,,,True,infeasible_k_shot(k=10),False,,False
+stage2__init-A_weak_only__method-fomaml__kpos-5__kneg-5__steps-5__target-Logistics,fomaml,A_weak_only,Logistics,5,5,5,success,,,,True,infeasible_k_shot(k=10),True,1_row_gold_test_logistics,False
+stage2__init-A_weak_only__method-fomaml__kpos-10__kneg-10__steps-3__target-Logistics,fomaml,A_weak_only,Logistics,10,10,3,failed,,,,True,infeasible_k_shot(k=20),False,,False
+stage2__init-A_weak_only__method-fomaml__kpos-10__kneg-10__steps-5__target-Logistics,fomaml,A_weak_only,Logistics,10,10,5,failed,,,,True,infeasible_k_shot(k=20),False,,False
+stage2__init-C_hybrid__method-fomaml__kpos-2__kneg-2__steps-3__target-Logistics,fomaml,C_hybrid,Logistics,2,2,3,success,0.529047619047619,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-fomaml__kpos-2__kneg-2__steps-5__target-Logistics,fomaml,C_hybrid,Logistics,2,2,5,success,0.6470238095238094,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-fomaml__kpos-5__kneg-5__steps-3__target-Logistics,fomaml,C_hybrid,Logistics,5,5,3,failed,,,,True,infeasible_k_shot(k=10),False,,False
+stage2__init-C_hybrid__method-fomaml__kpos-5__kneg-5__steps-5__target-Logistics,fomaml,C_hybrid,Logistics,5,5,5,failed,,,,True,infeasible_k_shot(k=10),False,,False
+stage2__init-C_hybrid__method-fomaml__kpos-10__kneg-10__steps-3__target-Logistics,fomaml,C_hybrid,Logistics,10,10,3,failed,,,,True,infeasible_k_shot(k=20),False,,False
+stage2__init-C_hybrid__method-fomaml__kpos-10__kneg-10__steps-5__target-Logistics,fomaml,C_hybrid,Logistics,10,10,5,failed,,,,True,infeasible_k_shot(k=20),False,,False
+stage2__init-A_weak_only__method-maml__kpos-2__kneg-2__steps-1__target-Logistics,maml,A_weak_only,Logistics,2,2,1,failed,,,,True,architecture_mismatch,False,,False
+stage2__init-A_weak_only__method-maml__kpos-2__kneg-2__steps-3__target-Logistics,maml,A_weak_only,Logistics,2,2,3,success,0.4107143908352316,,,False,,False,,True
+stage2__init-A_weak_only__method-maml__kpos-2__kneg-2__steps-5__target-Logistics,maml,A_weak_only,Logistics,2,2,5,success,0.5438998796345756,,,False,,False,,True
+stage2__init-A_weak_only__method-maml__kpos-5__kneg-5__steps-3__target-Logistics,maml,A_weak_only,Logistics,5,5,3,failed,,,,True,infeasible_k_shot(k=10),False,,False
+stage2__init-A_weak_only__method-maml__kpos-5__kneg-5__steps-5__target-Logistics,maml,A_weak_only,Logistics,5,5,5,success,,,,True,infeasible_k_shot(k=10),True,1_row_gold_test_logistics,False
+stage2__init-A_weak_only__method-maml__kpos-10__kneg-10__steps-3__target-Logistics,maml,A_weak_only,Logistics,10,10,3,failed,,,,True,infeasible_k_shot(k=20),False,,False
+stage2__init-A_weak_only__method-maml__kpos-10__kneg-10__steps-5__target-Logistics,maml,A_weak_only,Logistics,10,10,5,failed,,,,True,infeasible_k_shot(k=20),False,,False
+stage2__init-C_hybrid__method-maml__kpos-2__kneg-2__steps-3__target-Logistics,maml,C_hybrid,Logistics,2,2,3,success,0.5,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-maml__kpos-2__kneg-2__steps-5__target-Logistics,maml,C_hybrid,Logistics,2,2,5,success,0.5721428571428571,0.0,none,False,,False,,True
+stage2__init-C_hybrid__method-maml__kpos-5__kneg-5__steps-3__target-Logistics,maml,C_hybrid,Logistics,5,5,3,failed,,,,True,infeasible_k_shot(k=10),False,,False
+stage2__init-C_hybrid__method-maml__kpos-5__kneg-5__steps-5__target-Logistics,maml,C_hybrid,Logistics,5,5,5,failed,,,,True,infeasible_k_shot(k=10),False,,False
+stage2__init-C_hybrid__method-maml__kpos-10__kneg-10__steps-3__target-Logistics,maml,C_hybrid,Logistics,10,10,3,failed,,,,True,infeasible_k_shot(k=20),False,,False
+stage2__init-C_hybrid__method-maml__kpos-10__kneg-10__steps-5__target-Logistics,maml,C_hybrid,Logistics,10,10,5,failed,,,,True,infeasible_k_shot(k=20),False,,False
+stage2__init-A_weak_only__method-zero_shot__kpos-2__kneg-2__steps-1__target-Logistics,zero_shot,A_weak_only,Logistics,2,2,1,failed,,,,True,architecture_mismatch,False,,False
+stage2__init-A_weak_only__method-zero_shot__kpos-2__kneg-2__steps-3__target-Logistics,zero_shot,A_weak_only,Logistics,2,2,3,failed,,,,True,architecture_mismatch,False,,False
+stage2__init-A_weak_only__method-zero_shot__kpos-2__kneg-2__steps-5__target-Logistics,zero_shot,A_weak_only,Logistics,2,2,5,failed,,,,True,architecture_mismatch,False,,False

@@ -1,0 +1,13 @@
+n_support_pos,method,auroc_mean,ndcg_at_10_mean,log_loss_mean,collapse_rate
+2,anil,0.466,0.5547,0.8164,0.0
+2,finetune,0.5033,0.6989,8.1115,0.9
+2,fomaml,0.4962,0.7056,0.6419,1.0
+2,maml,0.4773,0.6822,1.3864,0.65
+2,zero_shot,0.6042,0.7699,1.7141,0.0
+5,anil,,,,
+5,finetune,,,,
+5,fomaml,,,,
+5,maml,,,,
+10,anil,,,,
+10,fomaml,,,,
+10,maml,,,,

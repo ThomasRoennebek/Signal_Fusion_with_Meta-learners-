@@ -1,0 +1,18 @@
+{
+  "experiment_id": "stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-3__target-g__synprop-0__gen-none",
+  "method": "finetune",
+  "init_name": "A_weak_only",
+  "target_department": "g",
+  "n_support_pos": 2,
+  "n_support_neg": 2,
+  "inner_steps": 3,
+  "inner_lr": 0.01,
+  "meta_batch_size": 4,
+  "synthetic_proportion": 0.0,
+  "augmentation_method": "none",
+  "target_per_class": null,
+  "k_neighbors": 5,
+  "status": "no_target_episodes_available",
+  "n_metric_rows": 0,
+  "n_predictions": 0
+}

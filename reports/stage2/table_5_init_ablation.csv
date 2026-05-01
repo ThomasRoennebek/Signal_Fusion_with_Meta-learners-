@@ -1,0 +1,9 @@
+init_name,method,auroc_mean,auroc_std,ndcg_at_10_mean,log_loss_mean,ece_mean,collapse_rate
+A_weak_only,anil,0.5418,0.2012,0.6475,0.8546,0.3336,0.0
+A_weak_only,finetune,0.5033,0.0331,0.6989,8.1115,0.4671,0.9
+A_weak_only,fomaml,0.4962,0.0286,0.7056,0.6419,0.1187,1.0
+A_weak_only,maml,0.4773,0.157,0.6822,1.3864,0.3161,0.65
+A_weak_only,zero_shot,0.6338,0.1985,0.7888,2.0603,0.5855,0.0
+C_hybrid,anil,,,,,,
+C_hybrid,fomaml,,,,,,
+C_hybrid,maml,,,,,,

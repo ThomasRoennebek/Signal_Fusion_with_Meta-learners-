@@ -1,0 +1,93 @@
+# -----------------------------------------------------------------------------
+# Stage 1 Experiment Configuration
+# -----------------------------------------------------------------------------
+# This file is the SINGLE SOURCE OF TRUTH for all Stage 1 hyperparameters.
+#
+# Both the CLI runner (experiments/run_stage1.py) and notebook 16 load their
+# hyperparameters from here.  Do not maintain a second conflicting copy in the
+# notebook.  If you need to change a hyperparameter, change it here only.
+#
+# Canonical values were established by the Stage 1 methodological review and
+# match the notebook-trained artifacts that are the current Stage 1 baseline.
+# -----------------------------------------------------------------------------
+
+seed: 42
+test_size: 0.30
+verbose: true
+
+# Data
+data_filename: "contract_with_features_labeled_with_gold.csv"
+weak_target_col: "renegotiation_prob"
+gold_col: "gold_y"
+group_col: "contract_id"
+department_col: "department"
+
+# Target department: gold labels from this department are excluded from Stage 1
+# supervised training (conditions B, C, D) and reserved for Stage 2 evaluation.
+# Condition A (weak-only) is global and not affected by this setting.
+# Change this field to run Stage 1 for a different target department.
+target_department: "Logistics"
+
+# Hybrid supervision weights.
+# Conditions C and D share the same row-level target (weak + gold concatenated).
+# Only condition C applies these weights via WeightedRandomSampler.
+# Condition D sets sample_weight=None (uniform, no sampler) for ablation.
+hybrid_weak_weight: 1.0
+hybrid_gold_weight: 5.0
+
+# Validation-target logic
+# -----------------------
+# A_weak_only   : MLP validated against WEAK labels (renegotiation_prob).
+#                 Rationale: condition A trains on weak labels; the validation
+#                 signal should be consistent with the training objective.
+# B, C, D       : MLP validated against GOLD labels (gold_y).
+#                 Rationale: these conditions incorporate gold supervision;
+#                 gold-label validation gives early stopping a signal that
+#                 directly reflects real predictive quality.
+# This split is enforced identically in both run_stage1.py and notebook 16.
+
+# -----------------------------------------------------------------------------
+# Baseline models
+# -----------------------------------------------------------------------------
+baseline_config:
+  scale_numeric_for_elastic_net: true
+  scale_numeric_for_xgboost: false
+  add_numeric_missing_indicator: true
+
+  elastic_net:
+    alpha: 0.005
+    l1_ratio: 0.5
+    max_iter: 10000
+    random_state: 42
+
+  xgboost:
+    n_estimators: 500
+    learning_rate: 0.05
+    max_depth: 6
+    min_child_weight: 3
+    subsample: 0.8
+    colsample_bytree: 0.8
+    reg_alpha: 0.0
+    reg_lambda: 1.0
+    random_state: 42
+    n_jobs: -1
+
+# -----------------------------------------------------------------------------
+# MLP backbone (TabularMLP)
+# -----------------------------------------------------------------------------
+# Canonical architecture:
+#   Linear(input → 256) → BatchNorm → ReLU → Dropout(0.1)
+#   → Linear(256 → 128) → BatchNorm → ReLU → Dropout(0.1)
+#   → Linear(128 → 1)
+# Canonical optimizer: Adam, lr = 5e-4, weight_decay = 1e-4
+# Canonical training: BCEWithLogitsLoss, batch = 256, patience = 10, max = 100
+mlp_config:
+  n_epochs: 100
+  patience: 10
+  lr: 0.0005           # 5e-4 — canonical value
+  weight_decay: 0.0001  # 1e-4 — canonical value
+  train_batch_size: 256
+  val_batch_size: 512
+  hidden_dim_1: 256
+  hidden_dim_2: 128
+  dropout: 0.1

@@ -1,0 +1,15 @@
+department,gold_rows,gold_contracts,pos_contracts,neg_contracts,pos_rows,neg_rows,max_balanced_k,max_k_with_1_query
+"Alliance, Acquisitions & PPM CoE",87,10,5,5,48,39,5,4
+Bioprocessing & Raw Materials,85,10,5,5,43,42,5,4
+Bioprocessing and Excipients,34,7,4,3,22,12,3,2
+Devices & Needles,45,10,5,5,22,23,5,4
+Drug Product Outsourcing,25,10,5,5,11,14,5,4
+Drug Substance Outsourcing,47,10,5,5,19,28,5,4
+Global Strategic Outsourcing & Devices,50,8,5,3,42,8,3,2
+HI Warehouse Expansion Program,16,6,4,2,11,5,2,1
+Logistics,60,14,9,5,38,22,5,4
+Packaging Material,91,11,6,5,54,37,5,4
+"Quality, Production Services & Supplies",60,10,5,5,25,35,5,4
+Raw Materials & Energy,84,10,5,5,42,42,5,4
+Strategic Sourcing US Hub,14,8,4,4,9,5,4,3
+"Strategy, Sourcing & Negotiation CoE",2,2,1,1,1,1,1,0

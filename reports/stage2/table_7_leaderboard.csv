@@ -1,0 +1,6 @@
+experiment_id,method,init_name,n_support_pos,n_support_neg,inner_steps,inner_lr,auroc_mean,auroc_std,ndcg_at_10_mean,log_loss_mean,ece_mean,collapse_rate,status
+stage2__init-A_weak_only__method-anil__kpos-2__kneg-2__steps-5__target-Logistics,anil,A_weak_only,2,2,5,0.01,0.5418,0.2012,0.6475,0.8546,0.3336,0.0,success
+stage2__init-A_weak_only__method-finetune__kpos-2__kneg-2__steps-5__target-Logistics,finetune,A_weak_only,2,2,5,0.01,0.5033,0.0331,0.6989,8.1115,0.4671,0.9,success
+stage2__init-A_weak_only__method-fomaml__kpos-2__kneg-2__steps-5__target-Logistics,fomaml,A_weak_only,2,2,5,0.01,0.5025,0.0319,0.7187,0.6394,0.1147,1.0,success
+stage2__init-A_weak_only__method-maml__kpos-2__kneg-2__steps-5__target-Logistics,maml,A_weak_only,2,2,5,0.01,0.5439,0.1482,0.678,1.3681,0.3121,0.95,success
+stage2__init-A_weak_only__method-zero_shot__kpos-2__kneg-2__steps-3__target-Logistics,zero_shot,A_weak_only,2,2,3,0.01,0.6338,0.1985,0.7888,2.0603,0.5855,0.0,success

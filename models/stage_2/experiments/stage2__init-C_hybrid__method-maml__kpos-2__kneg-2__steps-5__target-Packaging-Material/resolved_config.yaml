@@ -1,0 +1,51 @@
+seed: 42
+verbose: true
+method: maml
+data:
+  data_filename: contract_with_features_labeled_with_gold.csv
+  target_col: gold_y
+  group_col: contract_id
+  department_col: department
+  observation_year_col: observation_year
+features:
+  source: stage1_preprocessor
+stage1_init:
+  init_name: C_hybrid
+  model_filename: mlp_pretrained.pt
+  preprocessor_filename: mlp_pretrained_preprocessor.joblib
+  random_preprocessor_source: A_weak_only
+task_config:
+  target_department: Packaging Material
+  require_both_query_classes: false
+  min_query_contracts: 1
+  exclude_departments: []
+support_config:
+  n_support_pos: 2
+  n_support_neg: 2
+meta_config:
+  meta_batch_size: 4
+  meta_iterations: 200
+  inner_lr: 0.01
+  outer_lr: 0.001
+  inner_steps: 5
+  target_inner_steps: 5
+  n_repeats: 20
+mlp_config:
+  hidden_dim_1: 256
+  hidden_dim_2: 128
+  dropout: 0.1
+evaluation:
+  ranking_k: 10
+  calibration_method: null
+output:
+  save_predictions: true
+  save_history: true
+  skip_if_exists: true
+  force_rerun: false
+synthetic_config:
+  augmentation_method: none
+  synthetic_proportion: 0.0
+  target_per_class: null
+  k_neighbors: 5
+  categorical_cols: null
+  augmentation_seed_offset: 10007

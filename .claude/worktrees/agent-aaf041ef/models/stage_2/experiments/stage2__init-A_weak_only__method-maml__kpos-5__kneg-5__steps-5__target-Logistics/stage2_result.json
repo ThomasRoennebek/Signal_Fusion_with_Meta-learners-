@@ -1,0 +1,9 @@
+{
+  "method": "maml",
+  "status": "success",
+  "target_department": "Logistics",
+  "weight_path": "/Users/Thomas/Desktop/Master Thesis/models/stage_2/experiments/stage2__init-A_weak_only__method-maml__kpos-5__kneg-5__steps-5__target-Logistics/maml_initialized.pt",
+  "raw_metrics": [],
+  "predictions": [],
+  "history": []
+}

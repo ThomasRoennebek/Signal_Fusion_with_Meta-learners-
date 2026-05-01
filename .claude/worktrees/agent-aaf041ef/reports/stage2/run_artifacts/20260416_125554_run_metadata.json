@@ -1,0 +1,16 @@
+{
+  "run_id": "20260416_125554",
+  "random_seed": 42,
+  "target_department": "Logistics",
+  "initialization_condition": "A_weak_only",
+  "n_support_pos": 2,
+  "n_support_neg": 2,
+  "k_shot_total": 4,
+  "inner_steps": 5,
+  "inner_lr": 0.0001,
+  "outer_lr": 0.0005,
+  "meta_iterations": 100,
+  "n_repeats": 20,
+  "meta_batch_size": 1,
+  "notes": "Notebook-orchestrated Stage 2 benchmark run."
+}

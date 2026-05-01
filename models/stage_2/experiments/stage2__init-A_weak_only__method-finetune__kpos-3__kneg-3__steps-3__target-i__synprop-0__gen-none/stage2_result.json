@@ -1,0 +1,8 @@
+{
+  "method": "finetune",
+  "status": "no_target_episodes_available",
+  "target_department": "i",
+  "raw_metrics": null,
+  "predictions": null,
+  "history": null
+}

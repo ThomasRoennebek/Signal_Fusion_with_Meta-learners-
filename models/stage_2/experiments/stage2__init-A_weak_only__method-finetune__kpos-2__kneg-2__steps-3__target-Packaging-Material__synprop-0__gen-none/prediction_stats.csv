@@ -1,0 +1,4 @@
+episode_idx,n_query,pred_mean,pred_std,pred_min,pred_max,frac_near_zero,frac_near_one,collapsed,collapse_reason
+0,40,1.0,0.0,1.0,1.0,0.0,1.0,True,std<0.01
+1,32,0.0,0.0,0.0,0.0,1.0,0.0,True,std<0.01
+2,40,1.0,0.0,1.0,1.0,0.0,1.0,True,std<0.01

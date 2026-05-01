@@ -1,0 +1,242 @@
+feature,importance
+num__contract_value,0.20380218
+cat__contract_currency_code_EUR,0.14384082
+num__start_year_capped,0.13970234
+cat__nn_contract_type_Other,0.13860928
+num__start_year,0.13176185
+num__missingindicator_contract_value_dkk,0.1284429
+cat__contract_currency_code_USD,0.08440296
+cat__contract_currency_code_CNY,0.017109996
+"cat__contract_type_Finance, Legal & Procurement",0.0048272
+cat__contract_commodity_Warehouse Operations - Storage,0.0030501755
+num__contracts_per_supplier,0.0009927953
+num__contract_age_years,0.00097284745
+num__observation_year,0.0005864108
+num__contract_owner_cost_centre,0.0005745094
+cat__nn_contract_type_Logistics Services Provider Agreement,0.00029199105
+num__open_ended_contract,0.00019607591
+num__expiry_year,0.0001392439
+num__contract_value_dkk,0.00011995001
+num__missingindicator_years_to_expiry_capped,9.252299e-05
+num__news_row_missing_pct,6.56936e-05
+cat__term_type_fixed,5.736855e-05
+num__International_Shipments,3.7340742e-05
+num__market_flag_stock_price_take_caution_or_worse,3.6864843e-05
+num__PPI_Value,3.279325e-05
+num__news_avg_sentiment_score,2.7360113e-05
+num__LPI_Score,2.452375e-05
+num__fin_flag_interest_coverage_stress,2.359589e-05
+num__fin_current_ratio,2.1574766e-05
+cat__payment_terms_F060 Invoice Date + 60 days,2.0735812e-05
+num__fin_debt_asset_ratio,1.910984e-05
+cat__payment_terms_F045 Invoice Date + 45 days,1.840857e-05
+num__missingindicator_news_article_count,1.3155573e-05
+num__missingindicator_fin_Total_shareholders'_funds_and_liabilitiesth_DKK,1.29723e-05
+cat__nn_contract_type_Supply Agreement,1.2095342e-05
+num__Customs,1.1599239e-05
+num__fin_interest_coverage_ratio,1.1354315e-05
+num__fin_Total_liabilities_Equity_ratio,1.1075131e-05
+cat__nn_contract_type_Master Service Agreement,1.0395081e-05
+num__Timeliness,8.312132e-06
+num__fin_total_stress_flags,3.1976836e-06
+num__Infrastructure,3.170798e-06
+num__news_avg_relevance_score,1.2188367e-06
+cat__term_type_perpetual,0.0
+cat__contract_status_published,0.0
+cat__payment_terms_F030 Invoice Date + 30 days,0.0
+cat__incoterms_EXW Ex works,0.0
+num__missingindicator_fin_Net_assets_turnover,0.0
+num__missingindicator_market_log_vol_shock_ratio,0.0
+cat__incoterms_DAP Del.at Place-excl.unloading,0.0
+num__missingindicator_fin_Number_of_employees,0.0
+cat__incoterms_DDP Delivered duty paid,0.0
+num__missingindicator_esg_esg_industry_adjusted,0.0
+num__missingindicator_Price_trends_52 weeks_%,0.0
+num__missingindicator_fin_implied_rating_ordinal,0.0
+num__missingindicator_price_trend_slope,0.0
+num__missingindicator_esg_env_weight,0.0
+num__missingindicator_esg_social_score,0.0
+num__missingindicator_esg_social_weight,0.0
+num__missingindicator_esg_gov_score,0.0
+num__missingindicator_esg_gov_weight,0.0
+num__missingindicator_esg_industry_min,0.0
+num__missingindicator_esg_esg_overall,0.0
+num__missingindicator_esg_industry_max,0.0
+num__missingindicator_news_negative_count,0.0
+num__missingindicator_news_positive_count,0.0
+num__missingindicator_news_neutral_count,0.0
+num__missingindicator_fin_financial_risk_score,0.0
+num__missingindicator_news_avg_sentiment_score,0.0
+num__missingindicator_news_avg_relevance_score,0.0
+num__missingindicator_news_max_relevance_score,0.0
+num__missingindicator_news_negative_ratio,0.0
+num__missingindicator_avg_vol,0.0
+cat__contract_currency_code_DKK,0.0
+num__missingindicator_vol_shock_ratio,0.0
+num__missingindicator_vol_trend_slope,0.0
+num__missingindicator_market_cap_volatility,0.0
+num__missingindicator_esg_env_score,0.0
+num__missingindicator_Earnings_per_share_DKK,0.0
+num__missingindicator_avg_closing_price,0.0
+num__missingindicator_price_volatility_score,0.0
+num__missingindicator_vol_stability_score,0.0
+cat__expiry_pressure_bucket_1_to_3y,0.0
+cat__contract_type_Production,0.0
+cat__contract_commodity_4PL,0.0
+"cat__fin_output_text_Sourcing exclusion recommended. Input from outdated and/or partial data, hence low quality credit rating & traffic light. Mitigation actions required. Request financial data from supplier as described in the risk process tab.",0.0
+"cat__fin_output_text_Use caution. Input from outdated and/or partial data, hence low quality credit rating & traffic light. Mitigation actions required. Request financial data from supplier as described in the risk process tab.",0.0
+cat__fin_Implied_rating - original_A2,0.0
+cat__fin_Implied_rating - original_Baa3,0.0
+cat__fin_Implied_rating - original_Caa-C,0.0
+cat__Risk level_Do not source,0.0
+cat__Risk level_Go ahead,0.0
+cat__Risk level_Take caution,0.0
+cat__supplier_sector_Printing & Publishing,0.0
+"cat__supplier_sector_Transport, Freight & Storage",0.0
+"cat__supplier_sector_Wood, Furniture & Paper Manufacturing",0.0
+cat__moodys_risk_rating_Do not source,0.0
+cat__moodys_risk_rating_Go ahead,0.0
+cat__moodys_risk_rating_Take caution,0.0
+cat__Shares outstanding_320.036.000,0.0
+cat__Shares outstanding_n.a.,0.0
+cat__Current_market_capitalisation_DKK_2.511.971,0.0
+cat__Current_market_capitalisation_DKK_n.a.,0.0
+cat__Risk level_stock_closing_price_Do not source,0.0
+cat__Risk level_stock_closing_price_Go ahead,0.0
+cat__Risk level_stock_closing_price_Take caution,0.0
+cat__company_country_clean_Denmark,0.0
+cat__Country_Denmark,0.0
+cat__fin_output_text_Approved for sourcing. No further actions required.,0.0
+cat__fin_financial_level_Low financial risk,0.0
+cat__fin_risk_level_Take caution,0.0
+cat__fin_moodys_company_name_CCL Label A/S,0.0
+cat__contract_commodity_Shipper Boxes,0.0
+cat__unit_SSIMS,0.0
+cat__company_country_DENMARK,0.0
+num__missingindicator_fin_roe_net_income,0.0
+cat__expiry_pressure_bucket_3_to_5y,0.0
+cat__expiry_pressure_bucket_5y_plus,0.0
+cat__expiry_pressure_bucket_within_1y,0.0
+cat__department_from_cost_center_Bioprocessing & Raw Materials,0.0
+cat__department_Logistics,0.0
+cat__department_Packaging Material,0.0
+cat__fin_moodys_company_name_DHL Supply Chain Denmark A/S,0.0
+cat__fin_risk_level_Go ahead,0.0
+"cat__fin_moodys_company_name_Xi'An Global Printing Co.,Ltd.",0.0
+cat__fin_closing_date_2022-12-31,0.0
+cat__fin_closing_date_2023-12-31,0.0
+cat__fin_closing_date_2024-12-31,0.0
+cat__fin_created_at_utc_2026-03-12 15:07:22.230528+00:00,0.0
+cat__fin_Status_Active,0.0
+cat__fin_implied_rating_A,0.0
+cat__fin_implied_rating_Baa,0.0
+cat__fin_implied_rating_Caa,0.0
+cat__fin_risk_level_Do not source,0.0
+num__missingindicator_fin_roa_net_income,0.0
+num__missingindicator_fin_Number_of_months,0.0
+num__missingindicator_fin_debt_asset_ratio,0.0
+num__esg_industry_max,0.0
+num__news_negative_count,0.0
+num__news_positive_count,0.0
+num__news_neutral_count,0.0
+num__news_max_relevance_score,0.0
+num__news_negative_ratio,0.0
+num__news_has_high_relevance_negative_news,0.0
+num__avg_vol,0.0
+num__vol_stability_score,0.0
+num__vol_shock_ratio,0.0
+num__vol_trend_slope,0.0
+num__market_cap_volatility,0.0
+num__Price_trends_52 weeks_%,0.0
+num__Earnings_per_share_DKK,0.0
+num__avg_closing_price,0.0
+num__price_volatility_score,0.0
+num__price_trend_slope,0.0
+num__Tracking_Tracing,0.0
+num__fin_implied_rating_missing_flag,0.0
+num__fin_financial_level_missing_flag,0.0
+num__fin_current_ratio_missing_flag,0.0
+num__fin_interest_coverage_ratio_missing_flag,0.0
+num__fin_ebit_margin_missing_flag,0.0
+num__fin_implied_rating_ordinal,0.0
+num__news_article_count,0.0
+num__esg_industry_min,0.0
+num__missingindicator_fin_solvency_ratio_asset_based,0.0
+num__esg_gov_weight,0.0
+num__end_year,0.0
+num__fin_Number_of_months,0.0
+num__fin_Total_shareholders'_funds_and_liabilitiesth_DKK,0.0
+num__fin_profit_margin,0.0
+num__fin_EBITDA_margin,0.0
+num__fin_ebit_margin,0.0
+num__fin_gearing,0.0
+num__fin_Cash_ratio,0.0
+num__fin_long_term_gearing,0.0
+num__fin_short_term_liabilities_equity_ratio,0.0
+num__fin_solvency_ratio_asset_based,0.0
+num__fin_roe_net_income,0.0
+num__fin_roa_net_income,0.0
+num__fin_Net_assets_turnover,0.0
+num__fin_Number_of_employees,0.0
+num__fin_financial_risk_score,0.0
+num__esg_esg_overall,0.0
+num__esg_esg_industry_adjusted,0.0
+num__esg_env_score,0.0
+num__esg_env_weight,0.0
+num__esg_social_score,0.0
+num__esg_social_weight,0.0
+num__esg_gov_score,0.0
+num__fin_flag_moderate_or_worse_rating,0.0
+num__fin_flag_risk_take_caution_or_worse,0.0
+num__fin_flag_risk_do_not_source,0.0
+num__fin_flag_financial_risk_score_high,0.0
+num__market_flag_negative_eps,0.0
+num__market_log_vol_shock_ratio,0.0
+num__lpi_relative_risk,0.0
+num__is_old_and_near_expiry,0.0
+num__esg_row_missing_pct,0.0
+num__lpi_below_supplier_median,0.0
+num__years_to_expiry_capped,0.0
+num__financial_data_available,0.0
+num__esg_data_available,0.0
+num__news_data_available,0.0
+num__market_data_available,0.0
+num__has_environmental_appendix,0.0
+num__terminated,0.0
+num__missingindicator_fin_profit_margin,0.0
+num__missingindicator_fin_EBITDA_margin,0.0
+num__missingindicator_fin_ebit_margin,0.0
+num__missingindicator_fin_current_ratio,0.0
+num__missingindicator_fin_gearing,0.0
+num__missingindicator_fin_Cash_ratio,0.0
+num__missingindicator_fin_long_term_gearing,0.0
+num__missingindicator_fin_Total_liabilities_Equity_ratio,0.0
+num__missingindicator_fin_short_term_liabilities_equity_ratio,0.0
+num__missingindicator_fin_interest_coverage_ratio,0.0
+num__market_flag_high_beta,0.0
+num__market_flag_negative_52w_price_trend,0.0
+num__market_flag_negative_price_trend,0.0
+num__fin_flag_interest_coverage_weak,0.0
+num__fin_flag_financial_risk_score_very_high,0.0
+num__fin_flag_liquidity_stress,0.0
+num__fin_flag_severe_liquidity_stress,0.0
+num__fin_flag_strong_liquidity,0.0
+num__fin_flag_gearing_high,0.0
+num__fin_flag_long_term_gearing_high,0.0
+num__fin_flag_short_term_gearing_high,0.0
+num__fin_flag_debt_asset_high,0.0
+num__fin_flag_long_term_liab_equity_high,0.0
+num__fin_flag_short_term_liab_equity_high,0.0
+num__fin_flag_low_solvency,0.0
+num__market_flag_negative_volume_trend,0.0
+num__fin_flag_very_low_solvency,0.0
+num__fin_flag_negative_ebit_margin,0.0
+num__fin_flag_negative_roe,0.0
+num__fin_flag_negative_roa,0.0
+num__fin_flag_multiple_financial_stress_signals,0.0
+num__fin_flag_severe_financial_stress,0.0
+num__esg_below_industry_min,0.0
+num__supplier_is_publicly_listed,0.0
+num__market_flag_high_volume_shock,0.0
+num__market_flag_high_market_cap_volatility,0.0
+cat__Code_DNK,0.0

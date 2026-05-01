@@ -1,0 +1,45 @@
+{
+  "seed": 42,
+  "data_filename": "contract_with_features_labeled_with_gold.csv",
+  "weak_target_col": "renegotiation_prob",
+  "gold_col": "gold_y",
+  "group_col": "contract_id",
+  "department_col": "department",
+  "hybrid_weak_weight": 1.0,
+  "hybrid_gold_weight": 5.0,
+  "mlp_config": {
+    "n_epochs": 200,
+    "patience": 20,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "train_batch_size": 256,
+    "val_batch_size": 512,
+    "hidden_dim_1": 256,
+    "hidden_dim_2": 128,
+    "dropout": 0.1
+  },
+  "baseline_config": {
+    "scale_numeric_for_elastic_net": true,
+    "scale_numeric_for_xgboost": false,
+    "add_numeric_missing_indicator": true,
+    "elastic_net": {
+      "alpha": 0.005,
+      "l1_ratio": 0.5,
+      "max_iter": 10000,
+      "random_state": 42
+    },
+    "xgboost": {
+      "n_estimators": 500,
+      "learning_rate": 0.05,
+      "max_depth": 6,
+      "min_child_weight": 3,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "reg_alpha": 0.0,
+      "reg_lambda": 1.0,
+      "random_state": 42,
+      "n_jobs": -1
+    }
+  },
+  "config_source": "/Users/Thomas/Desktop/Master Thesis/experiments/stage1_config.yaml"
+}
