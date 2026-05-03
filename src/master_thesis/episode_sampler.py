@@ -7,7 +7,7 @@ This module is responsible for:
 - filtering valid departments for few-shot meta-learning
 - sampling contract-aware support/query splits
 - sampling meta-batches of department tasks
-- constructing held-out Logistics meta-test episodes
+- constructing held-out target department meta-test episodes
 
 This module prepares episodic task data for:
 - ANIL
@@ -797,7 +797,7 @@ def sample_meta_batch(
     return batch
 
 
-def make_logistics_meta_test_split(
+def make_target_meta_test_split(
     task_df: pd.DataFrame,
     feature_cols: Sequence[str],
     target_department: str = "Logistics",
@@ -811,12 +811,55 @@ def make_logistics_meta_test_split(
     base_random_state: int = 42,
     require_both_query_classes: bool = False,
 ) -> List[Dict[str, Any]]:
-    """
-    Construct repeated held-out contract-aware meta-test episodes for the target department.
+    """Construct repeated held-out contract-aware meta-test episodes for any target department.
 
-    Recommended use:
-    - keep target_department held out during meta-training
-    - create repeated support/query splits for stable evaluation
+    Filters ``task_df`` to rows matching ``target_department``, then produces
+    ``n_repeats`` independent support/query splits (each seeded deterministically
+    from ``base_random_state + repeat_idx``).
+
+    Parameters
+    ----------
+    task_df : pd.DataFrame
+        Full gold-labeled task table (all departments).
+    feature_cols : Sequence[str]
+        Feature columns to include in the episode arrays.
+    target_department : str
+        The department to hold out as the meta-test target.  Any string that
+        matches a value in the ``department_col`` column is valid — this function
+        is not restricted to "Logistics".
+    department_col : str
+        Column in ``task_df`` that identifies the department.
+    target_col : str
+        Column containing the binary gold label (0/1).
+    contract_id_col : str
+        Column containing the contract identifier used for contract-level
+        support/query splitting.
+    n_support_pos : int
+        Number of positive-class contracts to draw into support per repeat.
+    n_support_neg : int
+        Number of negative-class contracts to draw into support per repeat.
+    n_repeats : int
+        Number of independent support/query splits to generate.
+    query_strategy : str
+        Strategy for constructing the query set (passed to
+        ``sample_support_query_split``).
+    base_random_state : int
+        Base seed; repeat ``i`` uses ``base_random_state + i``.
+    require_both_query_classes : bool
+        If True, only accept episodes whose query set contains both classes.
+
+    Returns
+    -------
+    List[Dict[str, Any]]
+        List of episode dicts, each containing ``support_df``, ``query_df``,
+        ``X_support``, ``X_query``, ``y_support``, ``y_query``, ``repeat_idx``,
+        and ``episode_seed``.
+
+    Raises
+    ------
+    ValueError
+        If ``task_df`` contains no rows for ``target_department``, or if any
+        required column is missing.
     """
     _validate_required_columns(
         task_df,
@@ -854,6 +897,17 @@ def make_logistics_meta_test_split(
         episodes.append(episode)
 
     return episodes
+
+
+def make_logistics_meta_test_split(*args, **kwargs) -> List[Dict[str, Any]]:
+    """Deprecated alias for :func:`make_target_meta_test_split`.
+
+    .. deprecated::
+        Use ``make_target_meta_test_split()`` instead.  This alias exists only
+        for backwards compatibility with notebooks and scripts that reference the
+        old name; it will be removed in a future version.
+    """
+    return make_target_meta_test_split(*args, **kwargs)
 
 
 # ============================================================================

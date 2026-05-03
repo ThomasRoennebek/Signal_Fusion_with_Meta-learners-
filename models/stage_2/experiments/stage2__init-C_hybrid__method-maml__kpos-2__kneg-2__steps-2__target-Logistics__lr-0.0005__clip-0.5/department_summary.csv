@@ -1,0 +1,4 @@
+department,n_total_rows,n_pos_rows,n_neg_rows,n_total_contracts,n_pos_contracts,n_neg_contracts,pos_rate_rows,pos_rate_contracts
+Packaging Material,76,54,22,8,6,2,0.7105263157894737,0.75
+Logistics,22,13,9,8,5,3,0.5909090909090909,0.625
+Bioprocessing and Excipients,1,1,0,1,1,0,1.0,1.0

@@ -16,7 +16,7 @@
     "XGBoost",
     "MLP"
   ],
-  "training_timestamp": "2026-04-29T15:58:24.837069+00:00",
+  "training_timestamp": "2026-05-01T06:53:47.360435+00:00",
   "config": {
     "baseline_config": {
       "scale_numeric_for_elastic_net": true,
@@ -59,7 +59,7 @@
     "dropout": 0.1
   },
   "n_train_rows": 9185,
-  "n_val_rows": 16,
+  "n_val_rows": 1,
   "has_sample_weight": false,
   "seed": 42
 }

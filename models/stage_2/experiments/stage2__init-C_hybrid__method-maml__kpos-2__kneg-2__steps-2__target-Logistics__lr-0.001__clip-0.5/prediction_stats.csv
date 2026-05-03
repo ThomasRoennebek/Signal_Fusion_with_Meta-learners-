@@ -1,0 +1,4 @@
+method,episode_idx,repeat_idx,n_query,pred_mean,pred_std,pred_min,pred_max,frac_near_zero,frac_near_one,collapsed,collapse_reason
+maml,0,0,8,1.0,0.0,1.0,1.0,0.0,1.0,True,std<0.01
+maml,1,1,11,1.0,0.0,1.0,1.0,0.0,1.0,True,std<0.01
+maml,2,2,9,1.0,0.0,1.0,1.0,0.0,1.0,True,std<0.01

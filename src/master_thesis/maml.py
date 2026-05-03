@@ -8,6 +8,12 @@ This module provides:
 The implementation keeps the current functional adaptation design while
 standardizing outputs so the shared Stage 2 runner can save method artifacts
 consistently.
+
+Configurable clipping (added for MAML stabilization):
+- gradient_clip_norm: outer-loop gradient clip max_norm.
+    1.0 = legacy default; None = no outer clipping.
+- inner_grad_clip: inner-loop per-parameter gradient clamp magnitude.
+    1.0 = legacy default; None = no inner clipping.
 """
 
 from __future__ import annotations
@@ -75,7 +81,16 @@ def adapt_maml_on_episode(
     inner_lr: float = 0.01,
     inner_steps: int = 3,
     create_graph: bool = True,
+    inner_grad_clip: Optional[float] = 1.0,
 ) -> Dict[str, torch.Tensor]:
+    """Adapt all model parameters on the support set.
+
+    Parameters
+    ----------
+    inner_grad_clip : float or None
+        Per-parameter gradient clamp magnitude for inner-loop updates.
+        1.0 = legacy default.  None = no clamping.
+    """
     model.eval()
     params = dict(model.named_parameters())
     # Clamp near-zero running_var to prevent BatchNorm from amplifying sparse
@@ -92,10 +107,17 @@ def adapt_maml_on_episode(
             break
         grads = torch.autograd.grad(loss, params.values(), create_graph=create_graph, allow_unused=True)
 
-        params = {
-            name: (param - inner_lr * torch.nan_to_num(grad, nan=0.0, posinf=1.0, neginf=-1.0).clamp(-1.0, 1.0)) if grad is not None else param
-            for (name, param), grad in zip(params.items(), grads)
-        }
+        if inner_grad_clip is not None:
+            params = {
+                name: (param - inner_lr * torch.nan_to_num(grad, nan=0.0, posinf=inner_grad_clip, neginf=-inner_grad_clip).clamp(-inner_grad_clip, inner_grad_clip)) if grad is not None else param
+                for (name, param), grad in zip(params.items(), grads)
+            }
+        else:
+            # No clamping — use raw gradients (with nan_to_num safety only).
+            params = {
+                name: (param - inner_lr * torch.nan_to_num(grad, nan=0.0)) if grad is not None else param
+                for (name, param), grad in zip(params.items(), grads)
+            }
 
     return params
 
@@ -118,7 +140,20 @@ def meta_train_maml(
     n_support_neg: int = 1,
     device: Optional[torch.device] = None,
     random_state: int = 42,
+    gradient_clip_norm: Optional[float] = 1.0,
+    inner_grad_clip: Optional[float] = 1.0,
 ) -> Dict[str, Any]:
+    """Meta-train full MAML with configurable gradient clipping.
+
+    Parameters
+    ----------
+    gradient_clip_norm : float or None
+        Max norm for outer-loop gradient clipping (torch.nn.utils.clip_grad_norm_).
+        1.0 = legacy default.  None = no outer clipping.
+    inner_grad_clip : float or None
+        Per-parameter gradient clamp magnitude for inner-loop updates.
+        1.0 = legacy default.  None = no inner clamping.
+    """
     if device is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -140,6 +175,11 @@ def meta_train_maml(
         outer_optimizer.zero_grad()
         valid_query_losses = []
         skipped_before_iteration = total_skipped
+
+        # Collect per-episode diagnostics for this meta-batch.
+        batch_support_losses_before: List[float] = []
+        batch_support_losses_after: List[float] = []
+        batch_query_preds: List[float] = []
 
         # Sample departments without replacement when the pool is large enough,
         # so the same department cannot appear twice in one meta-batch.
@@ -181,13 +221,31 @@ def meta_train_maml(
                 device,
             )
 
+            # ── Diagnostic: support loss BEFORE adaptation ──
+            with torch.no_grad():
+                params_before = dict(model.named_parameters())
+                buffers_before = _safe_buffers(model)
+                logits_before = torch.func.functional_call(model, (params_before, buffers_before), X_supp)
+                loss_before = criterion(logits_before, y_supp)
+                if torch.isfinite(loss_before):
+                    batch_support_losses_before.append(float(loss_before.item()))
+
             adapted_params = adapt_maml_on_episode(
                 model=model,
                 X_support=X_supp,
                 y_support=y_supp,
                 inner_lr=inner_lr,
                 inner_steps=inner_steps,
+                inner_grad_clip=inner_grad_clip,
             )
+
+            # ── Diagnostic: support loss AFTER adaptation ──
+            with torch.no_grad():
+                buffers_after = _safe_buffers(model)
+                logits_after = torch.func.functional_call(model, (adapted_params, buffers_after), X_supp)
+                loss_after = criterion(logits_after, y_supp)
+                if torch.isfinite(loss_after):
+                    batch_support_losses_after.append(float(loss_after.item()))
 
             # Use clamped buffers here too so the outer query forward pass
             # sees the same stable normalization as the inner loop did.
@@ -199,13 +257,25 @@ def meta_train_maml(
                 total_skipped += 1
                 continue
 
+            # ── Diagnostic: query prediction stats ──
+            with torch.no_grad():
+                q_probs = torch.sigmoid(logits_query).cpu().numpy().ravel()
+                batch_query_preds.extend(q_probs.tolist())
+
             valid_query_losses.append(query_loss)
 
         if valid_query_losses:
             outer_loss = torch.stack(valid_query_losses).mean()
             outer_loss.backward()
 
-            # --- GRADIENT SENSOR ---
+            # ── Diagnostic: outer gradient norm (before clipping) ──
+            outer_grad_norm = 0.0
+            for param in model.parameters():
+                if param.grad is not None:
+                    outer_grad_norm += float(param.grad.norm(2).item() ** 2)
+            outer_grad_norm = outer_grad_norm ** 0.5
+
+            # ── GRADIENT SENSOR (iteration 0 only) ──
             if iteration == 0:
                 print("\n=== REALITY CHECK: MAML GRADIENTS ON REAL DATA ===")
                 for name, param in model.named_parameters():
@@ -213,12 +283,17 @@ def meta_train_maml(
                     status = "✅ PASS" if grad_sum > 0 else "❌ ZERO/VANISHED"
                     print(f"{name.ljust(20)} | Real Grad: {grad_sum:.6f} | {status}")
                 print("==================================================\n")
-            # ----------------------------------
 
-            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+            # Apply outer gradient clipping (configurable).
+            if gradient_clip_norm is not None:
+                torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=gradient_clip_norm)
+
             outer_optimizer.step()
 
             skipped_this_iteration = total_skipped - skipped_before_iteration
+
+            # ── Build diagnostics for this iteration ──
+            q_preds_arr = np.array(batch_query_preds) if batch_query_preds else np.array([0.5])
             history_rows.append(
                 {
                     "iteration": iteration + 1,
@@ -227,6 +302,13 @@ def meta_train_maml(
                     "n_skipped": total_skipped,              # kept for backward compatibility
                     "n_skipped_this_iteration": skipped_this_iteration,
                     "n_skipped_cumulative": total_skipped,
+                    # New diagnostics:
+                    "outer_grad_norm": outer_grad_norm,
+                    "support_loss_before_mean": float(np.mean(batch_support_losses_before)) if batch_support_losses_before else float("nan"),
+                    "support_loss_after_mean": float(np.mean(batch_support_losses_after)) if batch_support_losses_after else float("nan"),
+                    "query_pred_mean": float(np.mean(q_preds_arr)),
+                    "query_pred_std": float(np.std(q_preds_arr)),
+                    "collapse_flag": int(float(np.std(q_preds_arr)) < 0.01),
                 }
             )
 
@@ -239,6 +321,8 @@ def meta_train_maml(
         "total_skipped_task_episodes": total_skipped,
         "skip_rate": total_skipped / max(1, total_possible_task_episodes),
         "meta_train_departments_used": list(meta_train_departments),
+        "gradient_clip_norm": gradient_clip_norm,
+        "inner_grad_clip": inner_grad_clip,
     }
 
     return {
@@ -260,6 +344,7 @@ def evaluate_maml_on_target_episodes(
     inner_lr: float = 0.01,
     target_inner_steps: int = 5,
     device: Optional[torch.device] = None,
+    inner_grad_clip: Optional[float] = 1.0,
 ) -> Dict[str, Any]:
     if device is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -287,6 +372,7 @@ def evaluate_maml_on_target_episodes(
             inner_lr=inner_lr,
             inner_steps=target_inner_steps,
             create_graph=False,
+            inner_grad_clip=inner_grad_clip,
         )
 
         with torch.no_grad():

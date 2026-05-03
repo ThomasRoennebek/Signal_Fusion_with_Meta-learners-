@@ -1,0 +1,6 @@
+real_k_pos,real_k_neg,synthetic_k_pos,synthetic_k_neg,effective_k_pos,effective_k_neg,n_real_support_rows,n_synthetic_support_rows,n_effective_support_rows,n_real_support_contracts,n_synthetic_support_contracts,episode_idx,augmentation_method,synthetic_proportion,gen_skip_reason,n_query_rows,n_query_pos,n_query_neg,n_query_synthetic_rows
+4,1,0,0,4,1,5,0,5,2,0,0,none,0.0,,17,9,8,0
+1,5,0,0,1,5,6,0,6,2,0,1,none,0.0,,16,12,4,0
+2,3,0,0,2,3,5,0,5,2,0,2,none,0.0,,17,11,6,0
+1,5,0,0,1,5,6,0,6,2,0,3,none,0.0,,16,12,4,0
+1,1,0,0,1,1,2,0,2,2,0,4,none,0.0,,20,12,8,0

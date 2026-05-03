@@ -21,8 +21,8 @@ from dataclasses import dataclass
 from itertools import product
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Tuple
-
 import joblib
+import numpy as np
 import pandas as pd
 import torch
 import yaml
@@ -32,6 +32,7 @@ from master_thesis.episode_sampler import (
     build_department_task_table,
     filter_valid_departments,
     make_logistics_meta_test_split,
+    make_target_meta_test_split,
     summarize_department_tasks,
     sample_episode_with_synthetic_support,
 )
@@ -506,6 +507,7 @@ def generate_experiment_id(
     synthetic_proportion: Optional[float] = None,
     augmentation_method: Optional[str] = None,
     target_effective_k: Optional[int] = None,
+    gradient_clip_norm: Optional[float] = None,
 ) -> str:
     """Build a deterministic experiment ID.
 
@@ -539,6 +541,11 @@ def generate_experiment_id(
         id_str += f"__gen-{safe_gen}"
     if target_effective_k is not None:
         id_str += f"__tek-{int(target_effective_k)}"
+    if gradient_clip_norm is not None:
+        clip_str = f"{gradient_clip_norm:.4f}".rstrip("0").rstrip(".")
+        if clip_str == "" or clip_str == "-":
+            clip_str = "0"
+        id_str += f"__clip-{clip_str}"
     return id_str
 
 
@@ -627,6 +634,65 @@ def _build_synthetic_block(
     return block
 
 
+def resolve_target_departments_from_data(
+    task_df: "pd.DataFrame",
+    config: Dict[str, Any],
+    department_col: str = "department",
+    min_pos_contracts: int = 2,
+    min_neg_contracts: int = 2,
+) -> List[str]:
+    """Return a sorted list of departments eligible to serve as meta-test targets.
+
+    This helper is the data-aware resolution path for ``"all_eligible"`` in the
+    ``target_departments`` experiment grid axis.  It queries the loaded
+    ``task_df`` rather than the static YAML, so eligibility is always consistent
+    with the actual data on disk.
+
+    Eligibility criteria (conservative defaults):
+    - The department must appear in ``task_df``.
+    - It must have at least ``min_pos_contracts`` distinct positive-class
+      contracts and ``min_neg_contracts`` distinct negative-class contracts so
+      that at least one support/query split can be formed.
+
+    Parameters
+    ----------
+    task_df : pd.DataFrame
+        Gold-labeled task table (output of ``build_department_task_table``).
+    config : dict
+        Stage 2 config dict (used to read ``target_col`` and ``contract_id_col``
+        from ``config["data"]``).
+    department_col : str
+        Column identifying the department (default ``"department"``).
+    min_pos_contracts : int
+        Minimum number of distinct positive-class contracts required.
+    min_neg_contracts : int
+        Minimum number of distinct negative-class contracts required.
+
+    Returns
+    -------
+    List[str]
+        Sorted list of eligible department names.  Raises ``ValueError`` if
+        no departments meet the criteria.
+    """
+    target_col = config.get("data", {}).get("target_col", "gold_y")
+    contract_id_col = config.get("data", {}).get("group_col", "contract_id")
+
+    eligible: List[str] = []
+    for dept, grp in task_df.groupby(department_col, sort=True):
+        pos_contracts = grp.loc[grp[target_col] == 1, contract_id_col].nunique()
+        neg_contracts = grp.loc[grp[target_col] == 0, contract_id_col].nunique()
+        if pos_contracts >= min_pos_contracts and neg_contracts >= min_neg_contracts:
+            eligible.append(str(dept))
+
+    if not eligible:
+        raise ValueError(
+            "resolve_target_departments_from_data: no department in task_df meets "
+            f"the minimum eligibility criteria (min_pos_contracts={min_pos_contracts}, "
+            f"min_neg_contracts={min_neg_contracts})."
+        )
+    return sorted(eligible)
+
+
 def resolve_experiment_grid(
     full_config: Dict[str, Any],
     preset_name: Optional[str] = None,
@@ -686,6 +752,23 @@ def resolve_experiment_grid(
         "target_departments", [base_config["task_config"]["target_department"]]
     )
 
+    # Guard: "all_eligible" must be resolved after data loading via
+    # resolve_target_departments_from_data().  If it reaches here as a bare
+    # string it would be iterated character-by-character by itertools.product,
+    # producing ~11 nonsensical single-letter experiment cells.
+    if isinstance(target_departments, str):
+        raise NotImplementedError(
+            f"target_departments='{target_departments}' is a string, not a list. "
+            "The special value 'all_eligible' cannot be resolved inside "
+            "resolve_experiment_grid() because this function has no access to the "
+            "loaded task DataFrame.  Call resolve_target_departments_from_data() "
+            "after loading the data, then pass the resulting list back as the "
+            "target_departments override, e.g.:\n\n"
+            "    eligible = resolve_target_departments_from_data(task_df, config)\n"
+            "    overrides = {'target_departments': eligible}\n"
+            "    grid = resolve_experiment_grid(full_config, overrides=overrides)"
+        )
+
     # inner_lr_grid: when present, lr is swept AND included in the experiment ID
     # so different lr values produce distinct experiment directories.
     inner_lr_grid_raw = experiment_grid.get("inner_lr_grid", None)
@@ -720,9 +803,29 @@ def resolve_experiment_grid(
             sweep_synth = True  # non-null tek implies an augmentation sweep
 
     preset_meta_overrides = {}
-    for key in ["meta_iterations", "n_repeats", "inner_lr", "outer_lr", "meta_batch_size", "target_inner_steps"]:
+    for key in ["meta_iterations", "n_repeats", "inner_lr", "outer_lr", "meta_batch_size", "target_inner_steps", "inner_grad_clip"]:
         if key in experiment_grid:
             preset_meta_overrides[key] = experiment_grid[key]
+
+    # Preset-level task_config overrides (flat keys → nested into task_config).
+    preset_task_overrides = {}
+    for key in ["require_both_query_classes"]:
+        if key in experiment_grid:
+            preset_task_overrides[key] = experiment_grid[key]
+
+    # gradient_clip_norm_grid: when present, outer gradient clipping is swept
+    # AND included in the experiment ID so different clip values produce
+    # distinct experiment directories.
+    clip_grid_raw = experiment_grid.get("gradient_clip_norm_grid", None)
+    sweep_clip = clip_grid_raw is not None
+    if sweep_clip:
+        # Convert: null → None (no clipping), numbers → float
+        clip_grid: List[Optional[float]] = [
+            float(v) if v is not None else None for v in clip_grid_raw
+        ]
+    else:
+        # Single-element list drawn from base_config (default 1.0 for legacy).
+        clip_grid = [base_config.get("meta_config", {}).get("gradient_clip_norm", 1.0)]
 
     experiment_list: List[Tuple[str, Dict[str, Any]]] = []
     seen_cells: set = set()
@@ -736,6 +839,7 @@ def resolve_experiment_grid(
         synthetic_proportion,
         augmentation_method,
         target_effective_k,
+        gradient_clip_norm,
     ) in product(
         methods,
         support_grid,
@@ -746,6 +850,7 @@ def resolve_experiment_grid(
         synprop_grid,
         gen_method_grid,
         tek_grid,
+        clip_grid,
     ):
         # Deduplication rule: when augmentation is disabled, the sweep over
         # synthetic_proportion is meaningless — every (syn_prop, "none") cell
@@ -774,6 +879,7 @@ def resolve_experiment_grid(
             canonical_synprop,
             canonical_method,
             canonical_tek,
+            gradient_clip_norm,  # None or float — both are hashable
         )
         if cell_key in seen_cells:
             continue
@@ -789,6 +895,16 @@ def resolve_experiment_grid(
         resolved["meta_config"].update(copy.deepcopy(preset_meta_overrides))
         # Always apply the per-experiment inner_lr (overrides any preset_meta_overrides value)
         resolved["meta_config"]["inner_lr"] = inner_lr
+        # Apply the per-experiment gradient_clip_norm.
+        resolved["meta_config"]["gradient_clip_norm"] = gradient_clip_norm
+        # Apply preset-level task_config overrides.
+        resolved["task_config"].update(copy.deepcopy(preset_task_overrides))
+        # If the preset didn't explicitly set target_inner_steps, default to
+        # the experiment's inner_steps.  This prevents the common pitfall of
+        # meta-training with 1 step but evaluating with the base_config's
+        # default of 5 steps, which causes over-adaptation and collapse.
+        if "target_inner_steps" not in preset_meta_overrides:
+            resolved["meta_config"]["target_inner_steps"] = int(inner_steps)
 
         # Attach the resolved synthetic_config block.
         resolved["synthetic_config"] = _build_synthetic_block(
@@ -810,6 +926,7 @@ def resolve_experiment_grid(
             synthetic_proportion=canonical_synprop if sweep_synth else None,
             augmentation_method=canonical_method if sweep_synth else None,
             target_effective_k=canonical_tek if sweep_tek else None,
+            gradient_clip_norm=gradient_clip_norm if sweep_clip else None,
         )
         experiment_list.append((exp_id, resolved))
 
@@ -842,6 +959,8 @@ def build_experiment_preview_df(
                 "k_neighbors": syn_cfg.get(
                     "k_neighbors", DEFAULT_SYNTHETIC_CONFIG["k_neighbors"]
                 ),
+                "gradient_clip_norm": config["meta_config"].get("gradient_clip_norm"),
+                "inner_grad_clip": config["meta_config"].get("inner_grad_clip"),
             }
         )
     return pd.DataFrame(rows)
@@ -1427,7 +1546,7 @@ def prepare_stage2_tasks(
                 _ep["episode_seed"] = _base_seed + _ep_idx
                 target_episodes.append(_ep)
         else:
-            target_episodes = make_logistics_meta_test_split(
+            target_episodes = make_target_meta_test_split(
                 task_df=task_df,
                 feature_cols=feature_cols,
                 target_department=target_department,
@@ -1437,6 +1556,9 @@ def prepare_stage2_tasks(
                 n_support_pos=config["support_config"]["n_support_pos"],
                 n_support_neg=config["support_config"]["n_support_neg"],
                 n_repeats=config["meta_config"]["n_repeats"],
+                require_both_query_classes=config["task_config"].get(
+                    "require_both_query_classes", False
+                ),
             )
     except ValueError:
         target_episodes = []
@@ -1669,6 +1791,8 @@ def _run_meta_method(
         n_support_neg=config["support_config"].get("n_support_neg", 1),
         device=device,
         random_state=config["seed"],
+        gradient_clip_norm=meta_cfg.get("gradient_clip_norm", 1.0),
+        inner_grad_clip=meta_cfg.get("inner_grad_clip", 1.0),
     )
 
     trained_model = meta_train_result["model"]
@@ -1684,6 +1808,7 @@ def _run_meta_method(
         inner_lr=meta_cfg["inner_lr"],
         target_inner_steps=meta_cfg.get("target_inner_steps", meta_cfg["inner_steps"]),
         device=device,
+        inner_grad_clip=meta_cfg.get("inner_grad_clip", 1.0),
     )
 
     return {
@@ -1830,6 +1955,8 @@ def summarize_stage2_result(
         "inner_steps": config.get("meta_config", {}).get("inner_steps"),
         "inner_lr": config.get("meta_config", {}).get("inner_lr"),
         "meta_batch_size": config.get("meta_config", {}).get("meta_batch_size"),
+        "gradient_clip_norm": config.get("meta_config", {}).get("gradient_clip_norm"),
+        "inner_grad_clip": config.get("meta_config", {}).get("inner_grad_clip"),
         "synthetic_proportion": syn_cfg.get("synthetic_proportion", 0.0),
         "augmentation_method": syn_cfg.get("augmentation_method", "none"),
         "target_per_class": syn_cfg.get("target_per_class"),
@@ -1896,6 +2023,59 @@ def summarize_stage2_result(
         for col in ("pred_mean", "pred_std", "frac_near_zero", "frac_near_one"):
             if col in pred_stats.columns:
                 summary[f"{col}_mean"] = float(pred_stats[col].mean())
+
+    # ── Episode-level class diagnostics ──────────────────────────────────────
+    # Compute per-episode query and support class counts from predictions and
+    # the prepared data (when available).
+    if isinstance(predictions, pd.DataFrame) and not predictions.empty and "y_true" in predictions.columns:
+        ep_groups = predictions.groupby("episode_idx")["y_true"]
+        query_true_means = ep_groups.mean()
+        query_pos_counts = ep_groups.sum()
+        query_neg_counts = ep_groups.apply(lambda s: (s == 0).sum())
+
+        summary["query_true_mean_mean"] = float(query_true_means.mean())
+        summary["query_pos_count_mean"] = float(query_pos_counts.mean())
+        summary["query_neg_count_mean"] = float(query_neg_counts.mean())
+
+        # Count episodes where query has only one class.
+        n_one_class_query = int(((query_pos_counts == 0) | (query_neg_counts == 0)).sum())
+        summary["n_one_class_query_episodes"] = n_one_class_query
+
+    # Support class counts from episode_accounting (computed during prepare).
+    if isinstance(result.get("episode_accounting"), list) and len(result["episode_accounting"]) > 0:
+        acct_list = result["episode_accounting"]
+        support_pos = [a.get("real_k_pos", 0) + a.get("synthetic_k_pos", 0) for a in acct_list]
+        support_neg = [a.get("real_k_neg", 0) + a.get("synthetic_k_neg", 0) for a in acct_list]
+        support_total = [p + n for p, n in zip(support_pos, support_neg)]
+        summary["support_pos_count_mean"] = float(np.mean(support_pos)) if support_pos else float("nan")
+        summary["support_neg_count_mean"] = float(np.mean(support_neg)) if support_neg else float("nan")
+        if support_total:
+            summary["support_true_mean_mean"] = float(
+                np.mean([p / max(t, 1) for p, t in zip(support_pos, support_total)])
+            )
+
+    # ── Stability warnings ───────────────────────────────────────────────────
+    warnings_list = []
+    if summary.get("n_one_class_query_episodes", 0) > 0:
+        warnings_list.append(
+            f"WARNING: {summary['n_one_class_query_episodes']} query episode(s) "
+            f"have only one class (AUROC undefined)"
+        )
+    if summary.get("query_true_mean_mean", 0.0) > 0.85:
+        warnings_list.append(
+            f"WARNING: query_true_mean_mean={summary['query_true_mean_mean']:.3f} "
+            f"> 0.85 — query is severely positive-heavy"
+        )
+    pred_mean_val = summary.get("gold_pred_mean_mean") or summary.get("pred_mean_mean", 0.0)
+    pred_std_val = summary.get("gold_pred_std_mean") or summary.get("pred_std_mean", 1.0)
+    if pred_mean_val is not None and pred_std_val is not None:
+        if pred_mean_val > 0.95 and pred_std_val < 0.01:
+            warnings_list.append(
+                f"WARNING: pred_mean={pred_mean_val:.4f}, pred_std={pred_std_val:.4f} "
+                f"— predictions are collapsed"
+            )
+    if warnings_list:
+        summary["stability_warnings"] = "; ".join(warnings_list)
 
     return summary
 

@@ -7,7 +7,7 @@ Checks:
   1. YAML parses without error.
   2. base_config is present and has required keys.
   3. MLP architecture matches Stage 1 (256→128→1, dropout=0.1).
-  4. All canonical presets are present (exactly 10, no missing, no extra).
+  4. All canonical presets are present (exactly 13, no missing, no extra).
   5. No synprop=1.0 in any active (non-archived) preset.
   6. All target_departments in canonical presets are valid department names.
   7. All augmentation_method values are legal ("none" or "smote_nc").
@@ -17,11 +17,13 @@ Checks:
  10. Documentation-only fields (augmentation_scope, freeze_strategy) are
      present only in Stage 2b or TODO presets (not runner-read).
  11. thesis_main includes zero_shot in its methods list.
+ 12. gradient_clip_norm_grid and inner_grad_clip values are valid (null or positive numbers).
 
 Canonical presets (4 groups):
   GROUP 1: quick_debug, stage2b_debug
   GROUP 2: thesis_main, init_ablation, k_shot_label_budget
-  GROUP 3: maml_lr_sweep, maml_freeze_ablation, maml_mechanics_debug
+  GROUP 3: maml_lr_sweep, maml_stabilization_debug, maml_stabilization_debug_balanced,
+           maml_stabilization_sweep, maml_freeze_ablation, maml_mechanics_debug
   GROUP 4: stage2b_smotenc, stage2b_label_budget
 
 TODO (documentation-only) presets:
@@ -60,6 +62,9 @@ CANONICAL_PRESETS = {
     "k_shot_label_budget",
     # Group 3: MAML-Focused Optimization
     "maml_lr_sweep",
+    "maml_stabilization_debug",
+    "maml_stabilization_debug_balanced",
+    "maml_stabilization_sweep",
     "maml_freeze_ablation",
     "maml_mechanics_debug",
     # Group 4: Stage 2b Support Augmentation
@@ -152,7 +157,7 @@ def run_checks() -> int:
            f"dropout={CANONICAL_MLP['dropout']} ✓")
 
     # ── Check 4: Canonical presets present ───────────────────────────────────
-    print("\n[4] Canonical presets (10 total, 4 groups)")
+    print("\n[4] Canonical presets (13 total, 4 groups)")
     presets = cfg.get("presets", {})
     if not isinstance(presets, dict):
         fail("presets section missing or not a dict")
@@ -289,6 +294,35 @@ def run_checks() -> int:
     else:
         fail(f"thesis_main missing zero_shot; has: {thesis_main_methods}")
         n_fail += 1
+
+    # ── Check 12: gradient_clip_norm_grid and inner_grad_clip ──────────────────
+    print("\n[12] gradient_clip_norm_grid / inner_grad_clip values")
+    check12_fail = 0
+    for name, preset in (presets or {}).items():
+        # gradient_clip_norm_grid: each value must be null or a positive number
+        gcn_grid = preset.get("gradient_clip_norm_grid", [])
+        if isinstance(gcn_grid, list):
+            for val in gcn_grid:
+                if val is None:
+                    continue  # null = no clipping (valid)
+                if not isinstance(val, (int, float)) or val <= 0:
+                    fail(
+                        f"Preset '{name}': gradient_clip_norm_grid contains "
+                        f"invalid value {val!r} — must be null or a positive number"
+                    )
+                    check12_fail += 1
+        # inner_grad_clip: must be null or a positive number
+        igc = preset.get("inner_grad_clip", None)
+        if igc is not None:
+            if not isinstance(igc, (int, float)) or igc <= 0:
+                fail(
+                    f"Preset '{name}': inner_grad_clip = {igc!r} "
+                    f"— must be null or a positive number"
+                )
+                check12_fail += 1
+    n_fail += check12_fail
+    if check12_fail == 0:
+        ok("All gradient_clip_norm_grid and inner_grad_clip values are valid ✓")
 
     # ── Summary ──────────────────────────────────────────────────────────────
     print("\n" + "=" * 60)

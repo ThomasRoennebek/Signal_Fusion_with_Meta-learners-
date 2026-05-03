@@ -78,6 +78,8 @@ def _collect_summary_row(
     summary["inner_steps"] = resolved_config.get("meta_config", {}).get("inner_steps")
     summary["inner_lr"] = resolved_config.get("meta_config", {}).get("inner_lr")
     summary["meta_batch_size"] = resolved_config.get("meta_config", {}).get("meta_batch_size")
+    summary["gradient_clip_norm"] = resolved_config.get("meta_config", {}).get("gradient_clip_norm")
+    summary["inner_grad_clip"] = resolved_config.get("meta_config", {}).get("inner_grad_clip")
     summary["was_skipped"] = bool(was_skipped)
     return summary
 

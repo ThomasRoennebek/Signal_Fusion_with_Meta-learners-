@@ -26,7 +26,7 @@
 #                             resolve_experiment_grid() / run_stage2_pipeline()
 #   - freeze_strategy       : PLANNED, not yet implemented; see maml_freeze_ablation
 #
-# CANONICAL EXPERIMENT GROUPS (10 presets in 4 groups):
+# CANONICAL EXPERIMENT GROUPS (13 presets in 4 groups):
 #
 #   [GROUP 1 — DEBUG / SMOKE TESTS]
 #   - quick_debug           : 2-episode ANIL+finetune on Logistics (k=2, A_weak_only)
@@ -40,9 +40,12 @@
 #     Research questions: RQs 1–8 (method comparison, initialization quality, k-shot effects)
 #
 #   [GROUP 3 — MAML-FOCUSED OPTIMIZATION]
-#   - maml_lr_sweep         : ANIL/FOMAML/MAML with inner-LR × inner-step grid
-#   - maml_freeze_ablation  : [TODO — NOT YET RUNNABLE] Layer-freeze ablation
-#   - maml_mechanics_debug  : [TODO — NOT YET RUNNABLE] MAML inner-loop mechanics
+#   - maml_lr_sweep                : ANIL/FOMAML/MAML with inner-LR × inner-step grid
+#   - maml_stabilization_debug     : Fast debug for MAML stabilization sweep
+#   - maml_stabilization_debug_balanced : MAML k=1/1 with both query classes required
+#   - maml_stabilization_sweep     : MAML × inner_lr × inner_steps × gradient_clip_norm
+#   - maml_freeze_ablation         : [TODO — NOT YET RUNNABLE] Layer-freeze ablation
+#   - maml_mechanics_debug         : [TODO — NOT YET RUNNABLE] MAML inner-loop mechanics
 #     Research questions: RQ 9 (MAML hyperparameter sensitivity and convergence behavior)
 #
 #   [GROUP 4 — STAGE 2B SUPPORT AUGMENTATION]
@@ -102,6 +105,8 @@ base_config:
     inner_steps: 3
     target_inner_steps: 5
     n_repeats: 20
+    gradient_clip_norm: 1.0    # outer-loop clip_grad_norm_ max_norm; null = disabled
+    inner_grad_clip: 1.0       # inner-loop per-param gradient clamp; null = disabled
 
   # ---------------------------------------------------------------------------
   # MLP architecture for random-init baseline only.
@@ -384,6 +389,127 @@ presets:
 
     init_names:
       - "A_weak_only"
+
+    meta_batch_size: 4
+    n_repeats: 20
+
+
+  # -------------------------------------------------------
+  # [CANONICAL] MAML stabilization debug
+  # Fast debug version — validates pipeline before full sweep.
+  # -------------------------------------------------------
+  maml_stabilization_debug:
+    description: "Fast debug version of MAML stabilization sweep. 8 experiments × 3 repeats on Logistics only."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "maml"
+
+    init_names:
+      - "C_hybrid"
+
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 1
+      - 2
+
+    inner_lr_grid:
+      - 0.0005
+      - 0.001
+
+    gradient_clip_norm_grid:
+      - 0.5
+      - 1.0
+
+    inner_grad_clip: 1.0
+
+    meta_batch_size: 2
+    n_repeats: 3
+
+
+  # -------------------------------------------------------
+  # [CANONICAL] MAML stabilization balanced debug
+  # k=1/1 with both query classes required.
+  # target_inner_steps matches inner_steps (not base default 5).
+  # -------------------------------------------------------
+  maml_stabilization_debug_balanced:
+    description: "MAML stabilization with k=1/1 and both query classes required. Gentle adaptation — target_inner_steps=1, inner_grad_clip=0.5."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "maml"
+
+    init_names:
+      - "C_hybrid"
+
+    support_grid:
+      - n_support_pos: 1
+        n_support_neg: 1
+
+    inner_steps_grid:
+      - 1
+
+    inner_lr_grid:
+      - 0.0001
+      - 0.0005
+
+    gradient_clip_norm_grid:
+      - 0.25
+      - 0.5
+
+    inner_grad_clip: 0.5
+    target_inner_steps: 1
+    require_both_query_classes: true
+
+    meta_batch_size: 2
+    n_repeats: 5
+
+
+  # -------------------------------------------------------
+  # [CANONICAL] MAML stabilization full sweep
+  # Sweeps inner_lr × inner_steps × outer gradient clipping.
+  # -------------------------------------------------------
+  maml_stabilization_sweep:
+    description: "Focused sweep to stabilize full MAML under scarce gold labels. Sweeps inner_lr × inner_steps × outer gradient clipping to find gentle adaptation settings."
+
+    target_departments:
+      - "Logistics"
+
+    methods:
+      - "maml"
+
+    init_names:
+      - "C_hybrid"
+
+    support_grid:
+      - n_support_pos: 2
+        n_support_neg: 2
+
+    inner_steps_grid:
+      - 1
+      - 2
+      - 3
+
+    inner_lr_grid:
+      - 0.0001
+      - 0.0005
+      - 0.001
+      - 0.002
+
+    gradient_clip_norm_grid:
+      - 0.25
+      - 0.5
+      - 1.0
+      - 2.0
+
+    inner_grad_clip: 1.0
 
     meta_batch_size: 4
     n_repeats: 20

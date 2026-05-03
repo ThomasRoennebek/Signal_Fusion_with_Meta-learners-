@@ -10,6 +10,12 @@ two public functions used by the Stage 2 backend:
 
 Both functions return standardized dictionaries so the shared Stage 2 runner can
 save metrics, predictions, and training history consistently across methods.
+
+Configurable clipping (added for MAML stabilization):
+- gradient_clip_norm: outer-loop gradient clip max_norm.
+    1.0 = legacy default; None = no outer clipping.
+- inner_grad_clip: accepted for API compatibility but ignored (ANIL adapts
+    only the final head; inner gradients are inherently stable).
 """
 
 from __future__ import annotations
@@ -114,7 +120,20 @@ def meta_train_anil(
     n_support_neg: int = 5,
     device: Optional[torch.device] = None,
     random_state: int = 42,
+    gradient_clip_norm: Optional[float] = 1.0,
+    inner_grad_clip: Optional[float] = 1.0,  # accepted for API compat; unused
 ) -> Dict[str, Any]:
+    """Meta-train ANIL with configurable outer gradient clipping.
+
+    Parameters
+    ----------
+    gradient_clip_norm : float or None
+        Max norm for outer-loop gradient clipping.
+        1.0 = legacy default.  None = no outer clipping.
+    inner_grad_clip : float or None
+        Accepted for API compatibility with _run_meta_method but unused.
+        ANIL adapts only the final linear head; inner gradients are stable.
+    """
     if device is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -195,7 +214,17 @@ def meta_train_anil(
         if valid_query_losses:
             outer_loss = torch.stack(valid_query_losses).mean()
             outer_loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+
+            # ── Diagnostic: outer gradient norm (before clipping) ──
+            outer_grad_norm = 0.0
+            for param in model.parameters():
+                if param.grad is not None:
+                    outer_grad_norm += float(param.grad.norm(2).item() ** 2)
+            outer_grad_norm = outer_grad_norm ** 0.5
+
+            # Apply outer gradient clipping (configurable).
+            if gradient_clip_norm is not None:
+                torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=gradient_clip_norm)
             outer_optimizer.step()
 
             skipped_this_iteration = total_skipped - skipped_before_iteration
@@ -207,6 +236,8 @@ def meta_train_anil(
                     "n_skipped": total_skipped,              # kept for backward compatibility
                     "n_skipped_this_iteration": skipped_this_iteration,
                     "n_skipped_cumulative": total_skipped,
+                    # Diagnostics:
+                    "outer_grad_norm": outer_grad_norm,
                 }
             )
 
@@ -219,6 +250,7 @@ def meta_train_anil(
         "total_skipped_task_episodes": total_skipped,
         "skip_rate": total_skipped / max(1, total_possible_task_episodes),
         "meta_train_departments_used": list(meta_train_departments),
+        "gradient_clip_norm": gradient_clip_norm,
     }
 
     return {
@@ -239,6 +271,7 @@ def evaluate_anil_on_target_episodes(
     inner_lr: float = 0.01,
     target_inner_steps: int = 5,
     device: Optional[torch.device] = None,
+    inner_grad_clip: Optional[float] = 1.0,  # accepted for API compat; unused
 ) -> Dict[str, Any]:
     if device is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

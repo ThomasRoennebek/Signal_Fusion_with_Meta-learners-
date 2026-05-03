@@ -23,6 +23,7 @@ from master_thesis.episode_sampler import (
     build_department_task_table,
     filter_valid_departments,
     make_logistics_meta_test_split,
+    make_target_meta_test_split,
     sample_episode_with_synthetic_support,
     sample_meta_batch,
     sample_support_query_split,
@@ -213,6 +214,117 @@ class TestMakeLogisticsMetaTestSplit:
                 n_support_neg=2,
                 n_repeats=3,
             )
+
+
+# ---------------------------------------------------------------------------
+# make_target_meta_test_split — generalized rename of make_logistics_meta_test_split
+# ---------------------------------------------------------------------------
+
+class TestMakeTargetMetaTestSplit:
+    """Tests for the renamed, department-agnostic make_target_meta_test_split."""
+
+    def test_non_logistics_target_returns_episodes(self):
+        """make_target_meta_test_split works for any department, not just Logistics."""
+        task_df = _make_multi_dept_df(departments=("Alpha", "Beta"))
+        episodes = make_target_meta_test_split(
+            task_df=task_df,
+            feature_cols=FEAT_COLS,
+            target_department="Alpha",
+            n_support_pos=2,
+            n_support_neg=2,
+            n_repeats=3,
+        )
+        assert len(episodes) == 3
+        for ep in episodes:
+            # Every row in this episode must belong to Alpha only.
+            assert set(ep["support_df"]["department"].unique()) == {"Alpha"}
+            assert set(ep["query_df"]["department"].unique()) == {"Alpha"}
+
+    def test_non_logistics_no_logistics_rows_leak(self):
+        """When targeting a non-Logistics department, no Logistics rows appear."""
+        task_df = _make_multi_dept_df(departments=("Logistics", "Packaging Material"))
+        episodes = make_target_meta_test_split(
+            task_df=task_df,
+            feature_cols=FEAT_COLS,
+            target_department="Packaging Material",
+            n_support_pos=2,
+            n_support_neg=2,
+            n_repeats=4,
+        )
+        for ep in episodes:
+            support_depts = set(ep["support_df"]["department"].unique())
+            query_depts = set(ep["query_df"]["department"].unique())
+            assert "Logistics" not in support_depts, "Logistics rows leaked into support."
+            assert "Logistics" not in query_depts, "Logistics rows leaked into query."
+
+    def test_support_query_contract_disjoint(self):
+        """Support and query contract IDs must be disjoint for every repeat."""
+        task_df = _make_dept_df(department="Finance", n_pos_contracts=5, n_neg_contracts=5)
+        episodes = make_target_meta_test_split(
+            task_df=task_df,
+            feature_cols=FEAT_COLS,
+            target_department="Finance",
+            n_support_pos=2,
+            n_support_neg=2,
+            n_repeats=5,
+        )
+        for ep in episodes:
+            s_ids = set(ep["support_df"]["contract_id"].tolist())
+            q_ids = set(ep["query_df"]["contract_id"].tolist())
+            assert s_ids.isdisjoint(q_ids), "Contract leakage between support and query."
+
+    def test_invalid_department_raises(self):
+        """Requesting a department not in task_df must raise ValueError."""
+        task_df = _make_dept_df(department="Logistics")
+        with pytest.raises(ValueError):
+            make_target_meta_test_split(
+                task_df=task_df,
+                feature_cols=FEAT_COLS,
+                target_department="DoesNotExist",
+                n_support_pos=2,
+                n_support_neg=2,
+                n_repeats=2,
+            )
+
+    def test_repeat_idx_and_episode_seed_set(self):
+        """Each episode must carry repeat_idx and episode_seed metadata."""
+        task_df = _make_dept_df(department="IT", n_pos_contracts=5, n_neg_contracts=5)
+        episodes = make_target_meta_test_split(
+            task_df=task_df,
+            feature_cols=FEAT_COLS,
+            target_department="IT",
+            n_support_pos=2,
+            n_support_neg=2,
+            n_repeats=3,
+            base_random_state=77,
+        )
+        for i, ep in enumerate(episodes):
+            assert ep["repeat_idx"] == i
+            assert ep["episode_seed"] == 77 + i
+
+
+class TestMakeLogisticsMetaTestSplitAlias:
+    """Ensure the deprecated alias still works identically to the new function."""
+
+    def test_alias_returns_same_result_as_canonical(self):
+        task_df = _make_dept_df(n_pos_contracts=5, n_neg_contracts=5)
+        common_kwargs = dict(
+            task_df=task_df,
+            feature_cols=FEAT_COLS,
+            target_department="Logistics",
+            n_support_pos=2,
+            n_support_neg=2,
+            n_repeats=3,
+            base_random_state=42,
+        )
+        ep_alias = make_logistics_meta_test_split(**common_kwargs)
+        ep_canon = make_target_meta_test_split(**common_kwargs)
+        assert len(ep_alias) == len(ep_canon)
+        for a, b in zip(ep_alias, ep_canon):
+            assert a["repeat_idx"] == b["repeat_idx"]
+            assert a["episode_seed"] == b["episode_seed"]
+            assert list(a["support_df"]["contract_id"]) == list(b["support_df"]["contract_id"])
+            assert list(a["query_df"]["contract_id"]) == list(b["query_df"]["contract_id"])
 
 
 # ---------------------------------------------------------------------------
